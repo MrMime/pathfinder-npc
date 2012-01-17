@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="pfRace.js"></script>
 	<script type="text/javascript" src="pfSize.js"></script>
 	<script type="text/javascript" src="pfAlignment.js"></script>
+	<script type="text/javascript" src="pfArmor.js"></script>
 	<script type="text/javascript" src="pfAC.js"></script>
 	<script type="text/javascript" src="pfWeapon.js"></script>
 	<script type="text/javascript" src="updater.js"></script>
@@ -20,6 +21,8 @@
 	<script type="text/javascript" src="globals.js"></script>
 	<script type="text/javascript" src="pfNpcForm.js"></script>
 	<link rel="stylesheet" type="text/css" href="tipTip.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="form.css">
 	<style>
 		.center {text-align:center;}
 		.right {text-align:right;}
@@ -28,155 +31,19 @@
 		.boldAdvantage {font-weight:bold;border:2px solid #009900;}
 		.feats {text-decoration:underline;}
 		
-		FIELDSET {
-			width:98%;
-			
-		}
-		
-		INPUT {
-			border: 1px solid gray;
-			font-size:12px;
-			font-family:verdana;
-		}
-		
-		INPUT[type=text]{
-			text-align:center;
-		}
-		
-		INPUT[type=button] {
-			cursor:pointer;
-		}
-		
-		FORM TH{
-			font-family:verdana;
-			font-weight:bold;
-			font-size:12px;
-			min-width:50px;
-			text-align:center;
-			border-bottom:1px dotted black;
-			padding:1px;
-		}
-		
-		FIELDSET#stats INPUT {
-			min-width:40px;			
-		}
-		
-		FORM TD {
-			font-family:verdana;
-			font-size:12px;
-			margin-left:1px;
-			margin-right:1px;
-			text-align:center;
-		}
-		
-		SELECT.npcSize {
-			size:5;
-		}
-		
-		DIV.inputContainer {
-			position:relative;
-			width:100%;
-			float:left;
-		}
-		
-		DIV.inputContainer .label {
-			float:left;
-			font-weight:bold;
-			text-align:right;
-			width:100px;
-			margin-right:10px;
-			font-size:10px;
-			font-family:verdana;
-			vertical-align:top;
-		}
-		
-		DIV.inputContainer .input {
-			width:100%;
-			height:-100%;
-			margin-left:10px;
-			font-family:verdana;
-			font-size:10px;
-		}
-		
-		.tooltip {
-			display:none;
-			font-size:12px;
-			height:70px;
-			width:520px;
-			padding:25px;
-			color:#fff;	
-		}
-		
-		#tiptip_content{
-			width:450px;
-		}
-		
-		#tiptip_content TR TD{
-			color:white;
-			vertical-align:top;
-			font-size:10px;
-			font-family:verdana;
-		}
-		
-		#tiptip_content TD:first-child{
-			font-weight:bold;
-		}
-		
-		TD.tooltip {
-			font-size:10px;
-			color:white;
-			font-family:verdana;
-			text-align:left;
-			vertical-align:top;
-		}
-		
-		TABLE.feats {
-			width:970px;
-		}
-		
-		TABLE.feats TH {
-			font-weight:bold;
-			text-transform:uppercase;
-			text-align:left;
-			background-color:gray;
-			color:white;
-			padding:2px;
-			font-size:14px;
-			font-family:verdana;
-			cursor:pointer;
-		}
-		
-		.hasImpact {
-			font-weight:bold;
-			color:#009900;
-		}
-	
-		TABLE.feats TABLE TD {
-			min-height:50px;
-			border:1px solid #EDEDED;
-			vertical-align:top;
-			width:33%;
-		}
-		
-		TABLE.featsList{
-			display:block;
-		}
-		
-		INPUT[readonly]{
-			color:gray;
-			border:1px solid #EDEDED;			
-		}
-		
-		
 	</style>
 </head>
 <body>
-	
-	<script language="javascript"> 	
-		//gpfRace = new pfDwarf();
-		//alert (gpfCharacter.race.modCos);
-	</script>
-	
+	<div id="headerwrap">
+		<div id="header">
+			<div id="logo">
+         		<h1>Pathfinder<br>NPC & Monster<br>Creation Center</h1> 
+      		</div>
+			<img id="flourishTop" src="./pageImages/flourishTop.png" alt="Top Floris">
+		</div>
+	</div>
+	<div id="container">
+		
 	<form>
 		<fieldset>
 <legend>Anagrafica</legend>
@@ -219,9 +86,9 @@
 		<div class="input">
 			<input type="hidden" name="currentSize" id="currentSize" value="0"/>
 			<select id="npcSize" name="size" size="3" onChange="updateAll();" >
-				<option value="{small}" onMouseDown="updateSize(1);">{small}</option>
-				<option value="{medium}" onMouseDown="updateSize(0);" selected="selected">{medium}</option>
-				<option value="{big}" onMouseDown="updateSize(-1);">{big}</option>
+				<option value="{small}" onMouseDown="gpfSize.setSize(1);updateAllSheet();">{small}</option>
+				<option value="{medium}" onMouseDown="gpfSize.setSize(0);updateAllSheet();" selected="selected">{medium}</option>
+				<option value="{big}" onMouseDown="gpfSize.setSize(-1);updateAllSheet();">{big}</option>
 			</select>
 		</div>
 	</div>
@@ -371,7 +238,70 @@
 		</tr>
 	</table>
 </fieldset>
-		
+<fieldset id="hpSection">
+	<legend>{hp}</legend>
+	<table>
+		<tr>
+			<th>{total}</th>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" class="bold" id="hp" 	name="hp" value="0" size="40" />
+				<input type="text" class="bold" id="hp_feat"	name="hpFeat" value="0" size="3" />
+			</td>
+		</tr>
+	</table>
+</fieldset>
+
+<fieldset id="armourclassSection">
+	<legend>{armorclass}</legend>
+	<table id="acTable">
+		<tr>
+			<td colspan="3">&nbsp;</td>
+			<th>{armor}</th>
+			<th>{shield}</th>
+			<th>{moddex}</th>
+			<th>{size}</th>
+			<th>{natural}</th>
+			<th>{feats}</th>
+			<th>{wisdom}</th>
+			<th>{class}</th>
+			<th>{magic}</th>
+		</tr>
+		<tr>
+			<th>{total}</th>
+			<td><input type="text" class="center bold" id="acTotal" name="ac" value="10" size="4" /></td>
+			<td><input type="text" class="center" id="acBase" value="+10" readonly="readonly" size="3" /></td>
+			<td>
+				<input type="text" class="center" id="acArmor" value="0" size="3" />
+				<select id="armorName" >
+				</select>
+			</td>
+			<td>
+				<input type="text" class="center" id="acShield" value="0" size="3"/>
+				<select id="shieldName"></select>
+			</td>
+			<td><input type="text" class="center" id="acDex" value="0" size="3" readonly="readonly" /></td>
+			<td><input type="text" class="center" id="acSize" value="0" size="3" readonly="readonly" /></td>
+			<td><input type="text" class="center" id="acNat" value="0" size="3" onKeyUp="gpfAC.update();" /></td>
+			<td><input type="text" class="center" id="acFeats" value="0" size="3" readonly="readonly" /></td>
+			<td><input type="text" class="center" id="acWis" value="0" size="3" readonly="readonly" /></td>
+			<td><input type="text" class="center" id="acClass" value="0" size="3" readonly="readonly" /></td>
+			<td><input type="text" class="center" id="acMagic" value="0" size="3" onKeyUp="gpfAC.update();" /></td>
+		</tr>
+		<tr>
+			<th>{flatfooted}</th>
+			<td><input type="text" class="center bold" id="acFlatFooted" name="flatfooted" size="4" colspan="8" /></td> 
+		</tr>
+		<tr>
+			<th>{touch}</th>
+			<td><input type="text" class="center bold" id="acTouch" name="touch" size="4" colspan="8" /></td> 
+		</tr>
+	</table>
+</fieldset>
+	
 	</form>
+	
+	</div>
 </body>
 </html>

@@ -1,0 +1,59 @@
+/*************************************************************/
+BODY {
+	background-image: url('./pageImages/pageBackground.jpeg');
+	margin:0px;
+	font-size:10px;
+	font-family:verdana;
+}
+
+
+DIV#headerwrap {
+	background-image: url('./pageImages/headerBackground.png');
+	background-repeat: repeat-x;
+	background-position: left top;
+	border-bottom: 0px solid #FFFFF0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	min-width: 960px;
+	float:left;
+	position:relative;
+}
+
+DIV#header{
+	height:95px;
+	float:left;
+}
+
+DIV#cointainer {
+	position:relative;
+	float:left;
+}
+
+DIV#logo {
+	width: 380px;
+	height: 60px;
+	text-align: left;
+	float: left;
+	display: inline;
+	margin: 8px 0px 0 115px;
+	padding: 0px;
+	background: url('./pageImages/logo-pathfinder_prd.png') top left no-repeat;
+}
+
+#logo H1 {
+	color:#F8F6E7;
+	line-height: 1;
+	font-size: 16px;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-weight: 700;
+	font-variant: small-caps;
+	margin: 4px 0 0 210px;
+	padding: 0;
+}
+
+IMG#flourishTop {
+	position: absolute;
+	top: -10px;
+	right: 0;
+}
