@@ -39,9 +39,4 @@ function pfSheet(){
 		return this.pfCharacter.calculateStats();
 	};
 	
-	this.setCustomModStat = function(stat){
-		this.pfCharacter.setCustomModStat(stat);
-	};
-	
-	
 }

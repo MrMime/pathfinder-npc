@@ -44,6 +44,7 @@ function pfRace(){
 		}
 	};
 	
+	//Clearing race mods when changing race to a new one
 	this.clearRaceMods = function(){
 		this.modStr = 0;
 		this.modCos = 0;
@@ -52,6 +53,18 @@ function pfRace(){
 		this.modWis = 0;
 		this.modCha = 0;
 	}; 
+	
+	this.update = function() {
+	    
+	    modRaceStr.val(this.modStr);
+	    modRaceCos.val(this.modCos);
+	    modRaceDex.val(this.modDex);
+	    modRaceInt.val(this.modInt);
+	    modRaceWis.val(this.modWis);
+	    modRaceCha.val(this.modCha);
+	    modRaceCus.val(this.modCus);
+	    
+	}
 	
 }
 
