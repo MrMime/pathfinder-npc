@@ -9,18 +9,9 @@ function pfAC(){
 	this.acWis          = 0;
 	this.acNat		    = 0;
 	this.acFeats		= 0; 
-	this.acArmor		= 0;
-	this.acShield		= 0;
-	this.armor          = new pfArmor();
-	this.shield         = new pfShield();
-	this.armorMaxDex    = 100;
-	this.shieldMaxDex   = 100;
 	
 	this.acClass        = null;
 	this.acMagic        = null;
-	
-	this.setArmor 	= function(armor) { this.armor = armor; this.acArmor = armor.ac; this.armorMaxDex = armor.maxDex; };
-	this.setShield 	= function(shield) { this.shield = shield; this.acShield = shield.ac; this.shieldMaxDex = shield.maxDex; }; 
 	
 	this.update = function(){
 	    
@@ -32,12 +23,12 @@ function pfAC(){
 	    this.acMagic   = globalACMagic.val()/1; //this value is places by user
 	    this.acSize    = globalACSize.val()/1; //this value is places by pfSize
 	    
-	    var totalModDexAvaiable = Math.min(this.acDex,this.armorMaxDex,this.shieldMaxDex);
+	    var totalModDexAvaiable = Math.min(this.acDex,gpfArmor.maxDex,gpfShield.maxDex);
 	    
-		this.totalAC 		= 10 + this.acArmor + this.acShield + totalModDexAvaiable + this.acFeats + 
+		this.totalAC 		= 10 + gpfArmor.ac + gpfShield.ac + totalModDexAvaiable + this.acFeats + 
 		                      this.acNat + this.acWis + this.acMagic + this.acClass + this.acSize; 
 		                      
-		this.totalTouchAC 	= this.totalAC - this.acNat - this.acArmor - this.acShield;
+		this.totalTouchAC 	= this.totalAC - this.acNat - gpfArmor.ac - gpfShield.ac;
 		this.totalFlatAC	= this.totalAC - totalModDexAvaiable - this.acFeats;
 		
 		this.draw();

@@ -5,19 +5,22 @@
 //****************************************************************//
 //****************************************************************//
 //GLOBAL VARIABLES NOT RELATED
-var gpfRace			= new pfHuman();
-var gpfStats		= new pfStats(new Array(10,10,10,10,10,10));
+var gpfRace				= new pfHuman();
+var gpfStats			= new pfStats(new Array(10,10,10,10,10,10));
 var gpfAlignment	= new pfAlignment();
-var gpfSize			= new pfSize();
+var gpfSize				= new pfSize();
 var gpfCharacter 	= new pfCharacter();
-var gpfSheet 		= new pfSheet();
+var gpfSheet 			= new pfSheet();
+var gpfArmor 			= new pfArmor();
+var gpfShield			= new pfShield();
 
 var gpfMovement     = new pfMovement(); //done
 var gpfInitiative   = new pfInitiative(); //done
 var gpfAC           = new pfAC();
 
-
-var globalRacesList = new Array();
+var globalRacesList 	= new Array();
+var globalArmorList 	= new Array();
+var globalShieldList 	= new Array();
 
 	
 //PREPARING GLOBALS
@@ -76,7 +79,6 @@ var globalACTouch;
 var globalACBase;
 var globalACArmor;
 var globalACShield;
-var globalACDex;
 var globalACSize;
 var globalACNat;
 var globalACFeats;
@@ -142,8 +144,7 @@ function setAll(){
     globalACTouch             	= $('#acTouch');
     globalACBase                = $('#acBase');
     globalACArmor               = $('#acArmor');
-    globalACShield              = $('#acShield');
-    globalACDex                 = $('#acDex');
+    globalACShield              = $('#acShield');    
     globalACSize                = $('#acSize');
     globalACNat                 = $('#acNat');
     globalACFeats               = $('#acFeats');
