@@ -1,12 +1,20 @@
+//****************************************************************//
+//****************************************************************//
+//************************     GLOBALS    ************************//
+//****************************************************************//
+//****************************************************************//
+//****************************************************************//
 //GLOBAL VARIABLES NOT RELATED
 var gpfRace			= new pfHuman();
 var gpfStats		= new pfStats(new Array(10,10,10,10,10,10));
 var gpfAlignment	= new pfAlignment();
 var gpfSize			= new pfSize();
-var gpfMovement		= new pfMovement();
 var gpfCharacter 	= new pfCharacter();
 var gpfSheet 		= new pfSheet();
-var gpfInitiative   = new pfInitiative();
+
+var gpfMovement     = new pfMovement(); //done
+var gpfInitiative   = new pfInitiative(); //done
+var gpfAC           = new pfAC();
 
 
 var globalRacesList = new Array();
@@ -64,6 +72,8 @@ var globalInitBonus2;
 
 function setAll(){
 	//ASSOCIATION BETWEEN GLOBALS AND HTML INPUTS
+	
+	//STATS
 	str 		= $('#str');
 	cos 		= $('#cos');
 	dex 		= $('#dex');

@@ -16,11 +16,6 @@ function buildRaceSelect(obj){
 					row.hide();
 					$('#modRaceCusCus').attr("checked","true");
 				}
-				//updating base race movement (es. 6 meters for Dwarf)
-				globalRaceBaseMovement.val(gpfRace.speed);
-					
-				gpfCharacter.setRace(gpfRace); //this is the global pfCharacter
-				gpfSheet.setPfCharacter(gpfCharacter);
 				updateAllSheet();
 			}
 	);

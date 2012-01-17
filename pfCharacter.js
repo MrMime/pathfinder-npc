@@ -12,15 +12,6 @@ function pfCharacter(){
 	this.size		= null;
 	this.movement	= null;
 	
-	this.setCustomModStat = function(stat){
-		if (this.race.modCus != 0) 
-			this.race.setCustomModStat(stat);
-	};
-	
-	this.setStats	= function (pfStats) { this.stats = pfStats; };
-	this.setSize	= function (pfSize)  { this.size  = pfSize; };
-	this.setMovement= function (pfMovement)  { this.movement  = pfMovement; };
-	
 	/**
 	 * Adding a Pf Class to total
 	 */
@@ -60,33 +51,6 @@ function pfCharacter(){
 		int.val(rollStat(high));
 		wis.val(rollStat(high));
 		cha.val(rollStat(high));
-	};
-	
-	//*****************  METHODS  **************************//
-	
-	/**
-	 * UPDATE STATS WITH RACE MOD
-	 * HUMAN LIKE RACE WITH CUSTOM MODS ARE MANAGE
-	 * DIRECTLY WITH STATS OBJECT METHOD
-	 */
-	this.calculateStats 	= function() {
-		this.stats.str 	=	parseInt(str.val());
-		this.stats.cos 	=	parseInt(cos.val());
-		this.stats.dex 	=	parseInt(dex.val());
-		this.stats.int 	=	parseInt(int.val());
-		this.stats.wis 	=	parseInt(wis.val());
-		this.stats.cha 	=	parseInt(cha.val());
-		
-		this.stats.setRaceStr(this.race.modStr);
-		this.stats.setRaceCos(this.race.modCos);
-		this.stats.setRaceDex(this.race.modDex);
-		this.stats.setRaceInt(this.race.modInt);
-		this.stats.setRaceWis(this.race.modWis);
-		this.stats.setRaceCha(this.race.modCha);
-		this.stats.setRaceCus(this.race.modCus);
-		
-		this.stats.calculateStats();
-		return this.stats;
 	};
 	
 }

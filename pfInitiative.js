@@ -9,11 +9,11 @@ function pfInitiative(){
 							parseInt(globalInitClass.val()) +
 							parseInt(globalInitBonus1.val()) +
 							parseInt(globalInitBonus2.val());
-		
-		globalInitModDex.val(parseInt(totalModDex.val()));
-		
-		globalInitTotal.val(totalInitiative);
-		
+		this.draw();	
 	};
 	
+	this.draw = function() {
+	    globalInitModDex.val(parseInt(totalModDex.val()));
+        globalInitTotal.val(totalInitiative);
+	}
 }

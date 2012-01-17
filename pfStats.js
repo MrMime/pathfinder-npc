@@ -53,30 +53,36 @@ function pfStats(stats){
 	};
 	
 	this.calculateTotals = function(){
-		this.totalStr = this.str + this.raceStr;
-		this.totalCos = this.cos + this.raceCos;
-		this.totalDex = this.dex + this.raceDex;
-		this.totalInt = this.int + this.raceInt;
-		this.totalWis = this.wis + this.raceWis;
-		this.totalCha = this.cha + this.raceCha;
-		
+		this.totalStr = str.val()/1 + modRaceStr.val()/1;
+		this.totalCos = cos.val()/1 + modRaceCos.val()/1;
+		this.totalDex = dex.val()/1 + modRaceDex.val()/1;
+		this.totalInt = int.val()/1 + modRaceInt.val()/1;
+		this.totalWis = wis.val()/1 + modRaceWis.val()/1;
+		this.totalCha = cha.val()/1 + modRaceCha.val()/1;
 	};
 	
-	//SETTING RACE STAT MODIFIER
-	this.setRaceStr = function(race){ this.raceStr = race;};
-	this.setRaceCos = function(race){ this.raceCos = race;};
-	this.setRaceDex = function(race){ this.raceDex = race;};
-	this.setRaceInt = function(race){ this.raceInt = race;};
-	this.setRaceWis = function(race){ this.raceWis = race;};
-	this.setRaceCha = function(race){ this.raceCha = race;};
-	this.setRaceCus = function(race){ this.raceCus = race;};
-	
-	this.calculateStats = function() {
+	this.update = function() {
 		this.calculateTotals();
 		this.calculateStatsMod();
+		this.draw();
 	};
 	
-	
+	this.draw = function(){
+	    //Setting TOTAL STATS
+        totalStr.val(this.totalStr);
+        totalCos.val(this.totalCos);
+        totalDex.val(this.totalDex);
+        totalInt.val(this.totalInt);
+        totalWis.val(this.totalWis);
+        totalCha.val(this.totalCha);
+        //SETTING TOTAL MODS
+        totalModStr.val(addPlus(this.modStr));
+        totalModCos.val(addPlus(this.modCos));
+        totalModDex.val(addPlus(this.modDex));
+        totalModInt.val(addPlus(this.modInt));
+        totalModWis.val(addPlus(this.modWis));
+        totalModCha.val(addPlus(this.modCha));
+	}
 }
 
 
