@@ -4,7 +4,7 @@ FIELDSET {
 		}
 		
 		INPUT {
-			border: 1px solid gray;
+			border: 2px solid #009900;
 			font-size:12px;
 			font-family:verdana;
 			background-color: #FFFFF0;
@@ -135,5 +135,12 @@ FIELDSET {
 		
 		INPUT[readonly]{
 			color:gray;
-			border:1px solid 
+			border:1px solid gray; 
+		}
+		
+		INPUT.bold[readonly]{
+			color:#F8F6E7;
+			border:2px solid black;
+			background-image: url('./pageImages/headerBackground.png');
+			font-size:14px;
 		}

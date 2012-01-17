@@ -2,7 +2,6 @@
 function pfMovement(){
 	
 	this.totalMovement 		= 0;
-	this.totalHeavyMovement = 0;
 	
 	this.update = function() {
 		var armorPenalty 	= parseFloat(globalArmorPenaltyMovement.val());
@@ -12,8 +11,12 @@ function pfMovement(){
 							  parseInt(globalBonusMovement2.val()) + 
 							  parseInt(globalItemMovement.val()) ;
 			
-		totalMovement 		= Math.max(gpfRace.speedHeavy,actualSpeed-armorPenalty);
-		globalTotalMovement.val(totalMovement);
+		this.totalMovement 		= Math.max(gpfRace.speedHeavy,actualSpeed+armorPenalty);
+		this.draw();
 	};
+	
+	this.draw = function() {
+	    globalTotalMovement.val(this.totalMovement);
+	}
 	
 }

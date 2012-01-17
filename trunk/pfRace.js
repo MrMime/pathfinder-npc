@@ -55,15 +55,18 @@ function pfRace(){
 	}; 
 	
 	this.update = function() {
-	    
+	    this.draw();
+	}
+	
+	this.draw = function(){
+	    globalRaceBaseMovement.val(addPlus(this.speed));
 	    modRaceStr.val(this.modStr);
-	    modRaceCos.val(this.modCos);
-	    modRaceDex.val(this.modDex);
-	    modRaceInt.val(this.modInt);
-	    modRaceWis.val(this.modWis);
-	    modRaceCha.val(this.modCha);
-	    modRaceCus.val(this.modCus);
-	    
+        modRaceCos.val(this.modCos);
+        modRaceDex.val(this.modDex);
+        modRaceInt.val(this.modInt);
+        modRaceWis.val(this.modWis);
+        modRaceCha.val(this.modCha);
+        modRaceCus.val(this.modCus);
 	}
 	
 }

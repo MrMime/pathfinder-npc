@@ -17,6 +17,39 @@ function loadAll(){
 			buildRaceSelect(obj);
 		}
 	});
+	
+	$.ajax({
+        type: "GET",
+        url: "ajaxPhp/armorList.php",
+        data: "id=1",
+        success: function(response){
+            var obj = JSON.parse(response);
+            globalArmorList = obj;
+            buildArmorSelect(obj);
+        }
+    });
+	 
+	$.ajax({
+        type: "GET",
+        url: "ajaxPhp/shieldList.php",
+        data: "id=1",
+        success: function(response){
+            var obj = JSON.parse(response);
+            globalShieldList = obj;
+            buildShieldSelect(obj);
+        }
+    }); 
+    
+    $.ajax({
+        type: "GET",
+        url: "ajaxPhp/classesList.php",
+        data: "id=1",
+        success: function(response){
+            var obj = JSON.parse(response);
+            globalClassList = obj;
+            buildClassesList(obj);
+        }
+    }); 
 	 
     updateAllSheet();
 }
@@ -24,10 +57,15 @@ function loadAll(){
 function updateAllSheet(){
     updateSize();
     updateRace();
+    updateClasses();
 	updateStats();
 	updateMovement();
 	updateInitiative();
 	updateAC();
+}
+
+function updateClasses(){
+    
 }
 
 function updateSize(){

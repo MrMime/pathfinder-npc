@@ -20,6 +20,7 @@ function pfClass(){
 	this.maxSpellLevel 		= 0;
 	this.bestSpellLevel 	= 0;
 	this.feats				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+	this.ACMods				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //armor class bonus (es monk every 4 levels)
 	this.totalFeats			= 0;
 	this.favourite			= false;
 	this.favouriteBonus		= 0;
@@ -235,6 +236,7 @@ function pfMonk(){
 	this.babBase  		= new Array(0,0,1,2,3,3,4,5,6,6,7,8,9,9,10,11,12,12,13,14,15);
 	this.stCat			= new Array(2,2,2);
 	this.ld				= 8;
+	this.ACMods			= new Array(0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5);
 	
 	this.calculateSpeed = function(){
 		this.modSpeed = Math.floor(this.level/3);
