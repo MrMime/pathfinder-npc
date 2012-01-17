@@ -1,0 +1,139 @@
+FIELDSET {
+			width:98%;
+			
+		}
+		
+		INPUT {
+			border: 1px solid gray;
+			font-size:12px;
+			font-family:verdana;
+			background-color: #FFFFF0;
+		}
+		
+		INPUT[type=text]{
+			text-align:center;
+		}
+		
+		INPUT[type=button] {
+			cursor:pointer;
+		}
+		
+		FORM TH{
+			font-family:verdana;
+			font-weight:bold;
+			font-size:10px;
+			min-width:50px;
+			text-align:center;
+			border-bottom:1px dotted black;
+			padding:1px;
+		}
+		
+		FIELDSET#stats INPUT {
+			min-width:40px;			
+		}
+		
+		FORM TD {
+			font-family:verdana;
+			font-size:12px;
+			margin-left:1px;
+			margin-right:1px;
+			text-align:center;
+		}
+		
+		SELECT.npcSize {
+			size:5;
+		}
+		
+		DIV.inputContainer {
+			position:relative;
+			width:100%;
+			float:left;
+		}
+		
+		DIV.inputContainer .label {
+			float:left;
+			font-weight:bold;
+			text-align:right;
+			width:100px;
+			margin-right:10px;
+			font-size:10px;
+			font-family:verdana;
+			vertical-align:top;
+		}
+		
+		DIV.inputContainer .input {
+			width:100%;
+			height:-100%;
+			margin-left:10px;
+			font-family:verdana;
+			font-size:10px;
+		}
+		
+		.tooltip {
+			display:none;
+			font-size:12px;
+			height:70px;
+			width:520px;
+			padding:25px;
+			color:#fff;	
+		}
+		
+		#tiptip_content{
+			width:450px;
+		}
+		
+		#tiptip_content TR TD{
+			color:white;
+			vertical-align:top;
+			font-size:10px;
+			font-family:verdana;
+		}
+		
+		#tiptip_content TD:first-child{
+			font-weight:bold;
+		}
+		
+		TD.tooltip {
+			font-size:10px;
+			color:white;
+			font-family:verdana;
+			text-align:left;
+			vertical-align:top;
+		}
+		
+		TABLE.feats {
+			width:970px;
+		}
+		
+		TABLE.feats TH {
+			font-weight:bold;
+			text-transform:uppercase;
+			text-align:left;
+			background-color:gray;
+			color:white;
+			padding:2px;
+			font-size:14px;
+			font-family:verdana;
+			cursor:pointer;
+		}
+		
+		.hasImpact {
+			font-weight:bold;
+			color:#009900;
+		}
+	
+		TABLE.feats TABLE TD {
+			min-height:50px;
+			border:1px solid #EDEDED;
+			vertical-align:top;
+			width:33%;
+		}
+		
+		TABLE.featsList{
+			display:block;
+		}
+		
+		INPUT[readonly]{
+			color:gray;
+			border:1px solid 
+		}

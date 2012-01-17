@@ -22,11 +22,18 @@ function loadAll(){
 }
 
 function updateAllSheet(){
+    updateSize();
     updateRace();
 	updateStats();
 	updateMovement();
 	updateInitiative();
+	updateAC();
 }
+
+function updateSize(){
+    gpfSize.update();
+}
+
 
 function updateRace(){
     gpfRace.update();
@@ -42,5 +49,9 @@ function updateInitiative(){
 
 function updateStats(){
     gpfStats.update();
+}
+
+function updateAC(){
+    gpfAC.update();
 }
 

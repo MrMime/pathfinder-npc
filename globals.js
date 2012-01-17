@@ -69,6 +69,21 @@ var globalInitClass;
 var globalInitBonus1;
 var globalInitBonus2;
 
+//ARMOR CLASS GLOBALS
+var globalACTotal;
+var globalACFlatFooted;
+var globalACTouch;
+var globalACBase;
+var globalACArmor;
+var globalACShield;
+var globalACDex;
+var globalACSize;
+var globalACNat;
+var globalACFeats;
+var globalACWis;
+var globalACClass;
+var globalACMagic;
+
 
 function setAll(){
 	//ASSOCIATION BETWEEN GLOBALS AND HTML INPUTS
@@ -120,7 +135,21 @@ function setAll(){
     globalInitClass             = $('#initClass');
     globalInitBonus1            = $('#initBonus1');
     globalInitBonus2            = $('#initBonus2');
-
+    
+    //ARMOR CLASS
+    globalACTotal               = $('#acTotal');
+    globalACFlatFooted          = $('#acFlatFooted');
+    globalACTouch             	= $('#acTouch');
+    globalACBase                = $('#acBase');
+    globalACArmor               = $('#acArmor');
+    globalACShield              = $('#acShield');
+    globalACDex                 = $('#acDex');
+    globalACSize                = $('#acSize');
+    globalACNat                 = $('#acNat');
+    globalACFeats               = $('#acFeats');
+    globalACWis                 = $('#acWis');
+    globalACClass               = $('#acClass');
+    globalACMagic               = $('#acMagic');
 	
 }
 

@@ -4,21 +4,51 @@ function pfAC(){
 	this.totalTouchAC	= 0;
 	this.totalFlatAC	= 0;
 	 
-	this.sizeMod		= 0;
-	this.modDex			= 0;
-	this.natural		= 0;
-	this.extra			= 0; //some feats increase AC 
+	this.acSize    		= 0;
+	this.acDex		    = 0;
+	this.acWis          = 0;
+	this.acNat		    = 0;
+	this.acFeats		= 0; 
+	this.acArmor		= 0;
+	this.acShield		= 0;
+	this.armor          = new pfArmor();
+	this.shield         = new pfShield();
+	this.armorMaxDex    = 100;
+	this.shieldMaxDex   = 100;
 	
-	this.armor			= null;
-	this.shield			= null;
+	this.acClass        = null;
+	this.acMagic        = null;
 	
-	this.setArmor 	= function(armor) { this.armor = armor; };
-	this.setShield 	= function(shield) { this.shield = shield; }; 
+	this.setArmor 	= function(armor) { this.armor = armor; this.acArmor = armor.ac; this.armorMaxDex = armor.maxDex; };
+	this.setShield 	= function(shield) { this.shield = shield; this.acShield = shield.ac; this.shieldMaxDex = shield.maxDex; }; 
 	
-	this.calculateAC = function(){
-		this.totalAC 		= 10 + this.armor.ac + this.sheald.ac + Math.min(this.modDex,this.armor.maxDex) + this.natural + Math.min(this.modDex,this.shield.maxDex) + this.extra;
-		this.totalTouchAC 	= 10 + Math.min(this.modDex,this.armor.maxDex) + Math.min(this.modDex,this.shield.maxDex) + this.extra;
-		this.totalFlatAC	= 10 + this.armor.ac + this.shield.ac + this.natural + this.extra;
+	this.update = function(){
+	    
+	    this.acDex     = totalModDex.val()/1; //this is the only value I read outside the AC section
+	    this.acWis     = globalACWis.val()/1; //this value is places by class 
+	    this.acFeats   = globalACFeats.val()/1; //this value is places by feats system
+	    this.acNat     = globalACNat.val()/1; //this values is places by user
+	    this.acClass   = globalACClass.val()/1; //this value is places by class
+	    this.acMagic   = globalACMagic.val()/1; //this value is places by user
+	    this.acSize    = globalACSize.val()/1; //this value is places by pfSize
+	    
+	    var totalModDexAvaiable = Math.min(this.acDex,this.armorMaxDex,this.shieldMaxDex);
+	    
+		this.totalAC 		= 10 + this.acArmor + this.acShield + totalModDexAvaiable + this.acFeats + 
+		                      this.acNat + this.acWis + this.acMagic + this.acClass + this.acSize; 
+		                      
+		this.totalTouchAC 	= this.totalAC - this.acNat - this.acArmor - this.acShield;
+		this.totalFlatAC	= this.totalAC - totalModDexAvaiable - this.acFeats;
+		
+		this.draw();
+		
 	};
+	
+	this.draw = function() {
+	    globalACTotal.val(addPlus(this.totalAC));
+	    globalACFlatFooted.val(addPlus(this.totalFlatAC));
+	    globalACTouch.val(addPlus(this.totalTouchAC));
+	    
+	}
 	
 }
