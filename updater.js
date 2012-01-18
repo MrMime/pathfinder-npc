@@ -75,8 +75,11 @@ function buildClassesList(obj){
     
     sel0.change(
             function(){
-                if (sel0.val() != '--')
+                if (sel0.val() != '--') {
                     $("#class00Level").removeAttr('disabled');
+                    var cc = sel0.val();
+                    gpfClass01 = eval ("new "+cc+"();");
+                }
                 else 
                     $("#class00Level").attr('disabled',true);
             }
@@ -84,8 +87,11 @@ function buildClassesList(obj){
     
     sel1.change(
             function(){
-                if (sel1.val() != '--')
+                if (sel1.val() != '--') {
                     $("#class01Level").removeAttr('disabled');
+                    var cc = sel1.val();
+                    gpfClass02 = eval ("new "+cc+"();");
+                }
                 else 
                     $("#class01Level").attr('disabled',true);
             }
@@ -93,8 +99,11 @@ function buildClassesList(obj){
     
     sel2.change(
             function(){
-                if (sel2.val() != '--')
+                if (sel2.val() != '--') {
                     $("#class02Level").removeAttr('disabled');
+                    var cc = sel2.val();
+                    gpfClass03 = eval ("new "+cc+"();");
+                }
                 else 
                     $("#class02Level").attr('disabled',true);
             }
@@ -102,8 +111,11 @@ function buildClassesList(obj){
     
     sel3.change(
             function(){
-                if (sel3.val() != '--')
+                if (sel3.val() != '--'){
                     $("#class03Level").removeAttr('disabled');
+                    var cc = sel3.val();
+                    gpfClass04 = eval ("new "+cc+"();");
+                }
                 else 
                     $("#class03Level").attr('disabled',true);
             }
@@ -111,8 +123,11 @@ function buildClassesList(obj){
         
      sel4.change(
             function(){
-                if (sel4.val() != '--')
+                if (sel4.val() != '--'){
                     $("#class04Level").removeAttr('disabled');
+                    var cc = sel4.val();
+                    gpfClass05 = eval ("new "+cc+"();");
+                }
                 else 
                     $("#class04Level").attr('disabled',true);
             }

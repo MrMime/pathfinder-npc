@@ -54,6 +54,10 @@ function loadAll(){
     updateAllSheet();
 }
 
+function updateClassLevel(index,level){
+    globalClassLevels[index] = level;
+}
+
 function updateAllSheet(){
     updateSize();
     updateRace();
@@ -66,6 +70,30 @@ function updateAllSheet(){
 
 function updateClasses(){
     
+    gpfCharacter.eraseAllClasses();
+    
+    gpfClass01.setIndex(0);
+    gpfClass01.update();
+    
+    gpfClass02.setLevel(globalC2Level.val()/1);
+    gpfClass02.update();
+    
+    gpfClass03.setLevel(globalC3Level.val()/1);
+    gpfClass03.update();
+    
+    gpfClass04.setLevel(globalC4Level.val()/1);
+    gpfClass04.update();
+    
+    gpfClass05.setLevel(globalC5Level.val()/1);
+    gpfClass05.update();
+    
+    gpfCharacter.addClass(gpfClass01);
+    gpfCharacter.addClass(gpfClass02);
+    gpfCharacter.addClass(gpfClass03);
+    gpfCharacter.addClass(gpfClass04);
+    gpfCharacter.addClass(gpfClass05);
+    
+    gpfCharacter.update();
 }
 
 function updateSize(){

@@ -24,26 +24,17 @@ function pfClass(){
 	this.totalFeats			= 0;
 	this.favourite			= false;
 	this.favouriteBonus		= 0;
+	//this is the index from 0 to 4 that represent the numerical number of class
+	//between the 5 an user can add
+	//this index allow the pfClass to modify its own specific HTML tags
+	this.index              = 0; 
 	
 	//METHODS
 	this.setLevel 	= function(level){
 		this.level = level;
-		this.calculateSpeed();
-		this.calculateST();
-		this.calculateBAB();
-		this.calculateMaxSpellLevel();
-		this.calculateSkillPoint();
-		this.calculateHP();
-		this.calculateTotalFeats();
-		if (this.name.toLowerCase() == "monk")
-			this.calculateBabFlurry();
 	};
-	this.setBAB		= function(babBase){this.babBase = babBase;};
-	this.setSpeed	= function(speed){this.modSpeed = modSpeed;};
-	this.setStCat	= function(stCat){this.stCat = stCat;};
-	this.setSkillBase = function(skillBase){this.skillBase = skillBase;};
-	this.getLevel   = function(){return this.level;};
-	this.setFavouriteBonus = function(favouriteBonus){ this.favouriteBonus = favouriteBonus; };
+	
+	this.setIndex   = function(index){ this.index = index; };
 	
 	this.calculateHP = function(){
 		this.averageHP = Math.floor(this.ld /2) * this.level;
@@ -109,13 +100,32 @@ function pfClass(){
 		this.totalFeats = arrayCustomSum(this.feats,1,this.level);
 	};
 	
+	
+	this.update = function(){
+	    
+	    this.calculateST(); //calculating save throw
+	    this.calculateSkillPoint();
+	    this.calculateBAB();
+	    this.calculateHP();
+	    this.calculateSpeed();
+	    this.calculateTotalFeats();
+	    this.calculateMaxSpellLevel();
+	    if (this.name.toLowerCase() == "monk")
+            this.calculateBabFlurry();
+	}
+	
+	this.draw  = function(){
+	    globalClassBonusMovement.val(addPlus(this.modSpeed));
+	}
+	
+	
 }
 
 /**
  * BARBARIAN
  */
 function pfBarbarian(){
-	his.inheritFrom = pfClass;
+	this.inheritFrom = pfClass;
     this.inheritFrom();
 	this.name 			= "Barbarian";
 	this.babBase 		= new Array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
@@ -126,7 +136,7 @@ function pfBarbarian(){
 }
 
 function pfWarrior(){
-	his.inheritFrom = pfClass;
+	this.inheritFrom = pfClass;
     this.inheritFrom();
 	this.name 			= "Warrior";
 	this.babBase 		= new Array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
@@ -138,7 +148,7 @@ function pfWarrior(){
 }
 
 function pfCleric(){
-	his.inheritFrom = pfClass;
+	this.inheritFrom = pfClass;
     this.inheritFrom();
 	this.name 			= "Cleric";
 	this.babBase  		= new Array(0,0,1,2,3,3,4,5,6,6,7,8,9,9,10,11,12,12,13,14,15);
@@ -155,7 +165,7 @@ function pfCleric(){
 }
 
 function pfBard(){
-	his.inheritFrom = pfClass;
+	this.inheritFrom = pfClass;
     this.inheritFrom();
 	this.name 			= "Bard";
 	this.babBase  		= new Array(0,0,1,2,3,3,4,5,6,6,7,8,9,9,10,11,12,12,13,14,15);
@@ -172,7 +182,7 @@ function pfBard(){
 }
 
 function pfDruid(){
-	his.inheritFrom = pfClass;
+	this.inheritFrom = pfClass;
     this.inheritFrom();
 	this.name 			= "Druid";
 	this.babBase  		= new Array(0,0,1,2,3,3,4,5,6,6,7,8,9,9,10,11,12,12,13,14,15);
@@ -189,7 +199,7 @@ function pfDruid(){
 }
 
 function pfWizard(){
-	his.inheritFrom = pfClass;
+	this.inheritFrom = pfClass;
     this.inheritFrom();
 	this.name 			= "Wizard";
 	this.babBase  		= new Array(0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10);
@@ -207,7 +217,7 @@ function pfWizard(){
 }
 
 function pfSorcerer(){
-	his.inheritFrom = pfClass;
+	this.inheritFrom = pfClass;
     this.inheritFrom();
 	this.name 			= "Socerer";
 	this.babBase  		= new Array(0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10);
@@ -228,7 +238,7 @@ function pfSorcerer(){
  * MONK
  */
 function pfMonk(){
-	his.inheritFrom = pfClass;
+	this.inheritFrom = pfClass;
     this.inheritFrom();
 	this.name 			= "Monk";
 	this.babFlurryBase 	= new Array(0,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18);

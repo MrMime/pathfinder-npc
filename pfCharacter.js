@@ -11,6 +11,11 @@ function pfCharacter(){
 	this.alignment	= null;
 	this.size		= null;
 	this.movement	= null;
+	this.finalBAB   = null;
+	
+	this.eraseAllClasses = function(){
+	    this.classes = new Array();
+	}
 	
 	/**
 	 * Adding a Pf Class to total
@@ -34,15 +39,16 @@ function pfCharacter(){
 		this.calculateBAB();
 	};
 	
-	this.setRace = function (pfRace){
-		this.race = pfRace;
-		
-		this.stf += pfRace.modStf;
-		this.str += pfRace.modStr;
-		this.stw += pfRace.modStw;
-		
-		this.totalFeats = this.totalFeats + arrayCustomSum(pfRace.extraFeats,1,this.level);
-	};
+	this.calculateBAB = function(){
+        var multiple = Math.ceil(maxBab / 5);
+        this.finalBab = Array();
+    
+        var currentBab = this.maxBab;
+        this.finalBab = addPlus(this.maxBab);
+        for (var i = 1, currentBab = currentBab-5;i < multiple; i++,currentBab-=5){
+            this.finalBab = this.finalBab + "/"+addPlus(currentBab);
+        }
+	}
 	
 	this.rollStats = function(high){
 		str.val(rollStat(high));
@@ -52,5 +58,14 @@ function pfCharacter(){
 		wis.val(rollStat(high));
 		cha.val(rollStat(high));
 	};
+	
+	this.update   = function(){
+	    
+	   this.draw();   
+	}
+	
+	this.draw      = function(){
+	    
+	}
 	
 }
