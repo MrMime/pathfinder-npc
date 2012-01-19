@@ -243,11 +243,14 @@
 	<table>
 		<tr>
 			<th>{total}</th>
+			<th>{feats}</th>
 		</tr>
 		<tr>
 			<td>
-				<input type="text" class="bold" id="hp" 	name="hp" value="0" size="40" readonly="readonly" />
-				<input type="text" class="bold" id="hp_feat"	name="hpFeat" value="0" size="3" />
+				<input type="text" class="bold" id="hpTotal" 	name="hp" value="0" size="40" readonly="readonly" />
+			</td>
+			<td>
+				<input type="text" id="hpTotalFeats"			name="hpFeat" value="0" size="3" readonly="readonly" />
 			</td>
 		</tr>
 	</table>
@@ -255,17 +258,19 @@
 
 <fieldset id="armourclassSection">
 	<legend>{armorclass}</legend>
-	<table id="acTable">
+	<table id="acTable" >
 		<tr>
 			<td colspan="3">&nbsp;</td>
 			<th>{armor}</th>
-			<th>{shield}</th>
+			<th>{armor_magic}</th>
+			<th>{shield}</th>			
 			<th>{size}</th>
 			<th>{natural}</th>
-			<th>{feats}</th>
+			<th>{natural_magic}</th>
+			<th>{dodge}</th>
 			<th>{wisdom}</th>
 			<th>{class}</th>
-			<th>{magic}</th>
+			<th>{other}</th>
 		</tr>
 		<tr>
 			<th>{total}</th>
@@ -276,20 +281,28 @@
 				<select id="armorName" >
 				</select>
 			</td>
+			<td><input type="text" class="center" id="acArmorMagic" value="0" size="3" onKeyUp="gpfAC.update();" /></td>
 			<td>
 				<input type="text" class="center" id="acShield" value="0" size="3" readonly="readonly"/>
 				<select id="shieldName"></select>
 			</td>
 			<td><input type="text" class="center" id="acSize" value="0" size="3" readonly="readonly" /></td>
-			<td><input type="text" class="center" id="acNat" value="0" size="3" onKeyUp="gpfAC.update();" /></td>
+			<td><input type="text" class="center" id="acNat" value="0" size="3"  readonly="readonly"/></td>
+			<td><input type="text" class="center" id="acNatMagic" value="0" size="3" onKeyUp="gpfAC.update();" /></td>
 			<td><input type="text" class="center" id="acFeats" value="0" size="3" readonly="readonly" /></td>
 			<td><input type="text" class="center" id="acWis" value="0" size="3" readonly="readonly" /></td>
 			<td><input type="text" class="center" id="acClass" value="0" size="3" readonly="readonly" /></td>
-			<td><input type="text" class="center" id="acMagic" value="0" size="3" onKeyUp="gpfAC.update();" /></td>
+			<td><input type="text" class="center" id="acOther" value="0" size="3" onKeyUp="gpfAC.update();" /></td>
 		</tr>
 		<tr>
 			<th>{flatfooted}</th>
-			<td><input type="text" class="center bold" id="acFlatFooted" name="flatfooted" size="4" colspan="8" readonly="readonly"/></td> 
+			<td><input type="text" class="center bold" id="acFlatFooted" name="flatfooted" size="4" colspan="8" readonly="readonly"/></td>
+			<td></td> 
+			<td colspan="2" class="graffa" >{armorbonus}</td>
+			<td colspan="1" class="graffa">{shieldbonus}</td>
+			<td></td> 
+			<td colspan="2" class="graffa">{naturalbonus}</td>
+			<td colspan="1" class="graffa">{dodgebonus}</td>
 		</tr>
 		<tr>
 			<th>{touch}</th>
@@ -307,6 +320,8 @@
 				<th>{class}</th>
 				<th>{level}</th>
 				<th>{favouriteclass}</th>
+				<th>{hpplus}</th>
+				<th>{skillplus}</th>
 				<th>{tsf}</th>
 				<th>{tsr}</th>
 				<th>{tsw}</th>
@@ -316,7 +331,9 @@
 				<td>1</td>
 				<td><select id="class00Name" name="classes[0]['name']"></select></td>
 				<td><input type="text" class="center" id="class00Level" 	name="classes[0]['level']" 		value="0" size="3" onKeyUp="updateClassLevel(0,this.value);updateAllSheet();" disabled="disabled" /></td>
-				<td><input type="checkbox" class="center" id="class00Preferred"  value="0" onChange="updateAll();"  /></td>
+				<td><input type="checkbox" class="center" id="class00Preferred"  value="0" onChange="manageFavourite(0); updateAllSheet();"  /></td>
+				<td><input type="radio" class="center" id="class00PrefHP"  	  name="class00PrefBonus"  onChange="manageFavourite(0); updateAllSheet();" /></td>
+				<td><input type="radio" class="center" id="class00PrefSkill"  name="class00PrefBonus"  onChange="manageFavourite(0); updateAllSheet();" /></td>
 				<td><input type="text" class="center" id="class00fortitude" name="classes[0]['fortitude']" 	value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="class00reflex" 	name="classes[0]['reflex']" 	value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="class00will" 		name="classes[0]['will']" 		value="0" size="3" readonly="readonly" /></td>
@@ -325,8 +342,10 @@
 			<tr>
 				<td>2</td>
 				<td><select id="class01Name" name="classes[1]['name']"></select></td>
-				<td><input type="text" class="center" id="class01Level" name="classes[1]['level']" value="0" size="3"  onKeyUp="updateAll();"  disabled="disabled"/></td>
-				<td><input type="checkbox" class="center" id="class01Preferred"  value="0" onChange="updateAll();"  /></td>
+				<td><input type="text" class="center" id="class01Level" name="classes[1]['level']" value="0" size="3"  onKeyUp="updateClassLevel(1,this.value);updateAllSheet();"   disabled="disabled"/></td>
+				<td><input type="checkbox" class="center" id="class01Preferred"  value="0" onChange="manageFavourite(1); updateAllSheet();"/></td>
+				<td><input type="radio" class="center" id="class01PrefHP"  	  name="class01PrefBonus" onChange="manageFavourite(1); updateAllSheet();"  /></td>
+				<td><input type="radio" class="center" id="class01PrefSkill"  name="class01PrefBonus" onChange="manageFavourite(1); updateAllSheet();" /></td>
 				<td><input type="text" class="center" id="class01fortitude" name="classes[1]['fortitude']" 	value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="class01reflex" 	name="classes[1]['reflex']" 	value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="class01will" 		name="classes[1]['will']" 		value="0" size="3" readonly="readonly" /></td>
@@ -335,8 +354,10 @@
 			<tr>
 				<td>3</td>
 				<td><select id="class02Name" name="classes[2]['name']"></select></td>
-				<td><input type="text" class="center" id="class02Level" name="classes[2]['level']" value="0" size="3"  onKeyUp="updateAll();"  disabled="disabled"/></td>
-				<td><input type="checkbox" class="center" id="class02Preferred"  value="0" onChange="updateAll();"  /></td>
+				<td><input type="text" class="center" id="class02Level" name="classes[2]['level']" value="0" size="3"  onKeyUp="updateClassLevel(2,this.value);updateAllSheet();"   disabled="disabled"/></td>
+				<td><input type="checkbox" class="center" id="class02Preferred"  value="0" onChange="manageFavourite(2); updateAllSheet();"  /></td>
+				<td><input type="radio" class="center" id="class02PrefHP"  	  name="class02PrefBonus" onChange="manageFavourite(2); updateAllSheet();" /></td>
+				<td><input type="radio" class="center" id="class02PrefSkill"  name="class02PrefBonus" onChange="manageFavourite(2); updateAllSheet();" /></td>
 				<td><input type="text" class="center" id="class02fortitude" name="classes[2]['fortitude']" 	value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="class02reflex" 	name="classes[2]['reflex']" 	value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="class02will" 		name="classes[2]['will']" 		value="0" size="3" readonly="readonly" /></td>
@@ -345,8 +366,10 @@
 			<tr>
 				<td>4</td>
 				<td><select id="class03Name" name="classes[3]['name']"></select></td>
-				<td><input type="text" class="center" id="class03Level" name="classes[3]['level']" value="0" size="3"  onKeyUp="updateAll();"  disabled="disabled"/></td>
-				<td><input type="checkbox" class="center" id="class03Preferred"  value="0" onChange="updateAll();"  /></td>
+				<td><input type="text" class="center" id="class03Level" name="classes[3]['level']" value="0" size="3"  onKeyUp="updateClassLevel(3,this.value);updateAllSheet();"   disabled="disabled"/></td>
+				<td><input type="checkbox" class="center" id="class03Preferred"  value="0" onChange="manageFavourite(3); updateAllSheet();" /></td>
+				<td><input type="radio" class="center" id="class03PrefHP"  	  name="class03PrefBonus" onChange="manageFavourite(3); updateAllSheet();" /></td>
+				<td><input type="radio" class="center" id="class03PrefSkill"  name="class03PrefBonus" onChange="manageFavourite(3); updateAllSheet();" /></td>
 				<td><input type="text" class="center" id="class03fortitude" name="classes[3]['fortitude']" 	value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="class03reflex" 	name="classes[3]['reflex']" 	value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="class03will" 		name="classes[3]['will']" 		value="0" size="3" readonly="readonly" /></td>
@@ -355,22 +378,31 @@
 			<tr>
 				<td>4</td>
 				<td><select id="class04Name" name="classes[4]['name']"></select></td>
-				<td><input type="text" class="center" id="class04Level" name="classes[3]['level']" value="0" size="3"  onKeyUp="updateAll();"  disabled="disabled"/></td>
-				<td><input type="checkbox" class="center" id="class04Preferred"  value="0" onChange="updateAll();"  /></td>
+				<td><input type="text" class="center" id="class04Level" name="classes[3]['level']" value="0" size="3"  onKeyUp="updateClassLevel(4,this.value);updateAllSheet();"   disabled="disabled"/></td>
+				<td><input type="checkbox" class="center" id="class04Preferred"  value="0" onChange="manageFavourite(4); updateAllSheet();" /></td>
+				<td><input type="radio" class="center" id="class04PrefHP"  	  name="class04PrefBonus" onChange="manageFavourite(4); updateAllSheet();" /></td>
+				<td><input type="radio" class="center" id="class04PrefSkill"  name="class04PrefBonus" onChange="manageFavourite(4); updateAllSheet();" /></td>
 				<td><input type="text" class="center" id="class04fortitude" name="classes[4]['fortitude']" 	value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="class04reflex" 	name="classes[4]['reflex']" 	value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="class04will" 		name="classes[4]['will']" 		value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="class04bab" 		name="classes[4]['bab']" 		value="0" size="16" readonly="readonly" /></td>
 			</tr>
 			<tr>
-				<td colspan="4"></td>
+				<td colspan="6"></td>
 				<td><input type="text" class="center" id="totalTSF"   value="0" size="4" /></td>
 				<td><input type="text" class="center" id="totalTSR"   value="0" size="4" /></td>
-				<td><input type="text" class="center"  id="totalTSW"  value="0" size="4" /></td>
+				<td><input type="text" class="center"  id="totalTSW"  value="0" size="4" /></td>				
+			</tr>
+			<tr>
+				<td colspan="5"></td>
+				<td>{race}</td>
+				<td><input type="text" class="center" id="raceTSF"   value="0" size="4" readonly="readonly" /></td>
+				<td><input type="text" class="center" id="raceTSR"   value="0" size="4" readonly="readonly" /></td>
+				<td><input type="text" class="center"  id="raceTSW"  value="0" size="4" readonly="readonly" /></td>
 				<td>
 			</tr>
 			<tr>
-				<td colspan="3"></td>
+				<td colspan="5"></td>
 				<td>{extra}</td>
 				<td><input type="text" class="center" id="extraTSF"   value="0" size="4" /></td>
 				<td><input type="text" class="center" id="extraTSR"   value="0" size="4" /></td>
@@ -378,15 +410,52 @@
 				<td>
 			</tr>
 			<tr>
-				<td colspan="2">{total}</td>
-				<td><input type="text" class="center bold" id="totalLevel" value="0" size="3"  /></td>
-				<td>&nbsp;</td>
-				<td><input type="text" class="center bold" id="totalTSFMod"  value="0" size="4" name="fort" /></td>
-				<td><input type="text" class="center bold" id="totalTSRMod"  value="0" size="4" name="ref" /></td>
-				<td><input type="text" class="center bold" id="totalTSWMod"  value="0" size="4" name="will" /></td>
-				<td><input type="text" class="center bold" id="totalBab"  value="0" size="16" /></td>
+				<td colspan="2" >{total}</td>
+				<td><input type="text" class="center bold" id="totalLevel" value="0" size="3" readonly="readonly" /></td>
+				<td colspan="3">&nbsp;</td>
+				<td><input type="text" class="center bold" id="totalTSFMod"  value="0" size="4" name="fort" readonly="readonly"/></td>
+				<td><input type="text" class="center bold" id="totalTSRMod"  value="0" size="4" name="ref" readonly="readonly"/></td>
+				<td><input type="text" class="center bold" id="totalTSWMod"  value="0" size="4" name="will" readonly="readonly"/></td>
+				<td><input type="text" class="center bold" id="totalBab"  value="0" size="16" readonly="readonly"/></td>
 			</tr>
 		</table>
+</fieldset>
+<fieldset id="manooversSection">
+	<legend>{manoovers}</legend>
+	<table id="manooversTable">
+			<tr>
+				<th>{cmb}</th>
+				<th>{dex}</th>
+				<th>{bull_rush}</th>
+				<th>{disarm}</th>
+				<th>{drag}</th>
+				<th>{grapple}</th>
+			</tr>
+			<tr>
+				<td class="center"><input type="text" size="4" class="center bold" id="cmbTotal" name="cmb[base]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center boldPenalty" id="cmbModDex" name="cmb[modDex]" value="0" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="cmbBullRush" name="cmb[cmbBullRush]" value="0" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="cmbDisarm" name="cmb[cmbDisarm]" value="0" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="cmbDrag" name="cmb[cmbDrag]" value="0" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="cmbGrapple" name="cmb[cmbGrapple]" value="0" /></td>
+			</tr>
+			<tr>
+				<th>{cmd}</th>
+				<th>{life_dice}</th>
+				<th>{bull_rush}</th>
+				<th>{disarm}</th>
+				<th>{drag}</th>
+				<th>{grapple}</th>
+			</tr>
+			<tr>
+				<td class="center"><input type="text" size="4" class="center bold" id="cmdTotal" name="cmd[base]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center boldPenalty" id="cmdLD" name="cmd[ld]" value="0" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="cmdBullRush" name="cmd[BullRush]" value="0" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="cmdDisarm" name="cmd[Disarm]" value="0" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="cmdDrag" name="cmd[Drag]" value="0" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="cmdGrapple" name="cmd[Grapple]" value="0" /></td>
+			</tr>
+	</table>
 </fieldset>
 	
 	</form>

@@ -11,24 +11,35 @@ function pfAC(){
 	this.acFeats		= 0; 
 	
 	this.acClass        = null;
-	this.acMagic        = null;
+	this.acOther        = null;
 	
 	this.update = function(){
 	    
-	    this.acDex     = totalModDex.val()/1; //this is the only value I read outside the AC section
-	    this.acWis     = globalACWis.val()/1; //this value is places by class 
+	    //CA Types are:
+	    //Armor Type Bonus
+	    var armorBonus         = Math.max(gpfArmor.ac,globalACArmorMagic.val()/1);
+	    //Shield Bonus
+	    var shieldBonus        = gpfShield.ac;
+	    //Natural Armor Bonus
+	    var naturalArmorBonus  = this.acNat + globalACNatMagic.val()/1;
+	    //Mod Dex Bonus
+	    this.acDex     = totalModDex.val()/1; //this is the only value I read outside the AC section 
+	    var totalModDexAvaiable = Math.min(this.acDex,gpfArmor.maxDex,gpfShield.maxDex);
+        //Wisdom Bonus	    
+	    this.acWis     = globalACWis.val()/1; //this value is places by class
+	    //Feats Bonus (dodge Bonus) 
 	    this.acFeats   = globalACFeats.val()/1; //this value is places by feats system
-	    this.acNat     = globalACNat.val()/1; //this values is places by user
+	    //Class bonus (es. monk)
 	    this.acClass   = globalACClass.val()/1; //this value is places by class
-	    this.acMagic   = globalACMagic.val()/1; //this value is places by user
+	    //Other bonus
+	    this.acOther   = globalACOther.val()/1; //this value is places by user
+	    //Size Bonus
 	    this.acSize    = globalACSize.val()/1; //this value is places by pfSize
 	    
-	    var totalModDexAvaiable = Math.min(this.acDex,gpfArmor.maxDex,gpfShield.maxDex);
-	    
-		this.totalAC 		= 10 + gpfArmor.ac + gpfShield.ac + totalModDexAvaiable + this.acFeats + 
-		                      this.acNat + this.acWis + this.acMagic + this.acClass + this.acSize; 
+		this.totalAC 		= 10 + armorBonus + shieldBonus + naturalArmorBonus + totalModDexAvaiable +
+		                      this.acFeats + this.acWis + this.acOther + this.acClass + this.acSize; 
 		                      
-		this.totalTouchAC 	= this.totalAC - this.acNat - gpfArmor.ac - gpfShield.ac;
+		this.totalTouchAC 	= this.totalAC - armorBonus - shieldBonus - naturalArmorBonus;
 		this.totalFlatAC	= this.totalAC - totalModDexAvaiable - this.acFeats;
 		
 		this.draw();

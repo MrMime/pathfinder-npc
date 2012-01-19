@@ -9,12 +9,14 @@ function pfClass(){
 	this.stf				= 0; //Class Fortitude save throw
 	this.str				= 0; //Class Reflex save throw
 	this.stw				= 0; //Class Will save throw
-	this.name				= "";
+	this.name				= "none";
 	this.ld					= 0; //Class Life Dice
-	this.averageHP			= 0;
-	this.stringHP			= 0;
+	this.favouriteHP		= 0; //its the bonus due to favourite class if selected
+	this.averageHP          = 0; //its the average HP of this class widthout any bonus (only dice counted)
+	this.totalDiceHP		= 0;
 	this.skillPointClass 	= 0; //Total Skill Point at current Level
 	this.skillBase  		= 0; //Number of base Skill Point per level (es. warrior = 2, barbarian = 4 etc...)
+	this.favouriteSkill     = 0; //its the bonus due to favourite class if selected
 	this.spellCast  		= new Array();
 	this.spellPerDay		= new Array();
 	this.maxSpellLevel 		= 0;
@@ -23,28 +25,30 @@ function pfClass(){
 	this.ACMods				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //armor class bonus (es monk every 4 levels)
 	this.totalFeats			= 0;
 	this.favourite			= false;
-	this.favouriteBonus		= 0;
+	this.bonusHP       		= false; //true if HP bonus for favoruite class is selected
+	this.bonusSkill         = false; //true if SKill bonus for favoruite class is selected
 	//this is the index from 0 to 4 that represent the numerical number of class
 	//between the 5 an user can add
 	//this index allow the pfClass to modify its own specific HTML tags
 	this.index              = 0; 
 	
 	//METHODS
-	this.setLevel 	= function(level){
-		this.level = level;
+	this.setLevel 	= function(level){ this.level = level; };
+	this.setIndex   = function(index){ this.index = index; };
+	this.setFavourite = function(favourite,bonusHP,bonusSkill){ 
+	    this.favourite     = favourite; 
+	    this.bonusHP       = bonusHP; 
+	    this.bonusSkill    = bonusSkill;
 	};
 	
-	this.setIndex   = function(index){ this.index = index; };
-	
 	this.calculateHP = function(){
-		this.averageHP = Math.floor(this.ld /2) * this.level;
-		this.stringHP  = this.level+"d"+this.ld;
+		this.averageHP    = Math.floor(this.ld /2) * this.level;
+		this.totalDiceHP  = this.level+"d"+this.ld;
+		this.favouriteHP  = 0;
 		//If favourite class and +1 HP per level bonus selected
-		if (this.favourite && this.favouriteBonus == 0) {
-			this.averageHP += this.level;
-			this.stringHP += " + "+this.level;
+		if (this.favourite && this.bonusHP) {
+			this.favouriteHP = this.level;
 		}
-		
 	};
 	
 	/**
@@ -86,10 +90,13 @@ function pfClass(){
 	};		
 	
 	this.calculateSkillPoint = function(){
+	    //TODO:Ci sarà da leggere anche il bonus degli umani in qualche modo
 		this.skillPointClass = this.skillBase * this.level;
 		//If favourite class and +1 skill point per level bonus selected
-		if (this.favourite && this.favouriteBonus == 1)
-			this.skillPointClass += this.level;
+		if (this.favourite && this.bonusSkill){
+		    this.favouriteSkill = this.level;
+		}
+		this.skillPointClass += this.favouriteSkill;
 	}
 	
 	this.calculateMaxSpellLevel = function(){
@@ -102,7 +109,6 @@ function pfClass(){
 	
 	
 	this.update = function(){
-	    
 	    this.calculateST(); //calculating save throw
 	    this.calculateSkillPoint();
 	    this.calculateBAB();
@@ -112,10 +118,14 @@ function pfClass(){
 	    this.calculateMaxSpellLevel();
 	    if (this.name.toLowerCase() == "monk")
             this.calculateBabFlurry();
+        this.draw();
 	}
 	
 	this.draw  = function(){
-	    globalClassBonusMovement.val(addPlus(this.modSpeed));
+	    globalClassTSF[this.index].val(addPlus(this.stf));
+	    globalClassTSR[this.index].val(addPlus(this.str));
+	    globalClassTSW[this.index].val(addPlus(this.stw));
+	    globalClassBAB[this.index].val(this.bab);
 	}
 	
 	

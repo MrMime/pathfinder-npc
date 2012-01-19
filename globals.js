@@ -79,33 +79,51 @@ var globalInitClass;
 var globalInitBonus1;
 var globalInitBonus2;
 
+//HP
+var globalHPTotal;
+var globalHPTotalFeats;
+
 //ARMOR CLASS GLOBALS
 var globalACTotal;
 var globalACFlatFooted;
 var globalACTouch;
 var globalACBase;
 var globalACArmor;
+var globalACArmorMagic;
 var globalACShield;
 var globalACSize;
 var globalACNat;
+var globalACNatMagic;
 var globalACFeats;
 var globalACWis;
 var globalACClass;
-var globalACMagic;
+var globalACOther;
 
 //CLASSES GLOBALS
-var globalClassLevels			= new Array(0,0,0,0,0);
-var globalClassPreferred 	= new Array();
-var globalClassTSF 				= new Array();
-var globalClassTSR 				= new Array();
-var globalClassTSW 				= new Array();
-var globalClassBAB 				= new Array();
+var globalClassLevels           = new Array(0,0,0,0,0);
+var globalClassPreferred        = new Array();
+var globalClassTSF 							= new Array();
+var globalClassTSR 							= new Array();
+var globalClassTSW 							= new Array();
+var globalClassBAB 							= new Array();
 
 var globalC1Preferred;
 var globalC2Preferred;
 var globalC3Preferred;
 var globalC4Preferred;
 var globalC5Preferred;
+
+var globalC1PrefHP;
+var globalC2PrefHP;
+var globalC3PrefHP;
+var globalC4PrefHP;
+var globalC5PrefHP;
+
+var globalC1PrefSkill;
+var globalC2PrefSkill;
+var globalC3PrefSkill;
+var globalC4PrefSkill;
+var globalC5PrefSkill;
 
 var globalC1TSF;
 var globalC2TSF;
@@ -130,6 +148,26 @@ var globalC2BAB;
 var globalC3BAB;
 var globalC4BAB;
 var globalC5BAB;
+
+//CLASSES TOTALS GLOBALS
+var globalTotalTSF;
+var globalTotalTSR;
+var globalTotalTSW;
+
+var globalExtraTSF;
+var globalExtraTSR;
+var globalExtraTSW;
+
+var globalTotalTSFMod;
+var globalTotalTSRMod;
+var globalTotalTSWMod;
+
+var globalTotalLevel;
+var globalTotalBAB;
+
+var globalRaceTSF;
+var globalRaceTSR;
+var globalRaceTSW;
 
 
 function setAll(){
@@ -183,20 +221,26 @@ function setAll(){
     globalInitBonus1            = $('#initBonus1');
     globalInitBonus2            = $('#initBonus2');
     
+    //HP
+    globalHPTotal								= $('#hpTotal');
+    globalHPTotalFeats					= $('#hpTotalFeats');
+    
     //ARMOR CLASS
     globalACTotal               = $('#acTotal');
     globalACFlatFooted          = $('#acFlatFooted');
     globalACTouch             	= $('#acTouch');
     globalACBase                = $('#acBase');
     globalACArmor               = $('#acArmor');
+    globalACArmorMagic          = $('#acArmorMagic');
     globalACShield              = $('#acShield');    
     globalACSize                = $('#acSize');
     globalACNat                 = $('#acNat');
+    globalACNatMagic						= $('#acNatMagic');
     globalACFeats               = $('#acFeats');
     globalACWis                 = $('#acWis');
     globalACClass               = $('#acClass');
-    globalACMagic               = $('#acMagic');
-    
+    globalACOther								= $('#acOther');
+        
     //CLASSES
 		
 		globalC1Preferred = $('#class00Preferred');
@@ -204,6 +248,18 @@ function setAll(){
 		globalC3Preferred = $('#class02Preferred');
 		globalC4Preferred = $('#class03Preferred');
 		globalC5Preferred = $('#class04Preferred');
+		
+		globalC1PrefHP	= $('#class00PrefHP');
+		globalC2PrefHP	= $('#class01PrefHP');
+		globalC3PrefHP	= $('#class02PrefHP');
+		globalC4PrefHP	= $('#class03PrefHP');
+		globalC5PrefHP	= $('#class04PrefHP');
+		
+		globalC1PrefSkill	= $('#class00PrefSkill');
+		globalC2PrefSkill	= $('#class01PrefSkill');
+		globalC3PrefSkill	= $('#class02PrefSkill');
+		globalC4PrefSkill	= $('#class03PrefSkill');
+		globalC5PrefSkill	= $('#class04PrefSkill');
 		
 		globalC1TSF = $('#class00fortitude');
 		globalC2TSF = $('#class01fortitude');
@@ -234,5 +290,25 @@ function setAll(){
 		globalClassTSR 				= Array(globalC1TSR,globalC2TSR,globalC3TSR,globalC4TSR,globalC5TSR);
 		globalClassTSW 				= Array(globalC1TSW,globalC2TSW,globalC3TSW,globalC4TSW,globalC5TSW);
 		globalClassBAB 				= Array(globalC1BAB,globalC2BAB,globalC3BAB,globalC4BAB,globalC5BAB);
+		
+		globalTotalTSF = $('#totalTSF');
+	  globalTotalTSR = $('#totalTSR');
+	  globalTotalTSW = $('#totalTSW');
+	  
+	  globalTotalTSFMod = $('#totalTSFMod');
+		globalTotalTSRMod = $('#totalTSRMod');
+		globalTotalTSWMod = $('#totalTSWMod');
+		
+		globalTotalLevel  = $('#totalLevel');
+		globalTotalBAB		= $('#totalBab');
+		
+		globalExtraTSF = $('#extraTSF');
+		globalExtraTSR = $('#extraTSR');
+		globalExtraTSW = $('#extraTSW');
+
+		globalRaceTSF = $('#raceTSF');
+		globalRaceTSR = $('#raceTSR');
+		globalRaceTSW = $('#raceTSW');
+		
 }
 

@@ -29,7 +29,7 @@ Armature pesanti
   $armor = array ('armors'=>array('nudo','imbottita','cuoio','cuoio borchiato','giacco di maglia','pelle','corazza di scaglie','corazza di maglia',
   								  'corazza di piastre','corazza a strisce','corazza di bande','mezza armatura','armatura completa'),
   				  
-  				  'nudo'=>array (0,-1,0,0,0),
+  				  'nudo'=>array (0,100,0,0,0),
   				  'imbottita'=>array (1,8,0,5,0),
 				  'cuoio'=>array (2,6,0,10,0),
 				  'cuoio_borchiato'=>array (3,5,-1,15,0),
