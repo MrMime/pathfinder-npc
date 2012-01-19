@@ -67,6 +67,11 @@ function pfRace(){
         modRaceWis.val(this.modWis);
         modRaceCha.val(this.modCha);
         modRaceCus.val(this.modCus);
+        
+        globalRaceTSF.val(this.modSaveFor);
+        globalRaceTSR.val(this.modSaveRef);
+        globalRaceTSW.val(this.modSaveWil);
+        
 	}
 	
 }

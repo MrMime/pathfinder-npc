@@ -43,7 +43,7 @@ function pfShield(){
     
     this.setShield = function(shield){
         var shieldKey   = shield.replace(/ /g,"_");
-        var shieldStats = globalArmorList[shieldKey];
+        var shieldStats = globalShieldList[shieldKey];
         
         this.ac             = shieldStats[0];
         this.maxDex         = shieldStats[1];
@@ -57,7 +57,7 @@ function pfShield(){
     }
     
     this.draw  = function(){
-        globalACSchield.val(addPlus(this.ac));
+        globalACShield.val(addPlus(this.ac));
     }
     
 }

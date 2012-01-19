@@ -21,12 +21,12 @@
 					'scudo pesante di metallo','scudo torre'),
   				  'nessuno'=>array (0,100,0,0,0),
   				  
-  				  'buckler'					=>array (1,-1,-1,5,0),
-				  'scudo_leggero_di_legno'	=>array (1,-1,-1,5,0),
-				  'scudo_leggero_di_metallo'=>array (1,-1,-1,5,0),
+  				  'buckler'					=>array (1,100,-1,5,0),
+				  'scudo_leggero_di_legno'	=>array (1,100,-1,5,0),
+				  'scudo_leggero_di_metallo'=>array (1,100,-1,5,0),
 				  
-				  'scudo_pesante_di_legno'	=>array (2,-1,-2,15,0),
-				  'scudo_pesante_di_metallo'	=>array (2,-1,-2,15,0),
+				  'scudo_pesante_di_legno'	=>array (2,100,-2,15,0),
+				  'scudo_pesante_di_metallo'	=>array (2,100,-2,15,0),
 				  
 				  'scudo_torre'				=>array (4,2,-10,50,0)
 					);
