@@ -12,6 +12,9 @@ LEGEND {
 	padding:5px;
 }
 
+TD.separated {
+	background-color:#BDB76B;
+}
 
 DIV#headerwrap {
 	background-image: url('./pageImages/headerBackground.png');
@@ -65,8 +68,12 @@ IMG#flourishTop {
 }
 
 .graffa {
-	background-image:url('./pageImages/raggruppatore.jpg');
+	//background-image:url('./pageImages/raggruppatore.jpg');
+	background-color:#BDB76B;
 	background-position: 0 -13px;
 	background-repeat:repeat-x;
 	padding-top:10px;
+	color:black;
+	padding-left:4px;
+	padding-right:4px;
 }

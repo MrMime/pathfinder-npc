@@ -12,6 +12,10 @@ function pfRace(){
 	
 	this.speed		= 9; //race base speed (meter)
 	this.speedHeavy = 6; //race speed with heavy weight (es. armor)
+	this.legs       = 2; //number of legs. Userfull for Manouvers
+	
+	this.bullRace   = 0;
+	this.tripRace   = 0;
 	
 	this.modSaveFor 	= 0; //race modifier to fortitude save throw
 	this.modSaveRef 	= 0; //race modifier to reflex save throw
@@ -55,6 +59,9 @@ function pfRace(){
 	}; 
 	
 	this.update = function() {
+	    var legsBonus = (this.legs-2) * 2;
+	    this.tripRace = Math.max(this.tripRace,legsBonus);
+	    this.bullRace = Math.max(this.bullRace,legsBonus);    
 	    this.draw();
 	}
 	
@@ -71,6 +78,10 @@ function pfRace(){
         globalRaceTSF.val(this.modSaveFor);
         globalRaceTSR.val(this.modSaveRef);
         globalRaceTSW.val(this.modSaveWil);
+        
+        //Settings race mod to maneuvers
+        globalManeuversBullRace.val(addPlus(this.bullRace));
+        globalManeuversTripRace.val(addPlus(this.tripRace));
         
 	}
 	
@@ -109,6 +120,9 @@ function pfDwarf(){
 	
 	this.speed 		= 6;
 	this.speedHeavy = 6;
+	
+	this.bullRace   = 4;
+	this.tripRace   = 4;
 }
 
 function pfHalfling(){

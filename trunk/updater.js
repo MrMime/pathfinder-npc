@@ -79,6 +79,7 @@ function buildClassesList(obj){
                     $("#class00Level").removeAttr('disabled');
                     var cc = sel0.val();
                     gpfClass01 = eval ("new "+cc+"();");
+                    updateAllSheet();
                 }
                 else 
                     $("#class00Level").attr('disabled',true);
@@ -91,6 +92,7 @@ function buildClassesList(obj){
                     $("#class01Level").removeAttr('disabled');
                     var cc = sel1.val();
                     gpfClass02 = eval ("new "+cc+"();");
+                    updateAllSheet();
                 }
                 else 
                     $("#class01Level").attr('disabled',true);
@@ -103,6 +105,7 @@ function buildClassesList(obj){
                     $("#class02Level").removeAttr('disabled');
                     var cc = sel2.val();
                     gpfClass03 = eval ("new "+cc+"();");
+                    updateAllSheet();
                 }
                 else 
                     $("#class02Level").attr('disabled',true);
@@ -115,6 +118,7 @@ function buildClassesList(obj){
                     $("#class03Level").removeAttr('disabled');
                     var cc = sel3.val();
                     gpfClass04 = eval ("new "+cc+"();");
+                    updateAllSheet();
                 }
                 else 
                     $("#class03Level").attr('disabled',true);
@@ -127,6 +131,7 @@ function buildClassesList(obj){
                     $("#class04Level").removeAttr('disabled');
                     var cc = sel4.val();
                     gpfClass05 = eval ("new "+cc+"();");
+                    updateAllSheet();
                 }
                 else 
                     $("#class04Level").attr('disabled',true);

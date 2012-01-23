@@ -87,6 +87,7 @@ function updateAllSheet(){
 	updateMovement();
 	updateInitiative();
 	updateAC();
+	updateManeuvers();
 }
 
 function updateClasses(){
@@ -126,6 +127,9 @@ function updateSize(){
     gpfSize.update();
 }
 
+function updateManeuvers(){
+    gpfManeuvers.update();
+}
 
 function updateRace(){
     gpfRace.update();
