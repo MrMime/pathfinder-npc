@@ -13,6 +13,7 @@ var gpfCharacter 	= new pfCharacter();
 var gpfSheet 			= new pfSheet();
 var gpfArmor 			= new pfArmor();
 var gpfShield			= new pfShield();
+var gpfManeuvers        = new pfManeuvers();
 
 var gpfMovement     = new pfMovement(); //done
 var gpfInitiative   = new pfInitiative(); //done
@@ -85,6 +86,7 @@ var globalHPTotalFeats;
 
 //ARMOR CLASS GLOBALS
 var globalACTotal;
+var globalACModDex;
 var globalACFlatFooted;
 var globalACTouch;
 var globalACBase;
@@ -174,8 +176,19 @@ var globalCMBTotal;
 var globalCMDTotal;
 
 var globalManeuverBAB;
-var globalManeuverMOD;
+var globalManeuverLevel;
+var globalManeuversLevelBabMod;
+
+var globalManeuverModDex;
+var globalManeuversFinalMod;
+var globalManeuverModStr;
 var globalManeuverSize;
+var globalManeuversBullRace;
+var globalManeuversTripRace;
+
+var globalManeuversDisarmWeapon;
+var globalManeuversSunderWeapon;
+var globalManeuversTripWeapon;
 
 var globalDisarmCMBTotal; 
 var globalTrickCMBTotal;
@@ -199,20 +212,16 @@ var globalRepositionCMDTotal; //SPOSTARE
 var globalGrappleCMDTotal; //LOTTARE
 var globalSunderCMDTotal; //SPEZZARE
 
-var globalDisarmWeapon;
-var globalSunderWeapon;
-var globalTripWeapon;
-
-var globalDisarmFeats;
-var globalTrickFeats;
-var globalBullFeats;
-var globalOverrunFeats;
-var globalSteaFeats;
-var globalDragFeats;
-var globalTripFeats;
-var globalRepositionFeats;
-var globalGrappleFeats;
-var globalSunderFeats;
+var globalManeuversFeatDisarm;
+var globalManeuversFeatTrick;
+var globalManeuversFeatBull;
+var globalManeuversFeatOverrun;
+var globalManeuversFeatSteal ;		
+var globalManeuversFeatDrag;	
+var globalManeuversFeatTrip;	
+var globalManeuversFeatReposition;
+var globalManeuversFeatGrapple;
+var globalManeuversFeatSunder ;
 
 function setAll(){
 	//ASSOCIATION BETWEEN GLOBALS AND HTML INPUTS
@@ -271,6 +280,7 @@ function setAll(){
     
     //ARMOR CLASS
     globalACTotal               = $('#acTotal');
+    globalACModDex              = $('#acModDex');
     globalACFlatFooted          = $('#acFlatFooted');
     globalACTouch             	= $('#acTouch');
     globalACBase                = $('#acBase');
@@ -329,22 +339,22 @@ function setAll(){
 		globalC4BAB = $('#class03bab');
 		globalC5BAB = $('#class04bab');
 		
-		globalClassPreferred 	= Array(globalC1Preferred,globalC2Preferred,globalC3Preferred,globalC4Preferred,globalC5Preferred);
+		globalClassPreferred 	    = Array(globalC1Preferred,globalC2Preferred,globalC3Preferred,globalC4Preferred,globalC5Preferred);
 		globalClassTSF 				= Array(globalC1TSF,globalC2TSF,globalC3TSF,globalC4TSF,globalC5TSF);
 		globalClassTSR 				= Array(globalC1TSR,globalC2TSR,globalC3TSR,globalC4TSR,globalC5TSR);
 		globalClassTSW 				= Array(globalC1TSW,globalC2TSW,globalC3TSW,globalC4TSW,globalC5TSW);
 		globalClassBAB 				= Array(globalC1BAB,globalC2BAB,globalC3BAB,globalC4BAB,globalC5BAB);
 		
 		globalTotalTSF = $('#totalTSF');
-	  globalTotalTSR = $('#totalTSR');
-	  globalTotalTSW = $('#totalTSW');
+		globalTotalTSR = $('#totalTSR');
+		globalTotalTSW = $('#totalTSW');
 	  
-	  globalTotalTSFMod = $('#totalTSFMod');
+		globalTotalTSFMod = $('#totalTSFMod');
 		globalTotalTSRMod = $('#totalTSRMod');
 		globalTotalTSWMod = $('#totalTSWMod');
 		
 		globalTotalLevel  = $('#totalLevel');
-		globalTotalBAB		= $('#totalBab');
+		globalTotalBAB	  = $('#totalBab');
 		
 		globalExtraTSF = $('#extraTSF');
 		globalExtraTSR = $('#extraTSR');
@@ -354,5 +364,58 @@ function setAll(){
 		globalRaceTSR = $('#raceTSR');
 		globalRaceTSW = $('#raceTSW');
 		
+		
+		//MANEUVERS
+		globalCMBTotal        = $('#CMBTotal');
+		globalCMDTotal        = $('#CMDTotal');
+
+		globalManeuverBAB             = $('#maneuversBAB');
+		globalManeuverLevel           = $('#maneuversLevel');
+
+		globalManeuverModDex          = $('#maneuversModDex');
+		globalManeuverModStr          = $('#maneuversModStr');
+		globalManeuversFinalMod       = $('#maneuversFinalMod');
+		globalManeuverSize            = $('#maneuversSize');
+		globalManeuversBullRace       = $('#maneuversBullRace');
+		globalManeuversTripRace       = $('#maneuversTripRace');
+
+		globalManeuversDisarmWeapon   = $('#maneuversDisarmWeapon');
+		globalManeuversSunderWeapon   = $('#maneuversSunderWeapon');
+		globalManeuversTripWeapon     = $('#maneuversTripWeapon');
+		
+		globalDisarmCMBTotal      = $('#disarmCMBTotal');  //DISARMARE
+		globalTrickCMBTotal       = $('#trickCMBTotal'); //IMBROGLIARE
+		globalBullCMBTotal        = $('#bullCMBTotal'); //SPINGERE
+		globalOverrunCMBTotal     = $('#overrunCMBTotal'); //OLTREPASSARE
+		globalStealCMBTotal       = $('#stealCMBTotal'); //RUBARE
+		globalDragCMBTotal        = $('#dragCMBTotal'); //TRASCINARE
+		globalTripCMBTotal        = $('#tripCMBTotal'); //SBILANCIARE
+		globalRepositionCMBTotal  = $('#repositionCMBTotal'); //SPOSTARE
+		globalGrappleCMBTotal     = $('#grappleCMBTotal'); //LOTTARE
+		globalSunderCMBTotal      = $('#sunderCMBTotal'); //SPEZZARE
+		
+		globalDisarmCMDTotal      = $('#disarmCMDTotal');  //DISARMARE
+		globalTrickCMDTotal       = $('#trickCMDTotal'); //IMBROGLIARE
+		globalBullCMDTotal        = $('#bullCMDTotal'); //SPINGERE
+		globalOverrunCMDTotal     = $('#overrunCMDTotal'); //OLTREPASSARE
+		globalStealCMDTotal       = $('#stealCMDTotal'); //RUBARE
+		globalDragCMDTotal        = $('#dragCMDTotal'); //TRASCINARE
+		globalTripCMDTotal        = $('#tripCMDTotal'); //SBILANCIARE
+		globalRepositionCMDTotal  = $('#repositionCMDTotal'); //SPOSTARE
+		globalGrappleCMDTotal     = $('#grappleCMDTotal'); //LOTTARE
+		globalSunderCMDTotal      = $('#sunderCMDTotal'); //SPEZZARE
+
+		globalManeuversFeatDisarm         = $('#maneuversFeatDisarm');
+		globalManeuversFeatTrick          = $('#maneuversFeatTrick');
+		globalManeuversFeatBull           = $('#maneuversFeatBull');
+		globalManeuversFeatOverrun        = $('#maneuversFeatOverrun');
+		globalManeuversFeatSteal          = $('#maneuversFeatSteal');		
+		globalManeuversFeatDrag           = $('#maneuversFeatDrag');	
+		globalManeuversFeatTrip           = $('#maneuversFeatTrip');	
+		globalManeuversFeatReposition     = $('#maneuversFeatReposition');
+		globalManeuversFeatGrapple        = $('#maneuversFeatGrapple');
+		globalManeuversFeatSunder         = $('#maneuversFeatSunder');
+		
+		globalManeuversLevelBabMod        = $('#maneuversLevelBabMod');
 }
 

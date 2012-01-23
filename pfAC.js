@@ -13,6 +13,8 @@ function pfAC(){
 	this.acClass        = null;
 	this.acOther        = null;
 	
+	this.totalModDexAvaiable   =   0;
+	
 	this.update = function(){
 	    
 	    //CA Types are:
@@ -23,8 +25,8 @@ function pfAC(){
 	    //Natural Armor Bonus
 	    var naturalArmorBonus  = this.acNat + globalACNatMagic.val()/1;
 	    //Mod Dex Bonus
-	    this.acDex     = totalModDex.val()/1; //this is the only value I read outside the AC section 
-	    var totalModDexAvaiable = Math.min(this.acDex,gpfArmor.maxDex,gpfShield.maxDex);
+	    this.acDex     = totalModDex.val()/1; //this is the only value I read outside the AC section
+	    this.totalModDexAvaiable = Math.min(this.acDex,gpfArmor.maxDex,gpfShield.maxDex);
         //Wisdom Bonus	    
 	    this.acWis     = globalACWis.val()/1; //this value is places by class
 	    //Feats Bonus (dodge Bonus) 
@@ -36,17 +38,18 @@ function pfAC(){
 	    //Size Bonus
 	    this.acSize    = globalACSize.val()/1; //this value is places by pfSize
 	    
-		this.totalAC 		= 10 + armorBonus + shieldBonus + naturalArmorBonus + totalModDexAvaiable +
+		this.totalAC 		= 10 + armorBonus + shieldBonus + naturalArmorBonus + this.totalModDexAvaiable +
 		                      this.acFeats + this.acWis + this.acOther + this.acClass + this.acSize; 
 		                      
 		this.totalTouchAC 	= this.totalAC - armorBonus - shieldBonus - naturalArmorBonus;
-		this.totalFlatAC	= this.totalAC - totalModDexAvaiable - this.acFeats;
+		this.totalFlatAC	= this.totalAC - this.totalModDexAvaiable - this.acFeats;
 		
 		this.draw();
 		
 	};
 	
 	this.draw = function() {
+	    globalACModDex.val(addPlus(this.totalModDexAvaiable));
 	    globalACTotal.val(addPlus(this.totalAC));
 	    globalACFlatFooted.val(addPlus(this.totalFlatAC));
 	    globalACTouch.val(addPlus(this.totalTouchAC));
