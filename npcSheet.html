@@ -424,36 +424,134 @@
 	<legend>{manoovers}</legend>
 	<table id="manooversTable">
 			<tr>
+				<th>&nbsp;</th>
 				<th>{cmb}</th>
-				<th>{dex}</th>
-				<th>{bull_rush}</th>
 				<th>{disarm}</th>
+				<th>{trick}</th>
+				<th>{bull}</th>
+				<th>{overrun}</th>
+				<th>{steal}</th>
 				<th>{drag}</th>
+				<th>{trip}</th>
+				<th>{reposition}</th>
 				<th>{grapple}</th>
+				<th>{sunder}</th>
 			</tr>
 			<tr>
-				<td class="center"><input type="text" size="4" class="center bold" id="cmbTotal" name="cmb[base]" value="0" readonly="readonly" /></td>
-				<td class="center"><input type="text" size="4" class="center boldPenalty" id="cmbModDex" name="cmb[modDex]" value="0" /></td>
-				<td class="center"><input type="text" size="4" class="center bold" id="cmbBullRush" name="cmb[cmbBullRush]" value="0" /></td>
-				<td class="center"><input type="text" size="4" class="center bold" id="cmbDisarm" name="cmb[cmbDisarm]" value="0" /></td>
-				<td class="center"><input type="text" size="4" class="center bold" id="cmbDrag" name="cmb[cmbDrag]" value="0" /></td>
-				<td class="center"><input type="text" size="4" class="center bold" id="cmbGrapple" name="cmb[cmbGrapple]" value="0" /></td>
+				<td>&nbsp;</td>
+				<td class="center"><input type="text" size="4" class="center bold" id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalDisarmCMBTotal" name="cmb[disarm]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalTrickCMBTotal" name="cmb[trick]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalBullCMBTotal" name="cmb[bull]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalOverrunCMBTotal" name="cmb[overrun]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalSteelCMBTotal" name="cmb[steel]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalDragCMBTotal" name="cmb[drag]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalTripCMBTotal" name="cmb[trip]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalRepositionCMBTotal" name="cmb[reposition]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalGrappleCMBTotal" name="cmb[grapple]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalSunderCMBTotal" name="cmb[sunder]" value="0" readonly="readonly" /></td>
+			</tr>	
+			<tr>
+				<th>{level}</th>
+				<th>{bab}</th>
+				<th>{weapon}</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				<th>{weapon}</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				<th>{weapon}</th>
 			</tr>
 			<tr>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="globalDisarmCMBTotal" name="cmb[disarm]" value="0" readonly="readonly" /></td>
+				<td class="center">&nbsp;</td>
+				<td class="center">&nbsp;</td>
+				<td class="center">&nbsp;</td>
+				<td class="center">&nbsp;</td>
+				<td class="center">&nbsp;</td>
+				<td class="center"><input type="text" size="4" class="center " id="globalBullCMBTotal" name="cmb[bull]" value="0" readonly="readonly" /></td>
+				<td class="center">&nbsp;</td>
+				<td class="center">&nbsp;</td>
+				<td class="center"><input type="text" size="4" class="center " id="globalSunderCMBTotal" name="cmb[sunder]" value="0" readonly="readonly" /></td>
+			</tr>	
+			<tr>
+				<th>{moddex}</th>
+				<th>{modstr}</th>
+				<th>{feat}</th>
+				<th>{feat}</th>
+				<th>{feat}</th>
+				<th>{feat}</th>
+				<th>{feat}</th>
+				<th>{feat}</th>
+				<th>{feat}</th>
+				<th>{feat}</th>
+				<th>{feat}</th>
+				<th>{feat}</th>				
+			</tr>
+			<tr>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="globalDisarmCMBTotal" name="cmb[disarm]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+			</tr>	
+			<tr>
+				<th>&nbsp;</th>
+				<th>{size}</th>
+				<th colspan="2">&nbsp;</th>
+				<th>{race}</th>
+				<th colspan="3">&nbsp;</th>
+				<th>{race}</th>
+				<th colspan="3">&nbsp;</th>
+			</tr>
+			<tr>
+				<td class="center"></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center" colspan="2"></td>
+				<td class="center"><input type="text" size="4" class="center " id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center" colspan="3"></td>
+				<td class="center"><input type="text" size="4" class="center " id="globalDisarmCMBTotal" name="cmb[disarm]" value="0" readonly="readonly" /></td>
+				<td class="center" colspan="3"></td>
+			</tr>	
+			<tr>
+				<td>&nbsp;</td>
+				<td class="center"><input type="text" size="4" class="center bold" id="CMBTotal" name="cmb[bab]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalDisarmCMBTotal" name="cmb[disarm]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalTrickCMBTotal" name="cmb[trick]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalBullCMBTotal" name="cmb[bull]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalOverrunCMBTotal" name="cmb[overrun]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalSteelCMBTotal" name="cmb[steel]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalDragCMBTotal" name="cmb[drag]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalTripCMBTotal" name="cmb[trip]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalRepositionCMBTotal" name="cmb[reposition]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalGrappleCMBTotal" name="cmb[grapple]" value="0" readonly="readonly" /></td>
+				<td class="center"><input type="text" size="4" class="center bold" id="globalSunderCMBTotal" name="cmb[sunder]" value="0" readonly="readonly" /></td>
+			</tr>	
+			<tr>
+				<th>&nbsp;</th>
 				<th>{cmd}</th>
-				<th>{life_dice}</th>
-				<th>{bull_rush}</th>
 				<th>{disarm}</th>
+				<th>{trick}</th>
+				<th>{bull}</th>
+				<th>{overrun}</th>
+				<th>{steal}</th>
 				<th>{drag}</th>
+				<th>{trip}</th>
+				<th>{reposition}</th>
 				<th>{grapple}</th>
-			</tr>
-			<tr>
-				<td class="center"><input type="text" size="4" class="center bold" id="cmdTotal" name="cmd[base]" value="0" readonly="readonly" /></td>
-				<td class="center"><input type="text" size="4" class="center boldPenalty" id="cmdLD" name="cmd[ld]" value="0" /></td>
-				<td class="center"><input type="text" size="4" class="center bold" id="cmdBullRush" name="cmd[BullRush]" value="0" /></td>
-				<td class="center"><input type="text" size="4" class="center bold" id="cmdDisarm" name="cmd[Disarm]" value="0" /></td>
-				<td class="center"><input type="text" size="4" class="center bold" id="cmdDrag" name="cmd[Drag]" value="0" /></td>
-				<td class="center"><input type="text" size="4" class="center bold" id="cmdGrapple" name="cmd[Grapple]" value="0" /></td>
+				<th>{sunder}</th>
 			</tr>
 	</table>
 </fieldset>
