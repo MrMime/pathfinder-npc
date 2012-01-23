@@ -169,6 +169,50 @@ var globalRaceTSF;
 var globalRaceTSR;
 var globalRaceTSW;
 
+//Maneuver TOTALS GLOBALS
+var globalCMBTotal;
+var globalCMDTotal;
+
+var globalManeuverBAB;
+var globalManeuverMOD;
+var globalManeuverSize;
+
+var globalDisarmCMBTotal; 
+var globalTrickCMBTotal;
+var globalBullCMBTotal;
+var globalOverrunCMBTotal;
+var globalStealCMBTotal;
+var globalDragCMBTotal;
+var globalTripCMBTotal;
+var globalRepositionCMBTotal;
+var globalGrappleCMBTotal;
+var globalSunderCMBTotal;
+
+var globalDisarmCMDTotal;  //DISARMARE
+var globalTrickCMDTotal; //IMBROGLIARE
+var globalBullCMDTotal; //SPINGERE
+var globalOverrunCMDTotal; //OLTREPASSARE
+var globalStealCMDTotal; //RUBARE
+var globalDragCMDTotal; //TRASCINARE
+var globalTripCMDTotal; //SBILANCIARE
+var globalRepositionCMDTotal; //SPOSTARE
+var globalGrappleCMDTotal; //LOTTARE
+var globalSunderCMDTotal; //SPEZZARE
+
+var globalDisarmWeapon;
+var globalSunderWeapon;
+var globalTripWeapon;
+
+var globalDisarmFeats;
+var globalTrickFeats;
+var globalBullFeats;
+var globalOverrunFeats;
+var globalSteaFeats;
+var globalDragFeats;
+var globalTripFeats;
+var globalRepositionFeats;
+var globalGrappleFeats;
+var globalSunderFeats;
 
 function setAll(){
 	//ASSOCIATION BETWEEN GLOBALS AND HTML INPUTS

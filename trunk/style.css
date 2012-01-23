@@ -6,6 +6,12 @@ BODY {
 	font-family:verdana;
 }
 
+LEGEND {
+	font-size:14px;
+	font-weight:bold;
+	padding:5px;
+}
+
 
 DIV#headerwrap {
 	background-image: url('./pageImages/headerBackground.png');

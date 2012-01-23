@@ -12,6 +12,7 @@
 	$pfNpcSheet['eng']['other'] 			= 'other';
 	$pfNpcSheet['eng']['hpplus'] 				= '+1 HP';
 	$pfNpcSheet['eng']['skillplus'] 			= '+1 SP';
+	
 	//STATISTICS
 	$pfNpcSheet['eng']['dex'] 				= 'DEX';
 	$pfNpcSheet['eng']['str'] 				= 'FOR';
@@ -69,6 +70,7 @@
 	$pfNpcSheet['eng']['cmd'] 				= 'CMD';
 	
 	$pfNpcSheet['eng']['feats'] 			= 'Feats';
+	$pfNpcSheet['eng']['feat'] 				= 'feat';
 	$pfNpcSheet['eng']['skills'] 			= 'Skills';
 	$pfNpcSheet['eng']['languages']			= 'Languages';
 	$pfNpcSheet['eng']['combat_gear'] 		= 'Combat Gear';
@@ -137,10 +139,18 @@
 	$pfNpcSheet['eng']['cmd']				= 'cmd';
 	$pfNpcSheet['eng']['favouriteclass']	= 'preferred class';
 	
-	$pfNpcSheet['eng']['bull_rush']			= 'bull_rush';
+	$pfNpcSheet['eng']['bull']				= 'bull_rush';
 	$pfNpcSheet['eng']['drag']				= 'drag';
 	$pfNpcSheet['eng']['disarm']			= 'disarm';
 	$pfNpcSheet['eng']['grapple']			= 'grapple';
+	$pfNpcSheet['eng']['trip']				= 'trip';
+	$pfNpcSheet['eng']['trick']				= 'dirty trick';
+	$pfNpcSheet['eng']['overrun']			= 'overrun';
+	$pfNpcSheet['eng']['sunder']			= 'sunder';
+	$pfNpcSheet['eng']['steal']				= 'steal';
+	$pfNpcSheet['eng']['reposition']		= 'reposition';
+	$pfNpcSheet['eng']['weapon']			= 'weapon';
+	
 	$pfNpcSheet['eng']['life_dice']			= 'life dice';
 	
 	//*******************************************************************//
@@ -212,6 +222,7 @@
 	$pfNpcSheet['ita']['cmd'] 				= 'CMD';
 	
 	$pfNpcSheet['ita']['feats'] 			= 'Talenti';
+	$pfNpcSheet['ita']['feat'] 				= 'talento';
 	$pfNpcSheet['ita']['skills'] 			= 'Abilit&agrave;';
 	$pfNpcSheet['ita']['languages']			= 'Linguaggi';
 	$pfNpcSheet['ita']['combat_gear'] 		= 'Inventario';
@@ -288,6 +299,18 @@
 	$pfNpcSheet['ita']['disarm']			= 'disarmare';
 	$pfNpcSheet['ita']['grapple']			= 'lottare';
 	$pfNpcSheet['ita']['life_dice']			= 'dadi vita';
+	
+	$pfNpcSheet['ita']['bull']				= 'spingere';
+	$pfNpcSheet['ita']['drag']				= 'trascinare';
+	$pfNpcSheet['ita']['disarm']			= 'disarmare';
+	$pfNpcSheet['ita']['grapple']			= 'lottare';
+	$pfNpcSheet['ita']['trip']				= 'sbilanciare';
+	$pfNpcSheet['ita']['trick']				= 'imbrogliare';
+	$pfNpcSheet['ita']['overrun']			= 'oltrepassare';
+	$pfNpcSheet['ita']['sunder']			= 'spezzare';
+	$pfNpcSheet['ita']['steal']				= 'rubare';
+	$pfNpcSheet['ita']['reposition']		= 'spostare';
+	$pfNpcSheet['ita']['weapon']			= 'arma';
 	
 	$GLOBALS['pfNpcSheet'] = $pfNpcSheet; 
 	
