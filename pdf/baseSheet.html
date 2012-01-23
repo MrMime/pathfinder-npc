@@ -1,0 +1,63 @@
+<html>
+<head>
+
+<style>
+
+DIV.info {
+	font:14px/1.3em Arial, sans-serif;
+}
+
+DIV.section {
+	border-bottom:1px solid black;
+	margin-top:1em;
+	margin-bottom:1em;
+	font-weight:bold;
+}
+
+H2 {
+	font-size:24px;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+
+</style>
+
+</head>
+<body>
+<h2>[[name]]</h2>
+<div class="info">
+	[[gender]] [[race]] [[classes]]<br />
+	[[alignment]] [[size]] [[creature_type]]<br />
+	<strong>{init}</strong> [[init]]; <strong>{perception} </strong>[[perception]]; <strong>{sense}</strong>[[sense]];<br />
+</div>
+<div class="section">{defence}</div>
+<div class="info">
+	<strong>{ac}</strong> [[ac]], {touch} [[touch]], {flatfooted} [[flatfooted]] ([[ca_component]])<br />
+	<strong>{hp}</strong> [[hp]] ([[life_dice]] [[total_hp_sum]])<br />
+	<strong>{fort} </strong>[[fort]], <strong>{ref} </strong>[[ref]], <strong>{will} </strong>[[will]]<br />
+</div>
+<div class="section">{offense}</div>
+<div class="info">
+	<strong>{speed}</strong> [[speed]] {speed_unit}<br />
+	<strong>{melee} </strong> [[melee_attacks]]<br />
+	<strong>{ranged}</strong> [[ranged_attacks]]<br />
+	<strong>{abilities}</strong> [[abilities]]<br />
+</div>
+<div class="section">{tactics}</div>
+[[tactics]]
+<div class="section">{statistics}</div>
+<div class="info">
+	<strong>{str} </strong>18, <strong>{cos} </strong>12, <strong>{dex} </strong>12, <strong>{int} </strong>10, <strong>{wis} </strong>10, <strong>{cha}</strong> 13<br />
+	<strong>{base_atk}</strong> [[base_atk]], <strong>{cmb}</strong> [[cmb]] [[cmb_description]] <strong>{cmd}</strong> [[cmd]] [[cmd_description]]<br />
+	<strong>{feats}</strong> [[feats]]<br />
+	<strong>{skills} </strong>[[skills]]<br />
+	<strong>{languages} </strong>[[languages]]<br />
+	<strong>{combat_gear}</strong> [[combat_gear]]<br />
+	[[special_items]]<br />
+</div>
+<div class="section">{personality}</div>
+<div class="info">
+	[[personality]]<br />
+</div>
+</body>
+</html>

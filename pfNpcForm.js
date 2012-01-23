@@ -85,8 +85,8 @@ function updateAllSheet(){
     updateClasses();
 	updateStats();
 	updateMovement();
-	updateInitiative();
 	updateAC();
+	updateInitiative();
 	updateManeuvers();
 }
 
