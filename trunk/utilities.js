@@ -14,6 +14,11 @@ function inArray(value,a){
 	return false;
 }
 
+function getCheck(obj){
+	if (obj.is(':checked')) return 1;
+	return 0;
+}
+
 /**
  * Implode an Array into a string with a token separator
  * es. a = {1,2,3,4} token = ";"

@@ -165,6 +165,7 @@ function buildWeaponList(obj){
                     $("#weapon01Name").removeAttr('disabled');
                     var cc = sel0.val();
                     gpfWeapon01 = eval ("new "+cc+"();");
+                    gpfWeapon01.setIndex(0);
                     updateAllSheet();
                 }
             }
@@ -176,6 +177,7 @@ function buildWeaponList(obj){
                     $("#weapon02Name").removeAttr('disabled');
                     var cc = sel1.val();
                     gpfWeapon02 = eval ("new "+cc+"();");
+                    gpfWeapon01.setIndex(1);
                     updateAllSheet();
                 }
             }
@@ -187,6 +189,7 @@ function buildWeaponList(obj){
                     $("#weapon03Name").removeAttr('disabled');
                     var cc = sel2.val();
                     gpfWeapon03 = eval ("new "+cc+"();");
+                    gpfWeapon01.setIndex(2);
                     updateAllSheet();
                 }
             }
@@ -198,6 +201,7 @@ function buildWeaponList(obj){
                     $("#weapon04Name").removeAttr('disabled');
                     var cc = sel3.val();
                     gpfWeapon04 = eval ("new "+cc+"();");
+                    gpfWeapon01.setIndex(3);
                     updateAllSheet();
                 }
             }
@@ -209,6 +213,7 @@ function buildWeaponList(obj){
                     $("#weapon05Name").removeAttr('disabled');
                     var cc = sel4.val();
                     gpfWeapon05 = eval ("new "+cc+"();");
+                    gpfWeapon01.setIndex(4);
                     updateAllSheet();
                 }
             }
