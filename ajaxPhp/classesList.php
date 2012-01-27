@@ -19,7 +19,7 @@
 					  );
 					*/
 
-	$classes = array ('classes'=>array('--','barbaro','guerriero','bardo','chierico','druido','paladino','mago','stregone','monaco','ranger'),
+	$classes = array ('classes'=>array('--','barbaro','guerriero','bardo','chierico','druido','paladino','mago','stregone','monaco','ranger','duellante'),
 					  '--'=>'pfClass',
 					  'barbaro'=>'pfBarbarian',
 					  'bardo'=>'pfBard',
@@ -30,7 +30,8 @@
 					  'monaco'=>'pfMonk',
 					  'mago'=>'pfWizard',
 					  'stregone'=>'pfSorcerer',
-					  'ranger'=>'pfRanger');
+					  'ranger'=>'pfRanger',
+					  'duellante'=>'pfDuelling');
 	
 	echo json_encode ($classes);
 

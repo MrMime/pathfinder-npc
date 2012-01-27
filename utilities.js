@@ -8,6 +8,12 @@ function addPlus(value){
 	return "+"+value;
 }
 
+function inArray(value,a){
+	for (var i=0;i<a.length;i++)
+		if (value == a[i]) return true;
+	return false;
+}
+
 /**
  * Implode an Array into a string with a token separator
  * es. a = {1,2,3,4} token = ";"

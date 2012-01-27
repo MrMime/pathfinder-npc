@@ -11,6 +11,10 @@ function pfClass(){
 	this.stw				= 0; //Class Will save throw
 	this.name				= "none";
 	this.ld					= 0; //Class Life Dice
+	this.damageBonus        = 0; //some class add a specific value to damage when attack
+	this.ARBonus            = 0; //some class add a specific value to Attack Roll
+	this.ACBonuc            = 0; //some class add a specific value to Armor Class
+	this.initBonus          = 0;
 	this.favouriteHP		= 0; //its the bonus due to favourite class if selected
 	this.averageHP          = 0; //its the average HP of this class widthout any bonus (only dice counted)
 	this.totalDiceHP		= 0;
@@ -21,16 +25,21 @@ function pfClass(){
 	this.spellPerDay		= new Array();
 	this.maxSpellLevel 		= 0;
 	this.bestSpellLevel 	= 0;
-	this.feats				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-	this.ACMods				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //armor class bonus (es monk every 4 levels)
+	this.feats				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //feats gained
+	this.ACMods				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //armor class bonus (es monk every 4 levels)
+	this.ARMods             = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //attack roll bonus
+	this.damageMods         = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //damage bonus
+	this.initMods           = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //initiative bonus
 	this.totalFeats			= 0;
 	this.favourite			= false;
 	this.bonusHP       		= false; //true if HP bonus for favoruite class is selected
 	this.bonusSkill         = false; //true if SKill bonus for favoruite class is selected
+	this.classType          = "core"; //core or CDP
+	this.maxLevel           = 20; //non CDP class has 20 level cap
 	//this is the index from 0 to 4 that represent the numerical number of class
 	//between the 5 an user can add
 	//this index allow the pfClass to modify its own specific HTML tags
-	this.index              = 0; 
+	this.index              = 0;
 	
 	//METHODS
 	this.setLevel 	= function(level){ this.level = level; };
@@ -50,6 +59,22 @@ function pfClass(){
 			this.favouriteHP = this.level;
 		}
 	};
+	
+	this.calculateDamageBonus  =   function(){
+	    this.damageBonus = this.damageMods[this.level];
+	}
+	
+	this.calculateARBonus  =   function(){
+        this.arBonus = this.ARMods[this.level];
+    }
+    
+    this.calculateACBonus  =   function(){
+        this.ACBonus = this.ACMods[this.level];
+    }
+    
+    this.calculateInitBonus  =   function(){
+        this.initBonus = this.initMods[this.level];
+    }
 	
 	/**
 	 * Return a formatted string with all bab bonus
@@ -111,11 +136,15 @@ function pfClass(){
 	this.update = function(){
 	    this.calculateST(); //calculating save throw
 	    this.calculateSkillPoint();
+	    this.calculateInitBonus();
+	    this.calculateARBonus();
+	    this.calculateACBonus();
 	    this.calculateBAB();
 	    this.calculateHP();
 	    this.calculateSpeed();
 	    this.calculateTotalFeats();
 	    this.calculateMaxSpellLevel();
+	    this.calculateDamageBonus();
 	    if (this.name.toLowerCase() == "monk")
             this.calculateBabFlurry();
         this.draw();
@@ -126,9 +155,54 @@ function pfClass(){
 	    globalClassTSR[this.index].val(addPlus(this.str));
 	    globalClassTSW[this.index].val(addPlus(this.stw));
 	    globalClassBAB[this.index].val(this.bab);
+	    //TODO: modifica damage bonus e attack roll bonus
+	    globalACClass.val(this.ACBonus); //adding class modifier to AC
+	    
+	    globalInitClass.val(addPlus(this.initBonus));
 	}
 	
 	
+}
+
+/**
+ * DUELLANTE
+ */
+
+function pfDuelling(){
+    this.inheritFrom = pfClass;
+    this.inheritFrom();
+    this.classType = "cdp";   
+    this.maxLevel   = 10;
+    
+    this.name       =   "dueling";
+    this.skillBase  = 4;
+    this.ld         = 10;
+    
+    this.babBase    = new Array(0,1,2,3,4,5,6,7,8,9,10);
+    this.stCat      = new Array(0,2,0);
+    this.initMods   = new Array(0,0,2,2,2,2,2,2,4,4,4); //initiative bonus
+    
+    
+    //If wearing a light armor and no shield, a duel fighter may add one mod int bonus every level to mod-dex
+    //to calculate AC. For this reason, bonus has to consider globalMaxDex
+    this.calculateACBonus  =   function(){
+        var category = gpfArmor.category;
+        if (category == "light" && gpfShield.ac==0){
+            var modInt  = totalModInt.val()/1;
+            var modDex  = totalModDex.val()/1;
+            var bonus   = Math.min(this.level,modInt);
+            
+            this.ACBonus = Math.min(bonus,(globalCurrentMaxDex-modDex));
+        }
+    }
+    
+    //If main weapon is a one-hand weapon or the category is light and type P, dueling class add its level
+    //to damage
+    this.calculateDamageBonus = function(){
+        if ( (mainWeaponCategory == "light" && mainWeaponDamageType =="P") || mainWeaponHands == 1)
+            this.damageBonus    = this.level; 
+    }
+    
 }
 
 /**
