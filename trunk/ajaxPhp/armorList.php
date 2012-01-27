@@ -26,7 +26,7 @@ Armature pesanti
    * [4]: Variazione sulla velocità corrente
    */
 
-  $armor = array ('armors'=>array('nudo','imbottita','cuoio','cuoio borchiato','giacco di maglia','pelle','corazza di scaglie','corazza di maglia',
+  $armor = array ('armors'=>array('nudo','imbottita','cuoio','cuoio borchiato','giacco di maglia','pelle','corazza di scaglie','cotta di maglia',
   								  'corazza di piastre','corazza a strisce','corazza di bande','mezza armatura','armatura completa'),
   				  
   				  'nudo'=>array (0,100,0,0,0),

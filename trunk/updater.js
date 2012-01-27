@@ -147,3 +147,91 @@ function buildClassesList(obj){
         sel4.append($("<option></option>").attr("value",globalClassList[classes[i]]).text(classes[i]));
     }
 }
+
+
+//******************** CLASSES ***************************//
+function buildWeaponList(obj){
+    var sel0 = $("#weapon01Name");
+    var sel1 = $("#weapon02Name");
+    var sel2 = $("#weapon03Name");
+    var sel3 = $("#weapon04Name");
+    var sel4 = $("#weapon05Name");
+    
+    if ( ($('#weapon01Name option').size()) > 0 ) return;
+    
+    sel0.change(
+            function(){
+                if (sel0.val() != '--') {
+                    $("#weapon01Name").removeAttr('disabled');
+                    var cc = sel0.val();
+                    gpfWeapon01 = eval ("new "+cc+"();");
+                    updateAllSheet();
+                }
+            }
+        );
+    
+    sel1.change(
+            function(){
+                if (sel1.val() != '--') {
+                    $("#weapon02Name").removeAttr('disabled');
+                    var cc = sel1.val();
+                    gpfWeapon02 = eval ("new "+cc+"();");
+                    updateAllSheet();
+                }
+            }
+        );
+    
+    sel2.change(
+            function(){
+                if (sel2.val() != '--') {
+                    $("#weapon03Name").removeAttr('disabled');
+                    var cc = sel2.val();
+                    gpfWeapon03 = eval ("new "+cc+"();");
+                    updateAllSheet();
+                }
+            }
+        );
+    
+    sel3.change(
+            function(){
+                if (sel3.val() != '--'){
+                    $("#weapon04Name").removeAttr('disabled');
+                    var cc = sel3.val();
+                    gpfWeapon04 = eval ("new "+cc+"();");
+                    updateAllSheet();
+                }
+            }
+        );
+        
+     sel4.change(
+            function(){
+                if (sel4.val() != '--'){
+                    $("#weapon05Name").removeAttr('disabled');
+                    var cc = sel4.val();
+                    gpfWeapon05 = eval ("new "+cc+"();");
+                    updateAllSheet();
+                }
+            }
+        );
+    
+    var group = obj.group;
+    for (var i = 0; i < group.length ; i++){
+        var string = JSON.stringify(globalWeaponList[group[i]]);
+        string = string.replace("{","");
+        string = string.replace("}","");
+        string = string.replace(/\"/g,'');
+        var weaponList = string.split(",");
+        var wl = "";
+        for (var j=0;j< weaponList.length;j++){
+            var value = weaponList[j].split(":");
+            wl += "<option value=\""+value[1]+"\">"+value[0]+"</option>";
+        }
+        
+        sel0.append($("<optgroup id=\"wGroup"+i+"\"></optgroup>").attr("label",group[i])).append(wl);
+        sel1.append($("<optgroup id=\"wGroup"+i+"\"></optgroup>").attr("label",group[i])).append(wl); 
+        sel2.append($("<optgroup id=\"wGroup"+i+"\"></optgroup>").attr("label",group[i])).append(wl);
+        sel3.append($("<optgroup id=\"wGroup"+i+"\"></optgroup>").attr("label",group[i])).append(wl);
+        sel4.append($("<optgroup id=\"wGroup"+i+"\"></optgroup>").attr("label",group[i])).append(wl);
+        
+    }
+}

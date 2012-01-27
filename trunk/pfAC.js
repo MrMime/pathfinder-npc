@@ -27,6 +27,7 @@ function pfAC(){
 	    //Mod Dex Bonus
 	    this.acDex     = totalModDex.val()/1; //this is the only value I read outside the AC section
 	    this.totalModDexAvaiable = Math.min(this.acDex,gpfArmor.maxDex,gpfShield.maxDex);
+	    globalCurrentMaxDex = Math.min(gpfArmor.maxDex,gpfShield.maxDex);
         //Wisdom Bonus	    
 	    this.acWis     = globalACWis.val()/1; //this value is places by class
 	    //Feats Bonus (dodge Bonus) 

@@ -7,13 +7,18 @@
 //GLOBAL VARIABLES NOT RELATED
 var gpfRace				= new pfHuman();
 var gpfStats			= new pfStats(new Array(10,10,10,10,10,10));
-var gpfAlignment	= new pfAlignment();
+var gpfAlignment	    = new pfAlignment();
 var gpfSize				= new pfSize();
-var gpfCharacter 	= new pfCharacter();
+var gpfCharacter 	    = new pfCharacter();
 var gpfSheet 			= new pfSheet();
 var gpfArmor 			= new pfArmor();
 var gpfShield			= new pfShield();
 var gpfManeuvers        = new pfManeuvers();
+//Global specific data to allow other class knows what is happening
+var globalCurrentMaxDex = 0; //is the current mod dex max (armor and shield may add penalty)
+var mainWeaponDamageType = "";
+var mainWeaponCategory   = "";
+var mainWeaponHands      = 1;
 
 var gpfMovement     = new pfMovement(); //done
 var gpfInitiative   = new pfInitiative(); //done
@@ -30,8 +35,13 @@ var gpfClass03	= new pfClass();
 var gpfClass04	= new pfClass();
 var gpfClass05	= new pfClass();
 
-	
-//PREPARING GLOBALS
+var gpfWeapon01 = new pfWeapon();
+var gpfWeapon02 = new pfWeapon();
+var gpfWeapon03 = new pfWeapon();
+var gpfWeapon04 = new pfWeapon();
+var gpfWeapon05 = new pfWeapon();
+
+//GLOBALS RELATED TO HTML TAGS
 var str; 
 var cos;
 var dex;
@@ -222,6 +232,27 @@ var globalManeuversFeatTrip;
 var globalManeuversFeatReposition;
 var globalManeuversFeatGrapple;
 var globalManeuversFeatSunder ;
+
+
+//GLOBAL WEAPONS 
+var globalWeaponAR                  = new Array();
+var globalWeaponDamage              = new Array();
+var globalweaponType                = new Array();
+var globalweaponName                = new Array();
+var globalweaponDamageDice          = new Array();
+var globalweaponCriticRange         = new Array();
+var globalWeaponCriticMultiplier    = new Array();
+var globalWeaponHand                = new Array();
+var globalWeaponFocus1              = new Array();
+var globalWeaponFocus2              = new Array();
+var globalWeaponSpec1               = new Array();
+var globalWeaponSpec2               = new Array();
+var globalWeaponAccuracy            = new Array();
+var globalWeaponPerfect             = new Array();
+var globalWeaponClass               = new Array();
+var globalWeaponLevel               = new Array();
+var globalWeaponMagic               = new Array();
+var globalWeaponEnchantment         = new Array();
 
 function setAll(){
 	//ASSOCIATION BETWEEN GLOBALS AND HTML INPUTS
@@ -417,5 +448,30 @@ function setAll(){
 		globalManeuversFeatSunder         = $('#maneuversFeatSunder');
 		
 		globalManeuversLevelBabMod        = $('#maneuversLevelBabMod');
+		
+		//GLOBALS WEAPONS
+		for (var i=1;i<6;i++){
+		    globalWeaponAR                  = $('#weapon0'+i+'AR');
+            globalWeaponDamage              = $('#weapon0'+i+'Damage');
+            globalweaponType                = $('#weapon0'+i+'Type');
+            globalweaponName                = $('#weapon0'+i+'Name');
+            globalweaponDamageDice          = $('#weapon0'+i+'DamageDice');
+            globalweaponCriticRange         = $('#weapon0'+i+'CriticRange');
+            globalWeaponCriticMultiplier    = $('#weapon0'+i+'CriticMultiplier');
+            globalWeaponHand                = $('#weapon0'+i+'Hand');
+            globalWeaponFocus1              = $('#weapon0'+i+'Focus1');
+            globalWeaponFocus2              = $('#weapon0'+i+'Focus2');
+            globalWeaponSpec1               = $('#weapon0'+i+'Spec1');
+            globalWeaponSpec2               = $('#weapon0'+i+'Spec2');
+            globalWeaponAccuracy            = $('#weapon0'+i+'Accuracy');
+            globalWeaponPerfect             = $('#weapon0'+i+'Perfect');
+            globalWeaponClass               = $('#weapon0'+i+'Class');
+            globalWeaponLevel               = $('#weapon0'+i+'Level');
+            globalWeaponMagic               = $('#weapon0'+i+'Magic');
+            globalWeaponEnchantment         = $('#weapon0'+i+'Enchantment');
+		    
+		}
+		
+		
 }
 

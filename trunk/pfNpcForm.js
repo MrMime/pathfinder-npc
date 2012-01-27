@@ -50,6 +50,17 @@ function loadAll(){
             buildClassesList(obj);
         }
     }); 
+    
+     $.ajax({
+        type: "GET",
+        url: "ajaxPhp/weaponsList.php",
+        data: "id=1",
+        success: function(response){
+            var obj = JSON.parse(response);
+            globalWeaponList = obj;
+            buildWeaponList(obj);
+        }
+    }); 
 	 
     updateAllSheet();
 }
