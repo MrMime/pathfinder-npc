@@ -22,6 +22,9 @@ function pfCharacter(){
     this.totalTSFMod        = 0;
     this.totalTSRMod        = 0;
     this.totalTSWMod        = 0;
+    
+    this.classesARBonus         = new Array(0,0,0,0,0);
+    this.classesDamageBonus     = new Array(0,0,0,0,0);
 	
 	this.eraseAllClasses = function(){
 	    this.classes = new Array();
@@ -38,6 +41,15 @@ function pfCharacter(){
         this.averageHP          = 0;
         this.favouriteHP        = 0;
         this.totalCosHP         = 0;
+        this.classesARBonus         = new Array(0,0,0,0,0);
+        this.classesDamageBonus     = new Array(0,0,0,0,0);
+        
+         //Updating cells in Weapons section
+        for (i=0;i<5;i++) {
+           globalWeaponBAB[i].val(addPlus(0));
+           globalWeaponClassAR[i].val(addPlus(0));
+           globalWeaponClassDamage[i].val(addPlus(0));
+        }
 	}
 	
 	/**
@@ -48,6 +60,7 @@ function pfCharacter(){
 		this.classes.push(pfClass);
 		this.totalLevel += parseInt(pfClass.level);
 		this.totalClasses = this.classes.length;
+		if (pfClass.name == "Warrior")  globalWarriorLevel = parseInt(pfClass.level);
 		
 		//When Adding a class, I have to sum every single properties of the new class
 		this.modSpeed 			+= pfClass.modSpeed/1;
@@ -61,6 +74,12 @@ function pfCharacter(){
 		this.averageHP 			+= pfClass.averageHP;
 		
 		this.babBase[this.totalLevel] = this.maxBab;
+		
+		for (var i=0;i<5;i++) {
+		    this.classesARBonus[i]        += pfClass.ARBonus[i];
+		    this.classesDamageBonus[i]    += pfClass.damageBonus[i];
+		}
+		
 	};
 	
 	this.calculateHP   = function(){
@@ -69,14 +88,19 @@ function pfCharacter(){
 	};
 	
 	this.calculateBAB = function(){
-        var multiple = Math.ceil(this.maxBab / 5);
-        this.finalBab = Array();
+	    this.finalBab = this.babToString(this.maxBab);
+	}
+	
+	this.babToString = function(maxBab){
+	    var multiple = Math.ceil(maxBab / 5);
+        var finalBab = Array();
     
-        var currentBab = this.maxBab;
-        this.finalBab = addPlus(this.maxBab);
+        var currentBab = maxBab;
+        finalBab = addPlus(maxBab);
         for (var i = 1, currentBab = currentBab-5;i < multiple; i++,currentBab-=5){
-            this.finalBab = this.finalBab + "/"+addPlus(currentBab);
+            finalBab = finalBab + "/"+addPlus(currentBab);
         }
+        return finalBab;
 	}
 	
 	this.rollStats = function(high){
@@ -89,6 +113,7 @@ function pfCharacter(){
 	};
 	
 	this.update   = function(){
+	   globalLevel = this.totalLevel;
 	   this.calculateBAB();
        this.calculateHP();
 	    
@@ -118,8 +143,12 @@ function pfCharacter(){
 	    var stringHP = implode(" + ",this.totalDiceHP);
 	    globalHPTotal.val(stringHP + " ("+(this.averageHP+this.favouriteHP+this.totalCosHP)+" HP)");
 	    
-	     for (i=0;i<5;i++)
+	    //Updating cells in Weapons section
+	    for (i=0;i<5;i++) {
            globalWeaponBAB[i].val(addPlus(this.maxBab/1));
+           globalWeaponClassAR[i].val(addPlus(this.classesARBonus[i]));
+           globalWeaponClassDamage[i].val(addPlus(this.classesDamageBonus[i]));
+        }
 	    
 	}
 	

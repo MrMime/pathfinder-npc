@@ -164,8 +164,8 @@ function buildWeaponList(obj){
                 if (sel0.val() != '--') {
                     $("#weapon01Name").removeAttr('disabled');
                     var cc = sel0.val();
-                    gpfWeapon01 = eval ("new "+cc+"();");
-                    gpfWeapon01.setIndex(0);
+                    gpfWeapon[0] = eval ("new "+cc+"();");
+                    gpfWeapon[0].setIndex(0);
                     updateAllSheet();
                 }
             }
@@ -176,8 +176,8 @@ function buildWeaponList(obj){
                 if (sel1.val() != '--') {
                     $("#weapon02Name").removeAttr('disabled');
                     var cc = sel1.val();
-                    gpfWeapon02 = eval ("new "+cc+"();");
-                    gpfWeapon01.setIndex(1);
+                    gpfWeapon[1] = eval ("new "+cc+"();");
+                    gpfWeapon[1].setIndex(1);
                     updateAllSheet();
                 }
             }
@@ -188,8 +188,8 @@ function buildWeaponList(obj){
                 if (sel2.val() != '--') {
                     $("#weapon03Name").removeAttr('disabled');
                     var cc = sel2.val();
-                    gpfWeapon03 = eval ("new "+cc+"();");
-                    gpfWeapon01.setIndex(2);
+                    gpfWeapon[2] = eval ("new "+cc+"();");
+                    gpfWeapon[2].setIndex(2);
                     updateAllSheet();
                 }
             }
@@ -200,8 +200,8 @@ function buildWeaponList(obj){
                 if (sel3.val() != '--'){
                     $("#weapon04Name").removeAttr('disabled');
                     var cc = sel3.val();
-                    gpfWeapon04 = eval ("new "+cc+"();");
-                    gpfWeapon01.setIndex(3);
+                    gpfWeapon[3] = eval ("new "+cc+"();");
+                    gpfWeapon[3].setIndex(3);
                     updateAllSheet();
                 }
             }
@@ -212,8 +212,8 @@ function buildWeaponList(obj){
                 if (sel4.val() != '--'){
                     $("#weapon05Name").removeAttr('disabled');
                     var cc = sel4.val();
-                    gpfWeapon05 = eval ("new "+cc+"();");
-                    gpfWeapon01.setIndex(4);
+                    gpfWeapon[4] = eval ("new "+cc+"();");
+                    gpfWeapon[4].setIndex(4);
                     updateAllSheet();
                 }
             }

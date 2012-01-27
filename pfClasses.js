@@ -11,8 +11,8 @@ function pfClass(){
 	this.stw				= 0; //Class Will save throw
 	this.name				= "none";
 	this.ld					= 0; //Class Life Dice
-	this.damageBonus        = 0; //some class add a specific value to damage when attack
-	this.ARBonus            = 0; //some class add a specific value to Attack Roll
+	this.damageBonus        = new Array(0,0,0,0,0); //some class add a specific value to damage when attack
+	this.ARBonus            = new Array(0,0,0,0,0); //some class add a specific value to Attack Roll
 	this.ACBonuc            = 0; //some class add a specific value to Armor Class
 	this.initBonus          = 0;
 	this.favouriteHP		= 0; //its the bonus due to favourite class if selected
@@ -61,11 +61,13 @@ function pfClass(){
 	};
 	
 	this.calculateDamageBonus  =   function(){
-	    this.damageBonus = this.damageMods[this.level];
+	    for (var i=0;i<5;i++)
+	       this.damageBonus[i] = this.damageMods[this.level];
 	}
 	
 	this.calculateARBonus  =   function(){
-        this.arBonus = this.ARMods[this.level];
+	    for (var i=0;i<5;i++)
+            this.ARBonus[i] = this.ARMods[this.level];
     }
     
     this.calculateACBonus  =   function(){
@@ -137,14 +139,19 @@ function pfClass(){
 	    this.calculateST(); //calculating save throw
 	    this.calculateSkillPoint();
 	    this.calculateInitBonus();
-	    this.calculateARBonus();
+	    
 	    this.calculateACBonus();
 	    this.calculateBAB();
 	    this.calculateHP();
 	    this.calculateSpeed();
 	    this.calculateTotalFeats();
 	    this.calculateMaxSpellLevel();
-	    this.calculateDamageBonus();
+	    
+	     for (var i=0;i<5;i++) {
+	        this.calculateDamageBonus(i);
+	        this.calculateARBonus(i);
+	     }
+	    
 	    if (this.name.toLowerCase() == "monk")
             this.calculateBabFlurry();
         this.draw();
@@ -158,7 +165,6 @@ function pfClass(){
 	    globalACClass.val(this.ACBonus); //adding class modifier to AC
 	    globalInitClass.val(addPlus(this.initBonus));
 	}
-	
 	
 }
 
@@ -196,9 +202,10 @@ function pfDuelling(){
     
     //If main weapon is a one-hand weapon or the category is light and type P, dueling class add its level
     //to damage
-    this.calculateDamageBonus = function(){
-        if ( (mainWeaponCategory == "light" && mainWeaponDamageType =="P") || mainWeaponHands == 1)
-            this.damageBonus    = this.level; 
+    this.calculateDamageBonus = function(index){
+        var curentWeapon = gpfWeapon[index];
+        if ( (curentWeapon.category == "light" && inArray("P",curentWeapon.damageType)) || !curentWeapon.twoHand)
+            this.damageBonus[index]    = this.level;
     }
     
 }
@@ -227,6 +234,48 @@ function pfWarrior(){
 	this.skillBase  	= 2;
 	this.ld				= 10;
 	this.feats			= new Array(0,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1);
+	
+	//from 3th level, reduce the penalty of dex of armor by 1 every 4 levels
+	//due to impossibility to modify max-mod-dex of armor, I can compensate with
+	//a class bonus to CA
+	this.calculateACBonus  =   function(){
+	    var modDex = totalModDex.val()/1;
+	    var difference = modDex-globalCurrentMaxDex; //different between modDex total and Armor Max Dex
+	    if (difference > 0 && this.level >= 3){
+	        var rest = this.level % 4;
+	        this.ACBonus = Math.floor(this.level / 4);
+	        if (rest==3)
+	           this.ACBonus++;
+	        this.ACBonus = Math.min(this.ACBonus,difference);
+	    }
+	}
+	
+	//CALCULATING CLASS BONUS TO ATTACK ROLL WITH INDEX WEAPON
+	this.calculateARBonus = function(index){
+	        var trainingARBonus = 0;
+	        var train = globalWeaponTrain[index].is(':checked');
+            if (train && this.level >=5){
+               var rest = this.level % 5;
+               trainingARBonus = Math.floor(this.level / 5);
+                if (rest==4) 
+                   trainingARBonus++;
+            }
+            this.ARBonus[index] = trainingARBonus;
+	}
+	
+	//CALCULATING CLASS BONUS TO DAMAGE WITH INDEX WEAPON
+	this.calculateDamageBonus = function(index){
+            var trainingDamageBonus = 0;
+            var train = globalWeaponTrain[index].is(':checked');
+            if (train && this.level >=5){
+               var rest = this.level % 5;
+               trainingDamageBonus = Math.floor(this.level / 5);
+                if (rest==4) 
+                   trainingDamageBonus++;
+            }
+            this.damageBonus[index] = trainingDamageBonus;
+    }
+	
 }
 
 function pfCleric(){
