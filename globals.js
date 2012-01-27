@@ -16,6 +16,7 @@ var gpfShield			= new pfShield();
 var gpfManeuvers        = new pfManeuvers();
 //Global specific data to allow other class knows what is happening
 var globalCurrentMaxDex = 0; //is the current mod dex max (armor and shield may add penalty)
+var globalMaxBab        = 0;
 var mainWeaponDamageType = "";
 var mainWeaponCategory   = "";
 var mainWeaponHands      = 1;
@@ -236,11 +237,12 @@ var globalManeuversFeatSunder ;
 
 //GLOBAL WEAPONS 
 var globalWeaponAR                  = new Array();
+var globalWeaponBAB                 = new Array();
 var globalWeaponDamage              = new Array();
-var globalweaponType                = new Array();
-var globalweaponName                = new Array();
-var globalweaponDamageDice          = new Array();
-var globalweaponCriticRange         = new Array();
+var globalWeaponType                = new Array();
+var globalWeaponName                = new Array();
+var globalWeaponDamageDice          = new Array();
+var globalWeaponCriticRange         = new Array();
 var globalWeaponCriticMultiplier    = new Array();
 var globalWeaponHand                = new Array();
 var globalWeaponFocus1              = new Array();
@@ -451,24 +453,25 @@ function setAll(){
 		
 		//GLOBALS WEAPONS
 		for (var i=1;i<6;i++){
-		    globalWeaponAR                  = $('#weapon0'+i+'AR');
-            globalWeaponDamage              = $('#weapon0'+i+'Damage');
-            globalweaponType                = $('#weapon0'+i+'Type');
-            globalweaponName                = $('#weapon0'+i+'Name');
-            globalweaponDamageDice          = $('#weapon0'+i+'DamageDice');
-            globalweaponCriticRange         = $('#weapon0'+i+'CriticRange');
-            globalWeaponCriticMultiplier    = $('#weapon0'+i+'CriticMultiplier');
-            globalWeaponHand                = $('#weapon0'+i+'Hand');
-            globalWeaponFocus1              = $('#weapon0'+i+'Focus1');
-            globalWeaponFocus2              = $('#weapon0'+i+'Focus2');
-            globalWeaponSpec1               = $('#weapon0'+i+'Spec1');
-            globalWeaponSpec2               = $('#weapon0'+i+'Spec2');
-            globalWeaponAccuracy            = $('#weapon0'+i+'Accuracy');
-            globalWeaponPerfect             = $('#weapon0'+i+'Perfect');
-            globalWeaponClass               = $('#weapon0'+i+'Class');
-            globalWeaponLevel               = $('#weapon0'+i+'Level');
-            globalWeaponMagic               = $('#weapon0'+i+'Magic');
-            globalWeaponEnchantment         = $('#weapon0'+i+'Enchantment');
+		    globalWeaponAR[i-1]                  = $('#weapon0'+i+'AR');
+		    globalWeaponBAB[i-1]                 = $('#weapon0'+i+'BAB');
+            globalWeaponDamage[i-1]              = $('#weapon0'+i+'Damage');
+            globalWeaponType[i-1]                = $('#weapon0'+i+'Type');
+            globalWeaponName[i-1]                = $('#weapon0'+i+'Name');
+            globalWeaponDamageDice[i-1]          = $('#weapon0'+i+'DamageDice');
+            globalWeaponCriticRange[i-1]         = $('#weapon0'+i+'CriticRange');
+            globalWeaponCriticMultiplier[i-1]    = $('#weapon0'+i+'CriticMultiplier');
+            globalWeaponHand[i-1]                = $('#weapon0'+i+'Hand');
+            globalWeaponFocus1 [i-1]             = $('#weapon0'+i+'Focus1');
+            globalWeaponFocus2[i-1]              = $('#weapon0'+i+'Focus2');
+            globalWeaponSpec1[i-1]               = $('#weapon0'+i+'Spec1');
+            globalWeaponSpec2[i-1]               = $('#weapon0'+i+'Spec2');
+            globalWeaponAccuracy[i-1]            = $('#weapon0'+i+'Accuracy');
+            globalWeaponPerfect[i-1]             = $('#weapon0'+i+'Perfect');
+            globalWeaponClass[i-1]               = $('#weapon0'+i+'Class');
+            globalWeaponLevel[i-1]               = $('#weapon0'+i+'Level');
+            globalWeaponMagic[i-1]               = $('#weapon0'+i+'Magic');
+            globalWeaponEnchantment[i-1]         = $('#weapon0'+i+'Enchantment');
 		    
 		}
 		

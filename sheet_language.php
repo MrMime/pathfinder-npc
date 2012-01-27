@@ -10,8 +10,8 @@
 	
 	$pfNpcSheet['eng']['wisdom'] 			= 'wisdom';
 	$pfNpcSheet['eng']['other'] 			= 'other';
-	$pfNpcSheet['eng']['hpplus'] 				= '+1 HP';
-	$pfNpcSheet['eng']['skillplus'] 			= '+1 SP';
+	$pfNpcSheet['eng']['hpplus'] 			= '+1 HP';
+	$pfNpcSheet['eng']['skillplus'] 		= '+1 SP';
 	
 	//STATISTICS
 	$pfNpcSheet['eng']['dex'] 				= 'DEX';
@@ -122,8 +122,8 @@
 	$pfNpcSheet['eng']['tsw']				= 'TSW';
 	
 	$pfNpcSheet['eng']['weapons']			= 'Weapons';
-	$pfNpcSheet['eng']['ba']				= 'Attack Roll';
-	$pfNpcSheet['eng']['bad']				= 'base damage';
+	$pfNpcSheet['eng']['ar']				= 'Attack Roll';
+	$pfNpcSheet['eng']['damage']				= 'base damage';
 	$pfNpcSheet['eng']['weapon_name']		= 'weapon';
 	$pfNpcSheet['eng']['type']				= 'type';
 	$pfNpcSheet['eng']['critic_range']		= 'range';
@@ -153,6 +153,14 @@
 	
 	$pfNpcSheet['eng']['life_dice']			= 'life dice';
 	
+	//WEAPONS
+	$pfNpcSheet['eng']['twohands']			= 'two hands';
+	$pfNpcSheet['eng']['hand']				= 'hand';
+	$pfNpcSheet['eng']['righthand']			= 'right';
+	$pfNpcSheet['eng']['lefthand']			= 'left';
+	$pfNpcSheet['eng']['perfect']			= 'perfect';
+	$pfNpcSheet['eng']['enchantment']		= 'enchantment';
+	
 	//*******************************************************************//
 	
 	//GENERIC
@@ -167,6 +175,7 @@
 	$pfNpcSheet['ita']['other'] 			= 'altri';
 	$pfNpcSheet['ita']['hpplus'] 			= '+1 PF';
 	$pfNpcSheet['ita']['skillplus'] 		= '+1 PA';
+	
 	//STATISTICS
 	$pfNpcSheet['ita']['dex'] 				= 'DES';
 	$pfNpcSheet['ita']['str'] 				= 'FOR';
@@ -277,8 +286,8 @@
 	$pfNpcSheet['ita']['tsw']				= 'TSV';
 	
 	$pfNpcSheet['ita']['weapons']			= 'Armi';
-	$pfNpcSheet['ita']['ba']				= 'TxC';
-	$pfNpcSheet['ita']['bad']				= 'danni';
+	$pfNpcSheet['ita']['ar']				= 'TxC';
+	$pfNpcSheet['ita']['damage']			= 'danni';
 	$pfNpcSheet['ita']['weapon_name']		= 'arma';
 	$pfNpcSheet['ita']['type']				= 'tipo';
 	$pfNpcSheet['ita']['critic_range']		= 'minaccia';
@@ -311,6 +320,15 @@
 	$pfNpcSheet['ita']['steal']				= 'rubare';
 	$pfNpcSheet['ita']['reposition']		= 'spostare';
 	$pfNpcSheet['ita']['weapon']			= 'arma';
+	
+	//WEAPONS
+	$pfNpcSheet['ita']['hand']				= 'mano';
+	$pfNpcSheet['ita']['twohands']			= 'due mani';
+	$pfNpcSheet['ita']['righthand']			= 'destra';
+	$pfNpcSheet['ita']['lefthand']			= 'sinistra';
+	$pfNpcSheet['ita']['perfect']			= 'perfetta';
+	$pfNpcSheet['ita']['enchantment']		= 'incantamento';
+	
 	
 	$GLOBALS['pfNpcSheet'] = $pfNpcSheet; 
 	

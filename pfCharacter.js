@@ -118,6 +118,9 @@ function pfCharacter(){
 	    var stringHP = implode(" + ",this.totalDiceHP);
 	    globalHPTotal.val(stringHP + " ("+(this.averageHP+this.favouriteHP+this.totalCosHP)+" HP)");
 	    
+	     for (i=0;i<5;i++)
+           globalWeaponBAB[i].val(addPlus(this.maxBab/1));
+	    
 	}
 	
 }

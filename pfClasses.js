@@ -155,9 +155,7 @@ function pfClass(){
 	    globalClassTSR[this.index].val(addPlus(this.str));
 	    globalClassTSW[this.index].val(addPlus(this.stw));
 	    globalClassBAB[this.index].val(this.bab);
-	    //TODO: modifica damage bonus e attack roll bonus
 	    globalACClass.val(this.ACBonus); //adding class modifier to AC
-	    
 	    globalInitClass.val(addPlus(this.initBonus));
 	}
 	

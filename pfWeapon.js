@@ -4,14 +4,21 @@ function pfWeapon(){
 	this.damageMod		= 0;
 	this.damageDice		= 0;
 	this.diceNumber		= 1;
+	this.damageDiceString = "";
+	this.damage         = 0;
 	this.category       = "light";
 	this.damageType     = new Array();
 	this.damageList     = new Array("S","P","B"); //damage type S = Tagliente, B = Contundente, P = Perforante
+	this.AR             = 0;
+	this.ARString       = "";
 	
 	this.size			= 0;
 	this.minCritic		= 20;
-	this.multiplier		= 2;
+	this.criticMultiplier	= 2;
+	this.criticMultiplierString = "";
+	this.criticRange    = "20";
 	this.twoHand		= false;
+	this.hand           = "";
 	this.type			= "";
 	this.typeList		= new Array ("melee","ranged");
 	this.secondHand     = false;
@@ -40,7 +47,14 @@ function pfWeapon(){
 	this.setSpec			= function(spec){this.spec = spec;};
 	this.setImproveSpec		= function(improveSpec){this.improveSpec = improveSpec;};
 	this.setAccuracy		= function(accuracy){this.accuracy = accuracy;};
-	
+	this.setPerfect         = function(perfect){this.perfect = perfect;};
+	this.setHand            = function(hand){
+	    this.hand = hand;
+	    if (hand == "twohand")
+	       this.twoHand = true;
+	    else
+	       this.twoHand = false;
+	};
 	
 	this.setIndex   = function(index){ this.index = index; };
 	/**
@@ -81,7 +95,11 @@ function pfWeapon(){
 	
 	
 	this.update    = function(){
-	    if (this.mainWeapon) {
+	    this.buildStrings();
+	    this.calculateAR();
+	    this.calculateDamage();
+	    
+	    if (this.index == 1) {
 	       mainWeaponCategory        = this.category;
 	       mainWeaponDamageType      = this.damageType;
 	       mainWeaponHands           = (this.twoHand)? 2:1;
@@ -90,9 +108,50 @@ function pfWeapon(){
 	}
 	
 	this.draw      = function(){
-	    
+	    globalWeaponDamageDice[this.index].val(this.damageDiceString);
+	    globalWeaponCriticRange[this.index].val(this.criticRange);
+	    globalWeaponCriticMultiplier[this.index].val(this.criticMultiplierString);
+	    globalWeaponAR[this.index].val(this.ARString);
+	    globalWeaponDamage[this.index].val(this.damage);
 	}
 	
+	this.buildStrings = function(){
+	    var diff = 20 - this.minCritic;
+	    if (this.minCritic == 20) 
+	       this.criticRange = this.minCritic;
+	    else 	    
+	       this.criticRange = this.minCritic+"-20";
+	       
+	    this.criticMultiplierString = "x"+this.criticMultiplier;
+	    this.damageDiceString = this.diceNumber+"d"+this.damageDice;
+	}
+	
+	this.calculateAR = function(){
+	    var modDex = totalModDex.val()/1;
+	    var modStr = totalModStr.val()/1;
+	    
+	    var mod = (this.accuracy) ? modDex : modStr;
+        mod = (this.type == this.typeList[1]) ? modDex : mod;
+	    
+	    var feats = this.focus + this.improveFocus;
+	    var other = Math.max(this.modMagic,((this.perfect)?1:0));
+	    var bab   = globalWeaponBAB[this.index].val()/1;
+	    var classBonus = globalWeaponClass[this.index].val()/1;
+	    
+	    this.AR = bab + mod + feats + other + classBonus;
+	    this.ARString = "+"+this.AR;
+	}
+    
+    this.calculateDamage = function(){
+        var modStr  = totalModStr.val()/1;
+        var mod     = (this.twoHands) ? Math.floor(modStr*1.5) : modStr;
+        var feats   = (this.spec * 2) + (this.improveSpec*2);
+        var other   = this.modMagic;
+        var classBonus = globalWeaponClass[this.index].val()/1;
+        var total   = mod + feats + other + classBonus;
+        this.damage = this.damageDiceString+" + "+total;       
+    }
+
 }
 
 function pfAspergillum(){

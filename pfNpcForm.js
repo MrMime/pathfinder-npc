@@ -99,6 +99,20 @@ function updateAllSheet(){
 	updateAC();
 	updateInitiative();
 	updateManeuvers();
+	updateWeapons();
+}
+
+function updateWeapons(){
+    gpfWeapon01.setIndex(0);
+    gpfWeapon01.update();
+    gpfWeapon02.setIndex(1);
+    gpfWeapon02.update();
+    gpfWeapon03.setIndex(2);
+    gpfWeapon03.update();
+    gpfWeapon04.setIndex(3);
+    gpfWeapon04.update();
+    gpfWeapon05.setIndex(4);
+    gpfWeapon05.update();
 }
 
 function updateClasses(){

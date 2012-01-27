@@ -563,8 +563,9 @@
 	<legend>{weapons}</legend>
 	<table id="weaponsTable">
 			<tr>
-				<th>{ba}</th>
-				<th>{bad}</th>
+				<th>{ar}</th>
+				<th>{bab}</th>
+				<th>{damage}</th>
 				<th>{type}</th>
 				<th>{weapon_name}</th>
 				<th>{base_damage}</th>
@@ -581,171 +582,181 @@
 				<th>{enchantment}</th>
 			</tr>
 			<tr>
-				<td><input type="text" class="center bold" id="weapon01AR" name="weapon[0]['AR']" value="0" size="3" readonly="readonly" /></td>
-				<td><input type="text" class="center bold" id="weapon01Damage" name="weapon[0]['damage']" value="0" size="5" readonly="readonly" /></td>
-				<td>
-					<select name="weapon[0]['type']" id="weapon01Type" >
-						<option value="{melee}">{melee}</option>
-						<option value="{ranged}">{ranged}</option>
+				<td class="separated"><input type="text" class="center bold" id="weapon01AR" name="weapon[0]['AR']" value="0" size="3" readonly="readonly" /></td>
+				<td class="separated"><input type="text" class="center" id="weapon01BAB" name="weapon[0]['bab']" value="0" size="3" readonly="readonly" /></td>
+				<td class="separated"><input type="text" class="center bold" id="weapon01Damage" name="weapon[0]['damage']" value="0" size="5" readonly="readonly" /></td>
+				<td class="separated">
+					<select name="weapon[0]['type']" id="weapon01Type" onChange="gpfWeapon01.setType(this.value); updateAllSheet();">
+						<option value="melee">{melee}</option>
+						<option value="ranged">{ranged}</option>
 					</select>
 				</td>
-				<td><select id="weapon01Name" name="weapon[0]['name']"></select></td>
-				<td><input type="text" class="center" id="weapon01DamageDice" name="weapon[0]['damageDice']" value="0" size="3" readonly="readonly" /></td>
-				<td><input type="text" class="center" id="weapon01CriticRange" name="weapon[0]['criticRange']" value="0" size="3" readonly="readonly" /></td>
-				<td><input type="text" class="center" id="weapon01CriticMultiplier" name="weapon[0]['criticMultiplier']" value="0" size="3" readonly="readonly" /></td>
-				<td>
-					<select name="weapon[0]['hand']" id="weapon01Hand">
-						<option value="{righthand}">{righthand}</option>
-						<option value="{lefthand}">{lefthand}</option>
+				<td class="separated"><select id="weapon01Name" name="weapon[0]['name']"></select></td>
+				<td class="separated"><input type="text" class="center" id="weapon01DamageDice" name="weapon[0]['damageDice']" value="0" size="6" readonly="readonly" /></td>
+				<td class="separated"><input type="text" class="center" id="weapon01CriticRange" name="weapon[0]['criticRange']" value="0" size="3" readonly="readonly" /></td>
+				<td class="separated"><input type="text" class="center" id="weapon01CriticMultiplier" name="weapon[0]['criticMultiplier']" value="0" size="3" readonly="readonly" /></td>
+				<td class="separated">
+					<select name="weapon[0]['hand']" id="weapon01Hand" onChange="gpfWeapon01.setHand(this.value);" onChange="gpfWeapon01.setHand(this.value);">
+						<option value="righthand">{righthand}</option>
+						<option value="lefthand">{lefthand}</option>
+						<option value="twohands">{twohands}</option>
 					</select>
 				</td>
-				<td>
-					<input type="checkbox" class="center" id="weapon01Focus1" 	name="weapon[0]['focus1']" />
-					<input type="checkbox" class="center" id="weapon01Focus2" 	name="weapon[0]['focus2']" />
+				<td class="separated">
+					<input type="checkbox" class="center" id="weapon01Focus1" 	name="weapon[0]['focus1']" onChange="gpfWeapon01.setFocus(getCheck($(this))); updateAllSheet();"/>
+					<input type="checkbox" class="center" id="weapon01Focus2" 	name="weapon[0]['focus2']" onChange="gpfWeapon01.setImproveFocus(getCheck($(this))); updateAllSheet();"/>
 				</td>
-				<td>
-					<input type="checkbox" class="center" id="weapon01Spec1" 	name="weapon[0]['spec1']" />
-					<input type="checkbox" class="center" id="weapon01Spec2" 	name="weapon[0]['spec2']" />
+				<td class="separated">
+					<input type="checkbox" class="center" id="weapon01Spec1" 	name="weapon[0]['spec1']" onChange="gpfWeapon01.setSpec(getCheck($(this))); updateAllSheet();"/>
+					<input type="checkbox" class="center" id="weapon01Spec2" 	name="weapon[0]['spec2']" onChange="gpfWeapon01.setImproveSpec(getCheck($(this))); updateAllSheet();"/>
 				</td>
-				<td><input type="checkbox" class="center" id="weapon01Accuracy" name="weapon[0]['accuracy']" /></td>
-				<td><input type="checkbox" class="center" id="weapon01Perfect" 	name="weapon[0]['perfect']" /></td>
-				<td><input type="text" class="center" id="weapon01Class" name="weapon[0]['class']" value="0" size="5" readonly="readonly" /></td>
-				<td><input type="text" class="center" id="weapon01Level" name="weapon[0]['level']" value="0" size="5" readonly="readonly" /></td>
-				<td><input type="text" class="center" id="weapon01Magic" name="weapon[0]['magic']" value="0" size="5"  /></td>
-				<td><select id="weapon01Enchantment" name="weapon[0]['enchantment']"></select></td>
+				<td class="separated"><input type="checkbox" class="center" id="weapon01Accuracy" name="weapon[0]['accuracy']" onChange="gpfWeapon01.setAccuracy(getCheck($(this))); updateAllSheet();"/></td>
+				<td class="separated"><input type="checkbox" class="center" id="weapon01Perfect" 	name="weapon[0]['perfect']" onChange="gpfWeapon01.setPerfect(getCheck($(this))); updateAllSheet();"/></td>
+				<td class="separated"><input type="text" class="center" id="weapon01Class" name="weapon[0]['class']" value="0" size="5" readonly="readonly" /></td>
+				<td class="separated"><input type="text" class="center" id="weapon01Level" name="weapon[0]['level']" value="0" size="5" readonly="readonly" /></td>
+				<td class="separated"><input type="text" class="center" id="weapon01Magic" name="weapon[0]['magic']" value="0" size="5"  onKeyUp="gpfWeapon01.setModMagic(this.value); updateAllSheet();"/></td>
+				<td class="separated"><select id="weapon01Enchantment" name="weapon[0]['enchantment']"></select></td>
 			</tr>
 			<tr>
 				<td><input type="text" class="center bold" id="weapon02AR" name="weapon[1]['AR']" value="0" size="3" readonly="readonly" /></td>
+				<td><input type="text" class="center" id="weapon02BAB" name="weapon[1]['bab']" value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center bold" id="weapon02Damage" name="weapon[1]['damage']" value="0" size="5" readonly="readonly" /></td>
 				<td>
-					<select name="weapon[1]['type']" id="weapon02Type">
+					<select name="weapon[1]['type']" id="weapon02Type" onChange="gpfWeapon02.setType(this.value); updateAllSheet();">
 						<option value="{melee}">{melee}</option>
 						<option value="{ranged}">{ranged}</option>
 					</select>
 				</td>
 				<td><select id="weapon02Name" name="weapon[1]['name']"></select></td>
-				<td><input type="text" class="center" id="weapon02DamageDice" name="weapon[1]['damageDice']" value="0" size="3" readonly="readonly" /></td>
+				<td><input type="text" class="center" id="weapon02DamageDice" name="weapon[1]['damageDice']" value="0" size="6" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="weapon02CriticRange" name="weapon[1]['criticRange']" value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="weapon02CriticMultiplier" name="weapon[1]['criticMultiplier']" value="0" size="3" readonly="readonly" /></td>
 				<td>
-					<select name="weapon[1]['hand']" id="weapon02Hand">
-						<option value="{righthand}">{righthand}</option>
-						<option value="{lefthand}">{lefthand}</option>
+					<select name="weapon[1]['hand']" id="weapon02Hand" onChange="gpfWeapon02.setHand(this.value);">
+						<option value="righthand">{righthand}</option>
+						<option value="lefthand">{lefthand}</option>
+						<option value="twohands">{twohands}</option>
 					</select>
 				</td>
 				<td>
-					<input type="checkbox" class="center" id="weapon02Focus1" 	name="weapon[1]['focus1']" />
-					<input type="checkbox" class="center" id="weapon02Focus2" 	name="weapon[1]['focus2']" />
+					<input type="checkbox" class="center" id="weapon02Focus1" 	name="weapon[1]['focus1']" onChange="gpfWeapon02.setFocus(getCheck($(this))); updateAllSheet();" />
+					<input type="checkbox" class="center" id="weapon02Focus2" 	name="weapon[1]['focus2']" onChange="gpfWeapon02.setImproveFocus(getCheck($(this))); updateAllSheet();" />
 				</td>
 				<td>
-					<input type="checkbox" class="center" id="weapon02Spec1" 	name="weapon[1]['spec1']" />
-					<input type="checkbox" class="center" id="weapon02Spec2" 	name="weapon[1]['spec2']" />
+					<input type="checkbox" class="center" id="weapon02Spec1" 	name="weapon[1]['spec1']" onChange="gpfWeapon02.setSpec(getCheck($(this))); updateAllSheet();" />
+					<input type="checkbox" class="center" id="weapon02Spec2" 	name="weapon[1]['spec2']" onChange="gpfWeapon02.setImproveSpec(getCheck($(this))); updateAllSheet();" />
 				</td>
-				<td><input type="checkbox" class="center" id="weapon02Accuracy" name="weapon[1]['accuracy']" /></td>
-				<td><input type="checkbox" class="center" id="weapon02Perfect" 	name="weapon[1]['perfect']" /></td>
+				<td><input type="checkbox" class="center" id="weapon02Accuracy" name="weapon[1]['accuracy']" onChange="gpfWeapon02.setAccuracy(getCheck($(this))); updateAllSheet();" /></td>
+				<td><input type="checkbox" class="center" id="weapon02Perfect" 	name="weapon[1]['perfect']" onChange="gpfWeapon02.setPerfect(getCheck($(this))); updateAllSheet();" /></td>
 				<td><input type="text" class="center" id="weapon02Class" name="weapon[1]['class']" value="0" size="5" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="weapon02Level" name="weapon[1]['level']" value="0" size="5" readonly="readonly" /></td>
-				<td><input type="text" class="center" id="weapon02Magic" name="weapon[1]['magic']" value="0" size="5"  /></td>
+				<td><input type="text" class="center" id="weapon02Magic" name="weapon[1]['magic']" value="0" size="5"  onKeyUp="gpfWeapon02.setModMagic(this.value); updateAllSheet();"/></td>
 				<td><select id="weapon02Enchantment" name="weapon[1]['enchantment']"></select></td>
 			</tr>
 			<tr>
 				<td><input type="text" class="center bold" id="weapon03AR" name="weapon[2]['AR']" value="0" size="3" readonly="readonly" /></td>
+				<td><input type="text" class="center" id="weapon03BAB" name="weapon[2]['bab']" value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center bold" id="weapon03Damage" name="weapon[2]['damage']" value="0" size="5" readonly="readonly" /></td>
 				<td>
-					<select name="weapon[2]['type']" id="weapon03Type">
+					<select name="weapon[2]['type']" id="weapon03Type" onChange="gpfWeapon03.setType(this.value); updateAllSheet();">
 						<option value="{melee}">{melee}</option>
 						<option value="{ranged}">{ranged}</option>
 					</select>
 				</td>
 				<td><select id="weapon03Name" name="weapon[2]['name']"></select></td>
-				<td><input type="text" class="center" id="weapon03DamageDice" name="weapon[2]['damageDice']" value="0" size="3" readonly="readonly" /></td>
+				<td><input type="text" class="center" id="weapon03DamageDice" name="weapon[2]['damageDice']" value="0" size="6" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="weapon03CriticRange" name="weapon[2]['criticRange']" value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="weapon03CriticMultiplier" name="weapon[2]['criticMultiplier']" value="0" size="3" readonly="readonly" /></td>
 				<td>
-					<select name="weapon[2]['hand']" id="weapon03Hand">
-						<option value="{righthand}">{righthand}</option>
-						<option value="{lefthand}">{lefthand}</option>
+					<select name="weapon[2]['hand']" id="weapon03Hand" onChange="gpfWeapon03.setHand(this.value);">
+						<option value="righthand">{righthand}</option>
+						<option value="lefthand">{lefthand}</option>
+						<option value="twohands">{twohands}</option>
 					</select>
 				</td>
 				<td>
-					<input type="checkbox" class="center" id="weapon03Focus1" 	name="weapon[2]['focus1']" />
-					<input type="checkbox" class="center" id="weapon03Focus2" 	name="weapon[2]['focus2']" />
+					<input type="checkbox" class="center" id="weapon03Focus1" 	name="weapon[2]['focus1']" onChange="gpfWeapon03.setFocus(getCheck($(this))); updateAllSheet();" />
+					<input type="checkbox" class="center" id="weapon03Focus2" 	name="weapon[2]['focus2']" onChange="gpfWeapon03.setImproveFocus(getCheck($(this))); updateAllSheet();" />
 				</td>
 				<td>
-					<input type="checkbox" class="center" id="weapon03Spec1" 	name="weapon[2]['spec1']" />
-					<input type="checkbox" class="center" id="weapon03Spec2" 	name="weapon[2]['spec2']" />
+					<input type="checkbox" class="center" id="weapon03Spec1" 	name="weapon[2]['spec1']" onChange="gpfWeapon03.setSpec(getCheck($(this))); updateAllSheet();" />
+					<input type="checkbox" class="center" id="weapon03Spec2" 	name="weapon[2]['spec2']" onChange="gpfWeapon03.setImproveSpec(getCheck($(this))); updateAllSheet();" />
 				</td>
-				<td><input type="checkbox" class="center" id="weapon03Accuracy" name="weapon[2]['accuracy']" /></td>
-				<td><input type="checkbox" class="center" id="weapon03Perfect" 	name="weapon[2]['perfect']" /></td>
+				<td><input type="checkbox" class="center" id="weapon03Accuracy" name="weapon[2]['accuracy']" onChange="gpfWeapon03.setAccuracy(getCheck($(this))); updateAllSheet();" /></td>
+				<td><input type="checkbox" class="center" id="weapon03Perfect" 	name="weapon[2]['perfect']"  onChange="gpfWeapon03.setPerfect(getCheck($(this))); updateAllSheet();" /></td>
 				<td><input type="text" class="center" id="weapon03Class" name="weapon[2]['class']" value="0" size="5" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="weapon03Level" name="weapon[2]['level']" value="0" size="5" readonly="readonly" /></td>
-				<td><input type="text" class="center" id="weapon03Magic" name="weapon[2]['magic']" value="0" size="5"  /></td>
+				<td><input type="text" class="center" id="weapon03Magic" name="weapon[2]['magic']" value="0" size="5"  onKeyUp="gpfWeapon03.setModMagic(this.value); updateAllSheet();"/></td>
 				<td><select id="weapon03Enchantment" name="weapon[2]['enchantment']"></select></td>
 			</tr>
 			<tr>
 				<td><input type="text" class="center bold" id="weapon04AR" name="weapon[3]['AR']" value="0" size="3" readonly="readonly" /></td>
+				<td><input type="text" class="center" id="weapon04BAB" name="weapon[3]['bab']" value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center bold" id="weapon04Damage" name="weapon[3]['damage']" value="0" size="5" readonly="readonly" /></td>
 				<td>
-					<select name="weapon[3]['type']" id="weapon04Type">
+					<select name="weapon[3]['type']" id="weapon04Type" onChange="gpfWeapon04.setType(this.value); updateAllSheet();">
 						<option value="{melee}">{melee}</option>
 						<option value="{ranged}">{ranged}</option>
 					</select>
 				</td>
 				<td><select id="weapon04Name" name="weapon[3]['name']"></select></td>
-				<td><input type="text" class="center" id="weapon04DamageDice" name="weapon[3]['damageDice']" value="0" size="3" readonly="readonly" /></td>
+				<td><input type="text" class="center" id="weapon04DamageDice" name="weapon[3]['damageDice']" value="0" size="6" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="weapon04CriticRange" name="weapon[3]['criticRange']" value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="weapon04CriticMultiplier" name="weapon[3]['criticMultiplier']" value="0" size="3" readonly="readonly" /></td>
 				<td>
-					<select name="weapon[3]['hand']" id="weapon04Hand">
-						<option value="{righthand}">{righthand}</option>
-						<option value="{lefthand}">{lefthand}</option>
+					<select name="weapon[3]['hand']" id="weapon04Hand" onChange="gpfWeapon04.setHand(this.value);">
+						<option value="righthand">{righthand}</option>
+						<option value="lefthand">{lefthand}</option>
+						<option value="twohands">{twohands}</option>
 					</select>
 				</td>
 				<td>
-					<input type="checkbox" class="center" id="weapon04Focus1" 	name="weapon[3]['focus1']" />
-					<input type="checkbox" class="center" id="weapon04Focus2" 	name="weapon[3]['focus2']" />
+					<input type="checkbox" class="center" id="weapon04Focus1" 	name="weapon[3]['focus1']" onChange="gpfWeapon04.setFocus(getCheck($(this))); updateAllSheet();"/>
+					<input type="checkbox" class="center" id="weapon04Focus2" 	name="weapon[3]['focus2']" onChange="gpfWeapon04.setImproveFocus(getCheck($(this))); updateAllSheet();"/>
 				</td>
 				<td>
-					<input type="checkbox" class="center" id="weapon04Spec1" 	name="weapon[3]['spec1']" />
-					<input type="checkbox" class="center" id="weapon04Spec2" 	name="weapon[3]['spec2']" />
+					<input type="checkbox" class="center" id="weapon04Spec1" 	name="weapon[3]['spec1']" onChange="gpfWeapon04.setSpec(getCheck($(this))); updateAllSheet();"/>
+					<input type="checkbox" class="center" id="weapon04Spec2" 	name="weapon[3]['spec2']" onChange="gpfWeapon04.setImproveSpec(getCheck($(this))); updateAllSheet();"/>
 				</td>
-				<td><input type="checkbox" class="center" id="weapon04Accuracy" name="weapon[3]['accuracy']" /></td>
-				<td><input type="checkbox" class="center" id="weapon04Perfect" 	name="weapon[3]['perfect']" /></td>
+				<td><input type="checkbox" class="center" id="weapon04Accuracy" name="weapon[3]['accuracy']" onChange="gpfWeapon04.setAccuracy(getCheck($(this))); updateAllSheet();" /></td>
+				<td><input type="checkbox" class="center" id="weapon04Perfect" 	name="weapon[3]['perfect']"  onChange="gpfWeapon04.setPerfect(getCheck($(this))); updateAllSheet();" /></td>
 				<td><input type="text" class="center" id="weapon04Class" name="weapon[3]['class']" value="0" size="5" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="weapon04Level" name="weapon[3]['level']" value="0" size="5" readonly="readonly" /></td>
-				<td><input type="text" class="center" id="weapon04Magic" name="weapon[3]['magic']" value="0" size="5"  /></td>
+				<td><input type="text" class="center" id="weapon04Magic" name="weapon[3]['magic']" value="0" size="5"  onKeyUp="gpfWeapon04.setModMagic(this.value); updateAllSheet();" /></td>
 				<td><select id="weapon04Enchantment" name="weapon[3]['enchantment']"></select></td>
 			</tr>
 			<tr>
 				<td><input type="text" class="center bold" id="weapon05AR" name="weapon[4]['AR']" value="0" size="3" readonly="readonly" /></td>
+				<td><input type="text" class="center" id="weapon05BAB" name="weapon[4]['bab']" value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center bold" id="weapon05Damage" name="weapon[4]['damage']" value="0" size="5" readonly="readonly" /></td>
 				<td>
-					<select name="weapon[4]['type']" id="weapon05Type">
+					<select name="weapon[4]['type']" id="weapon05Type" onChange="gpfWeapon05.setType(this.value); updateAllSheet();">
 						<option value="{melee}">{melee}</option>
 						<option value="{ranged}">{ranged}</option>
 					</select>
 				</td>
 				<td><select id="weapon05Name" name="weapon[4]['name']"></select></td>
-				<td><input type="text" class="center" id="weapon05DamageDice" name="weapon[4]['damageDice']" value="0" size="3" readonly="readonly" /></td>
+				<td><input type="text" class="center" id="weapon05DamageDice" name="weapon[4]['damageDice']" value="0" size="6" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="weapon05CriticRange" name="weapon[4]['criticRange']" value="0" size="3" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="weapon05CriticMultiplier" name="weapon[4]['criticMultiplier']" value="0" size="3" readonly="readonly" /></td>
 				<td>
-					<select name="weapon[4]['hand']" id="weapon05Hand">
-						<option value="{righthand}">{righthand}</option>
-						<option value="{lefthand}">{lefthand}</option>
+					<select name="weapon[4]['hand']" id="weapon05Hand" onChange="gpfWeapon04.setHand(this.value);">
+						<option value="righthand">{righthand}</option>
+						<option value="lefthand">{lefthand}</option>
+						<option value="twohands">{twohands}</option>
 					</select>
 				</td>
 				<td>
-					<input type="checkbox" class="center" id="weapon05Focus1" 	name="weapon[4]['focus1']" />
-					<input type="checkbox" class="center" id="weapon05Focus2" 	name="weapon[4]['focus2']" />
+					<input type="checkbox" class="center" id="weapon05Focus1" 	name="weapon[4]['focus1']" onChange="gpfWeapon05.setFocus(getCheck($(this))); updateAllSheet();" />
+					<input type="checkbox" class="center" id="weapon05Focus2" 	name="weapon[4]['focus2']" onChange="gpfWeapon05.setImproveFocus(getCheck($(this))); updateAllSheet();" />
 				</td>
 				<td>
-					<input type="checkbox" class="center" id="weapon05Spec1" 	name="weapon[4]['spec1']" />
-					<input type="checkbox" class="center" id="weapon05Spec2" 	name="weapon[4]['spec2']" />
+					<input type="checkbox" class="center" id="weapon05Spec1" 	name="weapon[4]['spec1']" onChange="gpfWeapon05.setSpec(getCheck($(this))); updateAllSheet();" />
+					<input type="checkbox" class="center" id="weapon05Spec2" 	name="weapon[4]['spec2']" onChange="gpfWeapon05.setImproveSpec(getCheck($(this))); updateAllSheet();" />
 				</td>
-				<td><input type="checkbox" class="center" id="weapon05Accuracy" name="weapon[4]['accuracy']" /></td>
-				<td><input type="checkbox" class="center" id="weapon05Perfect" 	name="weapon[4]['perfect']" /></td>
-				<td><input type="text" class="center" id="weapon05Class" name="weapon[4]['class']" value="0" size="5" readonly="readonly" /></td>
+				<td><input type="checkbox" class="center" id="weapon05Accuracy" name="weapon[4]['accuracy']" onChange="gpfWeapon05.setAccuracy(getCheck($(this))); updateAllSheet();" /></td>
+				<td><input type="checkbox" class="center" id="weapon05Perfect" 	name="weapon[4]['perfect']"  onChange="gpfWeapon05.setPerfect(getCheck($(this))); updateAllSheet();"/></td>
+				<td><input type="text" class="center" id="weapon05Class" name="weapon[4]['class']" value="0" size="5" readonly="readonly" onKeyUp="gpfWeapon05.setModMagic(this.value); updateAllSheet();" /></td>
 				<td><input type="text" class="center" id="weapon05Level" name="weapon[4]['level']" value="0" size="5" readonly="readonly" /></td>
 				<td><input type="text" class="center" id="weapon05Magic" name="weapon[4]['magic']" value="0" size="5"  /></td>
 				<td><select id="weapon05Enchantment" name="weapon[4]['enchantment']"></select></td>
