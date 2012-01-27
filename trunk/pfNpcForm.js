@@ -103,16 +103,16 @@ function updateAllSheet(){
 }
 
 function updateWeapons(){
-    gpfWeapon01.setIndex(0);
-    gpfWeapon01.update();
-    gpfWeapon02.setIndex(1);
-    gpfWeapon02.update();
-    gpfWeapon03.setIndex(2);
-    gpfWeapon03.update();
-    gpfWeapon04.setIndex(3);
-    gpfWeapon04.update();
-    gpfWeapon05.setIndex(4);
-    gpfWeapon05.update();
+    gpfWeapon[0].setIndex(0);
+    gpfWeapon[0].update();
+    gpfWeapon[1].setIndex(1);
+    gpfWeapon[1].update();
+    gpfWeapon[2].setIndex(2);
+    gpfWeapon[2].update();
+    gpfWeapon[3].setIndex(3);
+    gpfWeapon[3].update();
+    gpfWeapon[4].setIndex(4);
+    gpfWeapon[4].update();
 }
 
 function updateClasses(){

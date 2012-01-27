@@ -26,6 +26,7 @@ function pfWeapon(){
 	
 	this.modMagic		= 0;
 	this.perfect        = false;
+	this.train          = false;
 	
 	this.focus			= false;
 	this.improveFocus	= false;
@@ -48,6 +49,7 @@ function pfWeapon(){
 	this.setImproveSpec		= function(improveSpec){this.improveSpec = improveSpec;};
 	this.setAccuracy		= function(accuracy){this.accuracy = accuracy;};
 	this.setPerfect         = function(perfect){this.perfect = perfect;};
+	this.setTrain           = function(train){this.train = train;};
 	this.setHand            = function(hand){
 	    this.hand = hand;
 	    if (hand == "twohand")
@@ -108,9 +110,6 @@ function pfWeapon(){
 	}
 	
 	this.draw      = function(){
-	    globalWeaponDamageDice[this.index].val(this.damageDiceString);
-	    globalWeaponCriticRange[this.index].val(this.criticRange);
-	    globalWeaponCriticMultiplier[this.index].val(this.criticMultiplierString);
 	    globalWeaponAR[this.index].val(this.ARString);
 	    globalWeaponDamage[this.index].val(this.damage);
 	}
@@ -126,6 +125,19 @@ function pfWeapon(){
 	    this.damageDiceString = this.diceNumber+"d"+this.damageDice;
 	}
 	
+	this.ARToString = function(maxAR,maxBAB){
+        var multiple = Math.ceil(maxAR / 5);
+        var attacks  = Math.ceil(maxBAB / 5);
+        var finalBab = Array();
+    
+        var currentBab = maxAR;
+        finalBab = addPlus(maxAR);
+        for (var i = 1, currentBab = currentBab-5;i < attacks; i++,currentBab-=5){
+            finalBab = finalBab + "/"+addPlus(currentBab);
+        }
+        return finalBab;
+    }
+	
 	this.calculateAR = function(){
 	    var modDex = totalModDex.val()/1;
 	    var modStr = totalModStr.val()/1;
@@ -136,19 +148,22 @@ function pfWeapon(){
 	    var feats = this.focus + this.improveFocus;
 	    var other = Math.max(this.modMagic,((this.perfect)?1:0));
 	    var bab   = globalWeaponBAB[this.index].val()/1;
-	    var classBonus = globalWeaponClass[this.index].val()/1;
-	    
-	    this.AR = bab + mod + feats + other + classBonus;
-	    this.ARString = "+"+this.AR;
+	    var classBonus = globalWeaponClassAR[this.index].val()/1;
+	    var levelBonus = globalWeaponLevelAR[this.index].val()/1;
+
+	    this.AR = bab + mod + feats + other + classBonus + levelBonus;
+	    this.ARString = this.ARToString(this.AR,bab);
 	}
     
     this.calculateDamage = function(){
         var modStr  = totalModStr.val()/1;
         var mod     = (this.twoHands) ? Math.floor(modStr*1.5) : modStr;
         var feats   = (this.spec * 2) + (this.improveSpec*2);
-        var other   = this.modMagic;
-        var classBonus = globalWeaponClass[this.index].val()/1;
-        var total   = mod + feats + other + classBonus;
+        var other   = globalWeaponMagic[this.index].val()/1;
+        var classBonus = globalWeaponClassDamage[this.index].val()/1;
+        var levelBonus = globalWeaponLevelDamage[this.index].val()/1;
+        var total   = mod + feats + other + classBonus + levelBonus;
+        
         this.damage = this.damageDiceString+" + "+total;       
     }
 
