@@ -4,6 +4,8 @@ function pfWeapon(){
 	this.damageMod		= 0;
 	this.damageDice		= 0;
 	this.diceNumber		= 1;
+	this.sizedDamageDice= 0;
+	this.sizedDiceNumber= 0;
 	this.damageDiceString = "";
 	this.damage         = 0;
 	this.category       = "light";
@@ -19,7 +21,7 @@ function pfWeapon(){
 	this.criticRange    = "20";
 	this.twoHand		= false;
 	this.hand           = "";
-	this.type			= "";
+	this.type			= "melee";
 	this.typeList		= new Array ("melee","ranged");
 	this.secondHand     = false;
 	this.mainWeapon     = false; //is the weapon the first choice?
@@ -50,6 +52,9 @@ function pfWeapon(){
 	this.setAccuracy		= function(accuracy){this.accuracy = accuracy;};
 	this.setPerfect         = function(perfect){this.perfect = perfect;};
 	this.setTrain           = function(train){this.train = train;};
+    this.setModMagic        = function(modMagic){ this.modMagic = modMagic;};
+    this.setSize    = function(size) {this.size = size; };
+    
 	this.setHand            = function(hand){
 	    this.hand = hand;
 	    if (hand == "twohand")
@@ -64,48 +69,15 @@ function pfWeapon(){
 	 * rapresenting number of dice and damage dice
 	 */
 	this.setDamage 	= function(damage){
-		this.diceNumber = parseInt(damage.match(/^[0-9]+/)[0]);
-		this.damageDice = parseInt(damage.match(/[0-9]+$/)[0]);		
+		this.sizedDiceNumber = parseInt(damage.match(/^[0-9]+/)[0]);
+		this.sizedDamageDice = parseInt(damage.match(/[0-9]+$/)[0]);		
 	};
-	
-	//Magic Mod is added to attack roll and damage
-	this.setModMagic = function(modMagic){ this.modMagic = modMagic; this.attackRollMod = this.modMagic; this.damageMod = this.modMagic; };
-	
-	/**
-	 * Size of creatures alters the damage dice
-	 * Size can be: 0 = medium; 1 = small; -1 = big
-	 * 
-	 *  C  I   O
-	 *  0  1  -1
-	 *  0 -1  -1
-	 *  1  0  -1
-	 *  1 -1  -2
-	 * -1  0  +1
-	 * -1  1  +2
-	 */
-	this.setSize	= function(size) {
-		if (size == this.size) return;
-		var variation = size - this.size;
-		//if variation > 0, increase weapong size
-		if (variation > 0){
-			
-		}
-		else {
-			
-		}
-	};
-	
 	
 	this.update    = function(){
+	    this.calculateDamageDice();
 	    this.buildStrings();
 	    this.calculateAR();
 	    this.calculateDamage();
-	    
-	    if (this.index == 1) {
-	       mainWeaponCategory        = this.category;
-	       mainWeaponDamageType      = this.damageType;
-	       mainWeaponHands           = (this.twoHand)? 2:1;
-	    }
 	    this.draw();
 	}
 	
@@ -122,7 +94,7 @@ function pfWeapon(){
 	       this.criticRange = this.minCritic+"-20";
 	       
 	    this.criticMultiplierString = "x"+this.criticMultiplier;
-	    this.damageDiceString = this.diceNumber+"d"+this.damageDice;
+	    this.damageDiceString = this.sizedDiceNumber+"d"+this.sizedDamageDice;
 	}
 	
 	this.ARToString = function(maxAR,maxBAB){
@@ -166,29 +138,67 @@ function pfWeapon(){
         
         this.damage = this.damageDiceString+" + "+total;       
     }
+    
+    //Calculate new Damage Form armor with size modifier
+    this.calculateDamageDice = function(){
+        var baseDamage = this.diceNumber+"d"+this.damageDice;
+        var temp = this.diceRelation[baseDamage];
+        if (this.size == -1) //small
+            this.setDamage(temp[0]);
+        if (this.size == 1) //big
+            this.setDamage(temp[1]);
+        if (this.size == 0) //normal
+            this.setDamage(baseDamage);
+    }
+    
+    //List of relationship between base dice damage and relative sized damage
+    this.diceRelation = new Array ("1d2","1d3","1d4","1d6","1d8","1d10","1d12","2d4","2d6","2d8","2d10");
+    this.diceRelation["1d2"]    = new Array("0","1d3");
+    this.diceRelation["1d3"]    = new Array("1","1d4");
+    this.diceRelation["1d4"]    = new Array("1d2","1d6");
+    this.diceRelation["1d6"]    = new Array("1d3","1d8");
+    this.diceRelation["1d8"]    = new Array("1d4","2d6");
+    this.diceRelation["1d10"]   = new Array("1d6","2d8");
+    this.diceRelation["1d12"]   = new Array("1d8","3d6");
+    this.diceRelation["2d4"]    = new Array("1d4","2d6");
+    this.diceRelation["2d6"]    = new Array("1d8","3d6");
+    this.diceRelation["2d8"]    = new Array("1d10","3d8");
+    this.diceRelation["2d10"]   = new Array("2d6","4d8");
 
+}
+
+function pfArms(){
+    this.inheritFrom = pfWeapon;
+    this.inheritFrom();
+    this.damageDice = 3;
+}
+
+function pfGauntlet(){
+    this.inheritFrom = pfWeapon;
+    this.inheritFrom();
+    this.damageDice = 3;
+}
+
+function pfSpikedGauntlet(){
+    this.inheritFrom = pfWeapon;
+    this.inheritFrom();
+    this.damageDice = 4;
 }
 
 function pfAspergillum(){
     this.inheritFrom = pfWeapon;
     this.inheritFrom();
-    
     this.damageDice = 6;
-    this.type = "melee";
 }
 
 function pfKnuckles(){
     this.inheritFrom = pfWeapon;
     this.inheritFrom();
-    
     this.damageDice = 4;
-    this.type = "melee";
 }
 
 function pfCestus(){
     this.inheritFrom = pfWeapon;
     this.inheritFrom();
-    
     this.damageDice = 6;
-    this.type = "melee";
 }

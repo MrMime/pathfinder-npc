@@ -36,11 +36,12 @@ var globalArmorList 	= new Array();
 var globalShieldList 	= new Array();
 var globalClassList 	= new Array();
 
-var gpfClass01	= new pfClass();
-var gpfClass02	= new pfClass();
-var gpfClass03	= new pfClass();
-var gpfClass04	= new pfClass();
-var gpfClass05	= new pfClass();
+var gpfClasses = new Array(); 
+gpfClasses[0] = new pfClass();
+gpfClasses[1] = new pfClass();
+gpfClasses[2] = new pfClass();
+gpfClasses[3] = new pfClass();
+gpfClasses[4] = new pfClass();
 
 var gpfWeapon   = new Array()
 gpfWeapon[0] = new pfWeapon();
@@ -103,6 +104,7 @@ var globalHPTotal;
 var globalHPTotalFeats;
 
 //ARMOR CLASS GLOBALS
+var globalACString;
 var globalACTotal;
 var globalACModDex;
 var globalACFlatFooted;
@@ -120,54 +122,14 @@ var globalACClass;
 var globalACOther;
 
 //CLASSES GLOBALS
-var globalClassLevels           = new Array(0,0,0,0,0);
-var globalClassPreferred        = new Array();
+var globalClassLevels                       = new Array(0,0,0,0,0);
+var globalClassPreferred                    = new Array();
+var globalClassPrefHP                       = new Array();
+var globalClassPrefSkill                    = new Array();
 var globalClassTSF 							= new Array();
 var globalClassTSR 							= new Array();
 var globalClassTSW 							= new Array();
 var globalClassBAB 							= new Array();
-
-var globalC1Preferred;
-var globalC2Preferred;
-var globalC3Preferred;
-var globalC4Preferred;
-var globalC5Preferred;
-
-var globalC1PrefHP;
-var globalC2PrefHP;
-var globalC3PrefHP;
-var globalC4PrefHP;
-var globalC5PrefHP;
-
-var globalC1PrefSkill;
-var globalC2PrefSkill;
-var globalC3PrefSkill;
-var globalC4PrefSkill;
-var globalC5PrefSkill;
-
-var globalC1TSF;
-var globalC2TSF;
-var globalC3TSF;
-var globalC4TSF;
-var globalC5TSF;
-
-var globalC1TSR;
-var globalC2TSR;
-var globalC3TSR;
-var globalC4TSR;
-var globalC5TSR;
-
-var globalC1TSW;
-var globalC2TSW;
-var globalC3TSW;
-var globalC4TSW;
-var globalC5TSW;
-
-var globalC1BAB;
-var globalC2BAB;
-var globalC3BAB;
-var globalC4BAB;
-var globalC5BAB;
 
 //CLASSES TOTALS GLOBALS
 var globalTotalTSF;
@@ -319,6 +281,7 @@ function setAll(){
     globalHPTotalFeats					= $('#hpTotalFeats');
     
     //ARMOR CLASS
+    globalACString              = $('#ACString');
     globalACTotal               = $('#acTotal');
     globalACModDex              = $('#acModDex');
     globalACFlatFooted          = $('#acFlatFooted');
@@ -336,54 +299,15 @@ function setAll(){
     globalACOther								= $('#acOther');
         
     //CLASSES
-		
-		globalC1Preferred = $('#class00Preferred');
-		globalC2Preferred = $('#class01Preferred');
-		globalC3Preferred = $('#class02Preferred');
-		globalC4Preferred = $('#class03Preferred');
-		globalC5Preferred = $('#class04Preferred');
-		
-		globalC1PrefHP	= $('#class00PrefHP');
-		globalC2PrefHP	= $('#class01PrefHP');
-		globalC3PrefHP	= $('#class02PrefHP');
-		globalC4PrefHP	= $('#class03PrefHP');
-		globalC5PrefHP	= $('#class04PrefHP');
-		
-		globalC1PrefSkill	= $('#class00PrefSkill');
-		globalC2PrefSkill	= $('#class01PrefSkill');
-		globalC3PrefSkill	= $('#class02PrefSkill');
-		globalC4PrefSkill	= $('#class03PrefSkill');
-		globalC5PrefSkill	= $('#class04PrefSkill');
-		
-		globalC1TSF = $('#class00fortitude');
-		globalC2TSF = $('#class01fortitude');
-		globalC3TSF = $('#class02fortitude');
-		globalC4TSF = $('#class03fortitude');
-		globalC5TSF = $('#class04fortitude');
-		
-		globalC1TSR = $('#class00reflex');
-		globalC2TSR = $('#class01reflex');
-		globalC3TSR = $('#class02reflex');
-		globalC4TSR = $('#class03reflex');
-		globalC5TSR = $('#class04reflex');
-		
-		globalC1TSW = $('#class00will');
-		globalC2TSW = $('#class01will');
-		globalC3TSW = $('#class02will');
-		globalC4TSW = $('#class03will');
-		globalC5TSW = $('#class04will');
-		
-		globalC1BAB = $('#class00bab');
-		globalC2BAB = $('#class01bab');
-		globalC3BAB = $('#class02bab');
-		globalC4BAB = $('#class03bab');
-		globalC5BAB = $('#class04bab');
-		
-		globalClassPreferred 	    = Array(globalC1Preferred,globalC2Preferred,globalC3Preferred,globalC4Preferred,globalC5Preferred);
-		globalClassTSF 				= Array(globalC1TSF,globalC2TSF,globalC3TSF,globalC4TSF,globalC5TSF);
-		globalClassTSR 				= Array(globalC1TSR,globalC2TSR,globalC3TSR,globalC4TSR,globalC5TSR);
-		globalClassTSW 				= Array(globalC1TSW,globalC2TSW,globalC3TSW,globalC4TSW,globalC5TSW);
-		globalClassBAB 				= Array(globalC1BAB,globalC2BAB,globalC3BAB,globalC4BAB,globalC5BAB);
+    for (var i=0;i<5;i++){
+        globalClassPreferred[i]   = $('#class0'+i+'Preferred');
+        globalClassPrefHP[i]      = $('#class0'+i+'PrefHP');
+        globalClassPrefSkill[i]   = $('#class0'+i+'PrefSkill');
+        globalClassTSF[i]         = $('#class0'+i+'fortitude');
+        globalClassTSR[i]         = $('#class0'+i+'reflex');
+        globalClassTSW[i]         = $('#class0'+i+'will');
+        globalClassBAB[i]         = $('#class0'+i+'bab');
+    }
 		
 		globalTotalTSF = $('#totalTSF');
 		globalTotalTSR = $('#totalTSR');
