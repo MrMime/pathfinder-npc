@@ -34,7 +34,7 @@ class arrayToSheet
 		foreach ($this->_language as $key=>$value)
 			$this->_content = str_replace ('{'.$key.'}',$value,$this->_content);			
 	}
-	
+	/*
 	public function __sheetToArray(){
 		$this->_data['name'] 			= 'Braeger Sudiman';
 		$this->_data['gender'] 			= 'maschio';
@@ -76,10 +76,9 @@ class arrayToSheet
 		$this->_data['special_items'] 	= self::__manageSpecialItems($items);
 		$this->_data['personality'] 	= 'Molto Figo';
 		
-		
 		self::__defaultData($this->_defaultKey);
 	}
-
+*/
 	private function __defaultData($keys){
 		foreach ($keys as $key)
 			$this->_data[$key] = (isset($this->_data[$key])) ? $this->_data[$key] : "";

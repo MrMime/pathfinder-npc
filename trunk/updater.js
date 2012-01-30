@@ -78,7 +78,7 @@ function buildClassesList(obj){
                 if (sel0.val() != '--') {
                     $("#class00Level").removeAttr('disabled');
                     var cc = sel0.val();
-                    gpfClass01 = eval ("new "+cc+"();");
+                    gpfClasses[0] = eval ("new "+cc+"();");
                     updateAllSheet();
                 }
                 else 
@@ -91,7 +91,7 @@ function buildClassesList(obj){
                 if (sel1.val() != '--') {
                     $("#class01Level").removeAttr('disabled');
                     var cc = sel1.val();
-                    gpfClass02 = eval ("new "+cc+"();");
+                    gpfClasses[1] = eval ("new "+cc+"();");
                     updateAllSheet();
                 }
                 else 
@@ -104,7 +104,7 @@ function buildClassesList(obj){
                 if (sel2.val() != '--') {
                     $("#class02Level").removeAttr('disabled');
                     var cc = sel2.val();
-                    gpfClass03 = eval ("new "+cc+"();");
+                    gpfClasses[2] = eval ("new "+cc+"();");
                     updateAllSheet();
                 }
                 else 
@@ -117,7 +117,7 @@ function buildClassesList(obj){
                 if (sel3.val() != '--'){
                     $("#class03Level").removeAttr('disabled');
                     var cc = sel3.val();
-                    gpfClass04 = eval ("new "+cc+"();");
+                    gpfClasses[3] = eval ("new "+cc+"();");
                     updateAllSheet();
                 }
                 else 
@@ -130,7 +130,7 @@ function buildClassesList(obj){
                 if (sel4.val() != '--'){
                     $("#class04Level").removeAttr('disabled');
                     var cc = sel4.val();
-                    gpfClass05 = eval ("new "+cc+"();");
+                    gpfClasses[4] = eval ("new "+cc+"();");
                     updateAllSheet();
                 }
                 else 

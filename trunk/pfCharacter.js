@@ -18,6 +18,7 @@ function pfCharacter(){
     this.totalDiceHP        = new Array();
     this.averageHP          = 0;
     this.totalCosHP         = 0;
+    this.totalFeatsHP       = 0;
     this.favouriteHP        = 0;
     this.totalTSFMod        = 0;
     this.totalTSRMod        = 0;
@@ -52,6 +53,11 @@ function pfCharacter(){
         }
 	}
 	
+	
+    this.addPfClasses = function(pfClasses){
+        for (var i=0;i<pfClasses.length;i++)
+            this.addPfClass(pfClasses[i]);    
+    }	
 	/**
 	 * Adding a Pathfinder Class to total
 	 */
@@ -84,7 +90,7 @@ function pfCharacter(){
 	
 	this.calculateHP   = function(){
 	      this.totalCosHP = this.totalLevel * (totalModCos.val()/1);
-	      this.averageHP += globalHPTotalFeats.val()/1;
+	      this.totalFeatsHP += globalHPTotalFeats.val()/1;
 	};
 	
 	this.calculateBAB = function(){
@@ -141,7 +147,8 @@ function pfCharacter(){
 	    globalTotalTSWMod.val(addPlus(this.totalTSWMod));
 	    
 	    var stringHP = implode(" + ",this.totalDiceHP);
-	    globalHPTotal.val(stringHP + " ("+(this.averageHP+this.favouriteHP+this.totalCosHP)+" HP)");
+	    var averageHPTotal = this.averageHP+this.favouriteHP+this.totalCosHP+this.totalFeatsHP+this.favouriteHP;
+	    globalHPTotal.val(averageHPTotal + " ("+stringHP +" "+(addPlus(this.totalCosHP+this.totalFeatsHP+this.favouriteHP))+")");
 	    
 	    //Updating cells in Weapons section
 	    for (i=0;i<5;i++) {

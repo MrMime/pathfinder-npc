@@ -15,6 +15,8 @@ function pfAC(){
 	
 	this.totalModDexAvaiable   =   0;
 	
+	this.acString      = "";
+	
 	this.update = function(){
 	    
 	    //CA Types are:
@@ -39,11 +41,36 @@ function pfAC(){
 	    //Size Bonus
 	    this.acSize    = globalACSize.val()/1; //this value is places by pfSize
 	    
-		this.totalAC 		= 10 + armorBonus + shieldBonus + naturalArmorBonus + this.totalModDexAvaiable +
-		                      this.acFeats + this.acWis + this.acOther + this.acClass + this.acSize; 
-		                      
-		this.totalTouchAC 	= this.totalAC - armorBonus - shieldBonus - naturalArmorBonus;
-		this.totalFlatAC	= this.totalAC - this.totalModDexAvaiable - this.acFeats;
+	    this.totalAC       = 10 + armorBonus + shieldBonus + naturalArmorBonus + this.totalModDexAvaiable +
+                              this.acFeats + this.acWis + this.acOther + this.acClass + this.acSize; 
+                              
+        this.totalTouchAC   = this.totalAC - armorBonus - shieldBonus - naturalArmorBonus;
+        this.totalFlatAC    = this.totalAC - this.totalModDexAvaiable - this.acFeats;
+	    
+	    var acString = new Array();
+	    acString.push(this.totalAC);
+	    acString.push("{touch} "+this.totalTouchAC);
+	    acString.push("{flatfooted} "+this.totalFlatAC);
+	    
+	    var acStringComponent = new Array();
+        if (armorBonus > 0)
+	       acStringComponent.push(addPlus(armorBonus)+" {armor}");
+	    if (shieldBonus > 0)
+	       acStringComponent.push(addPlus(shieldBonus)+" {shield}");
+	    if (naturalArmorBonus > 0)
+	       acStringComponent.push(addPlus(naturalArmorBonus)+" {natural}");
+	    if (this.totalModDexAvaiable > 0)
+	       acStringComponent.push(addPlus(this.totalModDexAvaiable)+" {dex}");
+	    if (this.acWis > 0)
+	       acStringComponent.push(addPlus(this.acWis)+" {wil}");
+	    if (this.acOther > 0)   
+	       acStringComponent.push(addPlus(this.acOther)+" {other}");
+	    if (this.acSize > 0)
+	       acStringComponent.push(addPlus(this.acSize)+" {size}");
+	    if (this.acFeats > 0)
+	       acStringComponent.push(addPlus(this.acFeats)+" {feats}");
+	       
+	    this.acString = implode(",",acString) + " ("+implode (",",acStringComponent)+")";
 		
 		this.draw();
 		
@@ -54,6 +81,8 @@ function pfAC(){
 	    globalACTotal.val(addPlus(this.totalAC));
 	    globalACFlatFooted.val(addPlus(this.totalFlatAC));
 	    globalACTouch.val(addPlus(this.totalTouchAC));
+	    
+	    globalACString.val(this.acString);
 	    
 	}
 	

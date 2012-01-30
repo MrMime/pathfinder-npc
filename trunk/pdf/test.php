@@ -107,29 +107,10 @@
 	
 	
 	//TEST DATA
-	$data['name']				= $_POST['name'];
+	$data = $_POST;
 	$data['race']				= $_POST['race']; ///da gestire perché è pfDwarf
-	$data['gender']				= $_POST['gender'];
-	$data['size']				= $_POST['size'];
-	$data['alignment']			= $_POST['alignment'];
 	$data['movement']			= $_POST['movementTotal'];
-	$data['str']				= $_POST['str'];
-	$data['cos']				= $_POST['cos'];
-	$data['dex']				= $_POST['dex'];
-	$data['int']				= $_POST['int'];
-	$data['wis']				= $_POST['wis'];
-	$data['cha']				= $_POST['cha'];
-	$data['init']				= $_POST['init'];
-	$data['hp']					= $_POST['hp'];
-	$data['ac']					= $_POST['ac'];
-	$data['flatfooted']			= $_POST['flatfooted'];
-	$data['touch']				= $_POST['touch'];
 	$data['classes']			= $_POST['classes']; //da gestire
-	$data['fort']				= $_POST['fort'];
-	$data['will']				= $_POST['will'];
-	$data['ref']				= $_POST['ref'];
-	$data['cmb']				= $_POST['cmb']; //da gestire
-	$data['cmd']				= $_POST['cmd']; //da gestire
 	
 	$object->setData($data);
 	
