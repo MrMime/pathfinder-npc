@@ -97,8 +97,8 @@ function updateAllSheet(){
 	updateMovement();
 	updateAC();
 	updateInitiative();
+    updateWeapons();
 	updateManeuvers();
-	updateWeapons();
 }
 
 function updateWeapons(){

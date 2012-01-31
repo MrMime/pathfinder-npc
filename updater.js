@@ -162,7 +162,6 @@ function buildWeaponList(obj){
     sel0.change(
             function(){
                 if (sel0.val() != '--') {
-                    $("#weapon01Name").removeAttr('disabled');
                     var cc = sel0.val();
                     gpfWeapon[0] = eval ("new "+cc+"();");
                     gpfWeapon[0].setIndex(0);
@@ -174,7 +173,6 @@ function buildWeaponList(obj){
     sel1.change(
             function(){
                 if (sel1.val() != '--') {
-                    $("#weapon02Name").removeAttr('disabled');
                     var cc = sel1.val();
                     gpfWeapon[1] = eval ("new "+cc+"();");
                     gpfWeapon[1].setIndex(1);
@@ -186,7 +184,6 @@ function buildWeaponList(obj){
     sel2.change(
             function(){
                 if (sel2.val() != '--') {
-                    $("#weapon03Name").removeAttr('disabled');
                     var cc = sel2.val();
                     gpfWeapon[2] = eval ("new "+cc+"();");
                     gpfWeapon[2].setIndex(2);
@@ -198,7 +195,6 @@ function buildWeaponList(obj){
     sel3.change(
             function(){
                 if (sel3.val() != '--'){
-                    $("#weapon04Name").removeAttr('disabled');
                     var cc = sel3.val();
                     gpfWeapon[3] = eval ("new "+cc+"();");
                     gpfWeapon[3].setIndex(3);
@@ -210,7 +206,6 @@ function buildWeaponList(obj){
      sel4.change(
             function(){
                 if (sel4.val() != '--'){
-                    $("#weapon05Name").removeAttr('disabled');
                     var cc = sel4.val();
                     gpfWeapon[4] = eval ("new "+cc+"();");
                     gpfWeapon[4].setIndex(4);

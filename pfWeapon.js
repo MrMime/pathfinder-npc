@@ -12,6 +12,7 @@ function pfWeapon(){
 	this.damageType     = new Array();
 	this.damageList     = new Array("S","P","B"); //damage type S = Tagliente, B = Contundente, P = Perforante
 	this.AR             = 0;
+	this.ARBonus        = 0; //special ability allow the weapon to sum its own ARBonus to BMC
 	this.ARString       = "";
 	
 	this.size			= 0;
@@ -25,6 +26,7 @@ function pfWeapon(){
 	this.typeList		= new Array ("melee","ranged");
 	this.secondHand     = false;
 	this.mainWeapon     = false; //is the weapon the first choice?
+	this.special        = new Array(); //some weapons has special quality like disarm, trip etc....
 	
 	this.modMagic		= 0;
 	this.perfect        = false;
@@ -40,6 +42,12 @@ function pfWeapon(){
 	this.attackRollMod	= 0;
 	
 	this.index          = 0; //index allow the class to modify its own html tags
+	this.twoHandCombat  = false;
+	this.twoHandCombatPenalty  = 0;
+	
+	this.disarmBonus    = 0;
+	this.tripBonus      = 0;
+	this.sunderBonus    = 0;
 	
 	this.setName 			= function(name){this.name = name;};
 	this.setDamageMod 		= function(damageMod){this.damageMod = damageMod;};
@@ -53,17 +61,65 @@ function pfWeapon(){
 	this.setPerfect         = function(perfect){this.perfect = perfect;};
 	this.setTrain           = function(train){this.train = train;};
     this.setModMagic        = function(modMagic){ this.modMagic = modMagic;};
-    this.setSize    = function(size) {this.size = size; };
+    this.setSize            = function(size) {this.size = size; };
     
+    this.setTwoHandCombat   = function(twoHandCombat){
+        this.twoHandCombat = twoHandCombat;
+        if (twoHandCombat){
+            if (this == globalMainWeapon || this == globalSecondWeapon) {
+                globalMainWeaponFeatsCheck.attr('checked',true);
+                globalSecondWeaponFeatsCheck.attr('checked',true);
+            }
+        }
+        else {
+            if (this == globalMainWeapon || this == globalSecondWeapon) {
+                globalMainWeaponFeatsCheck.attr('checked',false);
+                globalSecondWeaponFeatsCheck.attr('checked',false);
+            }
+        }
+    };
+    
+    /**
+     * Hands settings may be
+     * 1 = main hand only
+     * 2 = two hand weapon
+     * 3 = main hand in a two hands combat style
+     * 4 = second hand in a two hands combat style
+     */
 	this.setHand            = function(hand){
-	    this.hand = hand;
-	    if (hand == "twohand")
-	       this.twoHand = true;
-	    else
-	       this.twoHand = false;
+	    this.hand = hand/1;
+	    if (this.hand == 1 || this.hand == 2) {
+	        if (globalMainWeapon == this) {
+	           globalMainWeapon = pfWeapon;
+	        }
+	        globalWeaponTwoHandCombat[this.index].attr('checked',false);
+            globalWeaponTwoHandPenalty[this.index].val(0);
+    	    if (this.hand == 2)
+    	       this.twoHand = true;
+    	    else
+    	       this.twoHand = false;
+    	}
+	    
+	    if (this.hand == 4) {
+	       globalSecondWeaponType = this.category;
+	       globalSecondWeaponFeatsCheck = globalWeaponTwoHandCombat[this.index];
+	       globalSecondWeapon = this;
+	    }
+	    if (this.hand == 3) {
+	       globalMainWeapon = this;
+	       globalMainWeaponFeatsCheck   = globalWeaponTwoHandCombat[this.index];
+	    }
+	    
 	};
 	
-	this.setIndex   = function(index){ this.index = index; };
+	/**
+	 * If index == 0 im current in the main weapon.
+	 * Main weapon is the only one to add some bonus to BMC and DMC
+	 */
+	this.setIndex   = function(index){ 
+	    this.index = index;
+	    if (this.index == 0) this.mainWeapon = true; 
+	};
 	/**
 	 * Convert a String link 4d6 in 2 integer
 	 * rapresenting number of dice and damage dice
@@ -74,9 +130,12 @@ function pfWeapon(){
 	};
 	
 	this.update    = function(){
+	    this.twoHandCombat = globalWeaponTwoHandCombat[this.index].is(':checked');
+	    
 	    this.calculateDamageDice();
 	    this.buildStrings();
 	    this.calculateAR();
+	    this.calculateManeuversBonus();
 	    this.calculateDamage();
 	    this.draw();
 	}
@@ -84,6 +143,12 @@ function pfWeapon(){
 	this.draw      = function(){
 	    globalWeaponAR[this.index].val(this.ARString);
 	    globalWeaponDamage[this.index].val(this.damage);
+	    globalWeaponTwoHandPenalty[this.index].val(this.twoHandCombatPenalty);
+	    if (this.mainWeapon){
+	        globalManeuversDisarmWeapon.val(addPlus(this.disarmBonus));
+	        globalManeuversSunderWeapon.val(addPlus(this.sunderBonus));
+	        globalManeuversTripWeapon.val(addPlus(this.tripBonus));
+	    }
 	}
 	
 	this.buildStrings = function(){
@@ -109,6 +174,24 @@ function pfWeapon(){
         }
         return finalBab;
     }
+    
+    this.calculateManeuversBonus = function(){
+        this.disarmBonus    = 0;
+        this.tripBonus      = 0;
+        this.sunderBonus    = 0;
+        if (!this.mainWeapon) return;
+        
+        if (inArray("trip",this.special) )
+            this.tripBonus = this.ARBonus;
+        
+        this.disarmBonus = this.ARBonus;
+        if (inArray("disarm",this.special) )
+            this.disarmBonus += 2;
+            
+        this.sunderBonus = this.ARBonus;
+        if (inArray("sunder",this.special) )
+            this.sunderBonus += 2;
+    }
 	
 	this.calculateAR = function(){
 	    var modDex = totalModDex.val()/1;
@@ -122,14 +205,31 @@ function pfWeapon(){
 	    var bab   = globalWeaponBAB[this.index].val()/1;
 	    var classBonus = globalWeaponClassAR[this.index].val()/1;
 	    var levelBonus = globalWeaponLevelAR[this.index].val()/1;
+	    
+	    //Penalty from Two Hands
+	    //First Hand
+	    this.twoHandCombatPenalty = 0;
+	    if (this.hand == 3){
+	        var secondCategory = globalSecondWeaponType;
+	        var light          = (secondCategory == "light") ? 2:0;
+	        var twoHandsFeats  = (this.twoHandCombat) ? 2:0;
+	        this.twoHandCombatPenalty = twoHandsFeats + light -6;
+	    }
+	    //Second Hand
+	    if (this.hand == 4){
+	        var twoHandsFeats  = (this.twoHandCombat) ? 6:0;
+	        var light          = (this.category == "light") ? 2:0;
+	        this.twoHandCombatPenalty = twoHandsFeats + light -10;
+	    }
 
-	    this.AR = bab + mod + feats + other + classBonus + levelBonus;
+	    this.AR = bab + mod + feats + other + classBonus + levelBonus + this.twoHandCombatPenalty;
 	    this.ARString = this.ARToString(this.AR,bab);
+	    this.ARBonus  = feats + other + classBonus + levelBonus;
 	}
     
     this.calculateDamage = function(){
         var modStr  = totalModStr.val()/1;
-        var mod     = (this.twoHands) ? Math.floor(modStr*1.5) : modStr;
+        var mod     = (this.twoHands) ? Math.floor(modStr*1.5) : modStr; //if two hands, I have to sum 2 times the modstr
         var feats   = (this.spec * 2) + (this.improveSpec*2);
         var other   = globalWeaponMagic[this.index].val()/1;
         var classBonus = globalWeaponClassDamage[this.index].val()/1;
@@ -189,6 +289,7 @@ function pfAspergillum(){
     this.inheritFrom = pfWeapon;
     this.inheritFrom();
     this.damageDice = 6;
+    this.special.push("trip");
 }
 
 function pfKnuckles(){
