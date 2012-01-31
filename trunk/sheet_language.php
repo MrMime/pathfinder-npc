@@ -156,10 +156,12 @@
 	//WEAPONS
 	$pfNpcSheet['eng']['twohands']			= 'two hands';
 	$pfNpcSheet['eng']['hand']				= 'hand';
-	$pfNpcSheet['eng']['righthand']			= 'right';
-	$pfNpcSheet['eng']['lefthand']			= 'left';
+	$pfNpcSheet['eng']['onehand']			= 'Main Hand (single weapon)';
+	$pfNpcSheet['eng']['onehandfirst']		= 'Main Hand (dual weapon)';
+	$pfNpcSheet['eng']['onehandsecond']		= 'Second Hand (dual weapon)';
 	$pfNpcSheet['eng']['perfect']			= 'perfect';
 	$pfNpcSheet['eng']['enchantment']		= 'enchantment';
+	$pfNpcSheet['eng']['twohandcombat']		= '2 Hands Comb.';
 	
 	//*******************************************************************//
 	
@@ -324,10 +326,13 @@
 	//WEAPONS
 	$pfNpcSheet['ita']['hand']				= 'mano';
 	$pfNpcSheet['ita']['twohands']			= 'due mani';
-	$pfNpcSheet['ita']['righthand']			= 'destra';
-	$pfNpcSheet['ita']['lefthand']			= 'sinistra';
+	$pfNpcSheet['ita']['onehand']			= 'mano principale';
+	$pfNpcSheet['ita']['onehandfirst']		= 'mano principale (comb. con 2 armi)';
+	$pfNpcSheet['ita']['onehandsecond']		= 'mano secondaria (comb. con 2 armi)';
 	$pfNpcSheet['ita']['perfect']			= 'perfetta';
 	$pfNpcSheet['ita']['enchantment']		= 'incantamento';
+	$pfNpcSheet['ita']['twohandcombat']		= 'Comb.2 Mani';
+	
 	
 	
 	$GLOBALS['pfNpcSheet'] = $pfNpcSheet; 

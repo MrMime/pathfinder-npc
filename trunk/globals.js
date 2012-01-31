@@ -24,6 +24,13 @@ var mainWeaponCategory   = "";
 var mainWeaponHands      = 1;
 */
 
+//MANAGING TWO HANDS COMBAT
+var globalSecondWeaponType      = "";
+var globalMainWeapon            = pfWeapon();
+var globalSecondWeapon          = pfWeapon();
+var globalMainWeaponFeatsCheck       = null;
+var globalSecondWeaponFeatsCheck     = null;
+
 //GLOBALS specific for class
 var globalWarriorLevel  = 0;
 
@@ -211,6 +218,8 @@ var globalWeaponDamage              = new Array();
 var globalWeaponType                = new Array();
 var globalWeaponName                = new Array();
 var globalWeaponHand                = new Array();
+var globalWeaponTwoHandCombat       = new Array();
+var globalWeaponTwoHandPenalty      = new Array();
 var globalWeaponFocus1              = new Array();
 var globalWeaponFocus2              = new Array();
 var globalWeaponSpec1               = new Array();
@@ -390,6 +399,8 @@ function setAll(){
             globalWeaponType[i-1]                = $('#weapon0'+i+'Type');
             globalWeaponName[i-1]                = $('#weapon0'+i+'Name');
             globalWeaponHand[i-1]                = $('#weapon0'+i+'Hand');
+            globalWeaponTwoHandCombat[i-1]       = $('#weapon0'+i+'TwoHandCombat');
+            globalWeaponTwoHandPenalty[i-1]      = $('#weapon0'+i+'TwoHandPenalty');
             globalWeaponFocus1 [i-1]             = $('#weapon0'+i+'Focus1');
             globalWeaponFocus2[i-1]              = $('#weapon0'+i+'Focus2');
             globalWeaponSpec1[i-1]               = $('#weapon0'+i+'Spec1');

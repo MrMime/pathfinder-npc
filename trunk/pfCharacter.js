@@ -42,8 +42,8 @@ function pfCharacter(){
         this.averageHP          = 0;
         this.favouriteHP        = 0;
         this.totalCosHP         = 0;
-        this.classesARBonus         = new Array(0,0,0,0,0);
-        this.classesDamageBonus     = new Array(0,0,0,0,0);
+        this.classesARBonus     = 0;
+        this.classesDamageBonus = 0;
         
          //Updating cells in Weapons section
         for (i=0;i<5;i++) {
@@ -82,8 +82,8 @@ function pfCharacter(){
 		this.babBase[this.totalLevel] = this.maxBab;
 		
 		for (var i=0;i<5;i++) {
-		    this.classesARBonus[i]        += pfClass.ARBonus[i];
-		    this.classesDamageBonus[i]    += pfClass.damageBonus[i];
+		    this.classesARBonus        += pfClass.ARBonus[i];
+		    this.classesDamageBonus    += pfClass.damageBonus[i];
 		}
 		
 	};
@@ -153,8 +153,8 @@ function pfCharacter(){
 	    //Updating cells in Weapons section
 	    for (i=0;i<5;i++) {
            globalWeaponBAB[i].val(addPlus(this.maxBab/1));
-           globalWeaponClassAR[i].val(addPlus(this.classesARBonus[i]));
-           globalWeaponClassDamage[i].val(addPlus(this.classesDamageBonus[i]));
+           globalWeaponClassAR[i].val(addPlus(this.classesARBonus));
+           globalWeaponClassDamage[i].val(addPlus(this.classesDamageBonus));
         }
 	    
 	}
