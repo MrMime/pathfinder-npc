@@ -9,7 +9,8 @@ function pfMovement(){
 							  parseInt(globalClassBonusMovement.val()) + 
 							  parseInt(globalBonusMovement1.val()) + 
 							  parseInt(globalBonusMovement2.val()) + 
-							  parseInt(globalItemMovement.val()) ;
+							  parseInt(globalItemMovement.val()) +
+							  parseFloat(globalFeatsBonusMovement.val());
 			
 		this.totalMovement 		= Math.max(gpfRace.speedHeavy,actualSpeed+armorPenalty);
 		this.draw();

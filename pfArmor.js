@@ -25,6 +25,7 @@ function pfArmor(){
 	}
 	
 	this.update = function(){
+	    globalCurrentArmorCategory = this.category;
         this.draw();
 	}
 	

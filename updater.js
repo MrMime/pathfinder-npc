@@ -235,3 +235,56 @@ function buildWeaponList(obj){
         
     }
 }
+
+//FEATS
+function buildFeatsList(){
+    var container = $('#featsContents');
+    
+    if (container.children().length!=0) return;
+    
+    var rows = "";
+    var cols = "";
+    var input = "";
+    
+    var fCode = new Array(); 
+    var cLetter = "#";
+    var keys = new Array();
+    var cleanFeatsName =  new Array();
+    
+    for (i=0,j=0;i<globalFeatsList.length;i++,j++){
+        var fName = globalFeatsList[i];
+        if (cLetter != fName.substring(0,1)){
+            cLetter = fName.substring(0,1);
+            keys.push(cLetter);
+            j=0;
+            fCode[cLetter] = new Array();
+        }
+        fName = cleanFeatName(fName);
+        fCode[cLetter][j] = '<td class="left" style="text-align:left;cursor:pointer;" id="td_'+fName+'"><input type="checkbox" id="'+fName+'" name="feats['+fName+']" onClick="updateAllSheet();" />'+fName.replace(/_/ig,' ')+'</td>';
+    }
+    
+    var totalTable = "";
+    for (i=0;i<keys.length;i++){
+        totalTable += '<table class="feats"><tr><th colspan="1" id="trigger_'+keys[i]+'" onClick="toggle(\'feats_'+keys[i]+'\')">'+keys[i]+'</th></tr><tr><td>'+buildTable(fCode[keys[i]],featsCols,'feats_'+keys[i])+'</td></tr></table>';
+    }
+    
+    container.html(totalTable);
+    
+    for (var i=0;i<globalFeatsList.length;i++){
+        var sheet = "";
+        var fName = globalFeatsList[i];
+        
+        sheet = '<tr><td>descrizione</td><td>'+globalFeats[globalFeatsList[i]].descrizione+'</td></tr>';
+        sheet += '<tr><td>beneficio</td><td>'+globalFeats[globalFeatsList[i]].beneficio+'</td></tr>';  
+        if (globalFeats[globalFeatsList[i]].requisito > 0)
+            sheet += '<tr><td>prerequisito</td><td>'+globalFeats[globalFeatsList[i]].requisito+'</td></tr>';
+        if (globalFeats[globalFeatsList[i]].normale != undefined)
+            sheet += '<tr><td>normale</td><td>'+globalFeats[globalFeatsList[i]].normale+'</td></tr>';
+        if (globalFeats[globalFeatsList[i]].speciale != undefined)
+            sheet += '<tr><td>speciale</td><td>'+globalFeats[globalFeatsList[i]].speciale+'</td></tr>';
+        
+        sheet = '<table style="width:400px;">'+sheet+'</table>';
+        $("#td_"+cleanFeatName(fName)).tipTip({content:sheet,maxWidth: "400px", keepAlive:false});
+    }
+    
+}

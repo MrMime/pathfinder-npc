@@ -18,11 +18,21 @@ var gpfManeuvers        = new pfManeuvers();
 var globalCurrentMaxDex = 0; //is the current mod dex max (armor and shield may add penalty)
 var globalMaxBab        = 0;
 var globalLevel         = 0;
-/*
-var mainWeaponDamageType = "";
-var mainWeaponCategory   = "";
-var mainWeaponHands      = 1;
-*/
+//Globals to know what appening
+var featsCols           = 3;
+var globalCurrentArmorCategory    = "light"; //current category of armor 
+
+//List of feats categorized by section influence
+var globalSizeFeats       = new Array();
+var globalRaceFeats       = new Array();
+var globalStatsFeats      = new Array();
+var globalClassesFeats    = new Array();
+var globalMovementFeats   = new Array();
+var globalAcFeats         = new Array();
+var globalInitFeats       = new Array();
+var globalWeaponsFeats    = new Array();
+var globalManeuversFeats  = new Array();
+
 
 //MANAGING TWO HANDS COMBAT
 var globalSecondWeaponType      = "";
@@ -42,6 +52,7 @@ var globalRacesList 	= new Array();
 var globalArmorList 	= new Array();
 var globalShieldList 	= new Array();
 var globalClassList 	= new Array();
+var globalFeatsList     = new Array();
 
 var gpfClasses = new Array(); 
 gpfClasses[0] = new pfClass();
@@ -97,6 +108,7 @@ var globalBonusMovement1;
 var globalBonusMovement2;
 var globalItemMovement;
 var globalClassBonusMovement;
+var globalFeatsBonusMovement;
 
 //INITIATIVE GLOBALS
 var globalInitTotal;
@@ -276,6 +288,7 @@ function setAll(){
 	globalBonusMovement2       = $('#movementBonus2');
 	globalItemMovement         = $('#movementItem');
 	globalClassBonusMovement   = $('#classBonusMovement');
+	globalFeatsBonusMovement   = $('#featsBonusMovement');
 	
 	//INITIATIVE
 	globalInitTotal             = $('#initTotal');
