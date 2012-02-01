@@ -78,3 +78,27 @@ function rollStat(high){
 	}
 	return total-minor;
 }
+
+function cleanFeatName(fName){
+	fName = fName.replace (/_combattimento_critico$/g,'');
+	fName = fName.replace (/_combattimento$/g,'');
+	$.trim(fName);
+	return fName;
+}
+
+function buildTable(list,count,id){
+	var rows = "";
+	var cols = "";
+	for (var i=0;i<list.length;i++){
+		
+		if ((i%count) == 0 && i >= count){
+			rows += "<tr>"+cols+"</tr>";
+			cols = "";
+		}
+		
+		cols += list[i];
+		
+	}
+	rows += "<tr>"+cols+"</tr>";
+	return '<table id='+id+' class="featsList">'+rows+'</table>';
+}

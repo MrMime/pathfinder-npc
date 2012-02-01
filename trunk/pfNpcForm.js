@@ -60,7 +60,19 @@ function loadAll(){
             globalWeaponList = obj;
             buildWeaponList(obj);
         }
-    }); 
+    });
+    
+    $.ajax({
+        type: "GET",
+        url: "ajaxPhp/featsList.php",
+        data: "id=1",
+        success: function(response){
+            var obj = JSON.parse(response);
+            globalFeats = obj;
+            globalFeatsList = obj.total_feats;
+            buildFeatsList();
+        }
+    });
 	 
     updateAllSheet();
 }
@@ -89,15 +101,31 @@ function manageFavourite(index){
     
 }
 
+function updateMovementFeats(){
+    for (var i=0;i<globalMovementFeats.length; i++){
+        globalMovementFeats[i].update();
+    }
+}
+
 function updateAllSheet(){
+    //size
     updateSize();
+    //races
     updateRace();
+    //stats
     updateStats();
+    //classes
     updateClasses();
+    //feats
+    updateMovementFeats();
 	updateMovement();
+	//armor class
 	updateAC();
+	//initaitive
 	updateInitiative();
+	//weapons
     updateWeapons();
+    //maneuvers
 	updateManeuvers();
 }
 

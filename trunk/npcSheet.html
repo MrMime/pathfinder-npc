@@ -20,6 +20,7 @@
 	<script type="text/javascript" src="pfManeuvers.js"></script>
 	<script type="text/javascript" src="pfInitiative.js"></script>
 	<script type="text/javascript" src="globals.js"></script>
+	<script type="text/javascript" src="feats.js"></script>
 	<script type="text/javascript" src="pfNpcForm.js"></script>
 	<link rel="stylesheet" type="text/css" href="tipTip.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -138,6 +139,7 @@
 				<th>{bonus}</th>
 				<th>{bonus}</th>
 				<th>{item}</th>
+				<th>{feat}</th>
 			</tr>
 				<tr>
 					<td><input class="bold" type="text" name="movementTotal" value="0" id="movementTotal" size="4" readonly="readonly" /></td>
@@ -147,6 +149,7 @@
 					<td><input type="text" name="movementBonus1" value="0" id="movementBonus1" size="3" onKeyUp = updateMovement(); /></td>
 					<td><input type="text" name="movementBonus2" value="0" id="movementBonus2" size="3" onKeyUp = updateMovement(); /></td>
 					<td><input type="text" name="movementItem" value="0" id="movementItem" size="3" onKeyUp = updateMovement(); /></td>
+					<td><input type="text" name="movementItem" value="0" id="featsBonusMovement" size="3" onKeyUp = updateMovement(); /></td>
 				</tr>
 		</table>
 		
@@ -842,6 +845,10 @@
 			</tr>
 	</table>
 	
+</fieldset>
+<fieldset id="featsSection">
+	<legend>{feats}</legend>
+	<div id="featsContents"></div>
 </fieldset>
 	
 	<input type="submit" value="crea" />
