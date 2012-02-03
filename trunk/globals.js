@@ -128,6 +128,7 @@ var globalACTotal;
 var globalACModDex;
 var globalACFlatFooted;
 var globalACTouch;
+var globalACRace;
 var globalACBase;
 var globalACArmor;
 var globalACArmorMagic;
@@ -226,6 +227,7 @@ var globalManeuversFeatSunder ;
 //GLOBAL WEAPONS 
 var globalWeaponAR                  = new Array();
 var globalWeaponBAB                 = new Array();
+var globalWeaponRace                = new Array();
 var globalWeaponDamage              = new Array();
 var globalWeaponType                = new Array();
 var globalWeaponName                = new Array();
@@ -308,6 +310,7 @@ function setAll(){
     globalACModDex              = $('#acModDex');
     globalACFlatFooted          = $('#acFlatFooted');
     globalACTouch             	= $('#acTouch');
+    globalACRace				= $('#acRace');
     globalACBase                = $('#acBase');
     globalACArmor               = $('#acArmor');
     globalACArmorMagic          = $('#acArmorMagic');
@@ -354,6 +357,7 @@ function setAll(){
 		//MANEUVERS
 		globalCMBTotal        = $('#CMBTotal');
 		globalCMDTotal        = $('#CMDTotal');
+		globalManeuversRaceMod = $('#maneuversRaceMod');
 
 		globalManeuverBAB             = $('#maneuversBAB');
 		globalManeuverLevel           = $('#maneuversLevel');
@@ -408,6 +412,7 @@ function setAll(){
 		for (var i=1;i<6;i++){
 		    globalWeaponAR[i-1]                  = $('#weapon0'+i+'AR');
 		    globalWeaponBAB[i-1]                 = $('#weapon0'+i+'BAB');
+		    globalWeaponRace[i-1]				 = $('#weapon0'+i+'Race');
             globalWeaponDamage[i-1]              = $('#weapon0'+i+'Damage');
             globalWeaponType[i-1]                = $('#weapon0'+i+'Type');
             globalWeaponName[i-1]                = $('#weapon0'+i+'Name');

@@ -12,6 +12,7 @@ function pfAC(){
 	
 	this.acClass        = null;
 	this.acOther        = null;
+	this.acRace			= null;
 	
 	this.totalModDexAvaiable   =   0;
 	
@@ -40,8 +41,10 @@ function pfAC(){
 	    this.acOther   = globalACOther.val()/1; //this value is places by user
 	    //Size Bonus
 	    this.acSize    = globalACSize.val()/1; //this value is places by pfSize
+	    //Race Bonus
+	    this.acRace	   = globalACRace.val()/1;
 	    
-	    this.totalAC       = 10 + armorBonus + shieldBonus + naturalArmorBonus + this.totalModDexAvaiable +
+	    this.totalAC       = 10 + armorBonus + shieldBonus + naturalArmorBonus + this.totalModDexAvaiable + this.acRace +
                               this.acFeats + this.acWis + this.acOther + this.acClass + this.acSize; 
                               
         this.totalTouchAC   = this.totalAC - armorBonus - shieldBonus - naturalArmorBonus;

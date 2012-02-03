@@ -4,6 +4,7 @@ BODY {
 	margin:0px;
 	font-size:10px;
 	font-family:verdana;
+	margin-top:100px;
 }
 
 LEGEND {
@@ -26,7 +27,15 @@ DIV#headerwrap {
 	width: 100%;
 	min-width: 960px;
 	float:left;
-	position:relative;
+	position:fixed;
+	z-index:100;
+	top:0px;
+	left:0px;
+}
+
+.featEvidence {
+  font-weight:bold;
+  font-style:italic;  
 }
 
 DIV#header{

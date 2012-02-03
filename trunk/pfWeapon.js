@@ -206,6 +206,8 @@ function pfWeapon(){
 	    var classBonus = globalWeaponClassAR[this.index].val()/1;
 	    var levelBonus = globalWeaponLevelAR[this.index].val()/1;
 	    
+	    var raceMod	= globalWeaponRace[this.index].val()/1;
+	    
 	    //Penalty from Two Hands
 	    //First Hand
 	    this.twoHandCombatPenalty = 0;
@@ -222,7 +224,7 @@ function pfWeapon(){
 	        this.twoHandCombatPenalty = twoHandsFeats + light -10;
 	    }
 
-	    this.AR = bab + mod + feats + other + classBonus + levelBonus + this.twoHandCombatPenalty;
+	    this.AR = bab + raceMod + mod + feats + other + classBonus + levelBonus + this.twoHandCombatPenalty;
 	    this.ARString = this.ARToString(this.AR,bab);
 	    this.ARBonus  = feats + other + classBonus + levelBonus;
 	}

@@ -12,7 +12,7 @@ function pfRace(){
 	
 	this.speed		= 9; //race base speed (meter)
 	this.speedHeavy = 6; //race speed with heavy weight (es. armor)
-	this.legs       = 2; //number of legs. Userfull for Manouvers
+	this.legs       = 2; //number of legs. Usefull for Manouvers
 	
 	this.bullRace   = 0;
 	this.tripRace   = 0;
@@ -20,6 +20,13 @@ function pfRace(){
 	this.modSaveFor 	= 0; //race modifier to fortitude save throw
 	this.modSaveRef 	= 0; //race modifier to reflex save throw
 	this.modSaveWil 	= 0; //race modifier to will save throw
+	
+	this.ACMod			= 0;
+	this.BMCMod			= 0; //not used yet
+	this.DMCMod			= 0; //not used yet
+	this.maneuversMod	= 0; //used
+	
+	this.ARMod			= 0;
 	
 	this.language   		= new Array("common");
 	this.learnableLanguage 	= new Array();
@@ -61,7 +68,7 @@ function pfRace(){
 	this.update = function() {
 	    var legsBonus = (this.legs-2) * 2;
 	    this.tripRace = Math.max(this.tripRace,legsBonus);
-	    this.bullRace = Math.max(this.bullRace,legsBonus);    
+	    this.bullRace = Math.max(this.bullRace,legsBonus);
 	    this.draw();
 	}
 	
@@ -83,6 +90,10 @@ function pfRace(){
         globalManeuversBullRace.val(addPlus(this.bullRace));
         globalManeuversTripRace.val(addPlus(this.tripRace));
         
+        globalACRace.val(addPlus(this.ACMod));
+        globalManeuversRaceMod.val(addPlus(this.maneuversMod));
+        for (var i=0;i<globalWeaponRace.length;i++)
+        	globalWeaponRace[i].val(addPlus(this.ARMod));
 	}
 	
 }
@@ -125,14 +136,42 @@ function pfDwarf(){
 	this.tripRace   = 4;
 }
 
+function pfGnome(){
+	this.inheritFrom = pfRace;
+    this.inheritFrom();
+    
+	this.modCos = 2;
+	this.modCha = 2;
+	this.modStr = -2;
+	
+	this.ACMod = 1;
+	this.ARMod = 1;
+	this.maneuversMod   = -1;
+	
+	this.speed 		= 6;
+	this.speedHeavy = 4.5;
+}
+
+function pfElf(){
+	this.inheritFrom = pfRace;
+    this.inheritFrom();
+    
+	this.modDex	= 2;
+	this.modInt = 2;
+	this.modCos	= -2;
+	this.name	= "{Elf}";
+	this.language.push("{elven}");
+	this.learnableLanguage = new Array("{celestial-lang}","{draconic-lang}","{gnoll-lang}","{gnome-lang}","{goblin-lang}","{orc-lang}","{sylvan-lang}");
+}
+
 function pfHalfling(){
 	this.inheritFrom = pfRace;
     this.inheritFrom();
     
     this.name = "Halfling";
     
-	this.language.push("halfing");
-	this.learnableLanguage = new Array("Elf","Gnome","Globin","Dwarf");
+	this.language.push("{halfing}");
+	this.learnableLanguage = new Array("{elven}","{gnome-lang}","{goblin-lang}","{dwarf-lang}");
 	
 	this.modStr		= -2;
 	this.modDex		= 2;
@@ -144,4 +183,10 @@ function pfHalfling(){
 	
 	this.speed 		= 6;
 	this.speedHeavy = 4.5;
+	
+	this.ACMod			= 1;
+	this.BMCMod			= -1;
+	this.DMCMod			= -1;
+	this.maneuversMod   = -1;
+	this.ARMod			= 1;
 }

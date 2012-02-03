@@ -3,6 +3,7 @@ function pfFeat(){
 	this.checked = false;
 	this.id	     = null;
 	this.bonus 	 = 0;
+	this.container = 0;
 	
 	this.checkStatus = function(){
 		this.check = $('#'+this.id);
@@ -11,6 +12,10 @@ function pfFeat(){
 			this.checked = true;
 	}
 	
+	this.evidence = function(){
+		this.container = $('#td_'+this.id);
+		this.container.addClass('featEvidence');
+	}
 }
 
 function pfAgile()
@@ -30,6 +35,7 @@ function pfAgile()
 		this.draw();
 	}
 	this.draw = function(){
+		this.evidence();
 		globalFeatsBonusMovement.val(addPlus(this.bonus));
 	}
 }
