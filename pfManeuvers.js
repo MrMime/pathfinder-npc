@@ -9,6 +9,7 @@ function pfManeuvers(){
 	this.finalLevelBabMod = 0;
 	this.bab       = 0;
 	this.level     = 0;
+	this.raceMod   = 0;
 	//SPECIFIC MODIFIERS
 	this.bullRace  = 0;
 	this.tripRace  = 0;
@@ -62,6 +63,8 @@ function pfManeuvers(){
         this.bab       = parseInt(this.bab[0]);  //taking the hihest bab
 	    this.level     = globalTotalLevel.val()/1;
 	    
+	    this.raceMod   = globalManeuversRaceMod.val()/1;
+	    
 	    var featLevelBabMod = globalManeuversLevelBabMod.val()/1;
 	    //If == 0, no feat is selected to dedice wich bonus has to be applied
 	    if (featLevelBabMod == 0){
@@ -90,8 +93,8 @@ function pfManeuvers(){
         this.grappleFeat    = globalManeuversFeatGrapple.val()/1;
         this.sunderFeat     = globalManeuversFeatSunder.val()/1;
 	    
-	    this.totalCMB       = this.bab + this.finalMod + this.size;
-	    this.totalCMD       = 10 + this.finalLevelBabMod + this.modStr + this.modDex + this.size;
+	    this.totalCMB       = this.bab + this.finalMod + this.size + this.raceMod;
+	    this.totalCMD       = 10 + this.finalLevelBabMod + this.modStr + this.modDex + this.size + this.raceMod;
 	    
 	    this.totalCMBDisarm        = this.totalCMB + this.disarmFeat + this.disarmWeapon;
         this.totalCMBTrick         = this.totalCMB + this.trickFeat;

@@ -1,0 +1,13 @@
+NON SI PUO' FARE
+
+- Il talento Agile può essere preso una sola volta;
+- Non vengono gestite le incompetenze nelle armi;
+- Non vengono gestiti tiri salvezza specifici (es vs. paura)
+
+DA CONTROLLARE
+
+- Controllare se viene usato MODDEX quando cambio da melee a ranged
+
+DA FARE
+
+- Implementare archi compositi

@@ -5,11 +5,11 @@
 	global $pfNpcSheet;
 	
 	$lang = 'ita';
-
+/*
 	echo '<pre>';
 	print_r ($_POST);
 	echo '</pre>';
-	
+	*/
 	$code = file_get_contents('npcSheet.html');
 	$code = str_replace ('[[action]]',$_SERVER['REQUEST_URI'],$code);
 	
