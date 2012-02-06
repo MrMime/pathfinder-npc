@@ -51,7 +51,7 @@ function pfCharacter(){
            globalWeaponClassAR[i].val(addPlus(0));
            globalWeaponClassDamage[i].val(addPlus(0));
         }
-	}
+	};
 	
 	
     this.addPfClasses = function(pfClasses){
@@ -95,7 +95,7 @@ function pfCharacter(){
 	
 	this.calculateBAB = function(){
 	    this.finalBab = this.babToString(this.maxBab);
-	}
+	};
 	
 	this.babToString = function(maxBab){
 	    var multiple = Math.ceil(maxBab / 5);
@@ -107,7 +107,7 @@ function pfCharacter(){
             finalBab = finalBab + "/"+addPlus(currentBab);
         }
         return finalBab;
-	}
+	};
 	
 	this.rollStats = function(high){
 		str.val(rollStat(high));
@@ -132,7 +132,7 @@ function pfCharacter(){
 	   this.totalTSWMod = this.stw + globalExtraTSW.val()/1 + globalRaceTSW.val()/1;
 	   
 	   this.draw();   
-	}
+	};
 	
 	this.draw      = function(){
         globalTotalLevel.val(parseInt(this.totalLevel));
@@ -156,7 +156,6 @@ function pfCharacter(){
            globalWeaponClassAR[i].val(addPlus(this.classesARBonus));
            globalWeaponClassDamage[i].val(addPlus(this.classesDamageBonus));
         }
-	    
-	}
+	};
 	
 }

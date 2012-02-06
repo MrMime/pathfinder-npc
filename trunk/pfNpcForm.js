@@ -121,7 +121,7 @@ function updateAllSheet(){
 	updateMovement();
 	//armor class
 	updateAC();
-	//initaitive
+	//initiative
 	updateInitiative();
 	//weapons
     updateWeapons();

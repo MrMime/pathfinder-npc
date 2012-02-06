@@ -119,7 +119,7 @@ function pfManeuvers(){
         this.totalCMDSunder        = this.totalCMD + this.sunderFeat;
 	 
 	    this.draw();   
-	}
+	};
 	
 	this.draw  =   function(){
 	    globalManeuverModDex.val(addPlus(this.modDex));
@@ -154,9 +154,7 @@ function pfManeuvers(){
         globalRepositionCMDTotal.val(addPlus(this.totalCMDReposition));
         globalGrappleCMDTotal.val(addPlus(this.totalCMDGrapple));    
         globalSunderCMDTotal.val(addPlus(this.totalCMDSunder));     
-       
-	    
-	}
+	};
 	
 	
 }

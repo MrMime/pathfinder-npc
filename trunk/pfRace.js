@@ -70,7 +70,7 @@ function pfRace(){
 	    this.tripRace = Math.max(this.tripRace,legsBonus);
 	    this.bullRace = Math.max(this.bullRace,legsBonus);
 	    this.draw();
-	}
+	};
 	
 	this.draw = function(){
 	    globalRaceBaseMovement.val(addPlus(this.speed));
@@ -94,7 +94,7 @@ function pfRace(){
         globalManeuversRaceMod.val(addPlus(this.maneuversMod));
         for (var i=0;i<globalWeaponRace.length;i++)
         	globalWeaponRace[i].val(addPlus(this.ARMod));
-	}
+	};
 	
 }
 

@@ -10,12 +10,12 @@ function pfFeat(){
 		this.checked = false;
 		if (this.check.is(':checked'))
 			this.checked = true;
-	}
+	};
 	
 	this.evidence = function(){
 		this.container = $('#td_'+this.id);
 		this.container.addClass('featEvidence');
-	}
+	};
 }
 
 function pfAgile()
@@ -33,11 +33,11 @@ function pfAgile()
 			this.bonus = 0; 
 		}
 		this.draw();
-	}
+	};
 	this.draw = function(){
 		this.evidence();
 		globalFeatsBonusMovement.val(addPlus(this.bonus));
-	}
+	};
 }
 
 globalMovementFeats.push(new pfAgile());

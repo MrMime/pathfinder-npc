@@ -82,7 +82,7 @@ function pfStats(stats){
         totalModInt.val(addPlus(this.modInt));
         totalModWis.val(addPlus(this.modWis));
         totalModCha.val(addPlus(this.modCha));
-	}
+	};
 }
 
 

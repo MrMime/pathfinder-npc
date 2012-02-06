@@ -149,7 +149,7 @@ function pfWeapon(){
 	        globalManeuversSunderWeapon.val(addPlus(this.sunderBonus));
 	        globalManeuversTripWeapon.val(addPlus(this.tripBonus));
 	    }
-	}
+	};
 	
 	this.buildStrings = function(){
 	    var diff = 20 - this.minCritic;
@@ -160,7 +160,7 @@ function pfWeapon(){
 	       
 	    this.criticMultiplierString = "x"+this.criticMultiplier;
 	    this.damageDiceString = this.sizedDiceNumber+"d"+this.sizedDamageDice;
-	}
+	};
 	
 	this.ARToString = function(maxAR,maxBAB){
         var multiple = Math.ceil(maxAR / 5);
@@ -173,7 +173,7 @@ function pfWeapon(){
             finalBab = finalBab + "/"+addPlus(currentBab);
         }
         return finalBab;
-    }
+    };
     
     this.calculateManeuversBonus = function(){
         this.disarmBonus    = 0;
@@ -191,7 +191,7 @@ function pfWeapon(){
         this.sunderBonus = this.ARBonus;
         if (inArray("sunder",this.special) )
             this.sunderBonus += 2;
-    }
+    };
 	
 	this.calculateAR = function(){
 	    var modDex = totalModDex.val()/1;
@@ -227,7 +227,7 @@ function pfWeapon(){
 	    this.AR = bab + raceMod + mod + feats + other + classBonus + levelBonus + this.twoHandCombatPenalty;
 	    this.ARString = this.ARToString(this.AR,bab);
 	    this.ARBonus  = feats + other + classBonus + levelBonus;
-	}
+	};
     
     this.calculateDamage = function(){
         var modStr  = totalModStr.val()/1;
@@ -239,7 +239,7 @@ function pfWeapon(){
         var total   = mod + feats + other + classBonus + levelBonus;
         
         this.damage = this.damageDiceString+" + "+total;       
-    }
+    };
     
     //Calculate new Damage Form armor with size modifier
     this.calculateDamageDice = function(){
@@ -251,7 +251,7 @@ function pfWeapon(){
             this.setDamage(temp[1]);
         if (this.size == 0) //normal
             this.setDamage(baseDamage);
-    }
+    };
     
     //List of relationship between base dice damage and relative sized damage
     this.diceRelation = new Array ("1d2","1d3","1d4","1d6","1d8","1d10","1d12","2d4","2d6","2d8","2d10");
