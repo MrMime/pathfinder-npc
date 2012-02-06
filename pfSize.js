@@ -12,10 +12,10 @@ function pfSize(){
 	
 	this.update = function() {
 	    this.draw();
-	}
+	};
 	
 	this.draw = function() {
 	    globalACSize.val(addPlus(this.current));
 	    globalManeuverSize.val(addPlus(this.current*(-1))); //setting size modifier for maneuvers calc
-	}
+	};
 }

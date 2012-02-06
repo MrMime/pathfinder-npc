@@ -27,5 +27,5 @@ function pfInitiative(){
 	this.draw = function() {
 	    globalInitModDex.val(addPlus(this.modDex));
         globalInitTotal.val(addPlus(this.totalInitiative));
-	}
+	};
 }

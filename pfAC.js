@@ -87,6 +87,6 @@ function pfAC(){
 	    
 	    globalACString.val(this.acString);
 	    
-	}
+	};
 	
 }

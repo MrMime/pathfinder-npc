@@ -61,7 +61,7 @@ gpfClasses[2] = new pfClass();
 gpfClasses[3] = new pfClass();
 gpfClasses[4] = new pfClass();
 
-var gpfWeapon   = new Array()
+var gpfWeapon   = new Array();
 gpfWeapon[0] = new pfWeapon();
 gpfWeapon[1] = new pfWeapon();
 gpfWeapon[2] = new pfWeapon();

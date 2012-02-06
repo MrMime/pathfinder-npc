@@ -18,6 +18,5 @@ function pfMovement(){
 	
 	this.draw = function() {
 	    globalTotalMovement.val(this.totalMovement);
-	}
-	
+	};
 }

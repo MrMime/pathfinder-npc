@@ -63,20 +63,20 @@ function pfClass(){
 	this.calculateDamageBonus  =   function(){
 	    for (var i=0;i<5;i++)
 	       this.damageBonus[i] = this.damageMods[this.level];
-	}
+	};
 	
 	this.calculateARBonus  =   function(){
 	    for (var i=0;i<5;i++)
             this.ARBonus[i] = this.ARMods[this.level];
-    }
+    };
     
     this.calculateACBonus  =   function(){
         this.ACBonus = this.ACMods[this.level];
-    }
+    };
     
     this.calculateInitBonus  =   function(){
         this.initBonus = this.initMods[this.level];
-    }
+    };
 	
 	/**
 	 * Return a formatted string with all bab bonus
@@ -124,7 +124,7 @@ function pfClass(){
 		    this.favouriteSkill = this.level;
 		}
 		this.skillPointClass += this.favouriteSkill;
-	}
+	};
 	
 	this.calculateMaxSpellLevel = function(){
 		this.maxSpellLevel = 0;
@@ -155,7 +155,7 @@ function pfClass(){
 	    if (this.name.toLowerCase() == "monk")
             this.calculateBabFlurry();
         this.draw();
-	}
+	};
 	
 	this.draw  = function(){
 	    globalClassTSF[this.index].val(addPlus(this.stf));
@@ -164,7 +164,7 @@ function pfClass(){
 	    globalClassBAB[this.index].val(this.bab);
 	    globalACClass.val(this.ACBonus); //adding class modifier to AC
 	    globalInitClass.val(addPlus(this.initBonus));
-	}
+	};
 	
 }
 

@@ -22,17 +22,17 @@ function pfArmor(){
         this.penalty        = armorStats[2];
         this.spellFailure   = armorStats[3];
         this.speedMod       = armorStats[4];
-	}
+	};
 	
 	this.update = function(){
 	    globalCurrentArmorCategory = this.category;
         this.draw();
-	}
+	};
 	
 	this.draw  = function(){
 	    globalArmorPenaltyMovement.val(this.speedMod);
 	    globalACArmor.val(addPlus(this.ac));
-	}
+	};
 	
 } 
 
