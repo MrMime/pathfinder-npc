@@ -6,7 +6,7 @@
 				 	'pfHuman'=>'{human}',
 					'pfElf'=>'{elf}',
 					'pfDwarf'=>'{dwarf}',
-					'pfhalfing'=>'{halfing}',
+					'pfHalfling'=>'{halfing}',
 					'pfHalfOrc'=>'{half-orc}',
 					'pfHalfElf'=>'{half-elf}'
 					));

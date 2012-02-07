@@ -157,12 +157,12 @@ function updateAllSheet(){
     //classes
     updateClassFeats();
     updateClasses();
-    //feats
-    updateMovementFeats();
-	updateMovement();
 	//armor class
 	updateACFeats();
 	updateAC();
+	//movement
+    updateMovementFeats();
+	updateMovement();
 	//initiative
 	updateInitFeats();
 	updateInitiative();
