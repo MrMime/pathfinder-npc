@@ -140,15 +140,16 @@ function buildClassesList(obj){
                     $("#class04Level").attr('disabled',true);
             }
         );
+     
+     var optGroups = buildGenericSelect(obj,'classes');
+     for (var i = 0; i < optGroups.length ; i++){
+         sel0.append(optGroups[i].clone());
+         sel1.append(optGroups[i].clone()); 
+         sel2.append(optGroups[i].clone());
+         sel3.append(optGroups[i].clone());
+         sel4.append(optGroups[i].clone());
+     }
     
-    var classes = obj.classes;
-    for (var i = 0; i < classes.length ; i++){
-        sel0.append($("<option></option>").attr("value",globalClassList[classes[i]]).text(classes[i]));
-        sel1.append($("<option></option>").attr("value",globalClassList[classes[i]]).text(classes[i])); 
-        sel2.append($("<option></option>").attr("value",globalClassList[classes[i]]).text(classes[i]));
-        sel3.append($("<option></option>").attr("value",globalClassList[classes[i]]).text(classes[i]));
-        sel4.append($("<option></option>").attr("value",globalClassList[classes[i]]).text(classes[i]));
-    }
 }
 
 
