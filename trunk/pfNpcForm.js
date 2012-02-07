@@ -10,7 +10,7 @@ function loadAll(){
 	 $.ajax({
 		type: "GET",
 		url: "ajaxPhp/raceList.php",
-		data: "id=1",
+		data: "lang="+globalLanguage,
 		success: function(response){
 			var obj = JSON.parse(response);
 			globalRacesList = obj;
@@ -21,7 +21,7 @@ function loadAll(){
 	$.ajax({
         type: "GET",
         url: "ajaxPhp/armorList.php",
-        data: "id=1",
+        data: "lang="+globalLanguage,
         success: function(response){
             var obj = JSON.parse(response);
             globalArmorList = obj;
@@ -32,7 +32,7 @@ function loadAll(){
 	$.ajax({
         type: "GET",
         url: "ajaxPhp/shieldList.php",
-        data: "id=1",
+        data: "lang="+globalLanguage,
         success: function(response){
             var obj = JSON.parse(response);
             globalShieldList = obj;
@@ -43,7 +43,7 @@ function loadAll(){
     $.ajax({
         type: "GET",
         url: "ajaxPhp/classesList.php",
-        data: "id=1",
+        data: "lang="+globalLanguage,
         success: function(response){
             var obj = JSON.parse(response);
             globalClassList = obj;
@@ -54,7 +54,7 @@ function loadAll(){
      $.ajax({
         type: "GET",
         url: "ajaxPhp/weaponsList.php",
-        data: "id=1",
+        data: "lang="+globalLanguage,
         success: function(response){
             var obj = JSON.parse(response);
             globalWeaponList = obj;
@@ -65,7 +65,7 @@ function loadAll(){
     $.ajax({
         type: "GET",
         url: "ajaxPhp/featsList.php",
-        data: "id=1",
+        data: "lang="+globalLanguage,
         success: function(response){
             var obj = JSON.parse(response);
             globalFeats = obj;
@@ -101,31 +101,76 @@ function manageFavourite(index){
     
 }
 
+function updateFeats(list){
+     var len = list.length;
+     if (len == 0) return;
+	 for (var i=0;i<len; i++)
+		 list[i].update();
+}
+
 function updateMovementFeats(){
-    for (var i=0;i<globalMovementFeats.length; i++){
-        globalMovementFeats[i].update();
-    }
+	updateFeats(globalMovementFeatsList);
+}
+
+function updateClassFeats(){
+	updateFeats(globalClassesFeatsList);
+}
+
+function updateSizeFeats(){
+    updateFeats(globalSizeFeatsList);
+}
+
+function updateRaceFeats(){
+    updateFeats(globalRaceFeatsList);
+}
+
+function updateStatsFeats(){
+    updateFeats(globalStatsFeatsList);
+}
+
+function updateACFeats(){
+    updateFeats(globalACFeatsList);
+}
+
+function updateInitFeats(){
+    updateFeats(globalInitFeatsList);
+}
+
+function updateWeaponFeats(){
+    updateFeats(globalInitFeatsList);
+}
+
+function updateManeuverFeats(){
+    updateFeats(globalManeuversFeatsList);
 }
 
 function updateAllSheet(){
     //size
+    updateSizeFeats();
     updateSize();
     //races
+    updateRaceFeats();
     updateRace();
     //stats
+    updateStatsFeats();
     updateStats();
     //classes
+    updateClassFeats();
     updateClasses();
     //feats
     updateMovementFeats();
 	updateMovement();
 	//armor class
+	updateACFeats();
 	updateAC();
 	//initiative
+	updateInitFeats();
 	updateInitiative();
 	//weapons
+	updateWeaponFeats();
     updateWeapons();
     //maneuvers
+    updateManeuverFeats();
 	updateManeuvers();
 }
 

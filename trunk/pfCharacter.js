@@ -57,7 +57,7 @@ function pfCharacter(){
     this.addPfClasses = function(pfClasses){
         for (var i=0;i<pfClasses.length;i++)
             this.addPfClass(pfClasses[i]);    
-    }	
+    };
 	/**
 	 * Adding a Pathfinder Class to total
 	 */
@@ -127,9 +127,9 @@ function pfCharacter(){
 	       this.classes[i].update();
 	   }
 	   
-	   this.totalTSFMod = this.stf + globalExtraTSF.val()/1 + globalRaceTSF.val()/1;
-	   this.totalTSRMod = this.str + globalExtraTSR.val()/1 + globalRaceTSR.val()/1;
-	   this.totalTSWMod = this.stw + globalExtraTSW.val()/1 + globalRaceTSW.val()/1;
+	   this.totalTSFMod = this.stf + globalExtraTSF.val()/1 + globalRaceTSF.val()/1 + globalFeatTSF.val()/1;
+	   this.totalTSRMod = this.str + globalExtraTSR.val()/1 + globalRaceTSR.val()/1 + globalFeatTSR.val()/1;;
+	   this.totalTSWMod = this.stw + globalExtraTSW.val()/1 + globalRaceTSW.val()/1 + globalFeatTSW.val()/1;;
 	   
 	   this.draw();   
 	};

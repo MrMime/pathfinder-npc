@@ -102,3 +102,12 @@ function buildTable(list,count,id){
 	rows += "<tr>"+cols+"</tr>";
 	return '<table id='+id+' class="featsList">'+rows+'</table>';
 }
+
+//Converts meters to feets
+function metersToFeets(meter){
+	return Math.ceil(meter*3.2808399);
+}
+//Converts feets to meters
+function feetsToMeters(feets){
+	return Math.floor (feets*0.3048);
+}

@@ -90,10 +90,22 @@ function pfWeapon(){
 	    this.hand = hand/1;
 	    if (this.hand == 1 || this.hand == 2) {
 	        if (globalMainWeapon == this) {
-	           globalMainWeapon = pfWeapon;
+	           globalMainWeapon = new pfWeapon();
+	           globalWeaponTwoHandCombat[this.index].attr('disabled',true);
+	           globalWeaponTwoHandCombat[globalSecondWeapon.index].attr('disabled',true);
+	           globalWeaponTwoHandCombat[globalSecondWeapon.index].attr('checked',false);
 	        }
+	        
+	        if (globalSecondWeapon == this) {
+               globalSecondWeapon = new pfWeapon();
+               globalWeaponTwoHandCombat[this.index].attr('disabled',true);
+               globalWeaponTwoHandCombat[globalMainWeapon.index].attr('disabled',true);
+               globalWeaponTwoHandCombat[globalMainWeapon.index].attr('checked',false);
+            }
+            
 	        globalWeaponTwoHandCombat[this.index].attr('checked',false);
             globalWeaponTwoHandPenalty[this.index].val(0);
+    	    
     	    if (this.hand == 2)
     	       this.twoHand = true;
     	    else
@@ -104,10 +116,18 @@ function pfWeapon(){
 	       globalSecondWeaponType = this.category;
 	       globalSecondWeaponFeatsCheck = globalWeaponTwoHandCombat[this.index];
 	       globalSecondWeapon = this;
+	       if (globalMainWeapon.name != "") {
+	           globalWeaponTwoHandCombat[globalMainWeapon.index].removeAttr('disabled');
+	           globalSecondWeaponFeatsCheck.removeAttr('disabled');
+	       }
 	    }
 	    if (this.hand == 3) {
-	       globalMainWeapon = this;
+	       globalMainWeapon = this;	       
 	       globalMainWeaponFeatsCheck   = globalWeaponTwoHandCombat[this.index];
+	       if (globalSecondWeapon.name != "") {
+	           globalMainWeaponFeatsCheck.removeAttr('disabled');
+	           globalWeaponTwoHandCombat[globalSecondWeapon.index].removeAttr('disabled');
+	       }
 	    }
 	    
 	};
@@ -279,12 +299,14 @@ function pfGauntlet(){
     this.inheritFrom = pfWeapon;
     this.inheritFrom();
     this.damageDice = 3;
+    this.name       = "gauntlet";
 }
 
 function pfSpikedGauntlet(){
     this.inheritFrom = pfWeapon;
     this.inheritFrom();
     this.damageDice = 4;
+    this.name       = "spikedgauntlet";
 }
 
 function pfAspergillum(){
@@ -292,16 +314,19 @@ function pfAspergillum(){
     this.inheritFrom();
     this.damageDice = 6;
     this.special.push("trip");
+    this.name       = "aspergillum";
 }
 
 function pfKnuckles(){
     this.inheritFrom = pfWeapon;
     this.inheritFrom();
     this.damageDice = 4;
+    this.name       = "knuckles";
 }
 
 function pfCestus(){
     this.inheritFrom = pfWeapon;
     this.inheritFrom();
     this.damageDice = 6;
+    this.name       = "cestus";
 }

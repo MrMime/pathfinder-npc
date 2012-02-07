@@ -40,4 +40,25 @@ function pfAgile()
 	};
 }
 
-globalMovementFeats.push(new pfAgile());
+function pfLightningReflexes(){
+	this.inheritFrom = pfFeat;
+    this.inheritFrom();
+    
+	this.id = 'riflessi_fulminei';
+	this.update = function(){
+		this.checkStatus();
+		if (this.checked) this.bonus = 2;
+		else this.bonus = 0;
+		this.draw();
+	};
+	
+	this.draw = function(){
+		this.evidence();
+		globalFeatTSR.val(addPlus(this.bonus));
+	};
+	
+}
+
+//INSERT FEATS in GLOBAL FEATS UPDATER
+globalMovementFeatsList.push(new pfAgile());
+globalClassesFeatsList.push(new pfLightningReflexes());

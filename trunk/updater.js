@@ -3,7 +3,6 @@
 function buildRaceSelect(obj){
 	var raceSelect = $("#race");
 	if ( ($('#race option').size()) > 0 ) return;
-	var races = obj.races;
 	
 	raceSelect.change(
 		function(){
@@ -20,10 +19,12 @@ function buildRaceSelect(obj){
 			}
 	);
 	
-	for (var i = 0; i < races.length ; i++){
-		raceSelect.append($("<option></option>").attr("value",obj[races[i]]).text(races[i])); 
+	var optGroups = buildGenericSelect(obj);
+	for (var i = 0; i < optGroups.length ; i++){
+		raceSelect.append(optGroups[i]); 
 	}
 }
+
 
 //****************** ARMORS **************************//
 function buildArmorSelect(obj){
@@ -236,6 +237,42 @@ function buildWeaponList(obj){
     }
 }
 
+function buildGenericSelect(obj){
+    var optGroups   = Array();
+    var count = 0;
+    for (var key in obj) {
+        var options = "";
+        var children = eval('obj.'+key);
+        for (var son in children) {
+            var val = children[son];
+            options  += "<option value=\""+son+"\">"+val+"</option>";
+        }
+        optGroups[count] = $("<optgroup></optgroup>").attr("label",key).append(options);
+        count++;
+    }
+    return optGroups;
+    /*
+    $.each(obj.attributes,function(i,item){
+       var value = item; 
+    });
+    
+    for (var i=0;i<categories.length;i++){
+        var options = "";
+        
+        $.each (eval('obj.'+categories[i]),function(){
+            var value = this;
+        });
+        var length = list.length;
+        for (var j=0;j<length;j++) {
+            var value = list.pop();
+            options  += "<option value=\""+value[0]+"\">"+value[1]+"</option>";
+        }
+        
+    }
+    return optGroups;
+    */
+}
+
 //FEATS
 function buildFeatsList(){
     var container = $('#featsContents');
@@ -265,7 +302,7 @@ function buildFeatsList(){
     
     var totalTable = "";
     for (i=0;i<keys.length;i++){
-        totalTable += '<table class="feats"><tr><th colspan="1" id="trigger_'+keys[i]+'" onClick="toggle(\'feats_'+keys[i]+'\')">'+keys[i]+'</th></tr><tr><td>'+buildTable(fCode[keys[i]],featsCols,'feats_'+keys[i])+'</td></tr></table>';
+        totalTable += '<table class="feats"><tr><th colspan="1" id="trigger_'+keys[i]+'" onClick="$(\'#feats_'+keys[i]+'\').fadeToggle(\'slow\');">'+keys[i]+'</th></tr><tr><td>'+buildTable(fCode[keys[i]],featsCols,'feats_'+keys[i])+'</td></tr></table>';
     }
     
     container.html(totalTable);
