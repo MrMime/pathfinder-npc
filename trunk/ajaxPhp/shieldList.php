@@ -16,7 +16,7 @@
    * [3]: Fallimento Incantesimi Arcani
    * [4]: Variazione sulla velocità corrente
    */
-
+/*
 	$shield = array ('shields'=>array('nessuno','buckler','scudo leggero di legno','scudo leggero di metallo','scudo pesante di legno',
 					'scudo pesante di metallo','scudo torre'),
   				  'nessuno'=>array (0,100,0,0,0),
@@ -32,5 +32,34 @@
 					);
 	
 	echo json_encode ($shield);
+*/
 
+  	require('../languages/shield_language.php');
+	global $pfShield;
+	
+	 $shields = array('{light}'=>array(
+	 					'pfShield'=>'--',
+	 					'pfBuckler'=>'{blucker}',
+						'pfKlar'=>'{klar}',
+						'pfMaduLeather'=>'{maduleather}',
+						'pfMaduSteel'=>'{madusteel}',
+						'pfLightWooden'=>'{lightwooden}',
+	 					'pfLightWoodenQuickdraw'=>'{lightwoodenquickdraw}',
+						'pfLightSteel'=>'{lightsteel}',
+						'pfLightSteelQuickdraw'=>'{lightsteelquickdraw}'),
+					 '{heavy}'=>array(
+					 		'pfHeavyWooden'=>'{heavywooden}',
+					 		'pfHeavySteel'=>'{heavysteel}',
+					 		'pfTower'=>'{tower}')
+	 				 );
+	
+	$json = json_encode ($shields);
+					
+	//Translating races names
+	foreach ($pfShield[$_GET['lang']] as $index=>$translate){
+		$json = preg_replace('/{'.$index.'}/', $translate, $json);
+	}
+	
+	echo $json;
+	
 ?>

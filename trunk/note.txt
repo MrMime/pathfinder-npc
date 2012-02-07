@@ -4,6 +4,7 @@ NON SI PUO' FARE
 - Non vengono gestite le incompetenze nelle armi;
 - Non vengono gestiti i pre-requisiti dei talenti;
 - Non vengono gestiti tiri salvezza specifici (es vs. paura)
+- Non viene gestito la sovra-armatura
 
 DA CONTROLLARE
 

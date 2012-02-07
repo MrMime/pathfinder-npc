@@ -1,4 +1,17 @@
 <?php
+
+	require('../languages/weapon_language.php');
+	global $pfWeapon;
+	
+	$weapons = array('{noWeapon}'=>array('pfWeapon'=>'--',
+										  'pfArms'=>'{barehands}',
+									      'pfGauntlet'=>'{gauntlet}'
+										 ),
+					 '{simpleMeleeWeapon}'=>array('pfAspergillum'=>'{aspergillum}',
+										 		  'pfKnuckles'=>'{knucles}',
+										 		  'pfCestus'=>'{cestus}'));	
+
+/*
 	$wCategory['group'] = array('Senza_Armi','Armi_Semplici_Mischia','Armi_Semplici_Distanza','Armi_Da_Guerra_Mischia','Armi_Da_Guerra_Distanza','Armi_Esotiche_Mischia','Armi_Esotiche_Distanza');
 	
 	$wCategory['group'] = array('Senza_Armi','Armi_Semplici_Mischia');
@@ -8,6 +21,9 @@
 	$wCategory['Armi_Semplici_Mischia'] = array("Falcetto"=>"pfAspergillum",
 												"Guanto d'arme chiodato"=>"pfKnuckles",
 												"Mazza Leggera"=>"pfCestus");
+												
+												*/
+
 	/*
 	$wCategory['Armi_Semplici_Mischia'] = array("Falcetto"=>"pfArms",
 												"Guanto d'arme chiodato"=>"pfArms",
@@ -41,7 +57,15 @@
 	"Scudo leggero",
 	"Spada corta");
 	*/
-	echo json_encode ($wCategory);
+	
+	$json = json_encode ($weapons);
+					
+	//Translating races names
+	foreach ($pfWeapon[$_GET['lang']] as $index=>$translate){
+		$json = preg_replace('/{'.$index.'}/', $translate, $json);
+	}
+	
+	echo $json;
 	
 
 ?>

@@ -19,7 +19,7 @@ function buildRaceSelect(obj){
 			}
 	);
 	
-	var optGroups = buildGenericSelect(obj);
+	var optGroups = buildGenericSelect(obj,'races');
 	for (var i = 0; i < optGroups.length ; i++){
 		raceSelect.append(optGroups[i]); 
 	}
@@ -34,14 +34,15 @@ function buildArmorSelect(obj){
     
     armorSelect.change(
         function(){
-            gpfArmor.setArmor(armorSelect.val());
-            gpfArmor.update();      
+            var armor = armorSelect.val();
+            gpfArmor =  eval ("new "+armor+"();"); //this is the global Armor
             updateAllSheet();     
         }
     );
     
-    for (var i = 0; i < armors.length ; i++){
-        armorSelect.append($("<option></option>").attr("value",armors[i]).text(armors[i])); 
+    var optGroups = buildGenericSelect(obj,'armors');
+    for (var i = 0; i < optGroups.length ; i++){
+        armorSelect.append(optGroups[i]); 
     }
 }
 
@@ -49,19 +50,20 @@ function buildArmorSelect(obj){
 function buildShieldSelect(obj){
     var shieldSelect = $("#shieldName");
     if ( ($('#shieldName option').size()) > 0 ) return;
-    var shields = obj.shields;
     
     shieldSelect.change(
         function(){
-            gpfShield.setShield(shieldSelect.val());
-            gpfShield.update();  
-            updateAllSheet();     
+        	 var shield = shieldSelect.val();
+             gpfShield =  eval ("new "+shield+"();"); //this is the global Armor
+             updateAllSheet(); 
         }
     );
     
-    for (var i = 0; i < shields.length ; i++){
-        shieldSelect.append($("<option></option>").attr("value",shields[i]).text(shields[i])); 
-    }   
+    var optGroups = buildGenericSelect(obj,'shields');
+	for (var i = 0; i < optGroups.length ; i++){
+		shieldSelect.append(optGroups[i]); 
+	}
+    
 }
 
 //******************** CLASSES ***************************//
@@ -214,30 +216,20 @@ function buildWeaponList(obj){
                 }
             }
         );
-    
-    var group = obj.group;
-    for (var i = 0; i < group.length ; i++){
-        var string = JSON.stringify(globalWeaponList[group[i]]);
-        string = string.replace("{","");
-        string = string.replace("}","");
-        string = string.replace(/\"/g,'');
-        var weaponList = string.split(",");
-        var wl = "";
-        for (var j=0;j< weaponList.length;j++){
-            var value = weaponList[j].split(":");
-            wl += "<option value=\""+value[1]+"\">"+value[0]+"</option>";
-        }
         
-        sel0.append($("<optgroup id=\"wGroup"+i+"\"></optgroup>").attr("label",group[i])).append(wl);
-        sel1.append($("<optgroup id=\"wGroup"+i+"\"></optgroup>").attr("label",group[i])).append(wl); 
-        sel2.append($("<optgroup id=\"wGroup"+i+"\"></optgroup>").attr("label",group[i])).append(wl);
-        sel3.append($("<optgroup id=\"wGroup"+i+"\"></optgroup>").attr("label",group[i])).append(wl);
-        sel4.append($("<optgroup id=\"wGroup"+i+"\"></optgroup>").attr("label",group[i])).append(wl);
         
+    var optGroups = buildGenericSelect(obj,'weapons');
+    for (var i = 0; i < optGroups.length ; i++){
+        sel0.append(optGroups[i].clone());
+        sel1.append(optGroups[i].clone()); 
+        sel2.append(optGroups[i].clone());
+        sel3.append(optGroups[i].clone());
+        sel4.append(optGroups[i].clone());
     }
+        
 }
 
-function buildGenericSelect(obj){
+function buildGenericSelect(obj,id){
     var optGroups   = Array();
     var count = 0;
     for (var key in obj) {
@@ -247,7 +239,7 @@ function buildGenericSelect(obj){
             var val = children[son];
             options  += "<option value=\""+son+"\">"+val+"</option>";
         }
-        optGroups[count] = $("<optgroup></optgroup>").attr("label",key).append(options);
+        optGroups[count] = $("<optgroup id=\""+id+"_"+count+"\"></optgroup>").attr("label",key).append(options);
         count++;
     }
     return optGroups;
