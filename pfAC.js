@@ -19,12 +19,13 @@ function pfAC(){
 	this.acString      = "";
 	
 	this.update = function(){
-	    
+	    gpfArmor.update();
+	    gpfShield.update();
 	    //CA Types are:
 	    //Armor Type Bonus
-	    var armorBonus         = Math.max(gpfArmor.ac,globalACArmorMagic.val()/1);
+	    var armorBonus         = Math.max(globalACArmor.val()/1,globalACArmorMagic.val()/1);
 	    //Shield Bonus
-	    var shieldBonus        = gpfShield.ac;
+	    var shieldBonus        = globalACShield.val()/1;
 	    //Natural Armor Bonus
 	    var naturalArmorBonus  = this.acNat + globalACNatMagic.val()/1;
 	    //Mod Dex Bonus

@@ -25,7 +25,7 @@ Armature pesanti
    * [3]: Fallimento Incantesimi Arcani
    * [4]: Variazione sulla velocità corrente
    */
-
+/*
   $armor = array ('armors'=>array('nudo','imbottita','cuoio','cuoio borchiato','giacco di maglia','pelle','corazza di scaglie','cotta di maglia',
   								  'corazza di piastre','corazza a strisce','corazza di bande','mezza armatura','armatura completa'),
   				  
@@ -45,7 +45,48 @@ Armature pesanti
 				  'mezza_armatura'=>array (8,0,-7,40,-3),
   				  'armatura_completa'=>array (9,1,-6,35,-3)
     );
+    */
+    require('../languages/armor_language.php');
+	global $pfArmor;
+    
+    $armors = array('{light}'=>array(
+		    				'pfNake'=>'{nake}',
+						    'pfPadded'=>'{padded}',
+						    'pfQuiltedCloth'=>'{quiltedcloth}',
+						    'pfLeather'=>'{leather}',
+						    'pfRosewoodArmor'=>'{rosewood}',
+						    'pfLeafArmor'=>'{leafarmor}',
+						    'pfParadeArmor'=>'{paradearmor}',
+						    'pfWooden'=>'{wooden}',
+						    'pfChainShirt'=>'{chainshirt}',
+    						'pfHideShirt'=>'{hideshirt}'
+    					    ),
+    				'{medium}'=>array(
+    					    'pfArmoredCoat'=>'{armoredcoat}',
+    					    'pfHide'=>'{hide}',
+    					    'pfScaleMail'=>'{scalemail}',
+    					    'pfChainMail'=>'{chainmail}',
+    					    'pfBreastPlate'=>'{breastplate}',
+    					    'pfBreastPlateAgile'=>'{braastplateagile}'
+    					    ),
+    				'{heavy}'=>array(
+    					    'pfSplintMail'=>'{splintmail}',
+    					    'pfBandedMail'=>'{bandedmail}',
+    					    'pfFieldPlate'=>'{fieldplate}',
+    					    'pfHalfPlate'=>'{halfplate}',
+    					    'pfFullPlate'=>'{fullplate}',
+    					    'pfHellknightPlate'=>'{hellknightplate}',
+    					    'pfStonePlate'=>'{stoneplate}'
+    					    )
+    					    );
 	
-	echo json_encode ($armor);
+	$json = json_encode ($armors);
+					
+	//Translating races names
+	foreach ($pfArmor[$_GET['lang']] as $index=>$translate){
+		$json = preg_replace('/{'.$index.'}/', $translate, $json);
+	}
+	
+	echo $json;
 
 ?>
