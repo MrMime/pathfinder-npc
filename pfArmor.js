@@ -5,20 +5,20 @@ function pfArmor(){
 	this.maxDex			= 100;
 	this.penalty		= 0;
 	this.spellFailure 	= 0;
-	this.speedMod		= 0;
+	this.speedModifier	= 0;
 	
 	this.setCategory 		= function(category){ this.category = category; };
 	this.setMaxDex 			= function(maxDex){ this.maxDex = maxDex; };
 	this.setPenalty 		= function(penalty){ this.penalty = penalty; };
 	this.setSpellFailure 	= function(spellFailure){ this.spellFailure = spellFailure; };
-	this.speedMod 			= function(speedMod){ this.speedMod = speedMod; };
+	this.speedMod 			= function(speedMod){ this.speedModifier = speedMod; };
 	
 	this.setStats = function(armorStats){
         this.ac             = armorStats[0];
         this.maxDex         = armorStats[1];
         this.penalty        = armorStats[2];
         this.spellFailure   = armorStats[3];
-        this.speedMod       = armorStats[4];
+        this.speedModifier  = armorStats[4];
 	};
 	
 	this.update = function(){
@@ -27,7 +27,7 @@ function pfArmor(){
 	};
 	
 	this.draw  = function(){
-	    globalArmorPenaltyMovement.val(this.speedMod);
+	    globalArmorPenaltyMovement.val(this.speedModifier);
 	    globalACArmor.val(addPlus(this.ac));
 	};
 } 
