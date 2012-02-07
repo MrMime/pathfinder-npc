@@ -1,14 +1,23 @@
 <?php
-
-	$races = array ('races'		=>array('umano','elfo','nano','gnomo','halfing','half-orc','half-elf'),
-					'umano'		=>'pfHuman',
-				    'nano'		=>'pfDwarf',
-				    'elfo'		=>'pfElf',
-				    'gnomo'		=>'pfGnome',
-				    'halfing'	=>'pfHalfling',
-				    'half-orc'	=>'pfHalfOrc',
-				    'half-elf'	=>'pfHalfElf');
+	require('../languages/race_language.php');
+	global $pfRaces;
 	
-	echo json_encode ($races);
+	$races = array('core'=>array(
+				 	'pfHuman'=>'{human}',
+					'pfElf'=>'{elf}',
+					'pfDwarf'=>'{dwarf}',
+					'pfhalfing'=>'{halfing}',
+					'pfHalfOrc'=>'{half-orc}',
+					'pfHalfElf'=>'{half-elf}'
+					));
+	
+	$json = json_encode ($races);
+					
+	//Translating races names
+	foreach ($pfRaces[$_GET['lang']] as $index=>$translate){
+		$json = preg_replace('/{'.$index.'}/', $translate, $json);
+	}
+	
+	echo $json;
 	
 ?>

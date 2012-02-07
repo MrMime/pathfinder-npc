@@ -20,24 +20,25 @@ var globalMaxBab        = 0;
 var globalLevel         = 0;
 //Globals to know what appening
 var featsCols           = 3;
-var globalCurrentArmorCategory    = "light"; //current category of armor 
+var globalCurrentArmorCategory    = "light"; //current category of armor
+var globalLanguage; 
 
 //List of feats categorized by section influence
-var globalSizeFeats       = new Array();
-var globalRaceFeats       = new Array();
-var globalStatsFeats      = new Array();
-var globalClassesFeats    = new Array();
-var globalMovementFeats   = new Array();
-var globalAcFeats         = new Array();
-var globalInitFeats       = new Array();
-var globalWeaponsFeats    = new Array();
-var globalManeuversFeats  = new Array();
+var globalSizeFeatsList       = new Array();
+var globalRaceFeatsList       = new Array();
+var globalStatsFeatsList      = new Array();
+var globalClassesFeatsList    = new Array();
+var globalMovementFeatsList   = new Array();
+var globalACFeatsList         = new Array();
+var globalInitFeatsList       = new Array();
+var globalWeaponsFeatsList    = new Array();
+var globalManeuversFeatsList  = new Array();
 
 
 //MANAGING TWO HANDS COMBAT
-var globalSecondWeaponType      = "";
-var globalMainWeapon            = pfWeapon();
-var globalSecondWeapon          = pfWeapon();
+var globalSecondWeaponType           = "";
+var globalMainWeapon                 = new pfWeapon();
+var globalSecondWeapon               = new pfWeapon();
 var globalMainWeaponFeatsCheck       = null;
 var globalSecondWeaponFeatsCheck     = null;
 
@@ -171,6 +172,10 @@ var globalRaceTSF;
 var globalRaceTSR;
 var globalRaceTSW;
 
+var globalFeatTSF;
+var globalFeatTSR;
+var globalFeatTSW;
+
 //Maneuver TOTALS GLOBALS
 var globalCMBTotal;
 var globalCMDTotal;
@@ -249,6 +254,8 @@ var globalWeaponMagic               = new Array();
 var globalWeaponEnchantment         = new Array();
 
 function setAll(){
+    globalLanguage = $('#language').val();
+    
 	//ASSOCIATION BETWEEN GLOBALS AND HTML INPUTS
 	
 	//STATS
@@ -352,6 +359,10 @@ function setAll(){
 		globalRaceTSF = $('#raceTSF');
 		globalRaceTSR = $('#raceTSR');
 		globalRaceTSW = $('#raceTSW');
+		
+		globalFeatTSF	= $('#featTSF');
+		globalFeatTSR	= $('#featTSR');
+		globalFeatTSW	= $('#featTSW');
 		
 		
 		//MANEUVERS
