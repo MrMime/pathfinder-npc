@@ -110,12 +110,12 @@ function pfCharacter(){
 	};
 	
 	this.rollStats = function(high){
-		str.val(rollStat(high));
-		cos.val(rollStat(high));
-		dex.val(rollStat(high));
-		int.val(rollStat(high));
-		wis.val(rollStat(high));
-		cha.val(rollStat(high));
+		strStat.val(rollStat(high));
+		cosStat.val(rollStat(high));
+		dexStat.val(rollStat(high));
+		intStat.val(rollStat(high));
+		wisStat.val(rollStat(high));
+		chaStat.val(rollStat(high));
 	};
 	
 	this.update   = function(){
