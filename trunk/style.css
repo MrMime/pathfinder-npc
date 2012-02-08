@@ -76,6 +76,25 @@ IMG#flourishTop {
 	right: 0;
 }
 
+DIV#featskillcontainer {
+	display:block;
+}
+
+#featsSection {
+	float:left;
+	width:400px;
+	margin-left:-100%;
+}
+
+#skillsSection {
+	float:left;
+	width:100%;
+}
+
+#skillContents {
+	margin-left:410px;
+}
+
 .graffa {
 	//background-image:url('./pageImages/raggruppatore.jpg');
 	background-color:#BDB76B;

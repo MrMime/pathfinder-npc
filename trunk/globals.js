@@ -19,7 +19,7 @@ var globalCurrentMaxDex = 0; //is the current mod dex max (armor and shield may 
 var globalMaxBab        = 0;
 var globalLevel         = 0;
 //Globals to know what appening
-var featsCols           = 3;
+var featsCols           = 1;
 var globalCurrentArmorCategory    = "light"; //current category of armor
 var globalLanguage; 
 
@@ -70,12 +70,12 @@ gpfWeapon[3] = new pfWeapon();
 gpfWeapon[4] = new pfWeapon();
 
 //GLOBALS RELATED TO HTML TAGS
-var str; 
-var cos;
-var dex;
-var int;
-var wis;
-var cha;
+var strStat; 
+var cosStat;
+var dexStat;
+var intStat;
+var wisStat;
+var chaStat;
 
 var modRaceStr;
 var modRaceCos;
@@ -259,12 +259,12 @@ function setAll(){
 	//ASSOCIATION BETWEEN GLOBALS AND HTML INPUTS
 	
 	//STATS
-	str 		= $('#str');
-	cos 		= $('#cos');
-	dex 		= $('#dex');
-	int 		= $('#int');
-	wis 		= $('#wis');
-	cha 		= $('#cha');
+	strStat 		= $('#str');
+	cosStat 		= $('#cos');
+	dexStat 		= $('#dex');
+	intStat 		= $('#int');
+	wisStat 		= $('#wis');
+	chaStat 		= $('#cha');
 	
 	totalModStr = $('#totalModStr');
 	totalModCos = $('#totalModCos');

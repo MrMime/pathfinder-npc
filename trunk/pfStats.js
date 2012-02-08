@@ -53,12 +53,12 @@ function pfStats(stats){
 	};
 	
 	this.calculateTotals = function(){
-		this.totalStr = str.val()/1 + modRaceStr.val()/1;
-		this.totalCos = cos.val()/1 + modRaceCos.val()/1;
-		this.totalDex = dex.val()/1 + modRaceDex.val()/1;
-		this.totalInt = int.val()/1 + modRaceInt.val()/1;
-		this.totalWis = wis.val()/1 + modRaceWis.val()/1;
-		this.totalCha = cha.val()/1 + modRaceCha.val()/1;
+		this.totalStr = strStat.val()/1 + modRaceStr.val()/1;
+		this.totalCos = cosStat.val()/1 + modRaceCos.val()/1;
+		this.totalDex = dexStat.val()/1 + modRaceDex.val()/1;
+		this.totalInt = intStat.val()/1 + modRaceInt.val()/1;
+		this.totalWis = wisStat.val()/1 + modRaceWis.val()/1;
+		this.totalCha = chaStat.val()/1 + modRaceCha.val()/1;
 	};
 	
 	this.update = function() {
