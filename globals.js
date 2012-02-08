@@ -22,6 +22,7 @@ var globalLevel         = 0;
 var featsCols           = 1;
 var globalCurrentArmorCategory    = "light"; //current category of armor
 var globalLanguage; 
+var globalStatsMods				  = new Array();
 
 //List of feats categorized by section influence
 var globalSizeFeatsList       = new Array();
@@ -272,6 +273,13 @@ function setAll(){
 	totalModInt	= $('#totalModInt');
 	totalModWis = $('#totalModWis');
 	totalModCha = $('#totalModCha');
+	
+	globalStatsMods["str"] = totalModStr;
+	globalStatsMods["dex"] = totalModDex;
+	globalStatsMods["cos"] = totalModCos;
+	globalStatsMods["int"] = totalModInt;
+	globalStatsMods["wis"] = totalModWis;
+	globalStatsMods["cha"] = totalModCha;
 	
 	modRaceStr 	= $('#modRaceStr');
 	modRaceCos 	= $('#modRaceCos');
