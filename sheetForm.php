@@ -19,8 +19,33 @@
 	$code = file_get_contents('npcSheet.html');
 	$code = str_replace ('[[action]]',$_SERVER['REQUEST_URI'],$code);
 	$code = preg_replace('/{lang}/', $_GET['lang'], $code);
+
 	
 	//Including HTML Sections
+	//************************** MOVEMENT ******************************************//
+	$alignmentCode = file_get_contents ('./html/movement.html');
+	$code = str_replace('[[movement_html]]',$alignmentCode,$code);
+	//************************** STATS ******************************************//
+	$alignmentCode = file_get_contents ('./html/stats.html');
+	$code = str_replace('[[stats_html]]',$alignmentCode,$code);
+	//************************** INITIATIVE***************************************//
+	$alignmentCode = file_get_contents ('./html/initiative.html');
+	$code = str_replace('[[initiative_html]]',$alignmentCode,$code);
+	//************************** HP ***************************************//
+	$alignmentCode = file_get_contents ('./html/hp.html');
+	$code = str_replace('[[hp_html]]',$alignmentCode,$code);
+	//************************** AC ***************************************//
+	$alignmentCode = file_get_contents ('./html/ac.html');
+	$code = str_replace('[[ac_html]]',$alignmentCode,$code);
+	//************************** CLASSES ***************************************//
+	$alignmentCode = file_get_contents ('./html/classes.html');
+	$code = str_replace('[[classes_html]]',$alignmentCode,$code);
+	//************************** MANEUVERS ***************************************//
+	$alignmentCode = file_get_contents ('./html/maneuvers.html');
+	$code = str_replace('[[maneuvers_html]]',$alignmentCode,$code);
+	//************************** MANEUVERS ***************************************//
+	$alignmentCode = file_get_contents ('./html/weapons.html');
+	$code = str_replace('[[weapons_html]]',$alignmentCode,$code);
 	
 	//************************** SKILLS *********************************************//
 	$skillsCode = file_get_contents ('./html/skills.html');

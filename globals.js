@@ -19,7 +19,7 @@ var globalCurrentMaxDex = 0; //is the current mod dex max (armor and shield may 
 var globalMaxBab        = 0;
 var globalLevel         = 0;
 //Globals to know what appening
-var featsCols           = 1;
+var featsCols           = 2;
 var globalCurrentArmorCategory    = "light"; //current category of armor
 var globalCurrentArmorSkillPenalty	= 0; //Usefull for Skills. Every skill will take this value to calculate total skill check
 var globalLanguage; 
