@@ -23,6 +23,7 @@ function pfArmor(){
 	
 	this.update = function(){
 	    globalCurrentArmorCategory = this.category;
+	    globalCurrentArmorSkillPenalty = this.penalty;
         this.draw();
 	};
 	

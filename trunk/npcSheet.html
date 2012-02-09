@@ -20,7 +20,8 @@
 	<script type="text/javascript" src="pfManeuvers.js"></script>
 	<script type="text/javascript" src="pfInitiative.js"></script>
 	<script type="text/javascript" src="globals.js"></script>
-	<script type="text/javascript" src="feats.js"></script>
+	<script type="text/javascript" src="pfFeats.js"></script>
+	<script type="text/javascript" src="pfSkill.js"></script>
 	<script type="text/javascript" src="pfNpcForm.js"></script>
 	<link rel="stylesheet" type="text/css" href="tipTip.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -864,18 +865,19 @@
 	
 </fieldset>
 <div id="featskillcontainer">
-	<div id="skillsSection">
-		<div id="skillContents">
-			<legend>{skills}</legend>
-			[[skills_html]]			
-		</div>
-	</div>
 	<div id="featsSection">
 		<div id="feats">
 			<legend>{feats}</legend>
 			<div id="featsContents"></div>
 		</div>
 	</div>
+	<div id="skillsSection">
+		<div id="skillContents">
+			<legend>{skills}</legend>
+			[[skills_html]]			
+		</div>
+	</div>
+	
 </div>
 	
 	<input type="submit" value="crea" />
