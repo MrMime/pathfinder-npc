@@ -41,9 +41,14 @@ function pfSkill()
 	
 	this.draw = function(){
 		$('#skillMod'+this.name).val(addPlus(this.mod));
-		$('#skillTotal'+this.name).val(addPlus(this.totalCheck));
+		$('#skillTotal'+this.name).val((this.totalCheck=="NA") ? this.totalCheck:addPlus(this.totalCheck));
 		$('#skillArmorPenalty'+this.name).val(addPlus(this.armorPenalty));
 		$('#skillTrained'+this.name).val(addPlus(this.classBonus));
+		
+		if ($.inArray(this.name,globalClassesSkills) == 0)
+			$('#skillName'+this.name).addClass('featEvidence');
+		else
+			$('#skillName'+this.name).removeClass('featEvidence');
 	};
 
 }
@@ -56,4 +61,20 @@ function pfAcrobatics(){
     this.stat	= "dex";
 }
 
+function pfHandleAnimal(){
+	this.inheritFrom = pfSkill;
+    this.inheritFrom();
+    this.name 			= "handle_animal";
+    this.requireTrain 	= true;
+    this.stat			= "cha";
+}
+
+function pfCraft(){
+	this.inheritFrom = pfSkill;
+    this.inheritFrom();
+    this.name 			= "craft";
+    this.stat			= "int";
+}
+
 globalSkillList.push(new pfAcrobatics());
+globalSkillList.push(new pfHandleAnimal());

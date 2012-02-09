@@ -1,0 +1,61 @@
+<input type="button" onClick="gpfCharacter.rollStats(false);updateAllSheet();" value="{roll_stats}" id="rollStatsBase"/> <input type="button" onClick="gpfCharacter.rollStats(true);updateAllSheet();" value="{roll_stats_high}"/>
+<table border="0">
+	<tr>
+		<th>&nbsp;</td>
+		<th>Str</td>
+		<th>Cos</th>
+		<th>Des</th>
+		<th>Int</th>
+		<th>Wis</th>
+		<th>Cha</th>
+		<th>Cus</th>
+	</tr>
+	<tr>
+		<td class="right">{stats}</td>
+		<td><input class="center" id="str" type="text" size="3" onKeyUp = "updateAllSheet();" value="10" /></td>
+		<td><input class="center" id="cos" type="text" size="3" onKeyUp = "updateAllSheet();" value="10" /></td>
+		<td><input class="center" id="dex" type="text" size="3" onKeyUp = "updateAllSheet();" value="10" /></td>
+		<td><input class="center" id="int" type="text" size="3" onKeyUp = "updateAllSheet();" value="10" /></td>
+		<td><input class="center" id="wis" type="text" size="3" onKeyUp = "updateAllSheet();" value="10" /></td>
+		<td><input class="center" id="cha" type="text" size="3" onKeyUp = "updateAllSheet();" value="10" /></td>
+	</tr>
+	<tr>
+		<td class="right">{racial_mod}</td>
+		<td><input class="center" id="modRaceStr" type="text" size="3" value="0" readonly="readonly" /></td>
+		<td><input class="center" id="modRaceCos" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center" id="modRaceDex" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center" id="modRaceInt" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center" id="modRaceWis" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center" id="modRaceCha" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center" id="modRaceCus" type="text" size="3" value="2" readonly="readonly"/></td>
+	</tr>
+	<tr id="customChoiceRadio">
+		<td class="right">{choose_custom_mod}</td>
+		<td><input class="center" id="modRaceStrCus" type="radio" name="cuschoice" value="0" onClick = "gpfRace.setCustomModStat('str');updateAllSheet();" /></td>
+		<td><input class="center" id="modRaceCosCus" type="radio" name="cuschoice" value="0" onClick = "gpfRace.setCustomModStat('cos');updateAllSheet();" /></td>
+		<td><input class="center" id="modRaceDexCus" type="radio" name="cuschoice" value="0" onClick = "gpfRace.setCustomModStat('dex');updateAllSheet();" /></td>
+		<td><input class="center" id="modRaceIntCus" type="radio" name="cuschoice" value="0" onClick = "gpfRace.setCustomModStat('int');updateAllSheet();" /></td>
+		<td><input class="center" id="modRaceWisCus" type="radio" name="cuschoice" value="0" onClick = "gpfRace.setCustomModStat('wis');updateAllSheet();" /></td>
+		<td><input class="center" id="modRaceChaCus" type="radio" name="cuschoice" value="0" onClick = "gpfRace.setCustomModStat('cha');updateAllSheet();" /></td>
+		<td><input class="center" id="modRaceCusCus" type="radio" name="cuschoice" value="0" onClick = "gpfRace.setCustomModStat('cus');updateAllSheet();" /></td>
+	</tr>
+	<tr>
+		<td class="right">{total}</td>
+		<td><input class="center bold" name="totalStr" id="totalStr" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center bold" name="totalCos" id="totalCos" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center bold" name="totalDex" id="totalDex" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center bold" name="totalInt" id="totalInt" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center bold" name="totalWis" id="totalWis" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center bold" name="totalCha" id="totalCha" type="text" size="3" value="0" readonly="readonly"/></td>
+	</tr>
+	<tr>
+		<td class="right">{modifier}</td>
+		<td><input class="center bold" id="totalModStr" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center bold" id="totalModCos" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center bold" id="totalModDex" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center bold" id="totalModInt" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center bold" id="totalModWis" type="text" size="3" value="0" readonly="readonly"/></td>
+		<td><input class="center bold" id="totalModCha" type="text" size="3" value="0" readonly="readonly"/></td>
+	</tr>
+	
+</table>
