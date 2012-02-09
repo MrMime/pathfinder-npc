@@ -1,15 +1,18 @@
 <?php
-
-	
-	require ('./languages/sheet_language.php');
-	require ('./ajaxPhp/skillList.php');
-	global $pfNpcSheet, $skills;
-	
 	if (!isset($_GET['lang']))
 		$_GET['lang'] = 'ita';
+		
+	$GLOBALS['lang'] = $_GET['lang'];
+	
+	require ('./languages/sheet_language.php');
+	require ('./languages/skill_language.php');
+	require ('./ajaxPhp/skillList.php');
+	global $pfNpcSheet, $skills, $lang, $skillLanguage;
+	
+	
 	/*
 	echo '<pre>';
-	print_r ($skills);
+	print_r ($skillLanguage[$lang]);
 	echo '</pre>';
 	*/
 		
@@ -18,21 +21,37 @@
 	$code = preg_replace('/{lang}/', $_GET['lang'], $code);
 	
 	//Including HTML Sections
-	$skillsBase = file_get_contents ('./html/skills.html');
-	$skill 		= file_get_contents ('./html/singleSkill.html');
-	$singleSkillCode = "";
-	foreach ($skills as $skillKey=>$skillName){
-		$singleSkillCode .= str_replace ('{skillname}',$skillKey,$skill);
-		$singleSkillCode = str_replace ('{skillnamevalue}',$skillName,$singleSkillCode);
-	}
-	$skillsBase = str_replace ('[[skills]]',$singleSkillCode,$skillsBase);
 	
-	$code = str_replace('[[skills_html]]',$skillsBase,$code);
+	//************************** SKILLS *********************************************//
+	$skillsCode = file_get_contents ('./html/skills.html');
+	$regExp = '/\<repeatable\>(.*?)\<\/repeatable\>/s';
+	preg_match ($regExp,$skillsCode,$singleSkillCode);
+	$singleSkillCode = $singleSkillCode[1];
+
+	$totalSkillsCode = "";
+	$orderedSkills = array();
+	foreach ($skills as $skillKey=>$skillName){
+		$orderedSkills[$skillKey] = $skillLanguage[$lang][$skillName];
+	}
+	
+	asort($orderedSkills);
+	foreach ($orderedSkills as $skillKey=>$skillName){
+		$totalSkillsCode   .= str_replace ('{skillname}',$skillKey,$singleSkillCode);
+		$totalSkillsCode 	= str_replace ('{skillnamevalue}',$skillName,$totalSkillsCode);
+	}
+	$skillsCode = preg_replace ($regExp,$totalSkillsCode,$skillsCode);
+	$code = str_replace('[[skills_html]]',$skillsCode,$code);
+	//****************************** END SKILLS SECTIONS ******************************//
 	
 	//Translating sheets
-	foreach ($pfNpcSheet[$_GET['lang']] as $index=>$translate){
+	foreach ($pfNpcSheet[$lang] as $index=>$translate){
 		$code = preg_replace('/{'.$index.'}/', $translate, $code);
 	}
+	
+	foreach ($skillLanguage[$lang] as $index=>$translate){
+		$code = preg_replace('/{'.$index.'}/', $translate, $code);
+	}
+	
 		
 	echo $code;
 	

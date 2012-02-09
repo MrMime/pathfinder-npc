@@ -21,8 +21,10 @@ var globalLevel         = 0;
 //Globals to know what appening
 var featsCols           = 1;
 var globalCurrentArmorCategory    = "light"; //current category of armor
+var globalCurrentArmorSkillPenalty	= 0; //Usefull for Skills. Every skill will take this value to calculate total skill check
 var globalLanguage; 
 var globalStatsMods				  = new Array();
+var globalClassesSkills			  = new Array();
 
 //List of feats categorized by section influence
 var globalSizeFeatsList       = new Array();
@@ -35,6 +37,8 @@ var globalInitFeatsList       = new Array();
 var globalWeaponsFeatsList    = new Array();
 var globalManeuversFeatsList  = new Array();
 
+//List of Skills
+var globalSkillList			  = new Array();
 
 //MANAGING TWO HANDS COMBAT
 var globalSecondWeaponType           = "";

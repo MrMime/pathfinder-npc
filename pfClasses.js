@@ -30,6 +30,7 @@ function pfClass(){
 	this.ARMods             = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //attack roll bonus
 	this.damageMods         = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //damage bonus
 	this.initMods           = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //initiative bonus
+	this.classSkill			= new Array();
 	this.totalFeats			= 0;
 	this.favourite			= false;
 	this.bonusHP       		= false; //true if HP bonus for favoruite class is selected
@@ -222,6 +223,7 @@ function pfBarbarian(){
 	this.speed  		= 3;
 	this.skillBase  	= 4;
 	this.ld				= 12;
+	this.classSkill		= new Array('acrobatics');
 }
 
 function pfWarrior(){

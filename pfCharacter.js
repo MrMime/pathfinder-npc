@@ -45,6 +45,8 @@ function pfCharacter(){
         this.classesARBonus     = 0;
         this.classesDamageBonus = 0;
         
+        globalClassesSkills		= new Array();
+        
          //Updating cells in Weapons section
         for (i=0;i<5;i++) {
            globalWeaponBAB[i].val(addPlus(0));
@@ -78,6 +80,8 @@ function pfCharacter(){
 		this.totalDiceHP.push(pfClass.totalDiceHP);
 		this.favouriteHP        += pfClass.favouriteHP;
 		this.averageHP 			+= pfClass.averageHP;
+		
+		$.merge (globalClassesSkills,pfClass.classSkill);
 		
 		this.babBase[this.totalLevel] = this.maxBab;
 		

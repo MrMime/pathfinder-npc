@@ -101,7 +101,7 @@ function manageFavourite(index){
     
 }
 
-function updateFeats(list){
+function updateFeatsOrSkills(list){
      var len = list.length;
      if (len == 0) return;
 	 for (var i=0;i<len; i++)
@@ -109,39 +109,43 @@ function updateFeats(list){
 }
 
 function updateMovementFeats(){
-	updateFeats(globalMovementFeatsList);
+	updateFeatsOrSkills(globalMovementFeatsList);
 }
 
 function updateClassFeats(){
-	updateFeats(globalClassesFeatsList);
+	updateFeatsOrSkills(globalClassesFeatsList);
 }
 
 function updateSizeFeats(){
-    updateFeats(globalSizeFeatsList);
+	updateFeatsOrSkills(globalSizeFeatsList);
 }
 
 function updateRaceFeats(){
-    updateFeats(globalRaceFeatsList);
+	updateFeatsOrSkills(globalRaceFeatsList);
 }
 
 function updateStatsFeats(){
-    updateFeats(globalStatsFeatsList);
+	updateFeatsOrSkills(globalStatsFeatsList);
 }
 
 function updateACFeats(){
-    updateFeats(globalACFeatsList);
+	updateFeatsOrSkills(globalACFeatsList);
 }
 
 function updateInitFeats(){
-    updateFeats(globalInitFeatsList);
+	updateFeatsOrSkills(globalInitFeatsList);
 }
 
 function updateWeaponFeats(){
-    updateFeats(globalInitFeatsList);
+	updateFeatsOrSkills(globalInitFeatsList);
 }
 
 function updateManeuverFeats(){
-    updateFeats(globalManeuversFeatsList);
+	updateFeatsOrSkills(globalManeuversFeatsList);
+}
+
+function updateAllSkills(){
+	updateFeatsOrSkills(globalSkillList);
 }
 
 function updateAllSheet(){
@@ -172,6 +176,8 @@ function updateAllSheet(){
     //maneuvers
     updateManeuverFeats();
 	updateManeuvers();
+	//updating skills section
+	updateAllSkills();
 }
 
 function updateWeapons(){

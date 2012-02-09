@@ -82,17 +82,18 @@ DIV#featskillcontainer {
 
 #featsSection {
 	float:left;
-	width:400px;
-	margin-left:-100%;
+	width:100%;
+	z-index:100;
 }
 
 #skillsSection {
 	float:left;
-	width:100%;
+	width:700px;
+	margin-left:-100%;
 }
 
-#skillContents {
-	margin-left:410px;
+#feats {
+	margin-left:710px;
 }
 
 .graffa {
