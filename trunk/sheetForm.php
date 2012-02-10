@@ -23,29 +23,37 @@
 	
 	//Including HTML Sections
 	//************************** MOVEMENT ******************************************//
-	$alignmentCode = file_get_contents ('./html/movement.html');
-	$code = str_replace('[[movement_html]]',$alignmentCode,$code);
+	$htmlCode = file_get_contents ('./html/movement.html');
+	$code = str_replace('[[movement_html]]',$htmlCode,$code);
 	//************************** STATS ******************************************//
-	$alignmentCode = file_get_contents ('./html/stats.html');
-	$code = str_replace('[[stats_html]]',$alignmentCode,$code);
+	$htmlCode = file_get_contents ('./html/stats.html');
+	$code = str_replace('[[stats_html]]',$htmlCode,$code);
 	//************************** INITIATIVE***************************************//
-	$alignmentCode = file_get_contents ('./html/initiative.html');
-	$code = str_replace('[[initiative_html]]',$alignmentCode,$code);
+	$htmlCode = file_get_contents ('./html/initiative.html');
+	$code = str_replace('[[initiative_html]]',$htmlCode,$code);
 	//************************** HP ***************************************//
-	$alignmentCode = file_get_contents ('./html/hp.html');
-	$code = str_replace('[[hp_html]]',$alignmentCode,$code);
+	$htmlCode = file_get_contents ('./html/hp.html');
+	$code = str_replace('[[hp_html]]',$htmlCode,$code);
 	//************************** AC ***************************************//
-	$alignmentCode = file_get_contents ('./html/ac.html');
-	$code = str_replace('[[ac_html]]',$alignmentCode,$code);
+	$htmlCode = file_get_contents ('./html/ac.html');
+	$code = str_replace('[[ac_html]]',$htmlCode,$code);
 	//************************** CLASSES ***************************************//
-	$alignmentCode = file_get_contents ('./html/classes.html');
-	$code = str_replace('[[classes_html]]',$alignmentCode,$code);
+	$htmlCode = file_get_contents ('./html/classes.html');
+	$regExp = '/\<repeatable\>(.*?)\<\/repeatable\>/s';
+	preg_match ($regExp,$htmlCode,$singleClassCode);
+	$singleClassCode = $singleClassCode[1];
+	$totalClassesCode = "";
+	for ($i=0;$i<6;$i++)
+		$totalClassesCode .= str_replace('{index}',$i,$singleClassCode);
+	
+	$totalClassesCode = preg_replace ($regExp,$totalClassesCode,$htmlCode);
+	$code = str_replace('[[classes_html]]',$totalClassesCode,$code);
 	//************************** MANEUVERS ***************************************//
-	$alignmentCode = file_get_contents ('./html/maneuvers.html');
-	$code = str_replace('[[maneuvers_html]]',$alignmentCode,$code);
+	$htmlCode = file_get_contents ('./html/maneuvers.html');
+	$code = str_replace('[[maneuvers_html]]',$htmlCode,$code);
 	//************************** MANEUVERS ***************************************//
-	$alignmentCode = file_get_contents ('./html/weapons.html');
-	$code = str_replace('[[weapons_html]]',$alignmentCode,$code);
+	$htmlCode = file_get_contents ('./html/weapons.html');
+	$code = str_replace('[[weapons_html]]',$htmlCode,$code);
 	
 	//************************** SKILLS *********************************************//
 	$skillsCode = file_get_contents ('./html/skills.html');

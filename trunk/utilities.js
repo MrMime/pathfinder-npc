@@ -19,6 +19,18 @@ function getCheck(obj){
 	return 0;
 }
 
+function manageSkillPoint(skillname,increment){
+	var pointInputs = $('#skillPoints'+skillname);
+	var currentPoint = pointInputs.val()/1;
+	
+	switch(increment){
+		case 1:  pointInputs.val(Math.min(currentPoint+1,globalLevel)); break;
+		case -1: pointInputs.val(Math.max(currentPoint-1,0)); break;
+		case 0: pointInputs.val(0); break;
+	}
+	updateAllSheet();
+}
+
 /**
  * Implode an Array into a string with a token separator
  * es. a = {1,2,3,4} token = ";"

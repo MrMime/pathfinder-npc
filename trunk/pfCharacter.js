@@ -123,7 +123,9 @@ function pfCharacter(){
 	};
 	
 	this.update   = function(){
-	   globalLevel = this.totalLevel;
+	   globalLevel 			= this.totalLevel;
+	   globalSkillPointsMax	= this.skillPointClass;
+	   
 	   this.calculateBAB();
        this.calculateHP();
 	    

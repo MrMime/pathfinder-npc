@@ -197,25 +197,11 @@ function updateClasses(){
     
     gpfCharacter.eraseAllClasses();
     
-    gpfClasses[0].setIndex(0);
-    gpfClasses[0].setLevel(globalClassLevels[0]);
-    gpfClasses[0].update();
-    
-    gpfClasses[1].setIndex(1);
-    gpfClasses[1].setLevel(globalClassLevels[1]);
-    gpfClasses[1].update();
-    
-    gpfClasses[2].setIndex(2);
-    gpfClasses[2].setLevel(globalClassLevels[2]);
-    gpfClasses[2].update();
-    
-    gpfClasses[3].setIndex(3);
-    gpfClasses[3].setLevel(globalClassLevels[3]);
-    gpfClasses[3].update();
-    
-    gpfClasses[4].setIndex(4);
-    gpfClasses[4].setLevel(globalClassLevels[4]);
-    gpfClasses[4].update();
+    for (var i=0;i<maxMulticlass;i++) {
+        gpfClasses[i].setIndex(i);
+        gpfClasses[i].setLevel(globalClassLevels[i]);
+        gpfClasses[i].update();
+    }
     
     gpfCharacter.addPfClasses(gpfClasses);
     
