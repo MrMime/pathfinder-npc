@@ -16,7 +16,10 @@
 				<tr>
 					<td>{index}</td>
 					<td><select id="class0{index}Name" index="{index}" name="classes[{index}]['name']"></select></td>
-					<td><input type="text" class="center" id="class0{index}Level" 	name="classes[{index}]['level']" 		value="0" size="3" onKeyUp="updateClassLevel({index},this.value);updateAllSheet();" disabled="disabled" /></td>
+					<td>
+						<select id="class0{index}Level" name="classes[{index}]['level']" onChange="updateClassLevel({index},$(this).val()); updateAllSheet();">
+						</select>
+					</td>
 					<td><input type="checkbox" class="center" id="class0{index}Preferred"  value="0" onChange="manageFavourite({index}); updateAllSheet();"  /></td>
 					<td><input type="radio" class="center" id="class0{index}PrefHP"  	  name="class00PrefBonus"  onChange="manageFavourite({index}); updateAllSheet();" /></td>
 					<td><input type="radio" class="center" id="class0{index}PrefSkill"  name="class00PrefBonus"  onChange="manageFavourite({index}); updateAllSheet();" /></td>
