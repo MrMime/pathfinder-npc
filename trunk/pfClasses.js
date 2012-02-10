@@ -135,8 +135,16 @@ function pfClass(){
 		this.totalFeats = arrayCustomSum(this.feats,1,this.level);
 	};
 	
+	this.makeLevelOptions = function(){
+		var id = 'class0'+this.index+'Level';
+		var sel = $('#'+id);
+		if ( ($('#'+id+' option').size()) > 0 ) return;
+		for (var i=1;i<=this.maxLevel;i++)
+			sel.append('<option value="'+i+'">'+i+'</option>');
+	};
 	
 	this.update = function(){
+		this.makeLevelOptions();
 	    this.calculateST(); //calculating save throw
 	    this.calculateSkillPoint();
 	    this.calculateInitBonus();
