@@ -68,88 +68,31 @@ function buildShieldSelect(obj){
 
 //******************** CLASSES ***************************//
 function buildClassesList(obj){
-    var sel0 = $("#class00Name");
-    var sel1 = $("#class01Name");
-    var sel2 = $("#class02Name");
-    var sel3 = $("#class03Name");
-    var sel4 = $("#class04Name");
-    
-    if ( ($('#class00Name option').size()) > 0 ) return;
-    
-    sel0.change(
-            function(){
-                if (sel0.val() != '--') {
-                    $("#class00Level").removeAttr('disabled');
-                    var cc = sel0.val();
-                    gpfClasses[0] = eval ("new "+cc+"();");
-                    updateAllSheet();
-                }
-                else 
-                    $("#class00Level").attr('disabled',true);
-            }
-        );
-    
-    sel1.change(
-            function(){
-                if (sel1.val() != '--') {
-                    $("#class01Level").removeAttr('disabled');
-                    var cc = sel1.val();
-                    gpfClasses[1] = eval ("new "+cc+"();");
-                    updateAllSheet();
-                }
-                else 
-                    $("#class01Level").attr('disabled',true);
-            }
-        );
-    
-    sel2.change(
-            function(){
-                if (sel2.val() != '--') {
-                    $("#class02Level").removeAttr('disabled');
-                    var cc = sel2.val();
-                    gpfClasses[2] = eval ("new "+cc+"();");
-                    updateAllSheet();
-                }
-                else 
-                    $("#class02Level").attr('disabled',true);
-            }
-        );
-    
-    sel3.change(
-            function(){
-                if (sel3.val() != '--'){
-                    $("#class03Level").removeAttr('disabled');
-                    var cc = sel3.val();
-                    gpfClasses[3] = eval ("new "+cc+"();");
-                    updateAllSheet();
-                }
-                else 
-                    $("#class03Level").attr('disabled',true);
-            }
-        );
-        
-     sel4.change(
-            function(){
-                if (sel4.val() != '--'){
-                    $("#class04Level").removeAttr('disabled');
-                    var cc = sel4.val();
-                    gpfClasses[4] = eval ("new "+cc+"();");
-                    updateAllSheet();
-                }
-                else 
-                    $("#class04Level").attr('disabled',true);
-            }
-        );
-     
-     var optGroups = buildGenericSelect(obj,'classes');
-     for (var i = 0; i < optGroups.length ; i++){
-         sel0.append(optGroups[i].clone());
-         sel1.append(optGroups[i].clone()); 
-         sel2.append(optGroups[i].clone());
-         sel3.append(optGroups[i].clone());
-         sel4.append(optGroups[i].clone());
-     }
-    
+	if ( ($('#class00Name option').size()) > 0 ) return;
+	
+	var classSelects = new Array();
+	var optGroups = buildGenericSelect(obj,'classes');
+	
+	for (var i=0;i<maxMulticlass;i++){
+		classSelects[i] = $("#class0"+i+"Name");
+		classSelects[i].change(
+	            function(){
+	                if ($(this).val() != '--') {
+	                	var index = $(this).attr('index');
+	                    $("#class0"+index+"Level").removeAttr('disabled');
+	                    var selectedPfClass = $(this).val();
+	                    gpfClasses[index] = eval ("new "+selectedPfClass+"();");
+	                    updateAllSheet();
+	                }
+	                else 
+	                    $("#class0"+index+"Level").attr('disabled',true);
+	            }
+	        ); 
+		for (var h = 0; h < optGroups.length; h++){
+			classSelects[i].append(optGroups[h].clone());
+	    }
+	}
+	
 }
 
 

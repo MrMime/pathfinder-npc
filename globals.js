@@ -15,11 +15,13 @@ var gpfArmor 			= new pfArmor();
 var gpfShield			= new pfShield();
 var gpfManeuvers        = new pfManeuvers();
 //Global specific data to allow other class knows what is happening
-var globalCurrentMaxDex = 0; //is the current mod dex max (armor and shield may add penalty)
-var globalMaxBab        = 0;
-var globalLevel         = 0;
+var globalCurrentMaxDex 	= 0; //is the current mod dex max (armor and shield may add penalty)
+var globalMaxBab        	= 0;
+var globalLevel         	= 0;
+var	globalSkillPointsMax	= 0; //max skill point avaiable (sum of single class current skillpoint)
 //Globals to know what appening
-var featsCols           = 2;
+var featsCols           	= 2;
+var maxMulticlass			= 6;
 var globalCurrentArmorCategory    = "light"; //current category of armor
 var globalCurrentArmorSkillPenalty	= 0; //Usefull for Skills. Every skill will take this value to calculate total skill check
 var globalLanguage; 
@@ -60,12 +62,9 @@ var globalShieldList 	= new Array();
 var globalClassList 	= new Array();
 var globalFeatsList     = new Array();
 
-var gpfClasses = new Array(); 
-gpfClasses[0] = new pfClass();
-gpfClasses[1] = new pfClass();
-gpfClasses[2] = new pfClass();
-gpfClasses[3] = new pfClass();
-gpfClasses[4] = new pfClass();
+var gpfClasses = new Array();
+for (var i=0;i<maxMulticlass;i++)
+	gpfClasses[i] = new pfClass();
 
 var gpfWeapon   = new Array();
 gpfWeapon[0] = new pfWeapon();
@@ -343,7 +342,7 @@ function setAll(){
     globalACOther								= $('#acOther');
         
     //CLASSES
-    for (var i=0;i<5;i++){
+    for (var i=0;i<maxMulticlass;i++){
         globalClassPreferred[i]   = $('#class0'+i+'Preferred');
         globalClassPrefHP[i]      = $('#class0'+i+'PrefHP');
         globalClassPrefSkill[i]   = $('#class0'+i+'PrefSkill');

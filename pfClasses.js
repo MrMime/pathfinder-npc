@@ -223,7 +223,7 @@ function pfBarbarian(){
 	this.speed  		= 3;
 	this.skillBase  	= 4;
 	this.ld				= 12;
-	this.classSkill		= new Array('acrobatics');
+	this.classSkill		= new Array('acrobatics','climb','craft','handle_animal','intimidate','knowledge_nature','perception','ride','survival','swim');
 }
 
 function pfWarrior(){

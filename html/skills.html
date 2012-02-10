@@ -15,7 +15,7 @@
 		<td><input id="skillTotal{skillname}" type="text" class="center bold" name="skill['{skillname}']['total']" value="0" size="3" readonly="readonly" /></td>
 		<td><input id="skillMod{skillname}" type="text" class="center" name="skill['{skillname}']['mod']" value="0" size="3" readonly="readonly" /></td>
 		<td><input id="skillTrained{skillname}" type="text" class="center" name="skill['{skillname}']['trained']" value="0" size="3" readonly="readonly" /></td>
-		<td><input id="skillPoints{skillname}" type="text" class="center" name="skill['{skillname}']['points']" value="0" size="3" onKeyUp="updateAllSheet();"/></td>
+		<td><input id="skillPoints{skillname}" type="text" class="center" name="skill['{skillname}']['points']" value="0" size="3" readonly="readonly" /><img class="clickable" id="skillPointsAdd{skillname}" name="{skillname}" src="./images/plus.png" onClick="manageSkillPoint(this.name,1);" /><img class="clickable" id="skillPointsRemove{skillname}"  name="{skillname}" src="./images/minus.png" onClick="manageSkillPoint(this.name,-1);"/><img class="clickable" id="skillPointsClean{skillname}" name="{skillname}" src="./images/cancel.png" onClick="manageSkillPoint(this.name,0);"/></td>
 		<td><input id="skillFeat{skillname}" type="text" class="center" name="skill['{skillname}']['feat']" value="0" size="3" readonly="readonly" /></td>
 		<td><input id="skillMisc{skillname}" type="text" class="center" name="skill['{skillname}']['mod']" value="0" size="3"  onKeyUp="updateAllSheet();" /></td>
 		<td><input id="skillArmorPenalty{skillname}" type="text" class="center" name="skill['{skillname}']['armorPenalty']" value="0" size="3" readonly="readonly" /></td>

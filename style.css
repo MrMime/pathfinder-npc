@@ -17,6 +17,10 @@ TD.separated {
 	background-color:#BDB76B;
 }
 
+.clickable{
+	cursor:pointer;
+}
+
 DIV#headerwrap {
 	background-image: url('./pageImages/headerBackground.png');
 	background-repeat: repeat-x;
