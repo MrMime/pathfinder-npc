@@ -20,6 +20,7 @@ var globalMaxBab        	= 0;
 var globalLevel         	= 0;
 var	globalSkillPointsMax	= 0; //max skill point avaiable (sum of single class current skillpoint)
 var globalCurrentRaceName   = "{human}";
+var globalMaxExtraLanguage	= null;
 //Globals to know what appening
 var featsCols           	= 2;
 var maxMulticlass			= 6;
@@ -264,7 +265,7 @@ function setAll(){
     globalLanguage = $('#language').val();
     
 	//ASSOCIATION BETWEEN GLOBALS AND HTML INPUTS
-	
+	globalMaxExtraLanguage = $('#maxExtraLanguage');
 	//STATS
 	strStat 		= $('#str');
 	cosStat 		= $('#cos');
