@@ -74,7 +74,7 @@ function rollDice(face){
 }
 
 function rollHighDice(face){
-	return Math.floor(Math.random()*(face-1))+2;
+	return Math.min(6,(Math.floor(Math.random()*(face-1))+3));
 }
 
 function rollStat(high){

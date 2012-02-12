@@ -7,7 +7,7 @@
 										  'pfArms'=>'{barehands}',
 									      'pfGauntlet'=>'{gauntlet}'
 										 ),
-					 '{simpleMeleeWeapon}'=>array('pfAspergillum'=>'{aspergillum}',
+					             '{simpleMeleeWeapon}'=>array('pfAspergillum'=>'{aspergillum}',
 										 		  'pfKnuckles'=>'{knucles}',
 										 		  'pfCestus'=>'{cestus}'));	
 
