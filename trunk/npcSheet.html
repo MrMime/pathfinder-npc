@@ -53,98 +53,15 @@
 		<input type="hidden" name="language" id="language" value="{lang}" />
 		
 		<fieldset>
-<legend>Anagrafica</legend>
+<fieldset id="fieldset_race">
+<legend>{character}</legend>
 	<div class="inputContainer">
-		<div class="label">
-			{name_surname} 
-		</div>
-		<div class="input">
-			<input type="text" size="55" name="name" id="namesurname"/>
-		</div>
-	</div>
+	  [[race_html]]
+	 <legend>{stats}</legend>
+	 [[stats_html]]
 </fieldset>
 
-<fieldset>
-<legend>{race}</legend>
-	<div class="inputContainer">
-		<div class="label">
-			{race}
-		</div>
-		<div class="input">
-			<input type="hidden" name="currentRace" id="currentRace" value="0"/>
-			<select id="race" name="race"></select>
-		</div>
-	</div>
-	<div class="inputContainer">
-		<div class="label">
-			{gender}
-		</div>
-		<div class="input">
-			<select name="gender">
-				<option value="{male}">{male}</option>
-				<option value="{female}">{female}</option>
-				<option value="{undefined}">{undefined}</option>
-			</select>
-		</div>
-	</div>
-	<div class="inputContainer">
-		<div class="label">
-			{size}
-		</div>
-		<div class="input">
-			<input type="hidden" name="currentSize" id="currentSize" value="0"/>
-			<select id="npcSize" name="size" size="3" onChange="updateAll();" >
-				<option value="{small}" onMouseDown="gpfSize.setSize(1);updateAllSheet();">{small}</option>
-				<option value="{medium}" onMouseDown="gpfSize.setSize(0);updateAllSheet();" selected="selected">{medium}</option>
-				<option value="{big}" onMouseDown="gpfSize.setSize(-1);updateAllSheet();">{big}</option>
-			</select>
-		</div>
-	</div>
-	
-	<div class="inputContainer">
-		<div class="label">
-			{alignment}
-		</div>
-		<div class="input">
-			<select name="alignment" size="3">
-				<optgroup label="{good}">
-					<option value="{legal} {good}">{legal} {good}</option>
-					<option value="{neutral} {good}">{neutral} {good}</option>
-					<option value="{chaotic} {good}">{chaotic} {good}</option>
-				</optgroup>
-				
-				<optgroup label="{neutral}">
-					<option value="{legal} {neutral}">{legal} {neutral}</option>
-					<option value="{neutral} {authentic}">{neutral} {authentic}</option>
-					<option value="{chaotic} {neutral}">{legal} {neutral}</option>
-				</optgroup>	
-				
-				<optgroup label="{evil}">
-					<option value="{legal} {evil}">{legal} {evil}</option>
-					<option value="{neutral} {evil}">{neutral} {evil}</option>
-					<option value="{chaotic} {evil}">{chaotic} {evil}</option>
-				</optgroup>
-			</select>
-		</div>
-	</div>
-	
-	<div class="inputContainer">
-		<div class="label">
-			{movement}
-		</div>
-		[[movement_html]]
-	</div>
-</fieldset>
-
-<fieldset id="statsSection">
-	<legend>Caratteristiche</legend>
-	[[stats_html]]
-</fieldset>
-
-<fieldset id="initiativeSection">
-	<legend>{initiative}</legend>
-	[[initiative_html]]
-</fieldset>
+[[initiative_html]]
 
 <fieldset id="hpSection">
 	<legend>{hp}</legend>

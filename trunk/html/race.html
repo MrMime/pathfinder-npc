@@ -1,0 +1,65 @@
+    <div class="input">
+      <label>{name}</label>
+      <input type="text" size="55" name="name" id="namesurname"/>
+    </div>
+    <table>
+      <tr>
+        <th>{race}</th>
+        <th>{gender}</th>
+        <th>{size}</th>
+        <th>{alignment}</th>
+      </tr>
+      <tr>
+        <!-- RACE -->
+        <td>
+            <input type="hidden" name="currentRace" id="currentRace" value="0"/>
+            <select id="race" name="race"></select>
+        </td>
+        <!-- GENDER -->
+        <td>
+          <select name="gender">
+            <option value="{male}">{male}</option>
+            <option value="{female}">{female}</option>
+            <option value="{undefined}">{undefined}</option>
+          </select>
+        </td>
+        <!-- SIZE -->
+        <td>
+          <input type="hidden" name="currentSize" id="currentSize" value="0"/>
+          <select id="npcSize" name="size" size="1" onChange="updateAll();" >
+            <option value="{small}" onMouseDown="gpfSize.setSize(1);updateAllSheet();">{small}</option>
+            <option value="{medium}" onMouseDown="gpfSize.setSize(0);updateAllSheet();" selected="selected">{medium}</option>
+            <option value="{big}" onMouseDown="gpfSize.setSize(-1);updateAllSheet();">{big}</option>
+          </select>          
+        </td>
+        <!-- ALIGNMENT -->
+        <td>
+          <select name="alignment" size="1">
+        <optgroup label="{good}">
+          <option value="{legal} {good}">{legal} {good}</option>
+          <option value="{neutral} {good}">{neutral} {good}</option>
+          <option value="{chaotic} {good}">{chaotic} {good}</option>
+        </optgroup>
+        
+        <optgroup label="{neutral}">
+          <option value="{legal} {neutral}">{legal} {neutral}</option>
+          <option value="{neutral} {authentic}">{neutral} {authentic}</option>
+          <option value="{chaotic} {neutral}">{legal} {neutral}</option>
+        </optgroup> 
+        
+        <optgroup label="{evil}">
+          <option value="{legal} {evil}">{legal} {evil}</option>
+          <option value="{neutral} {evil}">{neutral} {evil}</option>
+          <option value="{chaotic} {evil}">{chaotic} {evil}</option>
+        </optgroup>
+        </select>          
+        </td>        
+      </tr>
+    </table>
+    <legend>{movement}</legend>
+    <table>
+      <tr>
+          <td>[[movement_html]]</td>     
+      </tr>
+    </table>
+  </div>

@@ -1,18 +1,21 @@
-<table>
-	<tr>
-		<th>{total}</th>
-		<th>{moddex}</th>
-		<th>{improve}</th>
-		<th>{class}</th>
-		<th>{extra}</th>
-		<th>{extra}</th>
-	</tr>
-	<tr>
-		<td><input type="text" class="center bold" id="initTotal" 	name="init" value="0" size="4" readonly="readonly" /></td>
-		<td><input type="text" class="center" id="initModDex"  	value="0" readonly="readonly" size="3" /></td>
-		<td><input type="text" class="center" id="initImprove"  value="0" readonly="readonly" size="3" /></td>
-		<td><input type="text" class="center" id="initClass"  	value="0" readonly="readonly" size="3" /></td>
-		<td><input type="text" class="center" id="initBonus1"  	value="0" size="3" onKeyUp = updateInitiative(); /></td>
-		<td><input type="text" class="center" id="initBonus2"  	value="0" size="3" onKeyUp = updateInitiative(); /></td>
-	</tr>
-</table>
+<fieldset id="initiativeSection">
+  <legend>{initiative}</legend>
+    <table>
+    	<tr>
+    		<th>{total}</th>
+    		<th>{moddex}</th>
+    		<th>{improve}</th>
+    		<th>{class}</th>
+    		<th>{extra}</th>
+    		<th>{extra}</th>
+    	</tr>
+    	<tr>
+    		<td><input type="text" class="center bold" id="initTotal" 	name="init" value="0" size="4" readonly="readonly" /></td>
+    		<td><input type="text" class="center" id="initModDex"  	value="0" readonly="readonly" size="3" /></td>
+    		<td><input type="text" class="center" id="initImprove"  value="0" readonly="readonly" size="3" /></td>
+    		<td><input type="text" class="center" id="initClass"  	value="0" readonly="readonly" size="3" /></td>
+    		<td><input type="text" class="center" id="initBonus1"  	value="0" size="3" onKeyUp = updateInitiative(); /></td>
+    		<td><input type="text" class="center" id="initBonus2"  	value="0" size="3" onKeyUp = updateInitiative(); /></td>
+    	</tr>
+    </table>
+ </fieldset>

@@ -22,6 +22,9 @@
 
 	
 	//Including HTML Sections
+	//************************** RACE ******************************************//
+	$htmlCode = file_get_contents ('./html/race.html');
+  $code = str_replace('[[race_html]]',$htmlCode,$code);
 	//************************** MOVEMENT ******************************************//
 	$htmlCode = file_get_contents ('./html/movement.html');
 	$code = str_replace('[[movement_html]]',$htmlCode,$code);

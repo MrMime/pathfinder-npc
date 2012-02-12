@@ -27,12 +27,12 @@
 	$pfNpcSheet['eng']['tactics'] 			= 'TACTICS';
 	$pfNpcSheet['eng']['statistics'] 		= 'BASIC STATISTICS';
 	
-	$pfNpcSheet['eng']['movement']			= 'movimento';
+	$pfNpcSheet['eng']['movement']			= 'movmenet';
 
-	$pfNpcSheet['eng']['init'] 				= 'Init';
-	$pfNpcSheet['eng']['initiative']		= 'Initiative';
-	$pfNpcSheet['eng']['perception'] 		= 'Perception';
-	$pfNpcSheet['eng']['sense'] 			= 'Sense';
+	$pfNpcSheet['eng']['init'] 				= 'init';
+	$pfNpcSheet['eng']['initiative']		= 'initiative';
+	$pfNpcSheet['eng']['perception'] 		= 'perception';
+	$pfNpcSheet['eng']['sense'] 			= 'sense';
 	
 	$pfNpcSheet['eng']['ac'] 				= 'AC';
 	$pfNpcSheet['eng']['touch'] 			= 'touch';
@@ -77,7 +77,7 @@
 	
 	//FORM LABELS
 	
-	$pfNpcSheet['eng']['roll_stats']		= 'Roll Columns';
+	$pfNpcSheet['eng']['roll_stats']		 = 'Roll Columns';
 	$pfNpcSheet['eng']['roll_stats_high']	= 'Roll Columns Eroic';
 	$pfNpcSheet['eng']['stats']				= 'stats';
 	$pfNpcSheet['eng']['total']				= 'total';
@@ -152,6 +152,11 @@
 	$pfNpcSheet['eng']['weapon']			= 'weapon';
 	
 	$pfNpcSheet['eng']['life_dice']			= 'life dice';
+	$pfNpcSheet['eng']['item']      = 'item';
+	$pfNpcSheet['eng']['level-bab']      = 'lv.bab';
+	$pfNpcSheet['eng']['character']      = 'character';
+  $pfNpcSheet['eng']['name']           = 'name and surname';
+  $pfNpcSheet['eng']['stats']           = 'stats';
 	
 	//WEAPONS
 	$pfNpcSheet['eng']['twohands']			= 'two hands';
@@ -241,7 +246,7 @@
 	//FORM LABELS
 	
 	$pfNpcSheet['ita']['roll_stats']		= 'Tira Colonne';
-	$pfNpcSheet['ita']['roll_stats_high']	= 'TIra Colonne Eroiche';
+	$pfNpcSheet['ita']['roll_stats_high']	= 'Tira Colonne Eroiche';
 	$pfNpcSheet['ita']['stats']				= 'punteggi';
 	$pfNpcSheet['ita']['total']				= 'totale';
 	$pfNpcSheet['ita']['modifier']			= 'modificatore';
@@ -322,6 +327,12 @@
 	$pfNpcSheet['ita']['steal']				= 'rubare';
 	$pfNpcSheet['ita']['reposition']		= 'spostare';
 	$pfNpcSheet['ita']['weapon']			= 'arma';
+	
+	$pfNpcSheet['ita']['item']           = 'oggetto';
+	$pfNpcSheet['ita']['level-bab']      = 'lv.bab';
+	$pfNpcSheet['ita']['character']      = 'Personaggio';
+  $pfNpcSheet['ita']['name']           = 'nome e cognome';
+	$pfNpcSheet['ita']['stats']         = 'caratteristiche';
 	
 	//WEAPONS
 	$pfNpcSheet['ita']['hand']				= 'mano';
