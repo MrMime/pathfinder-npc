@@ -147,7 +147,9 @@ var globalACClass;
 var globalACOther;
 
 //CLASSES GLOBALS
-var globalClassLevels                       = new Array(0,0,0,0,0);
+var globalClassLevels                       = new Array();
+for (var i=0;i<maxMulticlass;i++)
+	globalClassLevels[i] = 0;
 var globalClassPreferred                    = new Array();
 var globalClassPrefHP                       = new Array();
 var globalClassPrefSkill                    = new Array();
