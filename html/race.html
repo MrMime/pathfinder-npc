@@ -14,11 +14,11 @@
         <!-- RACE -->
         <td>
             <input type="hidden" name="currentRace" id="currentRace" value="0"/>
-            <select id="race" name="race"></select>
+            <select id="race" name="race" size="3"></select>
         </td>
         <!-- GENDER -->
         <td>
-          <select name="gender">
+          <select name="gender" size="3">
             <option value="{male}">{male}</option>
             <option value="{female}">{female}</option>
             <option value="{undefined}">{undefined}</option>
@@ -27,7 +27,7 @@
         <!-- SIZE -->
         <td>
           <input type="hidden" name="currentSize" id="currentSize" value="0"/>
-          <select id="npcSize" name="size" size="1" onChange="updateAll();" >
+          <select id="npcSize" name="size" size="3" onChange="updateAll();" >
             <option value="{small}" onMouseDown="gpfSize.setSize(1);updateAllSheet();">{small}</option>
             <option value="{medium}" onMouseDown="gpfSize.setSize(0);updateAllSheet();" selected="selected">{medium}</option>
             <option value="{big}" onMouseDown="gpfSize.setSize(-1);updateAllSheet();">{big}</option>
@@ -35,7 +35,7 @@
         </td>
         <!-- ALIGNMENT -->
         <td>
-          <select name="alignment" size="1">
+          <select name="alignment" size="3">
         <optgroup label="{good}">
           <option value="{legal} {good}">{legal} {good}</option>
           <option value="{neutral} {good}">{neutral} {good}</option>
@@ -58,8 +58,9 @@
         <!-- LANGUAGES -->       
         <td>
           <select id="raceLanguage" multiple="multiple" size="2">
-            <option value="{common}">{common}</option>
           </select>
+          <br />
+          <span class="note">{max_language_note}:<span id="maxExtraLanguage">0</span></span>
         </td>
       </tr>
     </table>

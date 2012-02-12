@@ -29,7 +29,7 @@ function pfRace(){
 	this.ARMod			= 0;
 	
 	this.language   		= new Array();
-	this.learnableLanguage 	= new Array("common");
+	this.learnableLanguage 	= new Array();
 	
 	this.extraFeats = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //number of extra feats per level
 	this.extraSkill = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //number of extra skill point per level
@@ -114,6 +114,7 @@ function pfHuman(){
     this.inheritFrom();
     
     this.name = "{human}";
+    this.language.push("{common}");
 	this.extraFeats[1] = 1;
 	this.extraSkill = new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);	
 	this.modCus = 2;
@@ -125,17 +126,30 @@ function pfHalfOrc(){
     this.inheritFrom();
     
     this.name = "{half-orc}";
+    this.language.push("{orc-lang}","{common}");
+    this.learnableLanguage = new Array("{abyssal-lang}","{draconic-lang}","{giant-lang}","{gnoll-lang}","{goblin-lang}");
 	this.modCus = 2;
 	this.speedHeavy = 6;
 }
+
+function pfHalfElf(){
+	this.inheritFrom = pfRace;
+    this.inheritFrom();
+    
+    this.name = "{half-elf}";
+    this.language.push("{elf-lang}","{common}");
+	this.modCus = 2;
+	this.speedHeavy = 6;
+}
+
 
 function pfDwarf(){
 	this.inheritFrom = pfRace;
     this.inheritFrom();
     
     this.name = "{dwarf}";
-	this.language.push("dwarf");
-	
+	this.language.push("{dwarf-lang}","{common}");
+	this.learnableLanguage = new Array("{giant-lang}","{gnome-lang}","{orc-lang}","{terran-lang}","{undercommon-lang}");
 	this.modCos = 2;
 	this.modWis = 2;
 	this.modCha = -2;
@@ -161,6 +175,9 @@ function pfGnome(){
 	
 	this.speed 		= 6;
 	this.speedHeavy = 4.5;
+	
+	this.language.push("{gnome-lang}","{common}","{sylvan-lang}");
+	this.learnableLanguage = new Array("{draconic-lang}","{dwarf-lang}","{elf-lang}","{giant-lang}","{goblin-lang}","{orc-lang}");
 }
 
 function pfElf(){
@@ -171,8 +188,8 @@ function pfElf(){
 	this.modInt = 2;
 	this.modCos	= -2;
 	this.name	= "{elf}";
-	this.language.push("{elven}");
-	this.learnableLanguage = new Array("{common}","{celestial-lang}","{draconic-lang}","{gnoll-lang}","{gnome-lang}","{goblin-lang}","{orc-lang}","{sylvan-lang}");
+	this.language.push("{elven}","{common}");
+	this.learnableLanguage = new Array("{celestial-lang}","{draconic-lang}","{gnoll-lang}","{gnome-lang}","{goblin-lang}","{orc-lang}","{sylvan-lang}");
 }
 
 function pfHalfling(){
@@ -181,8 +198,8 @@ function pfHalfling(){
     
     this.name = "Halfling";
     
-	this.language.push("{halfing}");
-	this.learnableLanguage = new Array("{common}","{elven}","{gnome-lang}","{goblin-lang}","{dwarf-lang}");
+	this.language.push("{halfing}","{common}");
+	this.learnableLanguage = new Array("{elven}","{gnome-lang}","{goblin-lang}","{dwarf-lang}");
 	
 	this.modStr		= -2;
 	this.modDex		= 2;

@@ -11,7 +11,8 @@
 	$pfNpcSheet['eng']['wisdom'] 			= 'wisdom';
 	$pfNpcSheet['eng']['other'] 			= 'other';
 	$pfNpcSheet['eng']['hpplus'] 			= '+1 HP';
-	$pfNpcSheet['eng']['skillplus'] 		= '+1 SP';
+	$pfNpcSheet['eng']['skillplus']   = '+1 SP';
+	$pfNpcSheet['eng']['max_language_note']    = 'max extra lang.';
 	
 	//STATISTICS
 	$pfNpcSheet['eng']['dex'] 				= 'DEX';
@@ -182,6 +183,7 @@
 	$pfNpcSheet['ita']['other'] 			= 'altri';
 	$pfNpcSheet['ita']['hpplus'] 			= '+1 PF';
 	$pfNpcSheet['ita']['skillplus'] 		= '+1 PA';
+	$pfNpcSheet['ita']['max_language_note']    = 'max lingue';
 	
 	//STATISTICS
 	$pfNpcSheet['ita']['dex'] 				= 'DES';

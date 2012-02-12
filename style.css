@@ -37,6 +37,11 @@ DIV#headerwrap {
 	left:0px;
 }
 
+.note {
+  font-size:10px;
+  font-style:italic;
+}
+
 .featEvidence {
   font-weight:bold;
   font-style:italic;  
@@ -119,6 +124,7 @@ DIV#featskillcontainer {
 
 TABLE#character TD {
   vertical-align:top;
+  text-align:left;
 }
 
 FIELDSET#fieldset_race {
