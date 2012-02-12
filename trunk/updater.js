@@ -79,9 +79,11 @@ function buildClassesList(obj){
 	            function(){
 	                if ($(this).val() != '--') {
 	                	var index = $(this).attr('index');
-	                    $("#class0"+index+"Level").removeAttr('disabled');
+	                	var level = $("#class0"+index+"Level");
+	                	level.removeAttr('disabled');
 	                    var selectedPfClass = $(this).val();
-	                    gpfClasses[index] = eval ("new "+selectedPfClass+"();");
+	                    gpfClasses[index] = eval ("new "+selectedPfClass+"();");	                    
+	                    globalClassLevels[index] = level.val()/1;
 	                    updateAllSheet();
 	                }
 	                else 

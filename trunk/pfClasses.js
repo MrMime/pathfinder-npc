@@ -1,6 +1,6 @@
 
 function pfClass(){
-	this.level 				= 0; //Current class Level
+	this.level 				= 1; //Current class Level
 	this.modSpeed			= 0; //Current class modifier for base speed (in meters)
 	this.babBase			= new Array(); //Class bab category (warrior like, cleric like, spellcaster like)
 	this.bab 				= 0;

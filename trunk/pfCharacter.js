@@ -10,7 +10,7 @@ function pfCharacter(){
 	this.movement	        = 0;
 	this.finalBAB           = 0;
 	this.maxBab             = 0;
-	this.totalLevel              = 0;
+	this.totalLevel         = 0;
 	this.stf                = 0;
     this.str                = 0;
     this.stw                = 0;
@@ -33,7 +33,7 @@ function pfCharacter(){
         this.movement           = 0;
         this.finalBAB           = 0;
         this.maxBab             = 0;
-        this.totalLevel              = 0;
+        this.totalLevel         = 0;
         this.stf                = 0;
         this.str                = 0;
         this.stw                = 0;
@@ -129,7 +129,7 @@ function pfCharacter(){
 	   this.calculateBAB();
        this.calculateHP();
 	    
-	   for (var i = 0;i<this.totalClasses;i++){
+	   for (var i = 0;i<this.classes.length;i++){
 	       this.classes[i].update();
 	   }
 	   
