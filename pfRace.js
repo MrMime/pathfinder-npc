@@ -28,8 +28,8 @@ function pfRace(){
 	
 	this.ARMod			= 0;
 	
-	this.language   		= new Array("common");
-	this.learnableLanguage 	= new Array();
+	this.language   		= new Array();
+	this.learnableLanguage 	= new Array("common");
 	
 	this.extraFeats = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //number of extra feats per level
 	this.extraSkill = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //number of extra skill point per level
@@ -40,6 +40,15 @@ function pfRace(){
 	this.setModInt 	= function(mod){this.modInt = mod;};
 	this.setModWis 	= function(mod){this.modWis = mod;};
 	this.setModCha 	= function(mod){this.modCha = mod;};
+	
+	this.buildLanguage = function(){
+		var sel = $('#raceLanguage');
+		if (globalCurrentRaceName != this.name){
+			sel.empty();
+			for (var i=0;i<this.learnableLanguage.length;i++)
+				sel.append ('<option value="'+this.learnableLanguage[i]+'">'+this.learnableLanguage[i]+'</option>');
+		}
+	};
 	
 	//SETTING WICH STATS HAS THE CUSTOM MOD +2 
 	this.setCustomModStat = function(stat){
@@ -66,9 +75,11 @@ function pfRace(){
 	}; 
 	
 	this.update = function() {
+		this.buildLanguage();
 	    var legsBonus = (this.legs-2) * 2;
 	    this.tripRace = Math.max(this.tripRace,legsBonus);
 	    this.bullRace = Math.max(this.bullRace,legsBonus);
+	    globalCurrentRaceName = this.name;
 	    this.draw();
 	};
 	
@@ -102,7 +113,7 @@ function pfHuman(){
 	this.inheritFrom = pfRace;
     this.inheritFrom();
     
-    this.name = "Human";
+    this.name = "{human}";
 	this.extraFeats[1] = 1;
 	this.extraSkill = new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);	
 	this.modCus = 2;
@@ -113,7 +124,7 @@ function pfHalfOrc(){
 	this.inheritFrom = pfRace;
     this.inheritFrom();
     
-    this.name = "Half-Orc";
+    this.name = "{half-orc}";
 	this.modCus = 2;
 	this.speedHeavy = 6;
 }
@@ -122,7 +133,7 @@ function pfDwarf(){
 	this.inheritFrom = pfRace;
     this.inheritFrom();
     
-    this.name = "Dwarf";
+    this.name = "{dwarf}";
 	this.language.push("dwarf");
 	
 	this.modCos = 2;
@@ -159,9 +170,9 @@ function pfElf(){
 	this.modDex	= 2;
 	this.modInt = 2;
 	this.modCos	= -2;
-	this.name	= "{Elf}";
+	this.name	= "{elf}";
 	this.language.push("{elven}");
-	this.learnableLanguage = new Array("{celestial-lang}","{draconic-lang}","{gnoll-lang}","{gnome-lang}","{goblin-lang}","{orc-lang}","{sylvan-lang}");
+	this.learnableLanguage = new Array("{common}","{celestial-lang}","{draconic-lang}","{gnoll-lang}","{gnome-lang}","{goblin-lang}","{orc-lang}","{sylvan-lang}");
 }
 
 function pfHalfling(){
@@ -171,7 +182,7 @@ function pfHalfling(){
     this.name = "Halfling";
     
 	this.language.push("{halfing}");
-	this.learnableLanguage = new Array("{elven}","{gnome-lang}","{goblin-lang}","{dwarf-lang}");
+	this.learnableLanguage = new Array("{common}","{elven}","{gnome-lang}","{goblin-lang}","{dwarf-lang}");
 	
 	this.modStr		= -2;
 	this.modDex		= 2;

@@ -2,12 +2,13 @@
       <label>{name}</label>
       <input type="text" size="55" name="name" id="namesurname"/>
     </div>
-    <table>
+    <table id="character">
       <tr>
         <th>{race}</th>
         <th>{gender}</th>
         <th>{size}</th>
         <th>{alignment}</th>
+        <th>{languages}</th>
       </tr>
       <tr>
         <!-- RACE -->
@@ -53,7 +54,13 @@
           <option value="{chaotic} {evil}">{chaotic} {evil}</option>
         </optgroup>
         </select>          
-        </td>        
+        </td>
+        <!-- LANGUAGES -->       
+        <td>
+          <select id="raceLanguage" multiple="multiple" size="2">
+            <option value="{common}">{common}</option>
+          </select>
+        </td>
       </tr>
     </table>
     <legend>{movement}</legend>
