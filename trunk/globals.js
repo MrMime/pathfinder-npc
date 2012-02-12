@@ -19,6 +19,7 @@ var globalCurrentMaxDex 	= 0; //is the current mod dex max (armor and shield may
 var globalMaxBab        	= 0;
 var globalLevel         	= 0;
 var	globalSkillPointsMax	= 0; //max skill point avaiable (sum of single class current skillpoint)
+var globalCurrentRaceName   = "{human}";
 //Globals to know what appening
 var featsCols           	= 2;
 var maxMulticlass			= 6;

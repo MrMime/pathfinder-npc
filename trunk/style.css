@@ -117,6 +117,10 @@ DIV#featskillcontainer {
 	padding-right:4px;
 }
 
+TABLE#character TD {
+  vertical-align:top;
+}
+
 FIELDSET#fieldset_race {
   background-image:url('./images/raceBackground.png');
   background-repeat:no-repeat;
