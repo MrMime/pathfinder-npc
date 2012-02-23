@@ -29,6 +29,13 @@ var globalCurrentArmorSkillPenalty	= 0; //Usefull for Skills. Every skill will t
 var globalLanguage; 
 var globalStatsMods				  = new Array();
 var globalClassesSkills			  = new Array();
+var globalSkillPointAvaiable	  = 0; //Max point to distribuite (sum of classes skill point and bonus
+var globalSkillPointUsed		  = 0; //Point already distribuited
+
+var globalMaxCurrentLevelCasting  = 0;
+var globalNumberSpellPerDay		  = new Array(0,0,0,0,0,0,0,0,0,0);
+var gobalMaxLevelCasting		  = 0;
+var globalKnowSpells			  = new Array(0,0,0,0,0,0,0,0,0,0);
 
 //List of feats categorized by section influence
 var globalSizeFeatsList       = new Array();
@@ -261,12 +268,16 @@ var globalWeaponLevelDamage         = new Array();
 var globalWeaponMagic               = new Array();
 var globalWeaponEnchantment         = new Array();
 
+//GLOBAL SKILLS
+var globalTotalSkillPointAvaiable;
+var globalTotalSkillPointUsed;
+
 function setAll(){
     globalLanguage = $('#language').val();
     
 	//ASSOCIATION BETWEEN GLOBALS AND HTML INPUTS
 	globalMaxExtraLanguage = $('#maxExtraLanguage');
-	//STATS
+	
 	strStat 		= $('#str');
 	cosStat 		= $('#cos');
 	dexStat 		= $('#dex');
@@ -434,6 +445,9 @@ function setAll(){
 		
 		globalManeuversLevelBabMod        = $('#maneuversLevelBabMod');
 		
+		globalTotalSkillPointAvaiable	  		= $('#totalSkillPointAvaiable');
+		globalTotalSkillPointUsed		  		= $('#totalSkillPointUsed');
+		
 		//GLOBALS WEAPONS
 		for (var i=1;i<6;i++){
 		    globalWeaponAR[i-1]                  = $('#weapon0'+i+'AR');
@@ -458,7 +472,6 @@ function setAll(){
             globalWeaponLevelDamage[i-1]         = $('#weapon0'+i+'LevelDamage');
             globalWeaponMagic[i-1]               = $('#weapon0'+i+'Magic');
             globalWeaponEnchantment[i-1]         = $('#weapon0'+i+'Enchantment');
-		    
 		}
 		
 		

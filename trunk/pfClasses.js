@@ -118,7 +118,7 @@ function pfClass(){
 	};		
 	
 	this.calculateSkillPoint = function(){
-	    //TODO:Ci sarà da leggere anche il bonus degli umani in qualche modo
+	    //NB: Human skill bonus is added in pfCharacter
 		this.skillPointClass = this.skillBase * this.level;
 		//If favourite class and +1 skill point per level bonus selected
 		if (this.favourite && this.bonusSkill){

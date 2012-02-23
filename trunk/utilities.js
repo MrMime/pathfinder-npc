@@ -23,11 +23,23 @@ function manageSkillPoint(skillname,increment){
 	var pointInputs = $('#skillPoints'+skillname);
 	var currentPoint = pointInputs.val()/1;
 	
+	//I cannot add a new skill if reached the max point avaiable
+	if ( (globalSkillPointUsed == globalSkillPointAvaiable) && increment == 1)
+		return;
+	
 	switch(increment){
 		case 1:  pointInputs.val(Math.min(currentPoint+1,globalLevel)); break;
 		case -1: pointInputs.val(Math.max(currentPoint-1,0)); break;
 		case 0: pointInputs.val(0); break;
 	}
+	
+	var newPoint = pointInputs.val()/1;
+	if (newPoint > currentPoint)
+		globalSkillPointUsed++;
+	if (newPoint < currentPoint)
+		globalSkillPointUsed--;
+	//Updating global skill points HTML
+	globalTotalSkillPointUsed.html((globalSkillPointUsed));
 	updateAllSheet();
 }
 

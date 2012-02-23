@@ -136,3 +136,13 @@ FIELDSET#initiativeSection {
   background-image:url('./images/initiativeBackground.png');
   background-repeat:no-repeat;
 }
+
+DIV#skillPointTotal{
+	font-size:12px;
+	margin-bottom:5px;
+	border-bottom:1px solid black;
+	padding-bottom:3px;
+}
+DIV#skillPointTotal label {
+	font-weight:bold;
+}
