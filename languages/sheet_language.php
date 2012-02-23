@@ -13,6 +13,7 @@
 	$pfNpcSheet['eng']['hpplus'] 			= '+1 HP';
 	$pfNpcSheet['eng']['skillplus']   = '+1 SP';
 	$pfNpcSheet['eng']['max_language_note']    = 'max extra lang.';
+	$pfNpcSheet['eng']['totalpointavaiable']    = 'total skill point avaiable (favourite class and human bonus counted)';
 	
 	//STATISTICS
 	$pfNpcSheet['eng']['dex'] 				= 'DEX';
@@ -184,6 +185,7 @@
 	$pfNpcSheet['ita']['hpplus'] 			= '+1 PF';
 	$pfNpcSheet['ita']['skillplus'] 		= '+1 PA';
 	$pfNpcSheet['ita']['max_language_note']    = 'max lingue';
+	$pfNpcSheet['ita']['totalpointavaiable']   = 'punti abilit&agrave; totali (comprende bonus classe preferita ed eventuale bonus umani)';
 	
 	//STATISTICS
 	$pfNpcSheet['ita']['dex'] 				= 'DES';

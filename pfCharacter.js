@@ -15,6 +15,7 @@ function pfCharacter(){
     this.str                = 0;
     this.stw                = 0;
     this.skillPointClass    = 0;
+    this.humanBonusSkill	= 0; //its the bonus per levels of humans
     this.totalDiceHP        = new Array();
     this.averageHP          = 0;
     this.totalCosHP         = 0;
@@ -81,6 +82,7 @@ function pfCharacter(){
 		this.favouriteHP        += pfClass.favouriteHP;
 		this.averageHP 			+= pfClass.averageHP;
 		
+		//List of classes skills (es. acrobatics, handle_animal etc...)
 		$.merge (globalClassesSkills,pfClass.classSkill);
 		
 		this.babBase[this.totalLevel] = this.maxBab;
@@ -135,8 +137,14 @@ function pfCharacter(){
 	   }
 	   
 	   this.totalTSFMod = this.stf + globalExtraTSF.val()/1 + globalRaceTSF.val()/1 + globalFeatTSF.val()/1;
-	   this.totalTSRMod = this.str + globalExtraTSR.val()/1 + globalRaceTSR.val()/1 + globalFeatTSR.val()/1;;
-	   this.totalTSWMod = this.stw + globalExtraTSW.val()/1 + globalRaceTSW.val()/1 + globalFeatTSW.val()/1;;
+	   this.totalTSRMod = this.str + globalExtraTSR.val()/1 + globalRaceTSR.val()/1 + globalFeatTSR.val()/1;
+	   this.totalTSWMod = this.stw + globalExtraTSW.val()/1 + globalRaceTSW.val()/1 + globalFeatTSW.val()/1;
+	   
+	   this.humanBonusSkill = 0;
+	   if (globalCurrentRaceName == '{human}')
+		 this.humanBonusSkill = this.totalLevel;
+	    
+	   globalSkillPointAvaiable = this.skillPointClass + this.humanBonusSkill;
 	   
 	   this.draw();   
 	};
@@ -163,6 +171,8 @@ function pfCharacter(){
            globalWeaponClassAR[i].val(addPlus(this.classesARBonus));
            globalWeaponClassDamage[i].val(addPlus(this.classesDamageBonus));
         }
+	    
+	    globalTotalSkillPointAvaiable.html(this.skillPointClass+this.humanBonusSkill);
 	};
 	
 }
