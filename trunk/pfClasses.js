@@ -18,13 +18,20 @@ function pfClass(){
 	this.favouriteHP		= 0; //its the bonus due to favourite class if selected
 	this.averageHP          = 0; //its the average HP of this class widthout any bonus (only dice counted)
 	this.totalDiceHP		= 0;
+	//Skill Section
 	this.skillPointClass 	= 0; //Total Skill Point at current Level
 	this.skillBase  		= 0; //Number of base Skill Point per level (es. warrior = 2, barbarian = 4 etc...)
 	this.favouriteSkill     = 0; //its the bonus due to favourite class if selected
+	//Spell Section
 	this.spellCast  		= new Array();
 	this.spellPerDay		= new Array();
+	this.spellKnown			= new Array();
 	this.maxSpellLevel 		= 0;
 	this.bestSpellLevel 	= 0;
+	this.spellStatsMod		= ""; //stats wich is based the spellcasting (es. int for wizard)
+	this.spellKnowBonus	    = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //added spell bonus (es sorcerer has blood spell bonus)
+	this.spellManager		= new pfSpellsManager();
+	
 	this.feats				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //feats gained
 	this.ACMods				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //armor class bonus (es monk every 4 levels)
 	this.ARMods             = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //attack roll bonus
@@ -143,6 +150,20 @@ function pfClass(){
 			sel.append('<option value="'+i+'">'+i+'</option>');
 	};
 	
+	//Adding spell bonus per day due to High stat
+	this.updateSpellPerDay = function(){
+		var statMods = globalStatsMods[this.spellStatMod];
+		for (var i=1;i<this.spellPerDay.length;i++){
+			var temp = this.spellPerDay[i];
+			for (j=1;j<temp.length;j++){
+				bonus = this.spellManager.spellPerDayBonus(statMods,j);
+				bonus = temp[j]/1+bonus/1;
+				temp[j] = (isNaN(bonus)) ? 0 : bonus;
+			}
+			this.spellPerDay[i] = temp;
+		}
+	};
+	
 	this.update = function(){
 		this.makeLevelOptions();
 	    this.calculateST(); //calculating save throw
@@ -155,6 +176,7 @@ function pfClass(){
 	    this.calculateSpeed();
 	    this.calculateTotalFeats();
 	    this.calculateMaxSpellLevel();
+	    this.updateSpellPerDay();
 	    
 	     for (var i=0;i<5;i++) {
 	        this.calculateDamageBonus(i);
@@ -180,7 +202,6 @@ function pfClass(){
 /**
  * DUELLANTE
  */
-
 function pfDuelling(){
     this.inheritFrom = pfClass;
     this.inheritFrom();
@@ -232,6 +253,20 @@ function pfBarbarian(){
 	this.skillBase  	= 4;
 	this.ld				= 12;
 	this.classSkill		= new Array('acrobatics','climb','craft','handle_animal','intimidate','knowledge_nature','perception','ride','survival','swim');
+}
+
+function pfRanger(){
+	this.inheritFrom = pfClass;
+    this.inheritFrom();
+    this.name = "Ranger";
+    this.babBase 		= new Array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+    this.stCat 			= new Array(2,2,0);
+    this.skillBase  	= 6;
+    this.ld				= 10;
+    this.classSkill		= new Array('handle_animal','craft','ride','knowledge_dungeoneering','knowledge_geography','knowledge_nature','stealth','heal','intimidate','swim','perception','Profession','spellcraft','climb','survival');
+    
+    this.spellManager.buildSpellMatrix(this.spellManager.lowCast);
+	this.spellPerDay = this.spellManager.perDay;
 }
 
 function pfWarrior(){
@@ -355,6 +390,9 @@ function pfWizard(){
 	this.calculateMaxSpellLevel = function(){
 		this.maxSpellLevel = Math.floor((this.level+1)/2);
 	};
+	
+	this.spellManager.buildSpellMatrix(this.spellManager.fullCast);
+	this.spellPerDay = this.spellManager.perDay;
 }
 
 function pfSorcerer(){
@@ -369,10 +407,20 @@ function pfSorcerer(){
 	this.maxSpellLevel 	= 0;
 	this.bestSpellLevel = 9;
 	this.feats			= new Array(0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0);
+	this.spellStatMod	= "cha";
 	
 	this.calculateMaxSpellLevel = function(){
-		this.maxSpellLevel = Math.max(1,(Math.floor((this.level+1)/2))-1);
+		this.maxSpellLevel = Math.max(1,(Math.ceil((this.level+1)/2))-1);
 	};
+	
+	this.spellKnowBonus = new Array(0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0);
+	
+	this.spellManager.buildSpellMatrix(this.spellManager.medCast);
+	this.spellPerDay = this.spellManager.perDay;
+	
+	
+	this.spellManager.buildSpellKnow(this.spellManager.baseSpelKnown);
+	this.spellKnown	= this.spellManager.known;
 }
 
 /**
