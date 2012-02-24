@@ -1,24 +1,79 @@
 <table id="skillList">
 	<tr>
-		<th>{skillname}</th>
-		<th>{total}</th>
-		<th>{skillmod}</th>
-		<th>{trained}</th>
-		<th>{points}</th>
-		<th>{featsmod}</th>
-		<th>{miscmod}</th>
-		<th>{armorpenalty}</th>
+		<th>{level}</th>
+		<th>{st}</th>
+		<th>{perday}</th>
+		<th>{knowns}</th>
+		<th>{spells}</th>
 	</tr>
-	<repeatable>
-	<tr>
-		<td id="skillName{skillname}" class="right">{skillnamevalue}</td>
-		<td><input id="skillTotal{skillname}" type="text" class="center bold" name="skill['{skillname}']['total']" value="0" size="3" readonly="readonly" /></td>
-		<td><input id="skillMod{skillname}" type="text" class="center" name="skill['{skillname}']['mod']" value="0" size="3" readonly="readonly" /></td>
-		<td><input id="skillTrained{skillname}" type="text" class="center" name="skill['{skillname}']['trained']" value="0" size="3" readonly="readonly" /></td>
-		<td><input id="skillPoints{skillname}" type="text" class="center" name="skill['{skillname}']['points']" value="0" size="3" readonly="readonly" /><img class="clickable" id="skillPointsAdd{skillname}" name="{skillname}" src="./images/plus.png" onClick="manageSkillPoint(this.name,1);" /><img class="clickable" id="skillPointsRemove{skillname}"  name="{skillname}" src="./images/minus.png" onClick="manageSkillPoint(this.name,-1);"/><img class="clickable" id="skillPointsClean{skillname}" name="{skillname}" src="./images/cancel.png" onClick="manageSkillPoint(this.name,0);"/></td>
-		<td><input id="skillFeat{skillname}" type="text" class="center" name="skill['{skillname}']['feat']" value="0" size="3" readonly="readonly" /></td>
-		<td><input id="skillMisc{skillname}" type="text" class="center" name="skill['{skillname}']['mod']" value="0" size="3"  onKeyUp="updateAllSheet();" /></td>
-		<td><input id="skillArmorPenalty{skillname}" type="text" class="center" name="skill['{skillname}']['armorPenalty']" value="0" size="3" readonly="readonly" /></td>
+	<tr id="spellLevel0">
+		<td>0</td>
+		<td><input id="stSpell0" type="text" class="center bold" name="stSpell[0]['st']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="perdaySpell0" type="text" class="center bold" name="stSpell[0]['perday']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="spellknown0" type="text" class="center bold" name="stSpell[0]['known']" value="0" size="3" readOnly="readonly" /></td>
+		<td><select id="spellList0" name="stSpell[0]['selected']"></select></td>
 	</tr>
-	</repeatable>
+	<tr id="spellLevel1">
+		<td>1</td>
+		<td><input id="stSpell1" type="text" class="center bold" name="stSpell[1]['st']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="perdaySpell1" type="text" class="center bold" name="stSpell[1]['perday']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="spellknown1" type="text" class="center bold" name="stSpell[1]['known']" value="0" size="3" readOnly="readonly" /></td>
+		<td><select id="spellList1" name="stSpell[1]['selected']"></select></td>
+	</tr>
+	<tr id="spellLevel2">
+		<td>2</td>
+		<td><input id="stSpell2" type="text" class="center bold" name="stSpell[2]['st']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="perdaySpell2" type="text" class="center bold" name="stSpell[2]['perday']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="spellknown2" type="text" class="center bold" name="stSpell[2]['known']" value="0" size="3" readOnly="readonly" /></td>
+		<td><select id="spellList2" name="stSpell[2]['selected']"></select></td>
+	</tr>
+	<tr id="spellLevel3">
+		<td>3</td>
+		<td><input id="stSpell3" type="text" class="center bold" name="stSpell[3]['st']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="perdaySpell3" type="text" class="center bold" name="stSpell[3]['perday']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="spellknown3" type="text" class="center bold" name="stSpell[3]['known']" value="0" size="3" readOnly="readonly" /></td>
+		<td><select id="spellList3" name="stSpell[3]['selected']"></select></td>
+	</tr>
+	<tr id="spellLevel4">
+		<td>4</td>
+		<td><input id="stSpell4" type="text" class="center bold" name="stSpell[4]['st']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="perdaySpell4" type="text" class="center bold" name="stSpell[4]['perday']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="spellknown4" type="text" class="center bold" name="stSpell[4]['known']" value="0" size="3" readOnly="readonly" /></td>
+		<td><select id="spellList4" name="stSpell[4]['selected']"></select></td>
+	</tr>
+	<tr id="spellLevel5">
+		<td>5</td>
+		<td><input id="stSpell5" type="text" class="center bold" name="stSpell[5]['st']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="perdaySpell5" type="text" class="center bold" name="stSpell[5]['perday']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="spellknown5" type="text" class="center bold" name="stSpell[5]['known']" value="0" size="3" readOnly="readonly" /></td>
+		<td><select id="spellList5" name="stSpell[5]['selected']"></select></td>
+	</tr>
+	<tr id="spellLevel6">
+		<td>6</td>
+		<td><input id="stSpell6" type="text" class="center bold" name="stSpell[6]['st']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="perdaySpell6" type="text" class="center bold" name="stSpell[6]['perday']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="spellknown6" type="text" class="center bold" name="stSpell[6]['known']" value="0" size="3" readOnly="readonly" /></td>
+		<td><select id="spellList6" name="stSpell[6]['selected']"></select></td>
+	</tr>
+	<tr id="spellLevel7">
+		<td>7</td>
+		<td><input id="stSpell7" type="text" class="center bold" name="stSpell[7]['st']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="perdaySpell7" type="text" class="center bold" name="stSpell[7]['perday']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="spellknown7" type="text" class="center bold" name="stSpell[7]['known']" value="0" size="3" readOnly="readonly" /></td>
+		<td><select id="spellList7" name="stSpell[7]['selected']"></select></td>
+	</tr>
+	<tr id="spellLevel8">
+		<td>8</td>
+		<td><input id="stSpell8" type="text" class="center bold" name="stSpell[8]['st']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="perdaySpell8" type="text" class="center bold" name="stSpell[8]['perday']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="spellknown8" type="text" class="center bold" name="stSpell[8]['known']" value="0" size="3" readOnly="readonly" /></td>
+		<td><select id="spellList8" name="stSpell[8]['selected']"></select></td>
+	</tr>
+	<tr id="spellLevel9">
+		<td>9</td>
+		<td><input id="stSpell9" type="text" class="center bold" name="stSpell[9]['st']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="perdaySpell9" type="text" class="center bold" name="stSpell[9]['perday']" value="0" size="3" readOnly="readonly" /></td>
+		<td><input id="spellknown9" type="text" class="center bold" name="stSpell[9]['known']" value="0" size="3" readOnly="readonly" /></td>
+		<td><select id="spellList9" name="stSpell[9]['selected']"></select></td>
+	</tr>	
 </table>

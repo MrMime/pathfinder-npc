@@ -79,6 +79,10 @@
 	$code = str_replace('[[skills_html]]',$skillsCode,$code);
 	//****************************** END SKILLS SECTIONS ******************************//
 	
+	//************************** MANEUVERS ***************************************//
+	$htmlCode = file_get_contents ('./html/spells.html');
+	$code = str_replace('[[spells_html]]',$htmlCode,$code);
+	
 	//Translating sheets
 	foreach ($pfNpcSheet[$lang] as $index=>$translate){
 		$code = preg_replace('/{'.$index.'}/', $translate, $code);
