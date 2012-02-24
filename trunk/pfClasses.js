@@ -30,6 +30,7 @@ function pfClass(){
 	this.bestSpellLevel 	= 0;
 	this.spellStatsMod		= ""; //stats wich is based the spellcasting (es. int for wizard)
 	this.spellKnowBonus	    = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //added spell bonus (es sorcerer has blood spell bonus)
+	this.spellST			= new Array(0,0,0,0,0,0,0,0,0,0);
 	this.spellManager		= new pfSpellsManager();
 	
 	this.feats				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //feats gained
@@ -142,6 +143,10 @@ function pfClass(){
 		this.totalFeats = arrayCustomSum(this.feats,1,this.level);
 	};
 	
+	this.calcolateBaseSpellStat = function(){
+		
+	};
+	
 	this.makeLevelOptions = function(){
 		var id = 'class0'+this.index+'Level';
 		var sel = $('#'+id);
@@ -152,7 +157,9 @@ function pfClass(){
 	
 	//Adding spell bonus per day due to High stat
 	this.updateSpellPerDay = function(){
-		var statMods = globalStatsMods[this.spellStatMod];
+		if (this.spellStatMod == null) return;
+		this.calcolateBaseSpellStat();
+		var statMods = globalStatsMods[this.spellStatMod].val()/1;
 		for (var i=1;i<this.spellPerDay.length;i++){
 			var temp = this.spellPerDay[i];
 			for (j=1;j<temp.length;j++){
@@ -162,6 +169,18 @@ function pfClass(){
 			}
 			this.spellPerDay[i] = temp;
 		}
+	};
+	
+	this.updateSpellSt = function(){
+		if (this.spellStatMod == null) return;
+		var statMods = globalStatsMods[this.spellStatMod].val()/1;
+		for (var i=0;i<this.spellST.length;i++)
+			this.spellST[i] = 10 + statMods + i;
+	};
+	
+	this.updateSpellKnown = function(){
+		if (this.spellStatMod == null) return;
+		
 	};
 	
 	this.update = function(){
@@ -177,6 +196,7 @@ function pfClass(){
 	    this.calculateTotalFeats();
 	    this.calculateMaxSpellLevel();
 	    this.updateSpellPerDay();
+	    this.updateSpellSt();
 	    
 	     for (var i=0;i<5;i++) {
 	        this.calculateDamageBonus(i);
@@ -195,6 +215,22 @@ function pfClass(){
 	    globalClassBAB[this.index].val(this.bab);
 	    globalACClass.val(this.ACBonus); //adding class modifier to AC
 	    globalInitClass.val(addPlus(this.initBonus));
+	    
+	    if (this.spellPerDay.length > 0)
+		    for (var i=0;i<globalSpellPerDay.length;i++){
+		    	var spd = this.spellPerDay[this.level][i];
+		    	spd = (spd == '-1') ? 'oo': spd; 
+		    	globalSpellPerDay[i].val(spd);
+		    }
+	    if (this.spellST.length > 0)
+	    	for (var i=0;i<this.spellST.length;i++)
+	    		globalSpellST[i].val(this.spellST[i]);
+	    
+	    if (this.spellKnown.length > 0)
+	    	for (var i=0;i<this.spellKnown.length;i++){
+	    		globalSpellKnown[i].val(this.spellKnown[this.level][i]);
+	    	};
+	    
 	};
 	
 }
@@ -265,8 +301,10 @@ function pfRanger(){
     this.ld				= 10;
     this.classSkill		= new Array('handle_animal','craft','ride','knowledge_dungeoneering','knowledge_geography','knowledge_nature','stealth','heal','intimidate','swim','perception','Profession','spellcraft','climb','survival');
     
-    this.spellManager.buildSpellMatrix(this.spellManager.lowCast);
-	this.spellPerDay = this.spellManager.perDay;
+    this.calcolateBaseSpellStat = function() {
+    	this.spellManager.buildSpellMatrix(this.spellManager.lowCast);
+    	this.spellPerDay = this.spellManager.perDay;
+    }
 }
 
 function pfWarrior(){
@@ -334,6 +372,7 @@ function pfCleric(){
 	this.ld 			= 8;
 	this.maxSpellLevel 	= 0;
 	this.bestSpellLevel = 9;
+	this.spellStatMod	= "wis";
 	
 	this.calculateMaxSpellLevel = function(){
 		this.maxSpellLevel = Math.floor((this.level+1)/2);
@@ -351,10 +390,17 @@ function pfBard(){
 	this.ld 			= 8;
 	this.maxSpellLevel 	= 0;
 	this.bestSpellLevel = 6; 
+	this.spellStatMod	= "cha";
 	
 	this.calculateMaxSpellLevel = function(){
 		this.maxSpellLevel = 1+(Math.floor((this.level-1)/3));
 	};
+	
+	this.spellManager.buildSpellMatrix(this.spellManager.bardCast);
+	this.spellPerDay = this.spellManager.perDay;
+	
+	this.spellManager.buildSpellKnow(this.spellManager.bardSpelKnown);
+	this.spellKnown	= this.spellManager.known;
 }
 
 function pfDruid(){
@@ -368,10 +414,16 @@ function pfDruid(){
 	this.ld 			= 8;
 	this.maxSpellLevel 	= 0;
 	this.bestSpellLevel = 9;
+	this.spellStatMod	= "wis";
 	
 	this.calculateMaxSpellLevel = function(){
 		this.maxSpellLevel = Math.floor((this.level+1)/2);
 	};
+	
+	this.calcolateBaseSpellStat = function() {
+		this.spellManager.buildSpellMatrix(this.spellManager.fullCast);
+		this.spellPerDay = this.spellManager.perDay;
+	}
 }
 
 function pfWizard(){
@@ -386,13 +438,16 @@ function pfWizard(){
 	this.maxSpellLevel 	= 0;
 	this.bestSpellLevel = 9;
 	this.feats			= new Array(0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
+	this.spellStatMod	= "int";
 	
 	this.calculateMaxSpellLevel = function(){
 		this.maxSpellLevel = Math.floor((this.level+1)/2);
 	};
 	
-	this.spellManager.buildSpellMatrix(this.spellManager.fullCast);
-	this.spellPerDay = this.spellManager.perDay;
+	this.calcolateBaseSpellStat = function() {
+		this.spellManager.buildSpellMatrix(this.spellManager.fullCast);
+		this.spellPerDay = this.spellManager.perDay;
+	}
 }
 
 function pfSorcerer(){
@@ -415,12 +470,13 @@ function pfSorcerer(){
 	
 	this.spellKnowBonus = new Array(0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0);
 	
-	this.spellManager.buildSpellMatrix(this.spellManager.medCast);
-	this.spellPerDay = this.spellManager.perDay;
+	this.calcolateBaseSpellStat = function() {
+		this.spellManager.buildSpellMatrix(this.spellManager.medCast);
+		this.spellPerDay = this.spellManager.perDay;
 	
-	
-	this.spellManager.buildSpellKnow(this.spellManager.baseSpelKnown);
-	this.spellKnown	= this.spellManager.known;
+		this.spellManager.buildSpellKnow(this.spellManager.baseSpelKnown);
+		this.spellKnown	= this.spellManager.known;
+	}
 }
 
 /**
