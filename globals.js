@@ -272,6 +272,11 @@ var globalWeaponEnchantment         = new Array();
 var globalTotalSkillPointAvaiable;
 var globalTotalSkillPointUsed;
 
+//GLOBAL SPELLS
+globalSpellPerDay 	= new Array();
+globalSpellST		= new Array();
+globalSpellKnown	= new Array();
+
 function setAll(){
     globalLanguage = $('#language').val();
     
@@ -474,6 +479,38 @@ function setAll(){
             globalWeaponEnchantment[i-1]         = $('#weapon0'+i+'Enchantment');
 		}
 		
+		//SPELS
+		globalSpellPerDay[0] = $('#perdaySpell0');
+		globalSpellPerDay[1] = $('#perdaySpell1');
+		globalSpellPerDay[2] = $('#perdaySpell2');
+		globalSpellPerDay[3] = $('#perdaySpell3');
+		globalSpellPerDay[4] = $('#perdaySpell4');
+		globalSpellPerDay[5] = $('#perdaySpell5');
+		globalSpellPerDay[6] = $('#perdaySpell6');
+		globalSpellPerDay[7] = $('#perdaySpell7');
+		globalSpellPerDay[8] = $('#perdaySpell8');
+		globalSpellPerDay[9] = $('#perdaySpell9');
 		
+		globalSpellST[0] = $('#stSpell0');
+		globalSpellST[1] = $('#stSpell1');
+		globalSpellST[2] = $('#stSpell2');
+		globalSpellST[3] = $('#stSpell3');
+		globalSpellST[4] = $('#stSpell4');
+		globalSpellST[5] = $('#stSpell5');
+		globalSpellST[6] = $('#stSpell6');
+		globalSpellST[7] = $('#stSpell7');
+		globalSpellST[8] = $('#stSpell8');
+		globalSpellST[9] = $('#stSpell9');
+		
+		globalSpellKnown[0] = $('#spellknown0');
+		globalSpellKnown[1] = $('#spellknown1');
+		globalSpellKnown[2] = $('#spellknown2');
+		globalSpellKnown[3] = $('#spellknown3');
+		globalSpellKnown[4] = $('#spellknown4');
+		globalSpellKnown[5] = $('#spellknown5');
+		globalSpellKnown[6] = $('#spellknown6');
+		globalSpellKnown[7] = $('#spellknown7');
+		globalSpellKnown[8] = $('#spellknown8');
+		globalSpellKnown[9] = $('#spellknown9');
 }
 

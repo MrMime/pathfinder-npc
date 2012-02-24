@@ -170,6 +170,12 @@
 	$pfNpcSheet['eng']['enchantment']		= 'enchantment';
 	$pfNpcSheet['eng']['twohandcombat']		= '2 Hands Comb.';
 	
+	//SPELLS
+	$pfNpcSheet['eng']['st']				= 'save';
+	$pfNpcSheet['eng']['perday']			= 'x day';
+	$pfNpcSheet['eng']['knowns']			= 'knowns';
+	$pfNpcSheet['eng']['spells']			= 'spells';
+	
 	//*******************************************************************//
 	
 	//GENERIC
@@ -331,12 +337,12 @@
 	$pfNpcSheet['ita']['steal']				= 'rubare';
 	$pfNpcSheet['ita']['reposition']		= 'spostare';
 	$pfNpcSheet['ita']['weapon']			= 'arma';
-	
-	$pfNpcSheet['ita']['item']           = 'oggetto';
-	$pfNpcSheet['ita']['level-bab']      = 'lv.bab';
-	$pfNpcSheet['ita']['character']      = 'Personaggio';
-  $pfNpcSheet['ita']['name']           = 'nome e cognome';
-	$pfNpcSheet['ita']['stats']         = 'caratteristiche';
+		
+	$pfNpcSheet['ita']['item']          	= 'oggetto';
+	$pfNpcSheet['ita']['level-bab']      	= 'lv.bab';
+	$pfNpcSheet['ita']['character']      	= 'Personaggio';
+  	$pfNpcSheet['ita']['name']           	= 'nome e cognome';
+	$pfNpcSheet['ita']['stats']         	= 'caratteristiche';
 	
 	//WEAPONS
 	$pfNpcSheet['ita']['hand']				= 'mano';
@@ -348,7 +354,11 @@
 	$pfNpcSheet['ita']['enchantment']		= 'incantamento';
 	$pfNpcSheet['ita']['twohandcombat']		= 'Comb.2 Mani';
 	
-	
+	//SPELLS
+	$pfNpcSheet['ita']['st']				= 'CD';
+	$pfNpcSheet['ita']['perday']			= 'al giorno';
+	$pfNpcSheet['ita']['knowns']			= 'conosciuti';
+	$pfNpcSheet['ita']['spells']			= 'incantesimi';
 	
 	$GLOBALS['pfNpcSheet'] = $pfNpcSheet; 
 	
