@@ -32,12 +32,21 @@ function pfClass(){
 	this.spellKnowBonus	    = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //added spell bonus (es sorcerer has blood spell bonus)
 	this.spellST			= new Array(0,0,0,0,0,0,0,0,0,0);
 	this.spellManager		= new pfSpellsManager();
+	this.lvSpellArcaneInc	= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //increment of spell clasting level for arcane schools
+	this.lvSpellDivineInc 	= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //increment of spell clasting level for divine schools
+	this.lvSpellPsionicInc 	= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //increment of spell clasting level for psionic schools
+	this.lvSpellAlchemicInc	= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //increment of spell clasting level for alchemic schools
+	this.lvSpellGenericInc 	= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //increment of spell clasting level for generic (es. CDP)
+	this.lvSpellArcane		= 0; //current arcane 	spell level
+    this.lvSpellDivine		= 0; //current divine 	spell level
+    this.lvSpellPsionic		= 0; //current psionic 	spell level
+    this.lvSpellAlchemic	= 0; //current alchemic spell level
 	
-	this.feats				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //feats gained
-	this.ACMods				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //armor class bonus (es monk every 4 levels)
-	this.ARMods             = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //attack roll bonus
-	this.damageMods         = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //damage bonus
-	this.initMods           = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //initiative bonus
+	this.feats				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //feats gained
+	this.ACMods				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //armor class bonus (es monk every 4 levels)
+	this.ARMods             = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //attack roll bonus
+	this.damageMods         = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //damage bonus
+	this.initMods           = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //initiative bonus
 	this.classSkill			= new Array();
 	this.totalFeats			= 0;
 	this.favourite			= false;
@@ -85,6 +94,14 @@ function pfClass(){
     
     this.calculateInitBonus  =   function(){
         this.initBonus = this.initMods[this.level];
+    };
+    
+    this.calculateSpellLevel = function(){
+    	this.lvSpellArcane 	= indexArraySum(this.lvSpellArcaneInc,1,this.level);
+    	this.lvSpellDivine 	= indexArraySum(this.lvSpellDivineInc,1,this.level);
+    	this.lvSpellPsionic = indexArraySum(this.lvSpellPsionicInc,1,this.level);
+    	this.lvSpellAlchemic= indexArraySum(this.lvSpellAlchemicInc,1,this.level);
+    	this.lvSpellGeneric	= indexArraySum(this.lvSpellGenericInc,1,this.level);
     };
 	
 	/**
@@ -197,6 +214,7 @@ function pfClass(){
 	    this.calculateMaxSpellLevel();
 	    this.updateSpellPerDay();
 	    this.updateSpellSt();
+	    this.calculateSpellLevel();
 	    
 	     for (var i=0;i<5;i++) {
 	        this.calculateDamageBonus(i);
@@ -216,6 +234,7 @@ function pfClass(){
 	    globalACClass.val(this.ACBonus); //adding class modifier to AC
 	    globalInitClass.val(addPlus(this.initBonus));
 	    
+	    /*
 	    if (this.spellPerDay.length > 0)
 		    for (var i=0;i<globalSpellPerDay.length;i++){
 		    	var spd = this.spellPerDay[this.level][i];
@@ -230,6 +249,7 @@ function pfClass(){
 	    	for (var i=0;i<this.spellKnown.length;i++){
 	    		globalSpellKnown[i].val(this.spellKnown[this.level][i]);
 	    	};
+	    	*/
 	    
 	};
 	
@@ -264,7 +284,7 @@ function pfDuelling(){
             
             this.ACBonus = Math.min(bonus,(globalCurrentMaxDex-modDex));
         }
-    }
+    };
     
     //If main weapon is a one-hand weapon or the category is light and type P, dueling class add its level
     //to damage
@@ -272,7 +292,7 @@ function pfDuelling(){
         var curentWeapon = gpfWeapon[index];
         if ( (curentWeapon.category == "light" && inArray("P",curentWeapon.damageType)) || !curentWeapon.twoHand)
             this.damageBonus[index]    = this.level;
-    }
+    };
     
 }
 
@@ -299,12 +319,13 @@ function pfRanger(){
     this.stCat 			= new Array(2,2,0);
     this.skillBase  	= 6;
     this.ld				= 10;
-    this.classSkill		= new Array('handle_animal','craft','ride','knowledge_dungeoneering','knowledge_geography','knowledge_nature','stealth','heal','intimidate','swim','perception','Profession','spellcraft','climb','survival');
+    this.classSkill		= new Array('handle_animal','craft','ride','knowledge_dungeoneering','knowledge_geography','knowledge_nature','stealth','heal','intimidate','swim','perception','profession','spellcraft','climb','survival');
+    this.lvSpellDivineInc	= new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
     
     this.calcolateBaseSpellStat = function() {
     	this.spellManager.buildSpellMatrix(this.spellManager.lowCast);
     	this.spellPerDay = this.spellManager.perDay;
-    }
+    };
 }
 
 function pfWarrior(){
@@ -317,6 +338,8 @@ function pfWarrior(){
 	this.skillBase  	= 2;
 	this.ld				= 10;
 	this.feats			= new Array(0,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1);
+	
+	this.classSkill		= new Array('climb','craft','handle_animal','knowledge_dungeoneering','knowledge_engeneering','profession','ride','survival','swim');
 	
 	//from 3th level, reduce the penalty of dex of armor by 1 every 4 levels
 	//due to impossibility to modify max-mod-dex of armor, I can compensate with
@@ -331,7 +354,7 @@ function pfWarrior(){
 	           this.ACBonus++;
 	        this.ACBonus = Math.min(this.ACBonus,difference);
 	    }
-	}
+	};
 	
 	//CALCULATING CLASS BONUS TO ATTACK ROLL WITH INDEX WEAPON
 	this.calculateARBonus = function(index){
@@ -344,7 +367,7 @@ function pfWarrior(){
                    trainingARBonus++;
             }
             this.ARBonus[index] = trainingARBonus;
-	}
+	};
 	
 	//CALCULATING CLASS BONUS TO DAMAGE WITH INDEX WEAPON
 	this.calculateDamageBonus = function(index){
@@ -357,7 +380,7 @@ function pfWarrior(){
                    trainingDamageBonus++;
             }
             this.damageBonus[index] = trainingDamageBonus;
-    }
+    };
 	
 }
 
@@ -372,7 +395,10 @@ function pfCleric(){
 	this.ld 			= 8;
 	this.maxSpellLevel 	= 0;
 	this.bestSpellLevel = 9;
-	this.spellStatMod	= "wis";
+	this.spellStatMod		= "wis";
+	this.lvSpellDivineInc	= new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.classSkill		= new Array('apprise','craft','diplomacy','knowledge_arcana','knowledge_history','knowledge_nobility','knowledge_planes','knowledge_religion','heal','linguistics','profession','sense_motive','spellcraft');
 	
 	this.calculateMaxSpellLevel = function(){
 		this.maxSpellLevel = Math.floor((this.level+1)/2);
@@ -390,7 +416,13 @@ function pfBard(){
 	this.ld 			= 8;
 	this.maxSpellLevel 	= 0;
 	this.bestSpellLevel = 6; 
-	this.spellStatMod	= "cha";
+	this.spellStatMod		= "cha";
+	this.lvSpellArcaneInc	= new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.classSkill		= new Array('acrobatics','apprise','bluff','climb','craft','diplomacy','disguise','escape_artist','intimidate','knowledge_arcana',
+									'knowledge_dungeoneering','knowledge_engineering','knowledge_geography','knowledge_history','knowledge_local','knowledge_nature',
+									'knowledge_nobility','knowledge_planes','knowledge_religion','knowledge_psionic','linguistics','perception','perform','profession',
+									'sense_motive','sleight_of_hand','spellcraft','use_magic_device');
 	
 	this.calculateMaxSpellLevel = function(){
 		this.maxSpellLevel = 1+(Math.floor((this.level-1)/3));
@@ -416,6 +448,9 @@ function pfDruid(){
 	this.bestSpellLevel = 9;
 	this.spellStatMod	= "wis";
 	
+	this.classSkill		= new Array('climb','craft','fly','handle_animal','heal','knowledge_geography','knowledge_nature','perception','profession','ride',
+									'spellcraft','survival','swim');
+	
 	this.calculateMaxSpellLevel = function(){
 		this.maxSpellLevel = Math.floor((this.level+1)/2);
 	};
@@ -423,7 +458,7 @@ function pfDruid(){
 	this.calcolateBaseSpellStat = function() {
 		this.spellManager.buildSpellMatrix(this.spellManager.fullCast);
 		this.spellPerDay = this.spellManager.perDay;
-	}
+	};
 }
 
 function pfWizard(){
@@ -437,8 +472,13 @@ function pfWizard(){
 	this.ld 			= 6;
 	this.maxSpellLevel 	= 0;
 	this.bestSpellLevel = 9;
-	this.feats			= new Array(0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
-	this.spellStatMod	= "int";
+	this.feats				= new Array(0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
+	this.lvSpellArcaneInc	= new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1); 
+	this.spellStatMod		= "int";
+	
+	this.classSkill		= new Array('appraise','craft','fly','linguistics','profession','spellcraft','knowledge_arcana',
+									'knowledge_dungeoneering','knowledge_engineering','knowledge_geography','knowledge_history','knowledge_local','knowledge_nature',
+									'knowledge_nobility','knowledge_planes','knowledge_religion','knowledge_psionic');
 	
 	this.calculateMaxSpellLevel = function(){
 		this.maxSpellLevel = Math.floor((this.level+1)/2);
@@ -447,7 +487,7 @@ function pfWizard(){
 	this.calcolateBaseSpellStat = function() {
 		this.spellManager.buildSpellMatrix(this.spellManager.fullCast);
 		this.spellPerDay = this.spellManager.perDay;
-	}
+	};
 }
 
 function pfSorcerer(){
@@ -461,8 +501,11 @@ function pfSorcerer(){
 	this.ld 			= 6;
 	this.maxSpellLevel 	= 0;
 	this.bestSpellLevel = 9;
-	this.feats			= new Array(0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0);
-	this.spellStatMod	= "cha";
+	this.feats				= new Array(0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0);
+	this.lvSpellArcaneInc	= new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.spellStatMod		= "cha";
+	
+	this.classSkill		= new Array('appraise','bluff','craft','fly','intimidate','knowledge_arcana','profession','spellcraft','use_device_magic');
 	
 	this.calculateMaxSpellLevel = function(){
 		this.maxSpellLevel = Math.max(1,(Math.ceil((this.level+1)/2))-1);
@@ -476,7 +519,7 @@ function pfSorcerer(){
 	
 		this.spellManager.buildSpellKnow(this.spellManager.baseSpelKnown);
 		this.spellKnown	= this.spellManager.known;
-	}
+	};
 }
 
 /**
@@ -492,6 +535,8 @@ function pfMonk(){
 	this.stCat			= new Array(2,2,2);
 	this.ld				= 8;
 	this.ACMods			= new Array(0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5);
+	
+	this.classSkill		= new Array('acrobatics','climb','craft','escape_artist','intimidate','perception','perform','profession','ride','sense_motive','stealth','swim','knowledge_history','knowledge_religion');
 	
 	this.calculateSpeed = function(){
 		this.modSpeed = Math.floor(this.level/3);

@@ -1,3 +1,6 @@
+NOTE
+- Se una classe aggiunge un generico +1 lv spell della classe esistente ed è multiclasse, il sistema lo aggiunge al maggiore;
+
 NON SI PUO' FARE
 
 - Il talento Agile può essere preso una sola volta;

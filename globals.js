@@ -273,10 +273,27 @@ var globalTotalSkillPointAvaiable;
 var globalTotalSkillPointUsed;
 
 //GLOBAL SPELLS
-globalSpellPerDay 	= new Array();
-globalSpellST		= new Array();
-globalSpellKnown	= new Array();
+var globalSpellPerDay = new Array();
+globalSpellPerDay["arcane"] 	= new Array();
+globalSpellPerDay["divine"] 	= new Array();
+globalSpellPerDay["psionic"] 	= new Array();
+var globalSpellST = new Array();
+globalSpellST["arcane"]			= new Array();
+globalSpellST["divine"]			= new Array();
+globalSpellST["psionic"]		= new Array();
+var globalSpellKnown = new Array();
+globalSpellKnown["arcane"]		= new Array();
+globalSpellKnown["divine"]		= new Array();
+globalSpellKnown["psionic"]		= new Array();
 
+var globalArcaneSpellSection;
+var globalDivineSpellSection;
+var globalPsionicSpellSection;
+
+
+/////////////////////////////////////////////////////////////////////////////////
+/////					INIZIALIZAZTION                                    //////
+/////////////////////////////////////////////////////////////////////////////////
 function setAll(){
     globalLanguage = $('#language').val();
     
@@ -480,37 +497,17 @@ function setAll(){
 		}
 		
 		//SPELS
-		globalSpellPerDay[0] = $('#perdaySpell0');
-		globalSpellPerDay[1] = $('#perdaySpell1');
-		globalSpellPerDay[2] = $('#perdaySpell2');
-		globalSpellPerDay[3] = $('#perdaySpell3');
-		globalSpellPerDay[4] = $('#perdaySpell4');
-		globalSpellPerDay[5] = $('#perdaySpell5');
-		globalSpellPerDay[6] = $('#perdaySpell6');
-		globalSpellPerDay[7] = $('#perdaySpell7');
-		globalSpellPerDay[8] = $('#perdaySpell8');
-		globalSpellPerDay[9] = $('#perdaySpell9');
+		globalArcaneSpellSection 		= $('#arcaneSpells');
+		globalDivineSpellSection 		= $('#divineSpells');
+		globalPsionicSpellSection 		= $('#psionicSpells');
 		
-		globalSpellST[0] = $('#stSpell0');
-		globalSpellST[1] = $('#stSpell1');
-		globalSpellST[2] = $('#stSpell2');
-		globalSpellST[3] = $('#stSpell3');
-		globalSpellST[4] = $('#stSpell4');
-		globalSpellST[5] = $('#stSpell5');
-		globalSpellST[6] = $('#stSpell6');
-		globalSpellST[7] = $('#stSpell7');
-		globalSpellST[8] = $('#stSpell8');
-		globalSpellST[9] = $('#stSpell9');
-		
-		globalSpellKnown[0] = $('#spellknown0');
-		globalSpellKnown[1] = $('#spellknown1');
-		globalSpellKnown[2] = $('#spellknown2');
-		globalSpellKnown[3] = $('#spellknown3');
-		globalSpellKnown[4] = $('#spellknown4');
-		globalSpellKnown[5] = $('#spellknown5');
-		globalSpellKnown[6] = $('#spellknown6');
-		globalSpellKnown[7] = $('#spellknown7');
-		globalSpellKnown[8] = $('#spellknown8');
-		globalSpellKnown[9] = $('#spellknown9');
+		var labels = new Array("Arcane","Divine","Psionic");
+		for (var i=0;i<3;i++){
+			for (var j=0;j<10;j++) {
+				globalSpellPerDay[labels[i].toLowerCase()][j] 	= $('#perdaySpell'+j+labels[i]);
+				globalSpellST[labels[i].toLowerCase()][j]		= $('#stSpell'+j+labels[i]);
+				globalSpellKnown[labels[i].toLowerCase()][j]	= $('#spellknown'+j+labels[i]);
+			}
+		}
 }
 

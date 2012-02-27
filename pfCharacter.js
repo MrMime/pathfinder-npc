@@ -24,9 +24,21 @@ function pfCharacter(){
     this.totalTSFMod        = 0;
     this.totalTSRMod        = 0;
     this.totalTSWMod        = 0;
+    //Spell Level stats
+    this.lvSpellArcaneToSum 	= new Array();
+    this.lvSpellDivineToSum 	= new Array();
+    this.lvSpellPsionicToSum 	= new Array();
+    this.lvSpellAlchemicToSum 	= new Array();
+    this.lvSpellArcane			= 0;
+    this.lvSpellDivine			= 0;
+    this.lvSpellPsionic			= 0;
+    this.lvSpellAlchemic		= 0;
+    this.spellManager			= new pfSpellsManager();
     
     this.classesARBonus         = new Array(0,0,0,0,0);
     this.classesDamageBonus     = new Array(0,0,0,0,0);
+    
+    
 	
 	this.eraseAllClasses = function(){
 	    this.classes = new Array();
@@ -45,6 +57,10 @@ function pfCharacter(){
         this.totalCosHP         = 0;
         this.classesARBonus     = 0;
         this.classesDamageBonus = 0;
+        this.lvSpellArcane		= 0;
+        this.lvSpellDivine		= 0;
+        this.lvSpellPsionic		= 0;
+        this.lvSpellAlchemic	= 0;
         
         globalClassesSkills		= new Array();
         
@@ -81,6 +97,12 @@ function pfCharacter(){
 		this.totalDiceHP.push(pfClass.totalDiceHP);
 		this.favouriteHP        += pfClass.favouriteHP;
 		this.averageHP 			+= pfClass.averageHP;
+		//spells section
+		this.lvSpellArcane		+= pfClass.lvSpellArcane;
+	    this.lvSpellDivine		+= pfClass.lvSpellDivine;
+	    this.lvSpellPsionic		+= pfClass.lvSpellPsionic;
+	    this.lvSpellAlchemic	+= pfClass.lvSpellAlchemic;
+	    this.lvSpellGeneric		+= pfClass.lvSpellGeneric;
 		
 		//List of classes skills (es. acrobatics, handle_animal etc...)
 		$.merge (globalClassesSkills,pfClass.classSkill);
@@ -146,6 +168,19 @@ function pfCharacter(){
 	    
 	   globalSkillPointAvaiable = this.skillPointClass + this.humanBonusSkill;
 	   
+	   //spell section
+	   ///If generic > 0, I have some class (es. PC) with a generic casting level increment (like Sapient)
+	   //I have to add to the highest casting level available
+	   if (this.lvSpellGeneric > 0){
+		   var index = checkHighestSpellSchool(new Array(this.lvSpellArcane,this.lvSpellDivine,this.lvSpellPsionic,this.lvSpellAlchemic));
+		   switch (index){
+		   	 case 0: this.lvSpellArcane  += this.lvSpellGeneric;
+		   	 case 1: this.lvSpellDivine  += this.lvSpellGeneric;
+		   	 case 2: this.lvSpellPsionic += this.lvSpellGeneric;
+		   	 case 3: this.lvSpellAchemic += this.lvSpellGeneric;
+		   }
+	   }
+	   
 	   this.draw();   
 	};
 	
@@ -171,6 +206,15 @@ function pfCharacter(){
            globalWeaponClassAR[i].val(addPlus(this.classesARBonus));
            globalWeaponClassDamage[i].val(addPlus(this.classesDamageBonus));
         }
+	    
+	    if (this.lvSpellArcane > 0)
+	    	globalArcaneSpellSection.show();
+	    
+	    if (this.lvSpellDivine > 0)
+	    	globalDivineSpellSection.show();
+	    
+	    if (this.lvSpellPsionic > 0)
+	    	globalPsionicSpellSection.show();
 	    
 	    globalTotalSkillPointAvaiable.html(this.skillPointClass+this.humanBonusSkill);
 	};

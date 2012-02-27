@@ -8,6 +8,37 @@ function addPlus(value){
 	return "+"+value;
 }
 
+function indexArraySum(list,a,b){
+	if (a==0 && b==0)
+		b=list.lenght;
+	var sum = 0;
+	for (var i=a;i<=b;i++){
+		sum += parseInt(list[i]);
+	}
+	return sum;
+}
+
+//Check che hihest spell school
+//0 = arcane
+//1 = divine
+//2 = psionic
+//3 = alchemic
+function checkHighestSpellSchool(a){
+	var index 	= 0;
+	var current = -1;
+	for (var i=0;i<a.length;i++){
+		if (current < a[i]){
+		  current = a[i];
+		  index = i;
+		}
+	}
+	return index;
+}
+
+function arraySum(list){
+	indexArraySum(list,0,0);
+}
+
 function inArray(value,a){
 	for (var i=0;i<a.length;i++)
 		if (value == a[i]) return true;
