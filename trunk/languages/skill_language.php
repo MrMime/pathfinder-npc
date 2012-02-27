@@ -86,7 +86,7 @@
 	$skillLanguage['ita']['profession'] 				= 'professione';
 	$skillLanguage['ita']['ride'] 						= 'cavalcare';
 	$skillLanguage['ita']['sense_motive'] 				= 'intuire';
-	$skillLanguage['ita']['sleight_of_hand'] 			= 'rapitid$agrave; di mano';
+	$skillLanguage['ita']['sleight_of_hand'] 			= 'rapitid&agrave; di mano';
 	$skillLanguage['ita']['spellcraft'] 				= 'sapienza magica';
 	$skillLanguage['ita']['stealth'] 					= 'furtivit&agrave;';
 	$skillLanguage['ita']['survival'] 					= 'sopravvivenza';
