@@ -274,15 +274,15 @@ var globalTotalSkillPointUsed;
 
 //GLOBAL SPELLS
 var globalSpellPerDay = new Array();
-globalSpellPerDay["arcane"] 	= new Array();
+globalSpellPerDay["arcana"] 	= new Array();
 globalSpellPerDay["divine"] 	= new Array();
 globalSpellPerDay["psionic"] 	= new Array();
 var globalSpellST = new Array();
-globalSpellST["arcane"]			= new Array();
+globalSpellST["arcana"]			= new Array();
 globalSpellST["divine"]			= new Array();
 globalSpellST["psionic"]		= new Array();
 var globalSpellKnown = new Array();
-globalSpellKnown["arcane"]		= new Array();
+globalSpellKnown["arcana"]		= new Array();
 globalSpellKnown["divine"]		= new Array();
 globalSpellKnown["psionic"]		= new Array();
 
@@ -501,7 +501,7 @@ function setAll(){
 		globalDivineSpellSection 		= $('#divineSpells');
 		globalPsionicSpellSection 		= $('#psionicSpells');
 		
-		var labels = new Array("Arcane","Divine","Psionic");
+		var labels = new Array("Arcana","Divine","Psionic");
 		for (var i=0;i<3;i++){
 			for (var j=0;j<10;j++) {
 				globalSpellPerDay[labels[i].toLowerCase()][j] 	= $('#perdaySpell'+j+labels[i]);

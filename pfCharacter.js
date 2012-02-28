@@ -25,20 +25,27 @@ function pfCharacter(){
     this.totalTSRMod        = 0;
     this.totalTSWMod        = 0;
     //Spell Level stats
-    this.lvSpellArcaneToSum 	= new Array();
-    this.lvSpellDivineToSum 	= new Array();
-    this.lvSpellPsionicToSum 	= new Array();
-    this.lvSpellAlchemicToSum 	= new Array();
-    this.lvSpellArcane			= 0;
-    this.lvSpellDivine			= 0;
-    this.lvSpellPsionic			= 0;
-    this.lvSpellAlchemic		= 0;
+    this.lvSpellArcane			= 0; //sum of every level of arcana spell every classes may add
+    this.lvSpellDivine			= 0; //as above
+    this.lvSpellPsionic			= 0; //as above
+    this.lvSpellAlchemic		= 0; //as above
+    this.spellCategory			= new Array("arcana","divine","psonic");
     this.spellManager			= new pfSpellsManager();
+    this.spellPerDay			= new Array();
+    this.spellPerDay["arcana"]  = new Array();
+    this.spellPerDay["divine"]  = new Array();
+    this.spellPerDay["psionic"] = new Array();
+    this.spellKnown				= new Array();
+    this.spellKnown["arcana"]  	= new Array();
+    this.spellKnown["divine"]  	= new Array();
+    this.spellKnown["psionic"] 	= new Array();
+    this.spellST				= new Array();
+    this.spellST["arcana"]  	= new Array();
+    this.spellST["divine"]  	= new Array();
+    this.spellST["psionic"] 	= new Array();
     
     this.classesARBonus         = new Array(0,0,0,0,0);
     this.classesDamageBonus     = new Array(0,0,0,0,0);
-    
-    
 	
 	this.eraseAllClasses = function(){
 	    this.classes = new Array();
@@ -61,6 +68,8 @@ function pfCharacter(){
         this.lvSpellDivine		= 0;
         this.lvSpellPsionic		= 0;
         this.lvSpellAlchemic	= 0;
+        this.spellPerDay		= new Array();
+        this.spellKnown			= new Array();
         
         globalClassesSkills		= new Array();
         
@@ -103,6 +112,15 @@ function pfCharacter(){
 	    this.lvSpellPsionic		+= pfClass.lvSpellPsionic;
 	    this.lvSpellAlchemic	+= pfClass.lvSpellAlchemic;
 	    this.lvSpellGeneric		+= pfClass.lvSpellGeneric;
+	    
+	    //If class has spell casting ability, the source is setted so
+	    //I store in character spell category list, the caster list
+	    //NOTE: No multiclass with same spell source is current supported
+	    if (pfClass.spellSource != ""){
+	    	this.spellPerDay[pfClass.spellSource] 	= pfClass.spellPerDay[pfClass.level];
+	    	this.spellKnown[pfClass.spellSource]  	= pfClass.spellKnown;
+	    	this.spellST[pfClass.spellSource]   	= pfClass.spellST;
+	    }
 		
 		//List of classes skills (es. acrobatics, handle_animal etc...)
 		$.merge (globalClassesSkills,pfClass.classSkill);
@@ -169,15 +187,15 @@ function pfCharacter(){
 	   globalSkillPointAvaiable = this.skillPointClass + this.humanBonusSkill;
 	   
 	   //spell section
-	   ///If generic > 0, I have some class (es. PC) with a generic casting level increment (like Sapient)
+	   ///If generic > 0, I have some class (es. prestige class) with a generic casting level increment (like Sapient)
 	   //I have to add to the highest casting level available
 	   if (this.lvSpellGeneric > 0){
 		   var index = checkHighestSpellSchool(new Array(this.lvSpellArcane,this.lvSpellDivine,this.lvSpellPsionic,this.lvSpellAlchemic));
 		   switch (index){
-		   	 case 0: this.lvSpellArcane  += this.lvSpellGeneric;
-		   	 case 1: this.lvSpellDivine  += this.lvSpellGeneric;
-		   	 case 2: this.lvSpellPsionic += this.lvSpellGeneric;
-		   	 case 3: this.lvSpellAchemic += this.lvSpellGeneric;
+		   	 case 0: this.lvSpellArcane  += this.lvSpellGeneric; break;
+		   	 case 1: this.lvSpellDivine  += this.lvSpellGeneric; break;
+		   	 case 2: this.lvSpellPsionic += this.lvSpellGeneric; break;
+		   	 case 3: this.lvSpellAchemic += this.lvSpellGeneric; break;
 		   }
 	   }
 	   
@@ -207,15 +225,45 @@ function pfCharacter(){
            globalWeaponClassDamage[i].val(addPlus(this.classesDamageBonus));
         }
 	    
+	    globalArcaneSpellSection.hide();
 	    if (this.lvSpellArcane > 0)
 	    	globalArcaneSpellSection.show();
 	    
+	    globalDivineSpellSection.hide();
 	    if (this.lvSpellDivine > 0)
 	    	globalDivineSpellSection.show();
 	    
+	    globalPsionicSpellSection.hide();
 	    if (this.lvSpellPsionic > 0)
 	    	globalPsionicSpellSection.show();
 	    
+	    //Drawing all information about spells
+	    for (var i=0;i<this.spellCategory.length;i++){
+	    	var cat = this.spellCategory[i];
+	    	if (this.spellPerDay[cat].length > 0) {
+	    		for (var j=0;j<globalSpellPerDay[cat].length;j++){
+			    	var spd = this.spellPerDay[cat][j];
+			    	spd = (spd == '-1') ? 'oo': spd; 
+			    	globalSpellPerDay[cat][j].val(spd);
+			    }
+	    	}
+	    	if (this.spellST[cat].length > 0){
+	    		for (var j=0;j<globalSpellST[cat].length;j++){
+	    			globalSpellST[cat][j].val(this.spellST[cat][j]);
+			    }
+	    	}
+	    }
+		 /*   
+	    if (this.spellST.length > 0)
+	    	for (var i=0;i<this.spellST.length;i++)
+	    		globalSpellST[i].val(this.spellST[i]);
+	    
+	    if (this.spellKnown.length > 0)
+	    	for (var i=0;i<this.spellKnown.length;i++){
+	    		globalSpellKnown[i].val(this.spellKnown[this.level][i]);
+	    	};
+	    
+	    */
 	    globalTotalSkillPointAvaiable.html(this.skillPointClass+this.humanBonusSkill);
 	};
 	

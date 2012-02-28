@@ -8,6 +8,7 @@ NON SI PUO' FARE
 - Non vengono gestiti i pre-requisiti dei talenti;
 - Non vengono gestiti tiri salvezza specifici (es vs. paura)
 - Non viene gestito la sovra-armatura
+- Il sistema non gestisce il multiclasse per i caster che hanno una sorgente magica uguale. Quindi si può fare un multiclasse chierico-mago ma non mago-stregone oppure chierico-druido ecc...
 
 DA CONTROLLARE
 

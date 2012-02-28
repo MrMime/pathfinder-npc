@@ -28,6 +28,7 @@ function pfClass(){
 	this.spellKnown			= new Array();
 	this.maxSpellLevel 		= 0;
 	this.bestSpellLevel 	= 0;
+	this.spellSource		= ""; //its the spell source. It can be arcana, divine, psionic
 	this.spellStatsMod		= ""; //stats wich is based the spellcasting (es. int for wizard)
 	this.spellKnowBonus	    = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //added spell bonus (es sorcerer has blood spell bonus)
 	this.spellST			= new Array(0,0,0,0,0,0,0,0,0,0);
@@ -319,6 +320,7 @@ function pfRanger(){
     this.stCat 			= new Array(2,2,0);
     this.skillBase  	= 6;
     this.ld				= 10;
+    this.spellSource	= "divine";
     this.classSkill		= new Array('handle_animal','craft','ride','knowledge_dungeoneering','knowledge_geography','knowledge_nature','stealth','heal','intimidate','swim','perception','profession','spellcraft','climb','survival');
     this.lvSpellDivineInc	= new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
     
@@ -396,6 +398,7 @@ function pfCleric(){
 	this.maxSpellLevel 	= 0;
 	this.bestSpellLevel = 9;
 	this.spellStatMod		= "wis";
+	this.spellSource		= "divine";
 	this.lvSpellDivineInc	= new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
 	this.classSkill		= new Array('apprise','craft','diplomacy','knowledge_arcana','knowledge_history','knowledge_nobility','knowledge_planes','knowledge_religion','heal','linguistics','profession','sense_motive','spellcraft');
@@ -417,6 +420,7 @@ function pfBard(){
 	this.maxSpellLevel 	= 0;
 	this.bestSpellLevel = 6; 
 	this.spellStatMod		= "cha";
+	this.spellSource		= "arcana";
 	this.lvSpellArcaneInc	= new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
 	this.classSkill		= new Array('acrobatics','apprise','bluff','climb','craft','diplomacy','disguise','escape_artist','intimidate','knowledge_arcana',
@@ -447,6 +451,7 @@ function pfDruid(){
 	this.maxSpellLevel 	= 0;
 	this.bestSpellLevel = 9;
 	this.spellStatMod	= "wis";
+	this.spellSource	= "divine";
 	
 	this.classSkill		= new Array('climb','craft','fly','handle_animal','heal','knowledge_geography','knowledge_nature','perception','profession','ride',
 									'spellcraft','survival','swim');
@@ -475,6 +480,7 @@ function pfWizard(){
 	this.feats				= new Array(0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
 	this.lvSpellArcaneInc	= new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1); 
 	this.spellStatMod		= "int";
+	this.spellSource		= "arcana";
 	
 	this.classSkill		= new Array('appraise','craft','fly','linguistics','profession','spellcraft','knowledge_arcana',
 									'knowledge_dungeoneering','knowledge_engineering','knowledge_geography','knowledge_history','knowledge_local','knowledge_nature',
@@ -504,6 +510,7 @@ function pfSorcerer(){
 	this.feats				= new Array(0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0);
 	this.lvSpellArcaneInc	= new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.spellStatMod		= "cha";
+	this.spellSource		= "arcana";
 	
 	this.classSkill		= new Array('appraise','bluff','craft','fly','intimidate','knowledge_arcana','profession','spellcraft','use_device_magic');
 	
