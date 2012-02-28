@@ -176,6 +176,10 @@
 	$pfNpcSheet['eng']['knowns']			= 'knowns';
 	$pfNpcSheet['eng']['spells']			= 'spells';
 	
+	$pfNpcSheet['eng']['arcana']			= 'arcana';
+	$pfNpcSheet['eng']['divine']			= 'divine';
+	$pfNpcSheet['eng']['psionic']			= 'psionic';
+	
 	//*******************************************************************//
 	
 	//GENERIC
@@ -359,6 +363,10 @@
 	$pfNpcSheet['ita']['perday']			= 'al giorno';
 	$pfNpcSheet['ita']['knowns']			= 'conosciuti';
 	$pfNpcSheet['ita']['spells']			= 'incantesimi';
+	
+	$pfNpcSheet['ita']['arcana']			= 'arcani';
+	$pfNpcSheet['ita']['divine']			= 'divini';
+	$pfNpcSheet['ita']['psionic']			= 'psionici';
 	
 	$GLOBALS['pfNpcSheet'] = $pfNpcSheet; 
 	

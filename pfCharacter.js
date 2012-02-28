@@ -118,7 +118,7 @@ function pfCharacter(){
 	    //NOTE: No multiclass with same spell source is current supported
 	    if (pfClass.spellSource != ""){
 	    	this.spellPerDay[pfClass.spellSource] 	= pfClass.spellPerDay[pfClass.level];
-	    	this.spellKnown[pfClass.spellSource]  	= pfClass.spellKnown;
+	    	this.spellKnown[pfClass.spellSource]  	= pfClass.spellKnown[pfClass.level];
 	    	this.spellST[pfClass.spellSource]   	= pfClass.spellST;
 	    }
 		
@@ -252,18 +252,13 @@ function pfCharacter(){
 	    			globalSpellST[cat][j].val(this.spellST[cat][j]);
 			    }
 	    	}
+	    	
+	    	if (this.spellKnown[cat].length > 0)
+		    	for (var j=0;j<globalSpellKnown[cat].length;j++){
+		    		globalSpellKnown[cat][j].val(this.spellKnown[cat][j]);
+		    	};
+	    	
 	    }
-		 /*   
-	    if (this.spellST.length > 0)
-	    	for (var i=0;i<this.spellST.length;i++)
-	    		globalSpellST[i].val(this.spellST[i]);
-	    
-	    if (this.spellKnown.length > 0)
-	    	for (var i=0;i<this.spellKnown.length;i++){
-	    		globalSpellKnown[i].val(this.spellKnown[this.level][i]);
-	    	};
-	    
-	    */
 	    globalTotalSkillPointAvaiable.html(this.skillPointClass+this.humanBonusSkill);
 	};
 	
