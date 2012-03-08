@@ -97,6 +97,9 @@ function pfClass(){
         this.initBonus = this.initMods[this.level];
     };
     
+    //Calcola il livello totale di una scuola di spell
+    //gli array contengono l'incremento rispetto al livello precedente
+    //E' utile per gestire le CDP che incrementano il lv corrente di una classe
     this.calculateSpellLevel = function(){
     	this.lvSpellArcane 	= indexArraySum(this.lvSpellArcaneInc,1,this.level);
     	this.lvSpellDivine 	= indexArraySum(this.lvSpellDivineInc,1,this.level);
@@ -198,7 +201,6 @@ function pfClass(){
 	
 	this.updateSpellKnown = function(){
 		if (this.spellStatMod == null) return;
-		
 	};
 	
 	this.update = function(){
@@ -235,22 +237,30 @@ function pfClass(){
 	    globalACClass.val(this.ACBonus); //adding class modifier to AC
 	    globalInitClass.val(addPlus(this.initBonus));
 	    
-	    /*
-	    if (this.spellPerDay.length > 0)
-		    for (var i=0;i<globalSpellPerDay.length;i++){
-		    	var spd = this.spellPerDay[this.level][i];
-		    	spd = (spd == '-1') ? 'oo': spd; 
-		    	globalSpellPerDay[i].val(spd);
-		    }
-	    if (this.spellST.length > 0)
-	    	for (var i=0;i<this.spellST.length;i++)
-	    		globalSpellST[i].val(this.spellST[i]);
-	    
-	    if (this.spellKnown.length > 0)
-	    	for (var i=0;i<this.spellKnown.length;i++){
-	    		globalSpellKnown[i].val(this.spellKnown[this.level][i]);
-	    	};
-	    	*/
+	    //If this is a caster Class...
+	    if (this.spellSource != ""){
+	    	var spellSection 	= $('#'+this.name+'Spell');
+	    	spellSection.show();
+	    	
+		    if (this.spellPerDay.length > 0)
+			    for (var i=0;i<=this.bestSpellLevel;i++){
+			    	var globalSpellPerDay 	= $('#perdaySpell'+i+this.name);
+			    	var spd = this.spellPerDay[this.level][i];
+			    	spd = (spd == '-1') ? 'oo': spd; 
+			    	globalSpellPerDay.val(spd);
+			    }
+		    if (this.spellST.length > 0)
+		    	for (var i=0;i<=this.bestSpellLevel;i++) {
+		    		var globalSpellST 	= $('#stSpell'+i+this.name);
+		    		globalSpellST.val(this.spellST[i]);
+		    	}
+		    
+		    if (this.spellKnown.length > 0)
+		    	for (var i=0;i<=this.bestSpellLevel;i++){
+		    		var globalSpellKnown 	= $('#spellknown'+i+this.name);
+		    		globalSpellKnown.val(this.spellKnown[this.level][i]);
+		    	};
+	    }
 	    
 	};
 	
@@ -303,13 +313,33 @@ function pfDuelling(){
 function pfBarbarian(){
 	this.inheritFrom = pfClass;
     this.inheritFrom();
-	this.name 			= "Barbarian";
+	this.name 			= "barbarian";
 	this.babBase 		= new Array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
 	this.stCat 			= new Array(2,0,0); 
 	this.speed  		= 3;
 	this.skillBase  	= 4;
 	this.ld				= 12;
 	this.classSkill		= new Array('acrobatics','climb','craft','handle_animal','intimidate','knowledge_nature','perception','ride','survival','swim');
+}
+
+function pfPaladin(){
+	this.inheritFrom = pfClass;
+    this.inheritFrom();
+	this.name 			= "paladin";
+	this.babBase		= new Array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+	this.stCat 			= new Array(2,0,2);
+	this.skillBase		= 2;
+	this.ld				= 10;
+	this.bestSpellLevel	= 4;
+	this.classSkill		= new Array('handle_animal','craft','intimidate','knowledge_nobility','knowledge_religion','diplomacy','ride','heal','spellcraft','profession');
+	this.spellSource	= "divine";
+	this.spellStatMod		= "cha";
+	this.lvSpellDivineInc	= new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1); 
+	
+	this.calcolateBaseSpellStat = function() {
+	    	this.spellManager.buildSpellMatrix(this.spellManager.lowCast);
+	    	this.spellPerDay = this.spellManager.perDay;
+	};
 }
 
 function pfRanger(){
@@ -319,6 +349,7 @@ function pfRanger(){
     this.babBase 		= new Array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
     this.stCat 			= new Array(2,2,0);
     this.skillBase  	= 6;
+    this.bestSpellLevel	= 6;
     this.ld				= 10;
     this.spellSource	= "divine";
     this.classSkill		= new Array('handle_animal','craft','ride','knowledge_dungeoneering','knowledge_geography','knowledge_nature','stealth','heal','intimidate','swim','perception','profession','spellcraft','climb','survival');
@@ -333,14 +364,13 @@ function pfRanger(){
 function pfWarrior(){
 	this.inheritFrom = pfClass;
     this.inheritFrom();
-	this.name 			= "Warrior";
+	this.name 			= "warrior";
 	this.babBase 		= new Array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
 	this.stCat 			= new Array(2,0,0); 
 	this.speed  		= 0;
 	this.skillBase  	= 2;
 	this.ld				= 10;
 	this.feats			= new Array(0,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1);
-	
 	this.classSkill		= new Array('climb','craft','handle_animal','knowledge_dungeoneering','knowledge_engeneering','profession','ride','survival','swim');
 	
 	//from 3th level, reduce the penalty of dex of armor by 1 every 4 levels
@@ -389,7 +419,7 @@ function pfWarrior(){
 function pfCleric(){
 	this.inheritFrom = pfClass;
     this.inheritFrom();
-	this.name 			= "Cleric";
+	this.name 			= "cleric";
 	this.babBase  		= new Array(0,0,1,2,3,3,4,5,6,6,7,8,9,9,10,11,12,12,13,14,15);
 	this.stCat 			= new Array(2,0,2); 
 	this.speed  		= 0;
@@ -411,7 +441,7 @@ function pfCleric(){
 function pfBard(){
 	this.inheritFrom = pfClass;
     this.inheritFrom();
-	this.name 			= "Bard";
+	this.name 			= "bard";
 	this.babBase  		= new Array(0,0,1,2,3,3,4,5,6,6,7,8,9,9,10,11,12,12,13,14,15);
 	this.stCat 			= new Array(0,2,2); 
 	this.speed  		= 0;
@@ -442,7 +472,7 @@ function pfBard(){
 function pfDruid(){
 	this.inheritFrom = pfClass;
     this.inheritFrom();
-	this.name 			= "Druid";
+	this.name 			= "druid";
 	this.babBase  		= new Array(0,0,1,2,3,3,4,5,6,6,7,8,9,9,10,11,12,12,13,14,15);
 	this.stCat 			= new Array(2,0,2); 
 	this.speed  		= 0;
@@ -469,7 +499,7 @@ function pfDruid(){
 function pfWizard(){
 	this.inheritFrom = pfClass;
     this.inheritFrom();
-	this.name 			= "Wizard";
+	this.name 			= "wizard";
 	this.babBase  		= new Array(0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10);
 	this.stCat 			= new Array(0,0,2); 
 	this.speed  		= 0;
@@ -499,7 +529,7 @@ function pfWizard(){
 function pfSorcerer(){
 	this.inheritFrom = pfClass;
     this.inheritFrom();
-	this.name 			= "Socerer";
+	this.name 			= "sorcerer";
 	this.babBase  		= new Array(0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10);
 	this.stCat 			= new Array(0,0,2); 
 	this.speed  		= 0;
@@ -535,7 +565,7 @@ function pfSorcerer(){
 function pfMonk(){
 	this.inheritFrom = pfClass;
     this.inheritFrom();
-	this.name 			= "Monk";
+	this.name 			= "monk";
 	this.babFlurryBase 	= new Array(0,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18);
 	this.babFlurry 		= 0;
 	this.babBase  		= new Array(0,0,1,2,3,3,4,5,6,6,7,8,9,9,10,11,12,12,13,14,15);
