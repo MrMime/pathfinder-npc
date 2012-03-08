@@ -1,0 +1,250 @@
+<div id="arcaneSpells" style="display:none;">
+	<legend>{spells} {arcana}</legend>
+	<table id="skillList">
+		<tr>
+			<th>{level}</th>
+			<th>{st}</th>
+			<th>{perday}</th>
+			<th>{knowns}</th>
+			<th>{spells}</th>
+		</tr>
+		<tr id="spellLevel0">
+			<td>0</td>
+			<td><input id="stSpell0Arcana" 		type="text" class="center bold" 	name="stSpell['arcane'][0]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell0Arcana" 	type="text" class="center bold" 	name="stSpell['arcane'][0]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown0Arcana" 	type="text" class="center bold" 	name="stSpell['arcane'][0]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList0Arcana" 										name="stSpell['arcane'][0]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel1">
+			<td>1</td>
+			<td><input id="stSpell1Arcana" 		type="text" class="center bold" name="stSpell['arcane'][1]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell1Arcana" 	type="text" class="center bold" name="stSpell['arcane'][1]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown1Arcana" 	type="text" class="center bold" name="stSpell['arcane'][1]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList1Arcana" 									name="stSpell['arcane'][1]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel2">
+			<td>2</td>
+			<td><input id="stSpell2Arcana" 		type="text" class="center bold" name="stSpell['arcane'][2]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell2Arcana" 	type="text" class="center bold" name="stSpell['arcane'][2]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown2Arcana" 	type="text" class="center bold" name="stSpell['arcane'][2]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList2Arcana" 									name="stSpell['arcane'][2]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel3">
+			<td>3</td>
+			<td><input id="stSpell3Arcana" 		type="text" class="center bold" name="stSpell['arcane'][3]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell3Arcana" 	type="text" class="center bold" name="stSpell['arcane'][3]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown3Arcana" 	type="text" class="center bold" name="stSpell['arcane'][3]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList3Arcana" 									name="stSpell['arcane'][3]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel4">
+			<td>4</td>
+			<td><input id="stSpell4Arcana" 		type="text" class="center bold" name="stSpell['arcane'][4]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell4Arcana" 	type="text" class="center bold" name="stSpell['arcane'][4]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown4Arcana" 	type="text" class="center bold" name="stSpell['arcane'][4]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList4Arcana" 									name="stSpell['arcane'][4]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel5">
+			<td>5</td>
+			<td><input id="stSpell5Arcana" 		type="text" class="center bold" name="stSpell['arcane'][5]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell5Arcana" 	type="text" class="center bold" name="stSpell['arcane'][5]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown5Arcana" 	type="text" class="center bold" name="stSpell['arcane'][5]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList5Arcana" 									name="stSpell['arcane'][5]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel6">
+			<td>6</td>
+			<td><input id="stSpell6Arcana" 		type="text" class="center bold" name="stSpell['arcane'][6]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell6Arcana" 	type="text" class="center bold" name="stSpell['arcane'][6]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown6Arcana" 	type="text" class="center bold" name="stSpell['arcane'][6]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList6Arcana" 									name="stSpell['arcane'][6]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel7">
+			<td>7</td>
+			<td><input id="stSpell7Arcana" 		type="text" class="center bold" name="stSpell['arcane'][7]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell7Arcana" 	type="text" class="center bold" name="stSpell['arcane'][7]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown7Arcana" 	type="text" class="center bold" name="stSpell['arcane'][7]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList7Arcana" 									name="stSpell['arcane'][7]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel8">
+			<td>8</td>
+			<td><input id="stSpell8Arcana" 		type="text" class="center bold" name="stSpell['arcane'][8]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell8Arcana" 	type="text" class="center bold" name="stSpell['arcane'][8]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown8Arcana" 	type="text" class="center bold" name="stSpell['arcane'][8]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList8Arcana" 									name="stSpell['arcane'][8]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel9">
+			<td>9</td>
+			<td><input id="stSpell9Arcana" 		type="text" class="center bold" name="stSpell['arcane'][9]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell9Arcana" 	type="text" class="center bold" name="stSpell['arcane'][9]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown9Arcana" 	type="text" class="center bold" name="stSpell['arcane'][9]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList9Arcana" 									name="stSpell['arcane'][9]['selected']"></select></td>
+		</tr>	
+	</table>
+</div>
+
+<div id="divineSpells" style="display:none;">
+	<legend>{spells} {divine}</legend>
+	<table id="skillList">
+		<tr>
+			<th>{level}</th>
+			<th>{st}</th>
+			<th>{perday}</th>
+			<th>{knowns}</th>
+			<th>{spells}</th>
+		</tr>
+		<tr id="spellLevel0">
+			<td>0</td>
+			<td><input id="stSpell0Divine" 		type="text" class="center bold" 	name="stSpell['divine'][0]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell0Divine" 	type="text" class="center bold" 	name="stSpell['divine'][0]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown0Divine" 	type="text" class="center bold" 	name="stSpell['divine'][0]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList0Divine" 										name="stSpell['divine'][0]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel1">
+			<td>1</td>
+			<td><input id="stSpell1Divine" 		type="text" class="center bold" name="stSpell['divine'][1]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell1Divine" 	type="text" class="center bold" name="stSpell['divine'][1]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown1Divine" 	type="text" class="center bold" name="stSpell['divine'][1]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList1Divine" 									name="stSpell['divine'][1]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel2">
+			<td>2</td>
+			<td><input id="stSpell2Divine" 		type="text" class="center bold" name="stSpell['divine'][2]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell2Divine" 	type="text" class="center bold" name="stSpell['divine'][2]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown2Divine" 	type="text" class="center bold" name="stSpell['divine'][2]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList2Divine" 									name="stSpell['divine'][2]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel3">
+			<td>3</td>
+			<td><input id="stSpell3Divine" 		type="text" class="center bold" name="stSpell['divine'][3]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell3Divine" 	type="text" class="center bold" name="stSpell['divine'][3]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown3Divine" 	type="text" class="center bold" name="stSpell['divine'][3]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList3Divine" 									name="stSpell['divine'][3]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel4">
+			<td>4</td>
+			<td><input id="stSpell4Divine" 		type="text" class="center bold" name="stSpell['divine'][4]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell4Divine" 	type="text" class="center bold" name="stSpell['divine'][4]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown4Divine" 	type="text" class="center bold" name="stSpell['divine'][4]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList4Divine" 									name="stSpell['divine'][4]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel5">
+			<td>5</td>
+			<td><input id="stSpell5Divine" 		type="text" class="center bold" name="stSpell['divine'][5]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell5Divine" 	type="text" class="center bold" name="stSpell['divine'][5]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown5Divine" 	type="text" class="center bold" name="stSpell['divine'][5]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList5Divine" 									name="stSpell['divine'][5]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel6">
+			<td>6</td>
+			<td><input id="stSpell6Divine" 		type="text" class="center bold" name="stSpell['divine'][6]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell6Divine" 	type="text" class="center bold" name="stSpell['divine'][6]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown6Divine" 	type="text" class="center bold" name="stSpell['divine'][6]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList6Divine" 									name="stSpell['divine'][6]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel7">
+			<td>7</td>
+			<td><input id="stSpell7Divine" 		type="text" class="center bold" name="stSpell['divine'][7]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell7Divine" 	type="text" class="center bold" name="stSpell['divine'][7]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown7Divine" 	type="text" class="center bold" name="stSpell['divine'][7]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList7Divine" 									name="stSpell['divine'][7]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel8">
+			<td>8</td>
+			<td><input id="stSpell8Divine" 		type="text" class="center bold" name="stSpell['divine'][8]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell8Divine" 	type="text" class="center bold" name="stSpell['divine'][8]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown8Divine" 	type="text" class="center bold" name="stSpell['divine'][8]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList8Divine" 									name="stSpell['divine'][8]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel9">
+			<td>9</td>
+			<td><input id="stSpell9Divine" 		type="text" class="center bold" name="stSpell['divine'][9]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell9Divine" 	type="text" class="center bold" name="stSpell['divine'][9]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown9Divine" 	type="text" class="center bold" name="stSpell['divine'][9]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList9Divine" 									name="stSpell['divine'][9]['selected']"></select></td>
+		</tr>	
+	</table>
+</div>
+
+
+<div id="psionicSpells" style="display:none;">
+	<legend>{spells} {psinoci}</legend>
+	<table id="skillList">
+		<tr>
+			<th>{level}</th>
+			<th>{st}</th>
+			<th>{perday}</th>
+			<th>{knowns}</th>
+			<th>{spells}</th>
+		</tr>
+		<tr id="spellLevel0">
+			<td>0</td>
+			<td><input id="stSpell0Psionic" 		type="text" class="center bold" 	name="stSpell['psionic'][0]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell0Psionic" 	type="text" class="center bold" 	name="stSpell['psionic'][0]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown0Psionic" 	type="text" class="center bold" 	name="stSpell['psionic'][0]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList0Psionic" 										name="stSpell['psionic'][0]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel1">
+			<td>1</td>
+			<td><input id="stSpell1Psionic" 		type="text" class="center bold" name="stSpell['psionic'][1]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell1Psionic" 	type="text" class="center bold" name="stSpell['psionic'][1]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown1Psionic" 	type="text" class="center bold" name="stSpell['psionic'][1]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList1Psionic" 									name="stSpell['psionic'][1]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel2">
+			<td>2</td>
+			<td><input id="stSpell2Psionic" 		type="text" class="center bold" name="stSpell['psionic'][2]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell2Psionic" 	type="text" class="center bold" name="stSpell['psionic'][2]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown2Psionic" 	type="text" class="center bold" name="stSpell['psionic'][2]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList2Psionic" 									name="stSpell['psionic'][2]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel3">
+			<td>3</td>
+			<td><input id="stSpell3Psionic" 		type="text" class="center bold" name="stSpell['psionic'][3]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell3Psionic" 	type="text" class="center bold" name="stSpell['psionic'][3]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown3Psionic" 	type="text" class="center bold" name="stSpell['psionic'][3]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList3Psionic" 									name="stSpell['psionic'][3]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel4">
+			<td>4</td>
+			<td><input id="stSpell4Psionic" 		type="text" class="center bold" name="stSpell['psionic'][4]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell4Psionic" 	type="text" class="center bold" name="stSpell['psionic'][4]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown4Psionic" 	type="text" class="center bold" name="stSpell['psionic'][4]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList4Psionic" 									name="stSpell['psionic'][4]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel5">
+			<td>5</td>
+			<td><input id="stSpell5Psionic" 		type="text" class="center bold" name="stSpell['psionic'][5]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell5Psionic" 	type="text" class="center bold" name="stSpell['psionic'][5]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown5Psionic" 	type="text" class="center bold" name="stSpell['psionic'][5]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList5Psionic" 									name="stSpell['psionic'][5]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel6">
+			<td>6</td>
+			<td><input id="stSpell6Psionic" 		type="text" class="center bold" name="stSpell['psionic'][6]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell6Psionic" 	type="text" class="center bold" name="stSpell['psionic'][6]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown6Psionic" 	type="text" class="center bold" name="stSpell['psionic'][6]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList6Psionic" 									name="stSpell['psionic'][6]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel7">
+			<td>7</td>
+			<td><input id="stSpell7Psionic" 		type="text" class="center bold" name="stSpell['psionic'][7]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell7Psionic" 	type="text" class="center bold" name="stSpell['psionic'][7]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown7Psionic" 	type="text" class="center bold" name="stSpell['psionic'][7]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList7Psionic" 									name="stSpell['psionic'][7]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel8">
+			<td>8</td>
+			<td><input id="stSpell8Psionic" 		type="text" class="center bold" name="stSpell['psionic'][8]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell8Psionic" 	type="text" class="center bold" name="stSpell['psionic'][8]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown8Psionic" 	type="text" class="center bold" name="stSpell['psionic'][8]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList8Psionic" 									name="stSpell['psionic'][8]['selected']"></select></td>
+		</tr>
+		<tr id="spellLevel9">
+			<td>9</td>
+			<td><input id="stSpell9Psionic" 		type="text" class="center bold" name="stSpell['psionic'][9]['st']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="perdaySpell9Psionic" 	type="text" class="center bold" name="stSpell['psionic'][9]['perday']" value="0" size="3" readOnly="readonly" /></td>
+			<td><input id="spellknown9Psionic" 	type="text" class="center bold" name="stSpell['psionic'][9]['known']" value="0" size="3" readOnly="readonly" /></td>
+			<td><select id="spellList9Psionic" 									name="stSpell['psionic'][9]['selected']"></select></td>
+		</tr>	
+	</table>
+</div>
+

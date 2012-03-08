@@ -272,25 +272,6 @@ var globalWeaponEnchantment         = new Array();
 var globalTotalSkillPointAvaiable;
 var globalTotalSkillPointUsed;
 
-//GLOBAL SPELLS
-var globalSpellPerDay = new Array();
-globalSpellPerDay["arcana"] 	= new Array();
-globalSpellPerDay["divine"] 	= new Array();
-globalSpellPerDay["psionic"] 	= new Array();
-var globalSpellST = new Array();
-globalSpellST["arcana"]			= new Array();
-globalSpellST["divine"]			= new Array();
-globalSpellST["psionic"]		= new Array();
-var globalSpellKnown = new Array();
-globalSpellKnown["arcana"]		= new Array();
-globalSpellKnown["divine"]		= new Array();
-globalSpellKnown["psionic"]		= new Array();
-
-var globalArcaneSpellSection;
-var globalDivineSpellSection;
-var globalPsionicSpellSection;
-
-
 /////////////////////////////////////////////////////////////////////////////////
 /////					INIZIALIZAZTION                                    //////
 /////////////////////////////////////////////////////////////////////////////////
@@ -495,19 +476,6 @@ function setAll(){
             globalWeaponMagic[i-1]               = $('#weapon0'+i+'Magic');
             globalWeaponEnchantment[i-1]         = $('#weapon0'+i+'Enchantment');
 		}
-		
-		//SPELS
-		globalArcaneSpellSection 		= $('#arcaneSpells');
-		globalDivineSpellSection 		= $('#divineSpells');
-		globalPsionicSpellSection 		= $('#psionicSpells');
-		
-		var labels = new Array("Arcana","Divine","Psionic");
-		for (var i=0;i<3;i++){
-			for (var j=0;j<10;j++) {
-				globalSpellPerDay[labels[i].toLowerCase()][j] 	= $('#perdaySpell'+j+labels[i]);
-				globalSpellST[labels[i].toLowerCase()][j]		= $('#stSpell'+j+labels[i]);
-				globalSpellKnown[labels[i].toLowerCase()][j]	= $('#spellknown'+j+labels[i]);
-			}
-		}
+	
 }
 

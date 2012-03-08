@@ -29,20 +29,6 @@ function pfCharacter(){
     this.lvSpellDivine			= 0; //as above
     this.lvSpellPsionic			= 0; //as above
     this.lvSpellAlchemic		= 0; //as above
-    this.spellCategory			= new Array("arcana","divine","psonic");
-    this.spellManager			= new pfSpellsManager();
-    this.spellPerDay			= new Array();
-    this.spellPerDay["arcana"]  = new Array();
-    this.spellPerDay["divine"]  = new Array();
-    this.spellPerDay["psionic"] = new Array();
-    this.spellKnown				= new Array();
-    this.spellKnown["arcana"]  	= new Array();
-    this.spellKnown["divine"]  	= new Array();
-    this.spellKnown["psionic"] 	= new Array();
-    this.spellST				= new Array();
-    this.spellST["arcana"]  	= new Array();
-    this.spellST["divine"]  	= new Array();
-    this.spellST["psionic"] 	= new Array();
     
     this.classesARBonus         = new Array(0,0,0,0,0);
     this.classesDamageBonus     = new Array(0,0,0,0,0);
@@ -64,12 +50,6 @@ function pfCharacter(){
         this.totalCosHP         = 0;
         this.classesARBonus     = 0;
         this.classesDamageBonus = 0;
-        this.lvSpellArcane		= 0;
-        this.lvSpellDivine		= 0;
-        this.lvSpellPsionic		= 0;
-        this.lvSpellAlchemic	= 0;
-        this.spellPerDay		= new Array();
-        this.spellKnown			= new Array();
         
         globalClassesSkills		= new Array();
         
@@ -79,6 +59,14 @@ function pfCharacter(){
            globalWeaponClassAR[i].val(addPlus(0));
            globalWeaponClassDamage[i].val(addPlus(0));
         }
+        
+        $('#sorcererSpell').hide();
+        $('#wizardSpell').hide();
+        $('#bardSpell').hide();
+        $('#druiddSpell').hide();
+        $('#paladinSpell').hide();
+        $('#rangerSpell').hide();
+        
 	};
 	
 	
@@ -106,12 +94,6 @@ function pfCharacter(){
 		this.totalDiceHP.push(pfClass.totalDiceHP);
 		this.favouriteHP        += pfClass.favouriteHP;
 		this.averageHP 			+= pfClass.averageHP;
-		//spells section
-		this.lvSpellArcane		+= pfClass.lvSpellArcane;
-	    this.lvSpellDivine		+= pfClass.lvSpellDivine;
-	    this.lvSpellPsionic		+= pfClass.lvSpellPsionic;
-	    this.lvSpellAlchemic	+= pfClass.lvSpellAlchemic;
-	    this.lvSpellGeneric		+= pfClass.lvSpellGeneric;
 	    
 	    //If class has spell casting ability, the source is setted so
 	    //I store in character spell category list, the caster list
@@ -185,20 +167,6 @@ function pfCharacter(){
 		 this.humanBonusSkill = this.totalLevel;
 	    
 	   globalSkillPointAvaiable = this.skillPointClass + this.humanBonusSkill;
-	   
-	   //spell section
-	   ///If generic > 0, I have some class (es. prestige class) with a generic casting level increment (like Sapient)
-	   //I have to add to the highest casting level available
-	   if (this.lvSpellGeneric > 0){
-		   var index = checkHighestSpellSchool(new Array(this.lvSpellArcane,this.lvSpellDivine,this.lvSpellPsionic,this.lvSpellAlchemic));
-		   switch (index){
-		   	 case 0: this.lvSpellArcane  += this.lvSpellGeneric; break;
-		   	 case 1: this.lvSpellDivine  += this.lvSpellGeneric; break;
-		   	 case 2: this.lvSpellPsionic += this.lvSpellGeneric; break;
-		   	 case 3: this.lvSpellAchemic += this.lvSpellGeneric; break;
-		   }
-	   }
-	   
 	   this.draw();   
 	};
 	
@@ -225,40 +193,6 @@ function pfCharacter(){
            globalWeaponClassDamage[i].val(addPlus(this.classesDamageBonus));
         }
 	    
-	    globalArcaneSpellSection.hide();
-	    if (this.lvSpellArcane > 0)
-	    	globalArcaneSpellSection.show();
-	    
-	    globalDivineSpellSection.hide();
-	    if (this.lvSpellDivine > 0)
-	    	globalDivineSpellSection.show();
-	    
-	    globalPsionicSpellSection.hide();
-	    if (this.lvSpellPsionic > 0)
-	    	globalPsionicSpellSection.show();
-	    
-	    //Drawing all information about spells
-	    for (var i=0;i<this.spellCategory.length;i++){
-	    	var cat = this.spellCategory[i];
-	    	if (this.spellPerDay[cat].length > 0) {
-	    		for (var j=0;j<globalSpellPerDay[cat].length;j++){
-			    	var spd = this.spellPerDay[cat][j];
-			    	spd = (spd == '-1') ? 'oo': spd; 
-			    	globalSpellPerDay[cat][j].val(spd);
-			    }
-	    	}
-	    	if (this.spellST[cat].length > 0){
-	    		for (var j=0;j<globalSpellST[cat].length;j++){
-	    			globalSpellST[cat][j].val(this.spellST[cat][j]);
-			    }
-	    	}
-	    	
-	    	if (this.spellKnown[cat].length > 0)
-		    	for (var j=0;j<globalSpellKnown[cat].length;j++){
-		    		globalSpellKnown[cat][j].val(this.spellKnown[cat][j]);
-		    	};
-	    	
-	    }
 	    globalTotalSkillPointAvaiable.html(this.skillPointClass+this.humanBonusSkill);
 	};
 	
