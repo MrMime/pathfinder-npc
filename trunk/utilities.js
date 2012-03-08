@@ -61,7 +61,7 @@ function manageSkillPoint(skillname,increment){
 	switch(increment){
 		case 1:  pointInputs.val(Math.min(currentPoint+1,globalLevel)); break;
 		case -1: pointInputs.val(Math.max(currentPoint-1,0)); break;
-		case 0: pointInputs.val(0); break;
+		case 0: pointInputs.val(0); globalSkillPointUsed -= (currentPoint-1); break;
 	}
 	
 	var newPoint = pointInputs.val()/1;
