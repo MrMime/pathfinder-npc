@@ -12,6 +12,7 @@
 		<th>{featsmod}</th>
 		<th>{miscmod}</th>
 		<th>{armorpenalty}</th>
+		<th>{racemod}</th>
 	</tr>
 	<repeatable>
 	<tr>
@@ -23,6 +24,7 @@
 		<td><input id="skillFeat{skillname}" type="text" class="center" name="skill['{skillname}']['feat']" value="0" size="3" readonly="readonly" /></td>
 		<td><input id="skillMisc{skillname}" type="text" class="center" name="skill['{skillname}']['mod']" value="0" size="3"  onKeyUp="updateAllSheet();" /></td>
 		<td><input id="skillArmorPenalty{skillname}" type="text" class="center" name="skill['{skillname}']['armorPenalty']" value="0" size="3" readonly="readonly" /></td>
+		<td><input id="skillRaceMod{skillname}" type="text" class="center" name="skill['{skillname}']['raceMod']" value="0" size="3" readonly="readonly" /></td>
 	</tr>
 	</repeatable>
 </table>

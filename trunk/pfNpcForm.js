@@ -217,6 +217,7 @@ function updateManeuvers(){
 }
 
 function updateRace(){
+	gpfCharacter.eraseAllRaces();
     gpfRace.update();
 }
 

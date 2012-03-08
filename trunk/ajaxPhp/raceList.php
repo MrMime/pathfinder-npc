@@ -3,13 +3,17 @@
 	global $pfRaces;
 	
 	$races = array('core'=>array(
-				 	'pfHuman'=>'{human}',
-					'pfElf'=>'{elf}',
-					'pfDwarf'=>'{dwarf}',
-					'pfHalfling'=>'{halfing}',
-					'pfHalfOrc'=>'{half-orc}',
-					'pfHalfElf'=>'{half-elf}'
-					));
+					 	'pfHuman'=>'{human}',
+						'pfElf'=>'{elf}',
+						'pfDwarf'=>'{dwarf}',
+						'pfHalfling'=>'{halfing}',
+						'pfHalfOrc'=>'{half-orc}',
+						'pfHalfElf'=>'{half-elf}'
+					),
+					'advanced'=>array(
+				 		'pfAasimar'=>'{aasimar}'
+					)
+				   );
 	
 	$json = json_encode ($races);
 					

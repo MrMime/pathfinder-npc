@@ -7,6 +7,7 @@
 	$skillLanguage['eng']['featsmod'] 					= 'featsmod';
 	$skillLanguage['eng']['miscmod'] 					= 'miscmod';
 	$skillLanguage['eng']['armorpenalty'] 				= 'armorpenalty';
+	$skillLanguage['eng']['racemod'] 					= 'race mod';
 	
 	$skillLanguage['eng']['acrobatics'] 				= 'acrobatics';
 	$skillLanguage['eng']['appraise'] 					= 'appraise';
@@ -54,6 +55,7 @@
 	$skillLanguage['ita']['featsmod'] 					= 'mod. talento';
 	$skillLanguage['ita']['miscmod'] 					= 'mod. extra';
 	$skillLanguage['ita']['armorpenalty'] 				= 'pen. armatura';
+	$skillLanguage['ita']['racemod'] 					= 'mod. razza';
 	
 	
 	$skillLanguage['ita']['acrobatics'] 				= 'acrobazia';
