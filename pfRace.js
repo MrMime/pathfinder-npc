@@ -30,6 +30,7 @@ function pfRace(){
 	
 	this.language   		= new Array();
 	this.learnableLanguage 	= new Array();
+	this.modSkill			= new Array();
 	
 	this.extraFeats = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //number of extra feats per level
 	this.extraSkill = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //number of extra skill point per level
@@ -80,6 +81,10 @@ function pfRace(){
 	    this.tripRace = Math.max(this.tripRace,legsBonus);
 	    this.bullRace = Math.max(this.bullRace,legsBonus);
 	    globalCurrentRaceName = this.name;
+	    //updating globals race mod skill 
+	    for (var key in this.modSkill){
+	    	globalRaceModSkill[key] = this.modSkill[key];
+	    }
 	    this.draw();
 	};
 	
@@ -198,7 +203,7 @@ function pfHalfling(){
     
     this.name = "Halfling";
     
-	this.language.push("{halfing}","{common}");
+	this.language.push("{halfling-lang}","{common}");
 	this.learnableLanguage = new Array("{elven}","{gnome-lang}","{goblin-lang}","{dwarf-lang}");
 	
 	this.modStr		= -2;
@@ -217,4 +222,23 @@ function pfHalfling(){
 	this.DMCMod			= -1;
 	this.maneuversMod   = -1;
 	this.ARMod			= 1;
+}
+
+function pfAasimar(){
+	this.inheritFrom = pfRace;
+    this.inheritFrom();
+    
+    this.name = "Aasimar";
+    this.language.push("{celestian}","{common}");
+    this.learnableLanguage = new Array("{draconic}","{elven}","{gnome-lang}","{dwarf-lang}","{halfling-lang}","{sylvan-lang}");
+    
+    this.speed = 9;
+    this.speedHeavy = 6;
+    
+    this.modWis	= 2;
+    this.modCha = 2;
+    //Skill Race Mod
+    this.modSkill['perception'] 	= 2;
+    this.modSkill['diplomacy'] 		= 2;
+    
 }

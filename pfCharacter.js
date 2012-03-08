@@ -32,6 +32,12 @@ function pfCharacter(){
     
     this.classesARBonus         = new Array(0,0,0,0,0);
     this.classesDamageBonus     = new Array(0,0,0,0,0);
+    
+    this.eraseAllRaces	= function(){
+    	 for (var key in globalRaceModSkill) {
+         	globalRaceModSkill[key] = 0;
+ 	    }
+    };
 	
 	this.eraseAllClasses = function(){
 	    this.classes = new Array();
@@ -68,7 +74,6 @@ function pfCharacter(){
         $('#rangerSpell').hide();
         
 	};
-	
 	
     this.addPfClasses = function(pfClasses){
         for (var i=0;i<pfClasses.length;i++)
@@ -194,6 +199,12 @@ function pfCharacter(){
         }
 	    
 	    globalTotalSkillPointAvaiable.html(this.skillPointClass+this.humanBonusSkill);
+	    
+	    //Updating race skill mod stats
+	    for (var key in globalRaceModSkill) {
+	    	$('#skillRaceMod'+key).val(globalRaceModSkill[key]);
+	    }
+	    
 	};
 	
 }
