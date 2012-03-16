@@ -67,13 +67,14 @@ function buildShieldSelect(obj){
 }
 
 //******************** CLASSES ***************************//
-function buildClassesList(obj){
-	if ( ($('#class00Name option').size()) > 0 ) return;
+function buildClassesList(obj,start,end){
+	if ( ($('#class0'+start+'Name option').size()) > 0 ) return;
 	
 	var classSelects = new Array();
-	var optGroups = buildGenericSelect(obj,'classes');
+	var classReferenceSelects = new Array();
+	var optGroups	= buildGenericSelect(obj,'classes');
 	
-	for (var i=0;i<maxMulticlass;i++){
+	for (var i=start;i<end;i++){
 		classSelects[i] = $("#class0"+i+"Name");
 		classSelects[i].change(
 	            function(){
@@ -105,7 +106,6 @@ function buildWeaponList(obj){
     var sel2 = $("#weapon03Name");
     var sel3 = $("#weapon04Name");
     var sel4 = $("#weapon05Name");
-    
     if ( ($('#weapon01Name option').size()) > 0 ) return;
     
     sel0.change(
@@ -175,20 +175,26 @@ function buildWeaponList(obj){
         
 }
 
+
+function buildGenericSelectGroupFilter(obj,id,valids){
+	 var optGroups   = Array();
+	    var count = 0;
+	    for (var key in obj) {
+	    	if (valids.length > 0 && !$.inArray(key,valids)) continue;
+	        var options = "";
+	        var children = eval('obj.'+key);
+	        for (var son in children) {
+	            var val = children[son];
+	            options  += "<option value=\""+son+"\">"+val+"</option>";
+	        }
+	        optGroups[count] = $("<optgroup id=\""+id+"_"+count+"\"></optgroup>").attr("label",key).append(options);
+	        count++;
+	    }
+	    return optGroups;
+}
+
 function buildGenericSelect(obj,id){
-    var optGroups   = Array();
-    var count = 0;
-    for (var key in obj) {
-        var options = "";
-        var children = eval('obj.'+key);
-        for (var son in children) {
-            var val = children[son];
-            options  += "<option value=\""+son+"\">"+val+"</option>";
-        }
-        optGroups[count] = $("<optgroup id=\""+id+"_"+count+"\"></optgroup>").attr("label",key).append(options);
-        count++;
-    }
-    return optGroups;
+	return buildGenericSelectGroupFilter(obj,id,new Array());
     /*
     $.each(obj.attributes,function(i,item){
        var value = item; 

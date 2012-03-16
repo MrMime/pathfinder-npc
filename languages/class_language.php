@@ -3,6 +3,7 @@
 	//RACE NAMES
 	$pfClasses['eng']['core'] 				= 'core';	
 	$pfClasses['eng']['advanced'] 			= 'advanced';
+	$pfClasses['eng']['prestige'] 			= 'prestige';
 
 	$pfClasses['eng']['barbarian'] 			= 'barbarian';
 	$pfClasses['eng']['bard'] 				= 'bard';
@@ -25,9 +26,12 @@
 	$pfClasses['eng']['summoner'] 			= 'summoner';
 	$pfClasses['eng']['witch'] 				= 'witch';
 	
+	$pfClasses['eng']['arcane_archer']		= 'arcane archer';
+	
 	/************   ITA  **************************/
 	$pfClasses['ita']['core'] 				= 'base';	
 	$pfClasses['ita']['advanced'] 			= 'avanzate';
+	$pfClasses['ita']['prestige'] 			= 'prestigio';
 	
 	$pfClasses['ita']['barbarian'] 			= 'barbaro';
 	$pfClasses['ita']['bard'] 				= 'bardo';
@@ -49,6 +53,8 @@
 	$pfClasses['ita']['oracle'] 			= 'oracolo';
 	$pfClasses['ita']['summoner'] 			= 'evocatore';
 	$pfClasses['ita']['witch'] 				= 'strega';
+	
+	$pfClasses['ita']['arcane_archer']		= 'arcere arcano';
 	
 	$GLOBALS['pfClasses'] = $pfClasses;
 

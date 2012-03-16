@@ -1,11 +1,12 @@
 NOTE
-- Se una classe aggiunge un generico +1 lv spell della classe esistente ed è multiclasse, il sistema lo aggiunge al maggiore;
+- Se una classe aggiunge un generico +1 lv spell della classe esistente ed è multiclasse, il sistema lo aggiunge al maggiore. Se più di una sorgente di magia ha il massimo lv di casting della classe, viene data la seguente priorità: arcana->divina->psionica->alchemica;
 
 NON SI PUO' FARE
 
 - Il talento Agile può essere preso una sola volta;
 - Non vengono gestite le incompetenze nelle armi;
 - Non vengono gestiti i pre-requisiti dei talenti;
+- Non vengono gestiti i pre-requisiti delle CDP;
 - Non vengono gestiti tiri salvezza specifici (es vs. paura)
 - Non viene gestito la sovra-armatura
 - Il sistema non gestisce il multiclasse per i caster che hanno una sorgente magica uguale. Quindi si può fare un multiclasse chierico-mago ma non mago-stregone oppure chierico-druido ecc...
@@ -16,4 +17,5 @@ DA CONTROLLARE
 
 DA FARE
 
-- Implementare archi compositi
+- Implementare archi compositi;
+- Implementare archetipi razziali;

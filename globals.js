@@ -24,6 +24,8 @@ var globalMaxExtraLanguage	= null;
 //Globals to know what appening
 var featsCols           	= 2;
 var maxMulticlass			= 6;
+var maxPrestigeClass		= 3;
+var maxSupportedClass		= maxMulticlass + maxPrestigeClass;
 var globalCurrentArmorCategory    = "light"; //current category of armor
 var globalCurrentArmorSkillPenalty	= 0; //Usefull for Skills. Every skill will take this value to calculate total skill check
 var globalLanguage; 
@@ -73,8 +75,14 @@ var globalClassList 	= new Array();
 var globalFeatsList     = new Array();
 
 var gpfClasses = new Array();
-for (var i=0;i<maxMulticlass;i++)
-	gpfClasses[i] = new pfClass();
+//From 0 to maxMulticlass the object is pfClass
+//above maxMulticlass the object is pfPcClass (prestige class)
+for (var i=0;i<maxSupportedClass;i++){
+	if (i < maxMulticlass)
+		gpfClasses[i] = new pfClass();
+	else 
+		gpfClasses[i] = new pfPcClass();
+}
 
 var gpfWeapon   = new Array();
 gpfWeapon[0] = new pfWeapon();
@@ -158,7 +166,7 @@ var globalACOther;
 
 //CLASSES GLOBALS
 var globalClassLevels                       = new Array();
-for (var i=0;i<maxMulticlass;i++)
+for (var i=0;i<maxSupportedClass;i++)
 	globalClassLevels[i] = 0;
 var globalClassPreferred                    = new Array();
 var globalClassPrefHP                       = new Array();
@@ -167,6 +175,9 @@ var globalClassTSF 							= new Array();
 var globalClassTSR 							= new Array();
 var globalClassTSW 							= new Array();
 var globalClassBAB 							= new Array();
+//this is used by prestige class to connect prestige class to a base class
+//to allow, for example, the increase of spell casting level
+var globalClassReference					= new Array(); 
 
 //CLASSES TOTALS GLOBALS
 var globalTotalTSF;
@@ -361,7 +372,7 @@ function setAll(){
     globalACOther								= $('#acOther');
         
     //CLASSES
-    for (var i=0;i<maxMulticlass;i++){
+    for (var i=0;i<maxSupportedClass;i++){
         globalClassPreferred[i]   = $('#class0'+i+'Preferred');
         globalClassPrefHP[i]      = $('#class0'+i+'PrefHP');
         globalClassPrefSkill[i]   = $('#class0'+i+'PrefSkill');
@@ -369,6 +380,7 @@ function setAll(){
         globalClassTSR[i]         = $('#class0'+i+'reflex');
         globalClassTSW[i]         = $('#class0'+i+'will');
         globalClassBAB[i]         = $('#class0'+i+'bab');
+        globalClassReference[i]	  = $('#class0'+i+'reference');
     }
 		
 		globalTotalTSF = $('#totalTSF');

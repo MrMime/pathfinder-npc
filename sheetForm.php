@@ -8,7 +8,9 @@
 	require ('./languages/skill_language.php');
 	require ('./ajaxPhp/skillList.php');
 	global $pfNpcSheet, $skills, $lang, $skillLanguage;
-	
+	define("MAX_MULTICLASS", 6);
+	define("MAX_PRESTIGE_CLASS", 3);
+	define("MAX_SUPPORTED_CLASS", MAX_MULTICLASS+MAX_PRESTIGE_CLASS);
 	
 	/*
 	echo '<pre>';
@@ -42,14 +44,24 @@
 	$code = str_replace('[[ac_html]]',$htmlCode,$code);
 	//************************** CLASSES ***************************************//
 	$htmlCode = file_get_contents ('./html/classes.html');
-	$regExp = '/\<repeatable\>(.*?)\<\/repeatable\>/s';
-	preg_match ($regExp,$htmlCode,$singleClassCode);
-	$singleClassCode = $singleClassCode[1];
-	$totalClassesCode = "";
-	for ($i=0;$i<6;$i++)
-		$totalClassesCode .= str_replace('{index}',$i,$singleClassCode);
 	
-	$totalClassesCode = preg_replace ($regExp,$totalClassesCode,$htmlCode);
+	$regExp01 = '/\<repeatable\>(.*?)\<\/repeatable\>/s';
+	$regExp02 = '/\<section\>(.*?)\<\/section\>/s';
+	preg_match ($regExp01,$htmlCode,$singleClassCode);
+	preg_match ($regExp02,$htmlCode,$sectionCode);
+	
+	$singleClassCode 	= $singleClassCode[1];
+	$sectionCode 		= $sectionCode[1];
+	
+	$totalClassesCode = "";
+	for ($i=0;$i<MAX_SUPPORTED_CLASS;$i++){
+		if ($i == MAX_MULTICLASS)
+			$totalClassesCode .= str_replace('[[sectionlabel]]','{prestige_class}',$sectionCode);
+		$totalClassesCode .= str_replace('{index}',$i,$singleClassCode);
+	}
+	
+	$totalClassesCode = preg_replace ($regExp01,$totalClassesCode,$htmlCode);
+	$totalClassesCode = preg_replace ($regExp02,"",$totalClassesCode);
 	$code = str_replace('[[classes_html]]',$totalClassesCode,$code);
 	//************************** MANEUVERS ***************************************//
 	$htmlCode = file_get_contents ('./html/maneuvers.html');

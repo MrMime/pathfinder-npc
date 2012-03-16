@@ -38,6 +38,23 @@ function pfCharacter(){
          	globalRaceModSkill[key] = 0;
  	    }
     };
+    
+    this.resetPrestigeReferenceClass = function(){
+    	for (var i=maxMulticlass;i<maxSupportedClass;i++){
+    		var option = "<option>--</option>";
+    		$('#class0'+i+'reference').children().remove().end().append(option);
+    	}
+    };
+    
+    
+    //Adding to reference select, the added core class
+    //this allow the reference class select to contains ONLY core class previously selected
+    this.addPrestigeReferenceClass = function(className){
+    	for (var i=maxMulticlass;i<maxSupportedClass;i++){
+    		var option = "<option value=\""+className+"\">"+className+"</option>";
+    		var select = $('#class0'+i+'reference').append(option);
+    	}
+    };
 	
 	this.eraseAllClasses = function(){
 	    this.classes = new Array();
@@ -73,6 +90,7 @@ function pfCharacter(){
         $('#paladinSpell').hide();
         $('#rangerSpell').hide();
         
+        this.resetPrestigeReferenceClass();
 	};
 	
     this.addPfClasses = function(pfClasses){
@@ -99,6 +117,8 @@ function pfCharacter(){
 		this.totalDiceHP.push(pfClass.totalDiceHP);
 		this.favouriteHP        += pfClass.favouriteHP;
 		this.averageHP 			+= pfClass.averageHP;
+		
+		this.addPrestigeReferenceClass(pfClass.name);
 	    
 	    //If class has spell casting ability, the source is setted so
 	    //I store in character spell category list, the caster list
