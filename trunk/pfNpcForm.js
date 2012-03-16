@@ -46,8 +46,19 @@ function loadAll(){
         data: "lang="+globalLanguage,
         success: function(response){
             var obj = JSON.parse(response);
-            globalClassList = obj;
-            buildClassesList(obj);
+            //globalClassList = obj;
+            buildClassesList(obj,0,maxMulticlass);
+        }
+    }); 
+    
+    $.ajax({
+        type: "GET",
+        url: "ajaxPhp/pcList.php",
+        data: "lang="+globalLanguage,
+        success: function(response){
+            var obj = JSON.parse(response);
+            //globalClassList = obj;
+            buildClassesList(obj,maxMulticlass,maxSupportedClass);
         }
     }); 
     
@@ -79,6 +90,26 @@ function loadAll(){
 
 function updateClassLevel(index,level){
     globalClassLevels[index] = parseInt(level);
+}
+
+function updateClassReference(index,className){
+	var prestigeSpellCastingLevel = new Array();
+	//retrieving the current prestige class casting level
+	prestigeSpellCastingLevel['arcana'] 	= gpfClasses[index].lvSpellArcane;
+	prestigeSpellCastingLevel['divine'] 	= gpfClasses[index].lvSpellDivine;
+	prestigeSpellCastingLevel['psionic'] 	= gpfClasses[index].lvSpellPsionic;
+	prestigeSpellCastingLevel['alchemic'] 	= gpfClasses[index].lvSpellAlchemic;
+	prestigeSpellCastingLevel['generic'] 	= gpfClasses[index].lvSpellGeneric;
+	
+	for (var i=0;i<maxMulticlass;i++)
+		if (gpfClasses[i].name == className){
+			gpfClasses[i].lvSpellArcanaPrestigeInc 		= gpfClasses[index].lvSpellArcane;
+			gpfClasses[i].lvSpellDivinePrestigeInc 		= gpfClasses[index].lvSpellDivine;
+			gpfClasses[i].lvSpellPsionicPrestigeInc 	= gpfClasses[index].lvSpellPsionic;
+			gpfClasses[i].lvSpellAlchemicPrestigeInc 	= gpfClasses[index].lvSpellAlchemic;
+			gpfClasses[i].lvSpellGenericPrestigeInc 	= gpfClasses[index].lvSpellGeneric;
+			break;
+		}
 }
 
 function manageFavourite(index){
@@ -197,7 +228,7 @@ function updateClasses(){
     
     gpfCharacter.eraseAllClasses();
     
-    for (var i=0;i<maxMulticlass;i++) {
+    for (var i=0;i<maxSupportedClass;i++) {
         gpfClasses[i].setIndex(i);
         gpfClasses[i].setLevel(globalClassLevels[i]);
         gpfClasses[i].update();

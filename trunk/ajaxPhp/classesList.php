@@ -25,7 +25,8 @@
 							'pfOracle'=>'{oracle}',
 							'pfSummoner'=>'{summoner}',
 							'pfWitch'=>'{witch}'
-						));
+						)
+						);
 	
 	
 	$json = json_encode ($classes);

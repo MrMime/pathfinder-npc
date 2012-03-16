@@ -26,9 +26,9 @@ function pfClass(){
 	this.spellCast  		= new Array();
 	this.spellPerDay		= new Array();
 	this.spellKnown			= new Array();
-	this.maxSpellLevel 		= 0;
-	this.bestSpellLevel 	= 0;
-	this.spellSource		= ""; //its the spell source. It can be arcana, divine, psionic
+	this.maxSpellLevel 		= 0;  //current max spell level (due to level of primary class and a prestige class increment)
+	this.bestSpellLevel 	= 0;  //best spell of class (ex. 9 for wizard, 4 for ranger etc....)
+	this.spellSource		= ""; //its the spell source. It can be arcana, divine, psionic o alchemic
 	this.spellStatsMod		= ""; //stats wich is based the spellcasting (es. int for wizard)
 	this.spellKnowBonus	    = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //added spell bonus (es sorcerer has blood spell bonus)
 	this.spellST			= new Array(0,0,0,0,0,0,0,0,0,0);
@@ -38,10 +38,25 @@ function pfClass(){
 	this.lvSpellPsionicInc 	= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //increment of spell clasting level for psionic schools
 	this.lvSpellAlchemicInc	= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //increment of spell clasting level for alchemic schools
 	this.lvSpellGenericInc 	= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //increment of spell clasting level for generic (es. CDP)
+	this.lvSpells			= new Array();
+	this.lvSpells['arcana'] 	= 0;
+	this.lvSpells['divine'] 	= 0;
+	this.lvSpells['psionic'] 	= 0;
+	this.lvSpells['alchemic'] 	= 0;
+	/*
 	this.lvSpellArcane		= 0; //current arcane 	spell level
     this.lvSpellDivine		= 0; //current divine 	spell level
     this.lvSpellPsionic		= 0; //current psionic 	spell level
     this.lvSpellAlchemic	= 0; //current alchemic spell level
+    */
+    this.lvSpellArcanaPrestigeInc 	= 0;
+    this.lvSpellDivinePrestigeInc 	= 0;
+    this.lvSpellPsionicPrestigeInc 	= 0;
+    this.lvSpellAlchemicPrestigeInc = 0;
+    this.lvSpellGenericPrestigeInc 	= 0;
+    //its the current casting level. For pure class is equal to class level but some Prestige Class may add an increment to casting level
+    //every class will initialize this with one of lvSpellXXXXX
+    this.classCastingLevel	= 0; 
 	
 	this.feats				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //feats gained
 	this.ACMods				= new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //armor class bonus (es monk every 4 levels)
@@ -101,11 +116,25 @@ function pfClass(){
     //gli array contengono l'incremento rispetto al livello precedente
     //E' utile per gestire le CDP che incrementano il lv corrente di una classe
     this.calculateSpellLevel = function(){
-    	this.lvSpellArcane 	= indexArraySum(this.lvSpellArcaneInc,1,this.level);
-    	this.lvSpellDivine 	= indexArraySum(this.lvSpellDivineInc,1,this.level);
-    	this.lvSpellPsionic = indexArraySum(this.lvSpellPsionicInc,1,this.level);
-    	this.lvSpellAlchemic= indexArraySum(this.lvSpellAlchemicInc,1,this.level);
-    	this.lvSpellGeneric	= indexArraySum(this.lvSpellGenericInc,1,this.level);
+    	this.lvSpells['arcana']		= indexArraySum(this.lvSpellArcaneInc,1,this.level) 	+ this.lvSpellArcanaPrestigeInc;
+    	this.lvSpells['divine']		= indexArraySum(this.lvSpellDivineInc,1,this.level) 	+ this.lvSpellDivinePrestigeInc;
+    	this.lvSpells['psionic']	= indexArraySum(this.lvSpellPsionicInc,1,this.level) 	+ this.lvSpellPsionicPrestigeInc;
+    	this.lvSpells['alchemic']	= indexArraySum(this.lvSpellAlchemicInc,1,this.level) 	+ this.lvSpellAlchemicPrestigeInc;
+    	this.lvSpellGeneric			= indexArraySum(this.lvSpellGenericInc,1,this.level) 	+ this.lvSpellGenericPrestigeInc;
+    	
+    	//If prestige class increments a generic spell source without specific which, I have to add the increment
+    	//to the highest source spell.
+    	//If more than one source has the max lv casting, the order of adding is arcana->divine->psionic->alchemic
+    	if (this.lvSpellGenericPrestigeInc > 0) {
+    		this.lvSpells[this.spellSource] += this.lvSpellGenericPrestigeInc;
+    		/*
+    		var maxCurrentSpellLevel = Math.max(this.lvSpellArcane,this.lvSpellDivine,this.lvSpellPsionic,this.lvSpellAlchemic);
+    		if (this.lvSpellArcane		== maxCurrentSpellLevel) this.lvSpellAarcane 	+= this.lvSpellGenericPrestigeInc;
+    		if (this.lvSpellDivine 		== maxCurrentSpellLevel) this.lvSpellDivine 	+= this.lvSpellGenericPrestigeInc;
+    		if (this.lvSpellPsionic 	== maxCurrentSpellLevel) this.lvSpellPsionic 	+= this.lvSpellGenericPrestigeInc;
+    		if (this.lvSpellAlchemic 	== maxCurrentSpellLevel) this.lvSpellAlchemic 	+= this.lvSpellGenericPrestigeInc;
+    		*/
+    	}
     };
 	
 	/**
@@ -234,6 +263,9 @@ function pfClass(){
 	    globalClassTSR[this.index].val(addPlus(this.str));
 	    globalClassTSW[this.index].val(addPlus(this.stw));
 	    globalClassBAB[this.index].val(this.bab);
+	    if (this.classType != 'prestige')
+	    	globalClassReference[this.index].hide();
+	    
 	    globalACClass.val(this.ACBonus); //adding class modifier to AC
 	    globalInitClass.val(addPlus(this.initBonus));
 	    
@@ -245,7 +277,7 @@ function pfClass(){
 		    if (this.spellPerDay.length > 0)
 			    for (var i=0;i<=this.bestSpellLevel;i++){
 			    	var globalSpellPerDay 	= $('#perdaySpell'+i+this.name);
-			    	var spd = this.spellPerDay[this.level][i];
+			    	var spd = this.spellPerDay[this.lvSpells[this.spellSource]][i];
 			    	spd = (spd == '-1') ? 'oo': spd; 
 			    	globalSpellPerDay.val(spd);
 			    }
@@ -258,7 +290,7 @@ function pfClass(){
 		    if (this.spellKnown.length > 0)
 		    	for (var i=0;i<=this.bestSpellLevel;i++){
 		    		var globalSpellKnown 	= $('#spellknown'+i+this.name);
-		    		globalSpellKnown.val(this.spellKnown[this.level][i]);
+		    		globalSpellKnown.val(this.spellKnown[this.lvSpells[this.spellSource]][i]);
 		    	};
 	    }
 	    
@@ -545,7 +577,7 @@ function pfSorcerer(){
 	this.classSkill		= new Array('appraise','bluff','craft','fly','intimidate','knowledge_arcana','profession','spellcraft','use_device_magic');
 	
 	this.calculateMaxSpellLevel = function(){
-		this.maxSpellLevel = Math.max(1,(Math.ceil((this.level+1)/2))-1);
+		this.maxSpellLevel = Math.max(1,(Math.ceil((this.lvSpellArcane+1)/2))-1);
 	};
 	
 	this.spellKnowBonus = new Array(0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0);

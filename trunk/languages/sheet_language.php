@@ -14,6 +14,8 @@
 	$pfNpcSheet['eng']['skillplus']   = '+1 SP';
 	$pfNpcSheet['eng']['max_language_note']    = 'max extra lang.';
 	$pfNpcSheet['eng']['totalpointavaiable']    = 'total skill point avaiable (favourite class and human bonus counted)';
+	$pfNpcSheet['eng']['prestige_class']	= 'Prestige Class';
+	$pfNpcSheet['eng']['prestige']			= 'prestige';
 	
 	//STATISTICS
 	$pfNpcSheet['eng']['dex'] 				= 'DEX';
@@ -196,6 +198,8 @@
 	$pfNpcSheet['ita']['skillplus'] 		= '+1 PA';
 	$pfNpcSheet['ita']['max_language_note']    = 'max lingue';
 	$pfNpcSheet['ita']['totalpointavaiable']   = 'punti abilit&agrave; totali (comprende bonus classe preferita ed eventuale bonus umani)';
+	$pfNpcSheet['ita']['prestige_class']	= 'Classi di Prestigio';
+	$pfNpcSheet['ita']['prestige']			= 'prestigio';
 	
 	//STATISTICS
 	$pfNpcSheet['ita']['dex'] 				= 'DES';
