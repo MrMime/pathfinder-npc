@@ -84,6 +84,11 @@ for (var i=0;i<maxSupportedClass;i++){
 		gpfClasses[i] = new pfPcClass();
 }
 
+var gpfClassesReference = new Array();
+for (var i=maxMulticlass;i<maxSupportedClass;i++){
+	gpfClassesReference[i] = 'none';
+}
+
 var gpfWeapon   = new Array();
 gpfWeapon[0] = new pfWeapon();
 gpfWeapon[1] = new pfWeapon();

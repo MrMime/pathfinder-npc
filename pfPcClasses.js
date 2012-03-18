@@ -25,6 +25,28 @@ function pfPcClass(){
 		 this.stw = tsfinal[2];
 	};
 	
+	 this.resetPrestigeReferenceClass = function(){
+	    	for (var i=maxMulticlass;i<maxSupportedClass;i++){
+	    		var option = "<option>--</option>";
+	    		$('#class0'+this.index+'reference').children().remove().end().append(option);
+	    	}
+	    };
+	
+	//Creating reference class for prestige class
+    //by reading current global class if not prestige class
+    this.buildPrestigeClassReference = function(){
+    	this.resetPrestigeReferenceClass();
+   		var options = "";
+        for (var j=0;j<maxMulticlass;j++)
+      	   if (gpfClasses[j].classType != 'prestige' && gpfClasses[j].name != 'none'){
+      		   var selected = "";
+       		   if (gpfClassesReference[i] == gpfClasses[j].name)
+       			  selected = 'selected="selected"';
+       		   options += "<option value=\""+gpfClasses[j].name+"\" "+selected+">"+gpfClasses[j].name+"</option>";
+       	    }	
+    		var select = $('#class0'+this.index+'reference').append(options);
+    };
+	
 }
 
 function pfArcaneArcher(){
