@@ -39,23 +39,6 @@ function pfCharacter(){
  	    }
     };
     
-    this.resetPrestigeReferenceClass = function(){
-    	for (var i=maxMulticlass;i<maxSupportedClass;i++){
-    		var option = "<option>--</option>";
-    		$('#class0'+i+'reference').children().remove().end().append(option);
-    	}
-    };
-    
-    
-    //Adding to reference select, the added core class
-    //this allow the reference class select to contains ONLY core class previously selected
-    this.addPrestigeReferenceClass = function(className){
-    	for (var i=maxMulticlass;i<maxSupportedClass;i++){
-    		var option = "<option value=\""+className+"\">"+className+"</option>";
-    		var select = $('#class0'+i+'reference').append(option);
-    	}
-    };
-	
 	this.eraseAllClasses = function(){
 	    this.classes = new Array();
 	    this.size               = 0;
@@ -90,7 +73,6 @@ function pfCharacter(){
         $('#paladinSpell').hide();
         $('#rangerSpell').hide();
         
-        this.resetPrestigeReferenceClass();
 	};
 	
     this.addPfClasses = function(pfClasses){
@@ -118,8 +100,7 @@ function pfCharacter(){
 		this.favouriteHP        += pfClass.favouriteHP;
 		this.averageHP 			+= pfClass.averageHP;
 		
-		this.addPrestigeReferenceClass(pfClass.name);
-	    
+		
 	    //If class has spell casting ability, the source is setted so
 	    //I store in character spell category list, the caster list
 	    //NOTE: No multiclass with same spell source is current supported
@@ -219,6 +200,9 @@ function pfCharacter(){
         }
 	    
 	    globalTotalSkillPointAvaiable.html(this.skillPointClass+this.humanBonusSkill);
+	    
+	    //Building reference select for prestige class
+	    this.buildPrestigeClassReference();
 	    
 	    //Updating race skill mod stats
 	    for (var key in globalRaceModSkill) {

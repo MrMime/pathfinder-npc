@@ -258,11 +258,15 @@ function pfClass(){
         this.draw();
 	};
 	
+	this.buildPrestigeClassReference = function(){ return;	};
+	
 	this.draw  = function(){
 	    globalClassTSF[this.index].val(addPlus(this.stf));
 	    globalClassTSR[this.index].val(addPlus(this.str));
 	    globalClassTSW[this.index].val(addPlus(this.stw));
 	    globalClassBAB[this.index].val(this.bab);
+	    //The class reference select is only visibile to prestige class
+	    this.buildPrestigeClassReference();
 	    if (this.classType != 'prestige')
 	    	globalClassReference[this.index].hide();
 	    

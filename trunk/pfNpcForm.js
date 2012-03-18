@@ -93,21 +93,15 @@ function updateClassLevel(index,level){
 }
 
 function updateClassReference(index,className){
-	var prestigeSpellCastingLevel = new Array();
-	//retrieving the current prestige class casting level
-	prestigeSpellCastingLevel['arcana'] 	= gpfClasses[index].lvSpellArcane;
-	prestigeSpellCastingLevel['divine'] 	= gpfClasses[index].lvSpellDivine;
-	prestigeSpellCastingLevel['psionic'] 	= gpfClasses[index].lvSpellPsionic;
-	prestigeSpellCastingLevel['alchemic'] 	= gpfClasses[index].lvSpellAlchemic;
-	prestigeSpellCastingLevel['generic'] 	= gpfClasses[index].lvSpellGeneric;
+	gpfClassesReference[index] = className;
 	
 	for (var i=0;i<maxMulticlass;i++)
 		if (gpfClasses[i].name == className){
-			gpfClasses[i].lvSpellArcanaPrestigeInc 		= gpfClasses[index].lvSpellArcane;
-			gpfClasses[i].lvSpellDivinePrestigeInc 		= gpfClasses[index].lvSpellDivine;
-			gpfClasses[i].lvSpellPsionicPrestigeInc 	= gpfClasses[index].lvSpellPsionic;
-			gpfClasses[i].lvSpellAlchemicPrestigeInc 	= gpfClasses[index].lvSpellAlchemic;
-			gpfClasses[i].lvSpellGenericPrestigeInc 	= gpfClasses[index].lvSpellGeneric;
+			gpfClasses[i].lvSpellArcanaPrestigeInc 		= gpfClasses[index].lvSpells['arcana'];
+			gpfClasses[i].lvSpellDivinePrestigeInc 		= gpfClasses[index].lvSpells['divine'];
+			gpfClasses[i].lvSpellPsionicPrestigeInc 	= gpfClasses[index].lvSpells['psionic'];
+			gpfClasses[i].lvSpellAlchemicPrestigeInc 	= gpfClasses[index].lvSpells['alchemic'];
+			gpfClasses[i].lvSpellGenericPrestigeInc 	= gpfClasses[index].lvSpells['generic'];
 			break;
 		}
 }
