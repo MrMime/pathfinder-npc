@@ -38,7 +38,7 @@ function pfPcClass(){
     	this.resetPrestigeReferenceClass();
    		var options = "";
         for (var j=0;j<maxMulticlass;j++)
-      	   if (gpfClasses[j].classType != 'prestige' && gpfClasses[j].name != 'none'){
+      	   if (gpfClasses[j].classType != 'prestige' && gpfClasses[j].name != 'none' && gpfClasses[j].spellSource != ""){
       		   var selected = "";
       		   //checking if my referenced class is one of the current selected core class
       		   //if so, i will add select statement to option to maintain selection
