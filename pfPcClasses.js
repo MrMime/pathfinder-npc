@@ -40,7 +40,9 @@ function pfPcClass(){
         for (var j=0;j<maxMulticlass;j++)
       	   if (gpfClasses[j].classType != 'prestige' && gpfClasses[j].name != 'none'){
       		   var selected = "";
-       		   if (gpfClassesReference[i] == gpfClasses[j].name)
+      		   //checking if my referenced class is one of the current selected core class
+      		   //if so, i will add select statement to option to maintain selection
+       		   if (gpfClassesReference[this.index] == gpfClasses[j].name)
        			  selected = 'selected="selected"';
        		   options += "<option value=\""+gpfClasses[j].name+"\" "+selected+">"+gpfClasses[j].name+"</option>";
        	    }	

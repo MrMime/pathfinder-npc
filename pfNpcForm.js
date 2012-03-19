@@ -93,15 +93,28 @@ function updateClassLevel(index,level){
 }
 
 function updateClassReference(index,className){
-	gpfClassesReference[index] = className;
+	//if className = "--", im resetting the references of a prestige class
+	//to implement this case, I overwrite the increment spell level with 0
+	var lvSpellArcana 	= (className == "--") ? 0 : gpfClasses[index].lvSpells['arcana'];
+	var lvSpellDivine 	= (className == "--") ? 0 : gpfClasses[index].lvSpells['divine'];
+	var lvSpellPsionic 	= (className == "--") ? 0 : gpfClasses[index].lvSpells['psionic'];
+	var lvSpellAlchemic = (className == "--") ? 0 : gpfClasses[index].lvSpells['alchemic'];
+	var lvSpellGeneric 	= (className == "--") ? 0 : gpfClasses[index].lvSpells['generic'];
+	
+	if (className == "--"){
+		className = gpfClassesReference[index];
+		gpfClassesReference[index] = "none";
+	}
+	else 
+		gpfClassesReference[index] = className;
 	
 	for (var i=0;i<maxMulticlass;i++)
 		if (gpfClasses[i].name == className){
-			gpfClasses[i].lvSpellArcanaPrestigeInc 		= gpfClasses[index].lvSpells['arcana'];
-			gpfClasses[i].lvSpellDivinePrestigeInc 		= gpfClasses[index].lvSpells['divine'];
-			gpfClasses[i].lvSpellPsionicPrestigeInc 	= gpfClasses[index].lvSpells['psionic'];
-			gpfClasses[i].lvSpellAlchemicPrestigeInc 	= gpfClasses[index].lvSpells['alchemic'];
-			gpfClasses[i].lvSpellGenericPrestigeInc 	= gpfClasses[index].lvSpells['generic'];
+			gpfClasses[i].lvSpellArcanaPrestigeInc 		= lvSpellArcana;
+			gpfClasses[i].lvSpellDivinePrestigeInc 		= lvSpellDivine;
+			gpfClasses[i].lvSpellPsionicPrestigeInc 	= lvSpellPsionic;
+			gpfClasses[i].lvSpellAlchemicPrestigeInc 	= lvSpellAlchemic;
+			gpfClasses[i].lvSpellGenericPrestigeInc 	= lvSpellGeneric;
 			break;
 		}
 }
