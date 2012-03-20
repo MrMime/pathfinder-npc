@@ -250,7 +250,7 @@ function buildFeatsList(){
     }
     
     container.html(totalTable);
-    
+    //Building the tooltip to explain what feats do
     for (var i=0;i<globalFeatsList.length;i++){
         var sheet = "";
         var fName = globalFeatsList[i];
@@ -265,7 +265,7 @@ function buildFeatsList(){
             sheet += '<tr><td>speciale</td><td>'+globalFeats[globalFeatsList[i]].speciale+'</td></tr>';
         
         sheet = '<table style="width:400px;">'+sheet+'</table>';
-        $("#td_"+cleanFeatName(fName)).tipTip({content:sheet,maxWidth: "400px", keepAlive:false});
+        $("#td_"+cleanFeatName(fName)).tipTip({content:sheet,maxWidth: "300px", keepAlive:false,defaultPosition:"bottom"});
     }
     
 }

@@ -33,6 +33,7 @@ function pfSkill()
     	this.points		  = $('#skillPoints'+this.name).val()/1;
     	this.otherBonus   = $('#skillMisc'+this.name).val()/1;
     	this.raceMod	  = $('#skillRaceMod'+this.name).val()/1;
+    	this.featBonus	  = $('#skillFeat'+this.name).val()/1;
     	
     	if ( ($.inArray(this.name,globalClassesSkills) != -1) && this.points > 0)
     		this.classBonus	= 3;
