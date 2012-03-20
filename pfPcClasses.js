@@ -45,7 +45,7 @@ function pfPcClass(){
        		   if (gpfClassesReference[this.index] == gpfClasses[j].name)
        			  selected = 'selected="selected"';
        		   options += "<option value=\""+gpfClasses[j].name+"\" "+selected+">"+gpfClasses[j].name+"</option>";
-       	    }	
+       	    }
     		var select = $('#class0'+this.index+'reference').append(options);
     };
 	
