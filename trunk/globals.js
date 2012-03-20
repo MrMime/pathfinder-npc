@@ -47,6 +47,7 @@ var globalClassesFeatsList    = new Array();
 var globalMovementFeatsList   = new Array();
 var globalACFeatsList         = new Array();
 var globalInitFeatsList       = new Array();
+var globalSkillFeatsList      = new Array();
 var globalWeaponsFeatsList    = new Array();
 var globalManeuversFeatsList  = new Array();
 
