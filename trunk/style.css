@@ -47,6 +47,12 @@ DIV#headerwrap {
   font-style:italic;  
 }
 
+.featOther {
+	font-weight:bold;
+	font-style:italic;
+	text-decoration: underline;
+}
+
 DIV#header{
 	height:95px;
 	float:left;
