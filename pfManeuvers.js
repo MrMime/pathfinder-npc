@@ -73,7 +73,6 @@ function pfManeuvers(){
         else {
             this.finalLevelBabMod = featLevelBabMod;
         }
-	       
 	    
 	    this.disarmWeapon  = globalManeuversDisarmWeapon.val()/1;
         this.sunderWeapon  = globalManeuversSunderWeapon.val()/1;
