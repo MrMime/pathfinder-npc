@@ -182,6 +182,10 @@ function updateManeuverFeats(){
 	updateFeatsOrSkills(globalManeuversFeatsList);
 }
 
+function updateGenericFeats(){
+	updateFeatsOrSkills(globalGenericFeatsList);
+}
+
 function updateSkillFeats(){
 	updateFeatsOrSkills(globalSkillFeatsList);
 }
@@ -221,6 +225,8 @@ function updateAllSheet(){
 	//updating skills section
 	updateSkillFeats();
 	updateAllSkills();
+	
+	updateGenericFeats();
 }
 
 function updateWeapons(){
