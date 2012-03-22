@@ -50,6 +50,7 @@ var globalInitFeatsList       = new Array();
 var globalSkillFeatsList      = new Array();
 var globalWeaponsFeatsList    = new Array();
 var globalManeuversFeatsList  = new Array();
+var globalGenericFeatsList	  = new Array();
 
 //List of Skills
 var globalSkillList			  	= new Array();
