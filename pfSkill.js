@@ -25,6 +25,8 @@ function pfSkill()
 	
 	this.setName = function (name){this.name = name;};
 	
+	this.init 	= function(){}; //setting an empty method for init 
+	
 	this.update = function(){
 		
     	this.getMods(); //retrieve mod stat for current skill

@@ -26,6 +26,7 @@ function pfAC(){
 	    var armorBonus         = Math.max(globalACArmor.val()/1,globalACArmorMagic.val()/1);
 	    //Shield Bonus
 	    var shieldBonus        = globalACShield.val()/1;
+	    var shieldFocusBonus   = (shieldBonus > 0) ? globalACShieldFocus.val()/1 : 0;
 	    //Natural Armor Bonus
 	    var naturalArmorBonus  = this.acNat + globalACNatMagic.val()/1;
 	    //Mod Dex Bonus
@@ -45,10 +46,10 @@ function pfAC(){
 	    //Race Bonus
 	    this.acRace	   = globalACRace.val()/1;
 	    
-	    this.totalAC       = 10 + armorBonus + shieldBonus + naturalArmorBonus + this.totalModDexAvaiable + this.acRace +
+	    this.totalAC       = 10 + armorBonus + shieldBonus + shieldFocusBonus + naturalArmorBonus + this.totalModDexAvaiable + this.acRace +
                               this.acFeats + this.acWis + this.acOther + this.acClass + this.acSize; 
                               
-        this.totalTouchAC   = this.totalAC - armorBonus - shieldBonus - naturalArmorBonus;
+        this.totalTouchAC   = this.totalAC - armorBonus - shieldBonus - shieldFocusBonus - naturalArmorBonus;
         this.totalFlatAC    = this.totalAC - this.totalModDexAvaiable - this.acFeats;
 	    
 	    var acString = new Array();

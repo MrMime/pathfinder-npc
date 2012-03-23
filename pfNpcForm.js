@@ -142,8 +142,10 @@ function manageFavourite(index){
 function updateFeatsOrSkills(list){
      var len = list.length;
      if (len == 0) return;
-	 for (var i=0;i<len; i++)
+	 for (var i=0;i<len; i++) {
+		 list[i].init();
 		 list[i].update();
+	 }
 }
 
 function updateMovementFeats(){
