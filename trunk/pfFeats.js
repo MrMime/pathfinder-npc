@@ -3,17 +3,36 @@ function pfFeat(){
 	this.checked = false;
 	this.id	     = null;
 	this.bonus 	 = 0;
+	this.ifTrue 	= 0;
+	this.ifFalse 	= 0;
 	this.container = 0;
+	this.className = "center";
+	
+	this.init = function(){};
 	
 	this.checkStatus = function(){
 		this.check = $('#'+this.id);
 		this.checked = false;
 		if (this.check.is(':checked'))
 			this.checked = true;
+		this.className = (this.checked) ? 'center separated' : 'center';
+	};
+	
+	//A lot of feats simply add some bonus to something
+	//The default behavior of update is check the checkbox and 
+	//initialize the bonus with ifTrue or ifFalse
+	this.update = function(){
+		this.checkStatus();
+		this.bonus = (this.checked) ? this.ifTrue : this.ifFalse;
+		this.draw();
 	};
 	
 	this.evidence = function(){
 		$('#'+this.id).parent().addClass('featEvidence');
+	};
+	
+	this.draw = function (){
+		this.evidence();
 	};
 }
 
@@ -35,10 +54,37 @@ function pfFeatRough(){
 	this.draw = function(){
 		this.evidence();
 		globalHPTotalFeats.val(addPlus(this.bonus));
-		var className = (this.checked) ? 'center separated' : 'center';
-		globalHPTotalFeats.parent().attr('class',className);    	
+		globalHPTotalFeats.parent().attr('class',this.className);    	
 	};
 }
+
+function pfFeatDodge(){
+	this.inheritFrom = pfFeat;
+    this.inheritFrom();
+    this.id = 'schivare';
+    this.ifTrue = 1;
+    
+    this.draw = function(){
+    	this.evidence();
+    	globalACFeats.val(addPlus(this.bonus));
+    	globalACFeats.parent().attr('class',this.className);
+    };
+}
+
+function pfFeatImproveInitiative(){
+	this.inheritFrom = pfFeat;
+    this.inheritFrom();
+    this.id = 'iniziativa_migliorata';
+    this.ifTrue = 4;
+    
+    this.draw = function(){
+    	this.evidence();
+    	globalInitImprove.val(addPlus(this.bonus));
+    	globalInitImprove.parent().attr('class',this.className);
+    };
+    
+}
+
 
 
 function pfFeatAgile()
@@ -49,14 +95,10 @@ function pfFeatAgile()
 	this.id ='agile';
 	this.update = function(){
 		this.checkStatus();
-		if (this.checked  && globalCurrentArmorCategory == 'light') { 
-			this.bonus = 1.5;
-		}
-		else { 
-			this.bonus = 0; 
-		}
+		this.bonus = (this.checked  && globalCurrentArmorCategory == 'light') ? 1.5 : 0;
 		this.draw();
 	};
+	
 	this.draw = function(){
 		this.evidence();
 		globalFeatsBonusMovement.val(addPlus(this.bonus));
@@ -66,14 +108,8 @@ function pfFeatAgile()
 function pfFeatLightningReflexes(){
 	this.inheritFrom = pfFeat;
     this.inheritFrom();
-    
 	this.id = 'riflessi_fulminei';
-	this.update = function(){
-		this.checkStatus();
-		if (this.checked) this.bonus = 2;
-		else this.bonus = 0;
-		this.draw();
-	};
+	this.ifTrue = 2;
 	
 	this.draw = function(){
 		this.evidence();
@@ -111,9 +147,8 @@ function pfFeatSkillBaseFeat(){
     	this.evidence();
     	$('#skillFeat'+this.skillName01).val(this.bonus[0]);
     	$('#skillFeat'+this.skillName02).val(this.bonus[1]);
-    	var className = (this.checked) ? 'center separated' : 'center';
-    	$('#skillFeat'+this.skillName01).parent().attr('class',className);    	
-    	$('#skillFeat'+this.skillName02).parent().attr('class',className);
+    	$('#skillFeat'+this.skillName01).parent().attr('class',this.className);    	
+    	$('#skillFeat'+this.skillName02).parent().attr('class',this.className);
     };
 }
 
@@ -211,31 +246,6 @@ function pfFeatForceIntimidate(){
     
 }
 
-
-function pfFeatImproveInitiative(){
-	this.inheritFrom = pfFeat;
-    this.inheritFrom();
-    this.id = 'iniziativa_migliorata';
-    
-    this.update = function(){
-    	this.checkStatus();
-    	if (this.checked) {
-    		globalInitImprove.val(4);
-    	}
-    	else {
-    		globalInitImprove.val(0);
-    	}
-    	this.draw();
-    };
-    
-    this.draw = function(){
-    	this.evidence();
-    	var className = (this.checked) ? 'center separated' : 'center';
-    	globalInitImprove.parent().attr('class',className);
-    };
-    
-}
-
 /*************************** MANEUVERS FEATS ****************************/
 
 function pfFeatCombatDefenceTrained(){
@@ -243,13 +253,10 @@ function pfFeatCombatDefenceTrained(){
     this.inheritFrom();
     this.id = 'addestramento_nel_combattimento_difensivo';
     
-    this.update = function(){
-    	this.checkStatus();
-    	if (this.checked)
-    		this.bonus = globalManeuverLevel.val();
-    	else
-    		this.bonus = 0;
-    	this.draw();
+    
+    this.init = function(){
+    	this.ifTrue  = globalManeuverLevel.val()/1;
+    	this.ifFalse = 0;
     };
     
     this.draw = function(){
@@ -267,12 +274,11 @@ function pfFeatManeuversAgile(){
     this.inheritFrom();
     this.id = 'manovre_agili';
     
-    this.update = function(){
-    	this.checkStatus();
-    	this.bonus = (this.checked) ? globalManeuverModDex.val()/1 : globalManeuverModStr.val()/1;
-    	this.draw();
+    this.init = function(){
+    	this.ifTrue 	= globalManeuverModDex.val()/1;
+    	this.ifFalse	= globalManeuverModStr.val()/1;
     };
-	
+    
     this.draw = function(){
     	this.evidence();
     	globalManeuversFinalMod.val(addPlus(this.bonus));
@@ -283,12 +289,8 @@ function pfFeatManeuversAgile(){
 function pfFeatImproveManeuversBase(){
 	this.inheritFrom = pfFeat;
     this.inheritFrom();
+    this.ifTrue = 2;
     
-    this.update = function(){
-    	this.checkStatus();
-    	this.bonus = (this.checked) ? 2:0;
-    	this.draw();
-    };
 }
 
 function pfFeatImproveFight(){
@@ -306,11 +308,10 @@ function pfFeatImproveHighFight(){
 	this.inheritFrom = pfFeatImproveManeuversBase;
     this.inheritFrom();
     this.id = 'lottare_superiore';
+    this.ifTrue 	= 4;
     
-    this.update = function(){
-    	this.checkStatus();
-    	this.bonus = (this.checked) ? 4:globalManeuversFeatGrapple.val()/1;    	
-    	this.draw();
+    this.init = function(){
+    	this.ifFalse 	= globalManeuversFeatGrapple.val()/1; 
     };
     
     this.draw = function(){
@@ -334,11 +335,10 @@ function pfFeatImproveHighTrip(){
 	this.inheritFrom = pfFeatImproveTrip;
     this.inheritFrom();
     this.id = 'sbilanciare_superiore';
+    this.ifTrue 	= 4;
     
-    this.update = function(){
-    	this.checkStatus();
-    	this.bonus = (this.checked) ? 4:globalManeuversFeatTrip.val()/1;    	
-    	this.draw();
+    this.init = function(){
+    	this.ifFalse 	= globalManeuversFeatTrip.val()/1;
     };
     
 }
@@ -358,22 +358,38 @@ function pfFeatImproveHighOverrun(){
 	this.inheritFrom = pfFeatImproveOverrun;
     this.inheritFrom();
     this.id = 'oltrepassare_superiore';
+    this.ifTrue 	= 4;
     
-    this.update = function(){
-    	this.checkStatus();
-    	this.bonus = (this.checked) ? 4:globalManeuversFeatOverrun.val()/1;  	
-    	this.draw();
+    this.init = function(){
+    	this.ifFalse 	= globalManeuversFeatOverrun.val()/1;
     };
-    
 }
 
+
+/********************* AC FEATS ***********************/
+function pfFeatFocusShield(){
+	this.inheritFrom = pfFeat;
+    this.inheritFrom();
+    this.id = 'scudo_focalizzato';
+    this.ifTrue 	= 1;
+    this.ifFalse 	= 0;
+    
+    this.draw = function(){
+    	this.evidence();
+    	globalACShieldFocus.val(addPlus(this.bonus));
+    	globalACShieldFocus.parent().attr('class',this.className);
+    };
+}
 
 //INSERT FEATS in GLOBAL FEATS UPDATER
 globalMovementFeatsList.push(new pfFeatAgile());
 
 globalClassesFeatsList.push(new pfFeatLightningReflexes());
 globalClassesFeatsList.push(new pfFeatImproveInitiative());
+
 globalGenericFeatsList.push(new pfFeatRough());
+globalGenericFeatsList.push(new pfFeatDodge());
+globalACFeatsList.push(new pfFeatFocusShield());
 
 globalSkillFeatsList.push(new pfFeatAcrobatics());
 globalSkillFeatsList.push(new pfFeatAnimalAffinity());
@@ -395,4 +411,5 @@ globalManeuversFeatsList.push(new pfFeatImproveOverrun());
 globalManeuversFeatsList.push(new pfFeatImproveHighOverrun());
 globalManeuversFeatsList.push(new pfFeatImproveTrip());
 globalManeuversFeatsList.push(new pfFeatImproveHighTrip());
+
 

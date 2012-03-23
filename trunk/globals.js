@@ -163,6 +163,7 @@ var globalACBase;
 var globalACArmor;
 var globalACArmorMagic;
 var globalACShield;
+var globalACShieldFocus; //to manage shield focus feat
 var globalACSize;
 var globalACNat;
 var globalACNatMagic;
@@ -369,14 +370,15 @@ function setAll(){
     globalACBase                = $('#acBase');
     globalACArmor               = $('#acArmor');
     globalACArmorMagic          = $('#acArmorMagic');
-    globalACShield              = $('#acShield');    
+    globalACShield              = $('#acShield');
+    globalACShieldFocus         = $('#acShieldFocus');
     globalACSize                = $('#acSize');
     globalACNat                 = $('#acNat');
-    globalACNatMagic						= $('#acNatMagic');
+    globalACNatMagic			= $('#acNatMagic');
     globalACFeats               = $('#acFeats');
     globalACWis                 = $('#acWis');
     globalACClass               = $('#acClass');
-    globalACOther								= $('#acOther');
+    globalACOther				= $('#acOther');
         
     //CLASSES
     for (var i=0;i<maxSupportedClass;i++){
