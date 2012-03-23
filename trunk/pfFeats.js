@@ -118,6 +118,31 @@ function pfFeatLightningReflexes(){
 	
 }
 
+function pfFeatFortitude(){
+	this.inheritFrom = pfFeat;
+    this.inheritFrom();
+	this.id = 'tempra_possente';
+	this.ifTrue = 2;
+	
+	this.draw = function(){
+		this.evidence();
+		globalFeatTSF.val(addPlus(this.bonus));
+	};
+}
+
+function pfFeatIronWill(){
+	this.inheritFrom = pfFeat;
+    this.inheritFrom();
+	this.id = 'volonta_di_ferro';
+	this.ifTrue = 2;
+	
+	this.draw = function(){
+		this.evidence();
+		globalFeatTSW.val(addPlus(this.bonus));
+	};
+}
+
+
 /*************************** SKILLS IMPROVE FEATS ****************************/
 
 //Several feats add a +2 or +4 to two specific skills
@@ -222,6 +247,14 @@ function pfFeatDiplomacy(){
     this.id = 'persuasivo';
     this.skillName01 = 'diplomacy';
     this.skillName02 = 'intimidate';
+}
+
+function pfFeatArcanaVocation(){
+	this.inheritFrom = pfFeatSkillBaseFeat;
+    this.inheritFrom();
+    this.id = 'vocazione_magica';
+    this.skillName01 = 'spellcraft';
+    this.skillName02 = 'use_magic_device';
 }
 
 //This feat add modStr to modCha to determinate
@@ -365,6 +398,50 @@ function pfFeatImproveHighOverrun(){
     };
 }
 
+function pfFeatImproveSunder(){
+	this.inheritFrom = pfFeatImproveManeuversBase;
+    this.inheritFrom();
+    this.id = 'spezzare_migliorato';
+    
+    this.draw = function(){
+    	this.evidence();
+    	globalManeuversFeatSunder.val(addPlus(this.bonus));
+    };
+}
+
+function pfFeatImproveHighSunder(){
+	this.inheritFrom = pfFeatImproveSunder;
+    this.inheritFrom();
+    this.id = 'spezzare_superiore';
+    this.ifTrue 	= 4;
+    
+    this.init = function(){
+    	this.ifFalse 	= globalManeuversFeatSunder.val()/1;
+    };
+}
+
+function pfFeatImproveBull(){
+	this.inheritFrom = pfFeatImproveManeuversBase;
+    this.inheritFrom();
+    this.id = 'spingere_migliorato';
+    
+    this.draw = function(){
+    	this.evidence();
+    	globalManeuversFeatBull.val(addPlus(this.bonus));
+    };
+}
+
+function pfFeatImproveHighBull(){
+	this.inheritFrom = pfFeatImproveBull;
+    this.inheritFrom();
+    this.id = 'spingere_superiore';
+    this.ifTrue 	= 4;
+    
+    this.init = function(){
+    	this.ifFalse 	= globalManeuversFeatBull.val()/1;
+    };
+}
+
 
 /********************* AC FEATS ***********************/
 function pfFeatFocusShield(){
@@ -381,15 +458,37 @@ function pfFeatFocusShield(){
     };
 }
 
+function pfFeatFocusHighShield(){
+	this.inheritFrom = pfFeat;
+    this.inheritFrom();
+    this.id = 'scudo_focalizzato_superiore';
+    this.ifTrue 	= 1;
+    this.ifFalse 	= 0;
+    
+    this.init = function(){
+    	this.ifTrue = (globalACShieldFocus.val()/1 > 0) ? (globalACShieldFocus.val()/1 +1) : globalACShieldFocus.val()/1;
+    	this.ifFalse = globalACShieldFocus.val()/1;
+    };
+    
+    this.draw = function(){
+    	this.evidence();
+    	globalACShieldFocus.val(addPlus(this.bonus));
+    	globalACShieldFocus.parent().attr('class',this.className);
+    };
+}
+
 //INSERT FEATS in GLOBAL FEATS UPDATER
 globalMovementFeatsList.push(new pfFeatAgile());
 
 globalClassesFeatsList.push(new pfFeatLightningReflexes());
+globalClassesFeatsList.push(new pfFeatFortitude());
+globalClassesFeatsList.push(new pfFeatIronWill());
 globalClassesFeatsList.push(new pfFeatImproveInitiative());
 
 globalGenericFeatsList.push(new pfFeatRough());
 globalGenericFeatsList.push(new pfFeatDodge());
 globalACFeatsList.push(new pfFeatFocusShield());
+globalACFeatsList.push(new pfFeatFocusHighShield());
 
 globalSkillFeatsList.push(new pfFeatAcrobatics());
 globalSkillFeatsList.push(new pfFeatAnimalAffinity());
@@ -401,6 +500,7 @@ globalSkillFeatsList.push(new pfFeatDisguise());
 globalSkillFeatsList.push(new pfFeatSleightHand());
 globalSkillFeatsList.push(new pfFeatDiplomacy());
 globalSkillFeatsList.push(new pfFeatForceIntimidate());
+globalSkillFeatsList.push(new pfFeatArcanaVocation());
 
 //If a feat is the high version of a previous one, its good to put after the first one
 globalManeuversFeatsList.push(new pfFeatCombatDefenceTrained());
@@ -411,5 +511,10 @@ globalManeuversFeatsList.push(new pfFeatImproveOverrun());
 globalManeuversFeatsList.push(new pfFeatImproveHighOverrun());
 globalManeuversFeatsList.push(new pfFeatImproveTrip());
 globalManeuversFeatsList.push(new pfFeatImproveHighTrip());
+globalManeuversFeatsList.push(new pfFeatImproveSunder());
+globalManeuversFeatsList.push(new pfFeatImproveHighSunder());
+globalManeuversFeatsList.push(new pfFeatImproveBull());
+globalManeuversFeatsList.push(new pfFeatImproveHighBull());
+
 
 
