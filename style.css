@@ -152,3 +152,19 @@ DIV#skillPointTotal{
 DIV#skillPointTotal label {
 	font-weight:bold;
 }
+
+DIV.spellsSection select {
+  width:300px;
+  text-align:left;
+}
+
+DIV.spellsSection TD {
+  text-align:left;
+  vertical-align:top;
+}
+
+TD.spellLevel {
+  text-align:center !important;
+  font-size:16px;
+  font-weight:bold;
+}
