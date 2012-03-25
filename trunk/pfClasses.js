@@ -277,6 +277,7 @@ function pfClass(){
 	    if (this.spellSource != ""){
 	    	var spellSection 	= $('#'+this.name+'Spell');
 	    	spellSection.show();
+	    	this.spellManager.printWizardList(this.name); //print the list of spell divided by spell level
 	    	
 		    if (this.spellPerDay.length > 0)
 			    for (var i=0;i<=this.bestSpellLevel;i++){
@@ -297,7 +298,6 @@ function pfClass(){
 		    		globalSpellKnown.val(this.spellKnown[this.lvSpells[this.spellSource]][i]);
 		    	};
 	    }
-	    
 	};
 	
 }

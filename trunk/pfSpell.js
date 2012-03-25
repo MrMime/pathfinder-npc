@@ -165,6 +165,29 @@ function pfSpellsManager()
 		return bonus;
 	};
 	
+	this.printWizardList = function(className){
+		 $.ajax({
+				type: "GET",
+				url: "ajaxPhp/spells/spells.php",
+				data: "class="+className,
+				success: function(response){
+					var obj = JSON.parse(response);				
+					for (var i=0;i<obj.length;i++){
+						var options = new Array();
+						while (spell = obj[i].pop()){
+							var spellName = spell.name;
+							 options.push(spellName);
+						}
+						options.sort();
+						var fOptions = "";
+						for (var j=0;j<options.length;j++)
+							fOptions += "<option value=\""+options[j]+"\">"+options[j]+"</option>";
+						$('#spellList'+i+className).append(fOptions);
+					}
+				}
+			});
+	};
+	
 }
 
 function pfSpell(){

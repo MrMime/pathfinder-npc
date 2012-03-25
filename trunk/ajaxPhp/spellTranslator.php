@@ -46,6 +46,6 @@
 		return $spell;
 	}
 
-	echo json_encode($spellList);
+	echo json_encode($spellList['paladino']);
 
 ?>
