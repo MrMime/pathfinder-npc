@@ -69,9 +69,10 @@ function pfCharacter(){
         $('#sorcererSpell').hide();
         $('#wizardSpell').hide();
         $('#bardSpell').hide();
-        $('#druiddSpell').hide();
+        $('#druidSpell').hide();
         $('#paladinSpell').hide();
         $('#rangerSpell').hide();
+        $('#clericSpell').hide();
         
 	};
 	

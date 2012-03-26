@@ -168,13 +168,13 @@ function pfSpellsManager()
 	this.printWizardList = function(className){
 		 $.ajax({
 				type: "GET",
-				url: "ajaxPhp/spells/spells.php",
+				url: "ajaxPhp/spells/"+className+".php",
 				data: "class="+className,
 				success: function(response){
-					var obj = JSON.parse(response);				
-					for (var i=0;i<obj.length;i++){
+					var obj = JSON.parse(response);
+					for (var lv in obj){
 						var options = new Array();
-						while (spell = obj[i].pop()){
+						while (spell = obj[lv].pop()){
 							var spellName = spell.name;
 							 options.push(spellName);
 						}
@@ -182,7 +182,7 @@ function pfSpellsManager()
 						var fOptions = "";
 						for (var j=0;j<options.length;j++)
 							fOptions += "<option value=\""+options[j]+"\">"+options[j]+"</option>";
-						$('#spellList'+i+className).append(fOptions);
+						$('#spellList'+lv+className).append(fOptions);
 					}
 				}
 			});
