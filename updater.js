@@ -195,26 +195,6 @@ function buildGenericSelectGroupFilter(obj,id,valids){
 
 function buildGenericSelect(obj,id){
 	return buildGenericSelectGroupFilter(obj,id,new Array());
-    /*
-    $.each(obj.attributes,function(i,item){
-       var value = item; 
-    });
-    
-    for (var i=0;i<categories.length;i++){
-        var options = "";
-        
-        $.each (eval('obj.'+categories[i]),function(){
-            var value = this;
-        });
-        var length = list.length;
-        for (var j=0;j<length;j++) {
-            var value = list.pop();
-            options  += "<option value=\""+value[0]+"\">"+value[1]+"</option>";
-        }
-        
-    }
-    return optGroups;
-    */
 }
 
 //FEATS

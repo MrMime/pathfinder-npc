@@ -180,9 +180,12 @@ function pfSpellsManager()
 						}
 						options.sort();
 						var fOptions = "";
-						for (var j=0;j<options.length;j++)
-							fOptions += "<option value=\""+options[j]+"\">"+options[j]+"</option>";
-						$('#spellList'+lv+className).append(fOptions);
+						for (var j=0;j<options.length;j++) {
+							var idd = options[j].toLowerCase().replace(/ /ig,'_').replace(/\//ig,'_');
+							var option = new Option(options[j].toLowerCase(),idd);
+							$('#spellList'+lv+className).append(option);
+						}
+						
 					}
 				}
 			});

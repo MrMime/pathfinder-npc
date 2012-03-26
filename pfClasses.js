@@ -127,13 +127,6 @@ function pfClass(){
     	//If more than one source has the max lv casting, the order of adding is arcana->divine->psionic->alchemic
     	if (this.lvSpellGenericPrestigeInc > 0) {
     		this.lvSpells[this.spellSource] += this.lvSpellGenericPrestigeInc;
-    		/*
-    		var maxCurrentSpellLevel = Math.max(this.lvSpellArcane,this.lvSpellDivine,this.lvSpellPsionic,this.lvSpellAlchemic);
-    		if (this.lvSpellArcane		== maxCurrentSpellLevel) this.lvSpellAarcane 	+= this.lvSpellGenericPrestigeInc;
-    		if (this.lvSpellDivine 		== maxCurrentSpellLevel) this.lvSpellDivine 	+= this.lvSpellGenericPrestigeInc;
-    		if (this.lvSpellPsionic 	== maxCurrentSpellLevel) this.lvSpellPsionic 	+= this.lvSpellGenericPrestigeInc;
-    		if (this.lvSpellAlchemic 	== maxCurrentSpellLevel) this.lvSpellAlchemic 	+= this.lvSpellGenericPrestigeInc;
-    		*/
     	}
     };
 	
@@ -277,6 +270,7 @@ function pfClass(){
 	    if (this.spellSource != ""){
 	    	var spellSection 	= $('#'+this.name+'Spell');
 	    	spellSection.show();
+	    	this.hideSpellICantCast();
 	    	this.spellManager.printWizardList(this.name); //print the list of spell divided by spell level
 	    	
 		    if (this.spellPerDay.length > 0)
@@ -298,6 +292,15 @@ function pfClass(){
 		    		globalSpellKnown.val(this.spellKnown[this.lvSpells[this.spellSource]][i]);
 		    	};
 	    }
+	};
+	
+	this.hideSpellICantCast = function(){
+		for (var i=0;i<=this.bestSpellLevel;i++){
+			if (i<=this.maxSpellLevel)
+				$('#spellList'+i+this.name).attr("disabled",false);
+			else
+				$('#spellList'+i+this.name).attr("disabled",true);
+		}
 	};
 	
 }
@@ -581,7 +584,7 @@ function pfSorcerer(){
 	this.classSkill		= new Array('appraise','bluff','craft','fly','intimidate','knowledge_arcana','profession','spellcraft','use_device_magic');
 	
 	this.calculateMaxSpellLevel = function(){
-		this.maxSpellLevel = Math.max(1,(Math.ceil((this.lvSpellArcane+1)/2))-1);
+		this.maxSpellLevel = Math.max(1,(Math.ceil((this.lvSpells['arcana']+1)/2))-1);
 	};
 	
 	this.spellKnowBonus = new Array(0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0);
