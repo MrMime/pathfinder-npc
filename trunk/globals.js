@@ -498,6 +498,5 @@ function setAll(){
             globalWeaponMagic[i-1]               = $('#weapon0'+i+'Magic');
             globalWeaponEnchantment[i-1]         = $('#weapon0'+i+'Enchantment');
 		}
-	
 }
 

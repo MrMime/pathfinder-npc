@@ -26,7 +26,7 @@
 	//Including HTML Sections
 	//************************** RACE ******************************************//
 	$htmlCode = file_get_contents ('./html/race.html');
-  $code = str_replace('[[race_html]]',$htmlCode,$code);
+    $code = str_replace('[[race_html]]',$htmlCode,$code);
 	//************************** MOVEMENT ******************************************//
 	$htmlCode = file_get_contents ('./html/movement.html');
 	$code = str_replace('[[movement_html]]',$htmlCode,$code);
@@ -104,6 +104,10 @@
 		$code = preg_replace('/{'.$index.'}/', $translate, $code);
 	}
 	
+	
+	//************************ HELPER ****************************//
+	$htmlCode = file_get_contents ('./languages/helper/it/weapon.html');
+	$code = str_replace ('[[weaponHelper]]',$htmlCode,$code);
 		
 	echo $code;
 	

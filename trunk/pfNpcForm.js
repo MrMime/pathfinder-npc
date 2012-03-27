@@ -1,5 +1,5 @@
 
-window.onload = loadAll;
+$().ready(loadAll);
 
 function loadAll(){
 	setAll();
@@ -86,6 +86,7 @@ function loadAll(){
     });
 	 
     updateAllSheet();
+    buildHelper();
 }
 
 function updateClassLevel(index,level){
