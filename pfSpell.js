@@ -176,7 +176,7 @@ function pfSpellsManager()
 						var options = new Array();
 						while (spell = obj[lv].pop()){
 							var spellName = spell.name;
-							 options.push(spellName);
+							options.push(spellName+": "+spell.description);
 						}
 						options.sort();
 						var fOptions = "";

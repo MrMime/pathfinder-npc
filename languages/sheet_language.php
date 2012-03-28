@@ -143,6 +143,7 @@
 	$pfNpcSheet['eng']['cmd']				= 'cmd';
 	$pfNpcSheet['eng']['favouriteclass']	= 'preferred class';
 	
+	$pfNpcSheet['eng']['maneuvers']			= 'maneuvers';
 	$pfNpcSheet['eng']['bull']				= 'bull_rush';
 	$pfNpcSheet['eng']['drag']				= 'drag';
 	$pfNpcSheet['eng']['disarm']			= 'disarm';
@@ -334,6 +335,7 @@
 	$pfNpcSheet['ita']['grapple']			= 'lottare';
 	$pfNpcSheet['ita']['life_dice']			= 'dadi vita';
 	
+	$pfNpcSheet['ita']['maneuvers']			= 'Manovre';
 	$pfNpcSheet['ita']['bull']				= 'spingere';
 	$pfNpcSheet['ita']['drag']				= 'trascinare';
 	$pfNpcSheet['ita']['disarm']			= 'disarmare';
