@@ -15,13 +15,13 @@
 			</tr>
 			<section>
 			<tr>
-				<td colspan="10">[[sectionlabel]]</td>
+				<td class="sectionLabel" colspan="10">[[sectionlabel]]</td>
 			</tr>
 			</section>
 			<repeatable>
 				<tr>
 					<td>{index}</td>
-					<td><select id="class0{index}Name" index="{index}" name="classes[{index}]['name']"></select></td>
+					<td><select class="classSelect" id="class0{index}Name" index="{index}" name="classes[{index}]['name']"></select></td>
 					<td>
 						<select id="class0{index}Level" name="classes[{index}]['level']" onChange="updateClassLevel({index},$(this).val()); updateAllSheet();">
 						</select>

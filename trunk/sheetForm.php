@@ -6,8 +6,9 @@
 	
 	require ('./languages/sheet_language.php');
 	require ('./languages/skill_language.php');
+	require ('./languages/class_language.php');
 	require ('./ajaxPhp/skillList.php');
-	global $pfNpcSheet, $skills, $lang, $skillLanguage;
+	global $pfNpcSheet, $skills, $lang, $skillLanguage, $pfClasses;
 	define("MAX_MULTICLASS", 6);
 	define("MAX_PRESTIGE_CLASS", 3);
 	define("MAX_SUPPORTED_CLASS", MAX_MULTICLASS+MAX_PRESTIGE_CLASS);
@@ -21,7 +22,6 @@
 	$code = file_get_contents('npcSheet.html');
 	$code = str_replace ('[[action]]',$_SERVER['REQUEST_URI'],$code);
 	$code = preg_replace('/{lang}/', $_GET['lang'], $code);
-
 	
 	//Including HTML Sections
 	//************************** RACE ******************************************//
@@ -101,6 +101,10 @@
 	}
 	
 	foreach ($skillLanguage[$lang] as $index=>$translate){
+		$code = preg_replace('/{'.$index.'}/', $translate, $code);
+	}
+	
+	foreach ($pfClasses[$lang] as $index=>$translate){
 		$code = preg_replace('/{'.$index.'}/', $translate, $code);
 	}
 	
