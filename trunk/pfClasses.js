@@ -535,6 +535,19 @@ function pfDruid(){
 	};
 }
 
+//A spec Wizard is a Wizard with a specific Arcane School
+function pfSpecWizard(){
+	this.inheritFrom = pfWizard;
+    this.inheritFrom();
+    		
+    
+    this.calcolateBaseSpellStat = function() {
+    	this.spellManager.setSpecialize(true);
+		this.spellManager.buildSpellMatrix(this.spellManager.fullCast);
+		this.spellPerDay = this.spellManager.perDay;
+	};
+}
+
 function pfWizard(){
 	this.inheritFrom = pfClass;
     this.inheritFrom();

@@ -15,7 +15,7 @@ function pfFeat(){
 		this.checked = false;
 		if (this.check.is(':checked'))
 			this.checked = true;
-		this.className = (this.checked) ? 'center separated' : 'center';
+		this.className = (this.checked) ? 'center featMod' : 'center';
 	};
 	
 	//A lot of feats simply add some bonus to something
@@ -54,7 +54,7 @@ function pfFeatRough(){
 	this.draw = function(){
 		this.evidence();
 		globalHPTotalFeats.val(addPlus(this.bonus));
-		globalHPTotalFeats.parent().attr('class',this.className);    	
+		globalHPTotalFeats.attr('class',this.className);    	
 	};
 }
 
@@ -67,7 +67,7 @@ function pfFeatDodge(){
     this.draw = function(){
     	this.evidence();
     	globalACFeats.val(addPlus(this.bonus));
-    	globalACFeats.parent().attr('class',this.className);
+    	globalACFeats.attr('class',this.className);
     };
 }
 
@@ -80,7 +80,7 @@ function pfFeatImproveInitiative(){
     this.draw = function(){
     	this.evidence();
     	globalInitImprove.val(addPlus(this.bonus));
-    	globalInitImprove.parent().attr('class',this.className);
+    	globalInitImprove.attr('class',this.className);
     };
     
 }
@@ -102,6 +102,7 @@ function pfFeatAgile()
 	this.draw = function(){
 		this.evidence();
 		globalFeatsBonusMovement.val(addPlus(this.bonus));
+		globalFeatsBonusMovement.attr('class',this.className);
 	};
 }
 
@@ -114,6 +115,7 @@ function pfFeatLightningReflexes(){
 	this.draw = function(){
 		this.evidence();
 		globalFeatTSR.val(addPlus(this.bonus));
+		globalFeatTSR.attr('class',this.className);
 	};
 	
 }
@@ -127,6 +129,7 @@ function pfFeatFortitude(){
 	this.draw = function(){
 		this.evidence();
 		globalFeatTSF.val(addPlus(this.bonus));
+		globalFeatTSF.attr('class',this.className);
 	};
 }
 
@@ -139,6 +142,7 @@ function pfFeatIronWill(){
 	this.draw = function(){
 		this.evidence();
 		globalFeatTSW.val(addPlus(this.bonus));
+		globalFeatTSW.attr('class',this.className);
 	};
 }
 
@@ -172,8 +176,8 @@ function pfFeatSkillBaseFeat(){
     	this.evidence();
     	$('#skillFeat'+this.skillName01).val(this.bonus[0]);
     	$('#skillFeat'+this.skillName02).val(this.bonus[1]);
-    	$('#skillFeat'+this.skillName01).parent().attr('class',this.className);    	
-    	$('#skillFeat'+this.skillName02).parent().attr('class',this.className);
+    	$('#skillFeat'+this.skillName01).attr('class',this.className);    	
+    	$('#skillFeat'+this.skillName02).attr('class',this.className);
     };
 }
 
@@ -295,10 +299,10 @@ function pfFeatCombatDefenceTrained(){
     this.draw = function(){
     	this.evidence();
     	globalManeuversLevelBabMod.val(this.bonus);
-    	var className = (this.bonus != 0) ? 'center separated' : 'center';
-    	globalManeuversLevelBabMod.parent().attr('class',className);
-    	var className = (this.bonus != 0) ? 'center' : 'center separated';
-    	globalManeuverBAB.parent().attr('class',className);
+    	if (this.checked) {
+    		globalManeuversLevelBabMod.attr('class',this.className);
+    		globalManeuverBAB.attr('class',this.className);
+    	}
     };
 }
 
@@ -334,11 +338,13 @@ function pfFeatImproveFight(){
     this.draw = function(){
     	this.evidence();
     	globalManeuversFeatGrapple.val(addPlus(this.bonus));
+    	if (this.checked)
+    		globalManeuversFeatGrapple.attr("class",this.className);
     };
 }
 
 function pfFeatImproveHighFight(){
-	this.inheritFrom = pfFeatImproveManeuversBase;
+	this.inheritFrom = pfFeatImproveFight;
     this.inheritFrom();
     this.id = 'lottare_superiore';
     this.ifTrue 	= 4;
@@ -347,10 +353,6 @@ function pfFeatImproveHighFight(){
     	this.ifFalse 	= globalManeuversFeatGrapple.val()/1; 
     };
     
-    this.draw = function(){
-    	this.evidence();
-    	globalManeuversFeatGrapple.val(addPlus(this.bonus));
-    };
 }
 
 function pfFeatImproveTrip(){
@@ -361,6 +363,8 @@ function pfFeatImproveTrip(){
     this.draw = function(){
     	this.evidence();
     	globalManeuversFeatTrip.val(addPlus(this.bonus));
+    	if (this.checked)
+    		globalManeuversFeatTrip.attr("class",this.className);
     };
 }
 
@@ -384,6 +388,8 @@ function pfFeatImproveOverrun(){
     this.draw = function(){
     	this.evidence();
     	globalManeuversFeatOverrun.val(addPlus(this.bonus));
+    	if (this.checked)
+    		globalManeuversFeatOverrun.attr("class",this.className);
     };
 }
 
@@ -406,6 +412,8 @@ function pfFeatImproveSunder(){
     this.draw = function(){
     	this.evidence();
     	globalManeuversFeatSunder.val(addPlus(this.bonus));
+    	if (this.checked)
+    		globalManeuversFeatSunder.attr("class",this.className);
     };
 }
 
@@ -428,6 +436,8 @@ function pfFeatImproveBull(){
     this.draw = function(){
     	this.evidence();
     	globalManeuversFeatBull.val(addPlus(this.bonus));
+    	if (this.checked)
+    		globalManeuversFeatBull.attr("class",this.className);
     };
 }
 
@@ -454,7 +464,7 @@ function pfFeatFocusShield(){
     this.draw = function(){
     	this.evidence();
     	globalACShieldFocus.val(addPlus(this.bonus));
-    	globalACShieldFocus.parent().attr('class',this.className);
+    	globalACShieldFocus.attr('class',this.className);
     };
 }
 
@@ -473,7 +483,7 @@ function pfFeatFocusHighShield(){
     this.draw = function(){
     	this.evidence();
     	globalACShieldFocus.val(addPlus(this.bonus));
-    	globalACShieldFocus.parent().attr('class',this.className);
+    	globalACShieldFocus.attr('class',this.className);
     };
 }
 

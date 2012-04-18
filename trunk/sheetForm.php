@@ -112,6 +112,18 @@
 	//************************ HELPER ****************************//
 	$htmlCode = file_get_contents ('./languages/helper/it/weapon.html');
 	$code = str_replace ('[[weaponHelper]]',$htmlCode,$code);
+	
+	$htmlCode = file_get_contents ('./languages/helper/it/maneuvers.html');
+	$code = str_replace ('[[maneuversHelper]]',$htmlCode,$code);
+	
+	$htmlCode = file_get_contents ('./languages/helper/it/feats.html');
+	$code = str_replace ('[[featsHelper]]',$htmlCode,$code);
+	
+	$htmlCode = file_get_contents ('./languages/helper/it/skills.html');
+	$code = str_replace ('[[skillsHelper]]',$htmlCode,$code);
+	
+	$htmlCode = file_get_contents ('./languages/helper/it/classes.html');
+	$code = str_replace ('[[classesHelper]]',$htmlCode,$code);
 		
 	echo $code;
 	
