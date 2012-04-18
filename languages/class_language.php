@@ -12,6 +12,7 @@
 	$pfClasses['eng']['druid'] 				= 'druid';
 	$pfClasses['eng']['cleric'] 			= 'cleric';
 	$pfClasses['eng']['wizard'] 			= 'wizard';
+	$pfClasses['eng']['spec_wizard'] 		= 'specialized wizard';
 	$pfClasses['eng']['sorcerer'] 			= 'sorcerer';
 	$pfClasses['eng']['paladin'] 			= 'paladin';
 	$pfClasses['eng']['monk'] 				= 'monk';
@@ -40,6 +41,7 @@
 	$pfClasses['ita']['druid'] 				= 'druido';
 	$pfClasses['ita']['cleric'] 			= 'chierico';
 	$pfClasses['ita']['wizard'] 			= 'mago';
+	$pfClasses['ita']['spec_wizard'] 		= 'mago specialista';
 	$pfClasses['ita']['sorcerer'] 			= 'stregone';
 	$pfClasses['ita']['paladin'] 			= 'paladino';
 	$pfClasses['ita']['monk'] 				= 'monaco';

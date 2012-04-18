@@ -7,6 +7,7 @@
 	$pfNpcSheet['eng']['modint'] 			= 'mod int';
 	$pfNpcSheet['eng']['modwis'] 			= 'mod wis';
 	$pfNpcSheet['eng']['modcha'] 			= 'mod cha';
+	$pfNpcSheet['eng']['mod'] 				= 'modifier';
 	
 	$pfNpcSheet['eng']['wisdom'] 			= 'wisdom';
 	$pfNpcSheet['eng']['other'] 			= 'other';
@@ -16,6 +17,8 @@
 	$pfNpcSheet['eng']['totalpointavaiable']    = 'total skill point avaiable (favourite class and human bonus counted)';
 	$pfNpcSheet['eng']['prestige_class']	= 'Prestige Class';
 	$pfNpcSheet['eng']['prestige']			= 'prestige';
+	$pfNpcSheet['eng']['class_reference']	= 'class referred';
+	
 	
 	//STATISTICS
 	$pfNpcSheet['eng']['dex'] 				= 'DEX';
@@ -192,6 +195,7 @@
 	$pfNpcSheet['ita']['modint'] 			= 'int';
 	$pfNpcSheet['ita']['modwis'] 			= 'sag';
 	$pfNpcSheet['ita']['modcha'] 			= 'car';
+	$pfNpcSheet['ita']['mod'] 				= 'modif.';
 	
 	$pfNpcSheet['ita']['wisdom'] 			= 'saggezza';
 	$pfNpcSheet['ita']['other'] 			= 'altri';
@@ -201,6 +205,7 @@
 	$pfNpcSheet['ita']['totalpointavaiable']   = 'punti abilit&agrave; totali (comprende bonus classe preferita ed eventuale bonus umani)';
 	$pfNpcSheet['ita']['prestige_class']	= 'Classi di Prestigio';
 	$pfNpcSheet['ita']['prestige']			= 'prestigio';
+	$pfNpcSheet['ita']['class_reference']	= 'classe collegata';
 	
 	//STATISTICS
 	$pfNpcSheet['ita']['dex'] 				= 'DES';

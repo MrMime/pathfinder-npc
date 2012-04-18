@@ -3,6 +3,9 @@ function pfSpellsManager()
 	this.st 	= new Array(10,10,10,10,10,10,10,10,10,10);
 	this.perDay = new Array();
 	this.known	= new Array();
+	//indicate if a wizard is specialize in a school. 
+	//The number of spall per day is incrimented by 1 (the additional slot must be filled with specific school spell)
+	this.schoolBonus = false; 
 	
 	var castingCategory = new Array();
 	//List of Spell Per Day Casting Level
@@ -95,10 +98,20 @@ function pfSpellsManager()
 					"1,5,5,5,5,5,4;" +
 					"1,5,5,5,5,5,5";
 	
+	this.setSpecialize = function(bol){
+		this.schoolBonus = bol; 
+	};
+	
 	this.buildSpellMatrix = function(castType){
 		var levels = castType.split(/;/g);
 		for (var i=0;i<levels.length;i++){
-			this.perDay[i+1] = levels[i].split(/,/g);
+			var numberPerDay = levels[i].split(/,/g);
+			if (this.schoolBonus) {
+				for (var j=0;j<numberPerDay.length;j++)
+					if (numberPerDay[j] != '-')
+						numberPerDay[j] = numberPerDay[j] + "+1";
+			}
+			this.perDay[i+1] = numberPerDay;
 		}
 	};
 	

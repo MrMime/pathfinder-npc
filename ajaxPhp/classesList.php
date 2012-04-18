@@ -13,6 +13,7 @@
 						'pfPaladin'=>'{paladin}',
 						'pfMonk'=>'{monk}',					
 						'pfWizard'=>'{wizard}',
+						'pfSpecWizard'=>'{spec_wizard}',
 						'pfSorcerer'=>'{sorcerer}',
 						'pfRanger'=>'{ranger}'
 						),
