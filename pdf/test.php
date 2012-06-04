@@ -1,5 +1,7 @@
 <?php
 
+	define("ROOT_PATH",'../');
+
 /*
 	require_once (\'ufpdf.php\');
 	require_once (\'class.pfNpcSheet.php\');
@@ -102,17 +104,22 @@
  */
 
 	
-	require_once ('class.csvToSheet.php');
+	require_once ('../class.csvToSheet.php');
 	$object = new arrayToSheet('ita');
-	
 	
 	//TEST DATA
 	$data = $_POST;
 	$data['race']				= $_POST['race']; ///da gestire perché è pfDwarf
 	$data['movement']			= $_POST['movementTotal'];
 	$data['classes']			= $_POST['classes']; //da gestire
+	$data['gender']				= (isset($_POST['gender'])) ? $_POST['gender'] : '{male}'; 
+	$data['alignent']			= (isset($_POST['alignment'])) ? $_POST['alignment'] : '{neutral}';
 	
 	$object->setData($data);
+	
+	echo '<pre>';
+	print_r ($data);
+	
 	
 	/*
 	$classes 						= array ('guerriero'=>5,'Hellknight'=>2);
@@ -138,11 +145,12 @@
 	$object->writeContent();
 	$content = $object->buildPageContent();
 	
-	//echo $content;
-	
+	echo $content;
+	/*
 	require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
     $html2pdf = new HTML2PDF('P','A4','it');
     $html2pdf->WriteHTML($content);
     $html2pdf->Output('./exemple.pdf');
-
+	*/
+	echo '</pre>';
 ?>

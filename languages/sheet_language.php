@@ -18,7 +18,7 @@
 	$pfNpcSheet['eng']['prestige_class']	= 'Prestige Class';
 	$pfNpcSheet['eng']['prestige']			= 'prestige';
 	$pfNpcSheet['eng']['class_reference']	= 'class referred';
-	
+	$pfNpcSheet['eng']['base']				= 'base';
 	
 	//STATISTICS
 	$pfNpcSheet['eng']['dex'] 				= 'DEX';
@@ -206,6 +206,7 @@
 	$pfNpcSheet['ita']['prestige_class']	= 'Classi di Prestigio';
 	$pfNpcSheet['ita']['prestige']			= 'prestigio';
 	$pfNpcSheet['ita']['class_reference']	= 'classe collegata';
+	$pfNpcSheet['ita']['base']				= 'base';
 	
 	//STATISTICS
 	$pfNpcSheet['ita']['dex'] 				= 'DES';

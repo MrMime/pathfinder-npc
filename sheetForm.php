@@ -3,11 +3,10 @@
 		$_GET['lang'] = 'ita';
 		
 	$GLOBALS['lang'] = $_GET['lang'];
+	define("ROOT_PATH",'./');	
 	
-	require ('./languages/sheet_language.php');
-	require ('./languages/skill_language.php');
-	require ('./languages/class_language.php');
 	require ('./ajaxPhp/skillList.php');
+	require ('./class.pfTranslator.php');
 	global $pfNpcSheet, $skills, $lang, $skillLanguage, $pfClasses;
 	define("MAX_MULTICLASS", 6);
 	define("MAX_PRESTIGE_CLASS", 3);
@@ -95,7 +94,17 @@
 	$htmlCode = file_get_contents ('./html/spells.html');
 	$code = str_replace('[[spells_html]]',$htmlCode,$code);
 	
+	
+	//************************** TRANSLATING SHEET ***************************************//
 	//Translating sheets
+	
+	$translator = new pfTranslator();
+	$translator->setLang($lang);
+	$translator->setContent($code);
+	$translator->translate();
+	
+	$code = $translator->getContent();
+	/*
 	foreach ($pfNpcSheet[$lang] as $index=>$translate){
 		$code = preg_replace('/{'.$index.'}/', $translate, $code);
 	}
@@ -107,7 +116,7 @@
 	foreach ($pfClasses[$lang] as $index=>$translate){
 		$code = preg_replace('/{'.$index.'}/', $translate, $code);
 	}
-	
+	*/
 	
 	//************************ HELPER ****************************//
 	$htmlCode = file_get_contents ('./languages/helper/it/weapon.html');

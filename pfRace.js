@@ -30,6 +30,10 @@ function pfRace(){
 	
 	this.language   		= new Array();
 	this.learnableLanguage 	= new Array();
+	this.allLanguage		= new Array("{abyssal-lang}","{aklo-lang}","{aquan-lang}","{auran-lang}",
+									    "{celestial-lang}","{druidic-lang}","{elf-lang}","{draconic-lang}","{giant-lang}",
+									    "{gnoll-lang}","{goblin-lang}","{halfing-lang}","{ignan-lang}","{infernal-lang}","{dwarf-lang}",
+									    "{orc-lang}","{silvan-lang}","{terran-lang}","{undercommon-lang}");
 	this.modSkill			= new Array();
 	
 	this.extraFeats = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); //number of extra feats per level
@@ -44,10 +48,19 @@ function pfRace(){
 	
 	this.buildLanguage = function(){
 		var sel = $('#raceLanguage');
+		sel.removeAttr("class");
 		if (globalCurrentRaceName != this.name){
 			sel.empty();
 			for (var i=0;i<this.learnableLanguage.length;i++)
 				sel.append ('<option value="'+this.learnableLanguage[i]+'">'+this.learnableLanguage[i]+'</option>');
+		}
+		var linguisticSkillPoint = $('#skillPointslinguistics').val()/1;
+		if (linguisticSkillPoint > 0){
+			sel.empty();
+			sel.attr("class","skillMod");
+			for (var i=0;i<this.allLanguage.length;i++){
+				sel.append ('<option value="'+this.allLanguage[i]+'">'+this.allLanguage[i]+'</option>');
+			}
 		}
 	};
 	
@@ -124,6 +137,10 @@ function pfHuman(){
 	this.extraSkill = new Array(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);	
 	this.modCus = 2;
 	this.speedHeavy = 6;
+	this.learnableLanguage = new Array("{abyssal-lang}","{aklo-lang}","{aquan-lang}","{auran-lang}",
+									   "{celestial-lang}","{druidic-lang}","{elf-lang}","{draconic-lang}","{giant-lang}",
+									   "{gnoll-lang}","{goblin-lang}","{halfing-lang}","{ignan-lang}","{infernal-lang}","{dwarf-lang}",
+									   "{orc-lang}","{silvan-lang}","{terran-lang}","{undercommon-lang}");
 }
 
 function pfHalfOrc(){
@@ -181,7 +198,7 @@ function pfGnome(){
 	this.speed 		= 6;
 	this.speedHeavy = 4.5;
 	
-	this.language.push("{gnome-lang}","{common}","{sylvan-lang}");
+	this.language.push("{gnome-lang}","{common}","{silvan-lang}");
 	this.learnableLanguage = new Array("{draconic-lang}","{dwarf-lang}","{elf-lang}","{giant-lang}","{goblin-lang}","{orc-lang}");
 }
 
@@ -194,7 +211,7 @@ function pfElf(){
 	this.modCos	= -2;
 	this.name	= "{elf}";
 	this.language.push("{elven}","{common}");
-	this.learnableLanguage = new Array("{celestial-lang}","{draconic-lang}","{gnoll-lang}","{gnome-lang}","{goblin-lang}","{orc-lang}","{sylvan-lang}");
+	this.learnableLanguage = new Array("{celestial-lang}","{draconic-lang}","{gnoll-lang}","{gnome-lang}","{goblin-lang}","{orc-lang}","{silvan-lang}");
 }
 
 function pfHalfling(){
@@ -230,7 +247,7 @@ function pfAasimar(){
     
     this.name = "Aasimar";
     this.language.push("{celestian}","{common}");
-    this.learnableLanguage = new Array("{draconic}","{elven}","{gnome-lang}","{dwarf-lang}","{halfling-lang}","{sylvan-lang}");
+    this.learnableLanguage = new Array("{draconic}","{elven}","{gnome-lang}","{dwarf-lang}","{halfling-lang}","{silvan-lang}");
     
     this.speed = 9;
     this.speedHeavy = 6;
