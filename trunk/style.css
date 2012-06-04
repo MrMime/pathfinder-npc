@@ -24,6 +24,10 @@ TD.separated {
 	border:1px solid #330099 !important;
 }
 
+.skillMod {
+	border:2px solid #00FF00 !important;
+}
+
 
 .clickable{
 	cursor:pointer;

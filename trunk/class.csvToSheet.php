@@ -1,19 +1,20 @@
 <?php
-include ('../sheet_language.php');
+
+include ('class.pfTranslator.php');
 
 class arrayToSheet
 {
 	protected $_data  		= null;
 	protected $_content 	= null;
-	protected $_language 	= null;
 	protected $_lang	 	= null;
 	protected $_defaultKey  = null;
+	protected $_translator	= null;
 	
 	public function __construct($lang = 'eng'){
-		global $pfNpcSheet;
 		
 		$this->_lang = $lang; //default value
-		$this->_language = $pfNpcSheet[$this->_lang];
+		$this->_translator = new pfTranslator();
+		$this->_translator->setLang($this->_lang);
 		$this->_data = array();
 		$this->_content = file_get_contents ('./baseSheet.html');
 		//list of data not required
@@ -27,12 +28,17 @@ class arrayToSheet
 	
 	public function setLang($lang = 'eng'){
 		$this->_lang = $lang;
-		$this->_language = $this->_language[$this->_lang];
 	}
 	
 	private function __translateSheet(){
-		foreach ($this->_language as $key=>$value)
-			$this->_content = str_replace ('{'.$key.'}',$value,$this->_content);			
+		$this->_translator->setContent($this->_content);
+		$this->_translator->translate();
+		$this->_content = $this->_translator->getContent();
+	}
+	
+	private function __jsNameToName($name){
+		$name = str_replace ('pf','',strtolower($name));
+		return "{".$name."}";
 	}
 	/*
 	public function __sheetToArray(){
@@ -95,6 +101,10 @@ class arrayToSheet
 		return implode (', ',$output);
 	}
 	
+	private function __manageRace(){
+		$this->_data['race'] = self::__jsNameToName($this->_data['race']);
+	}
+	
 	private function __manageSpecialItems($items){
 		$output = array();
 		foreach ($items as $itemInfo){
@@ -137,11 +147,17 @@ class arrayToSheet
 		return implode (' <strong>{or}</strong> ',$final);
 	}
 	
-	private function __manageClasses($classes){
+	private function __manageClasses(){
 		$str = "";
-		foreach ($classes as $className=>$classLevel)
-			$str[] = $className.' '.$classLevel; 
-		return implode (', ',$str);
+		foreach ($this->_data['classes'] as $index=>$info){
+			$info = array_values($info);
+			if ($info[0] != 'pfClass' && $info[0] != 'pfPcClass'){
+				$tmp  = self::__jsNameToName($info[0]);
+				$tmp .= " ".$info[1];
+				$str[] = $tmp;
+			} 
+		}
+		$this->_data['classes'] = implode(', ',$str);
 	}
 	
 	private function __manageAC($component){
@@ -158,6 +174,9 @@ class arrayToSheet
 	}
 	
 	public function writeContent(){
+		self::__manageRace();
+		self::__manageClasses();
+		
 		foreach ($this->_data as $key=>$value)
 			$this->_content = str_replace ('[['.$key.']]',$value,$this->_content);
 		self::__translateSheet();
